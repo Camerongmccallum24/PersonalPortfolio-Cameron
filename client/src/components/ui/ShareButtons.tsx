@@ -73,7 +73,7 @@ export function ShareButtons({ title, description, url }: ShareButtonsProps) {
 
   return (
     <motion.div 
-      className="flex items-center gap-2"
+      className="flex items-center gap-1.5"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
@@ -89,7 +89,7 @@ export function ShareButtons({ title, description, url }: ShareButtonsProps) {
           <Button
             variant="ghost"
             size="icon"
-            className={`bg-background/20 backdrop-blur-sm ${button.color}`}
+            className={`bg-background/80 hover:bg-background backdrop-blur-sm transition-all duration-300 border border-border/50 ${button.color}`}
             onClick={() => window.open(button.url, '_blank')}
           >
             <button.icon className="h-4 w-4" />
@@ -105,7 +105,7 @@ export function ShareButtons({ title, description, url }: ShareButtonsProps) {
         <Button
           variant="ghost"
           size="icon"
-          className="bg-background/20 backdrop-blur-sm hover:text-primary"
+          className="bg-background/80 hover:bg-background backdrop-blur-sm transition-all duration-300 border border-border/50 hover:text-primary"
           onClick={copyToClipboard}
         >
           <Link2 className="h-4 w-4" />
