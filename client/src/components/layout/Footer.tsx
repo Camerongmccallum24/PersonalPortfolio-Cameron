@@ -15,7 +15,7 @@ export function Footer() {
           <div className="flex items-center space-x-2">
             <Button variant="ghost" size="icon" asChild>
               <a 
-                href="https://github.com/yourusername" 
+                href="https://github.com/camerongmccallum24" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
@@ -25,7 +25,7 @@ export function Footer() {
             </Button>
             <Button variant="ghost" size="icon" asChild>
               <a 
-                href="https://linkedin.com/in/yourusername" 
+                href="https://linkedin.com/in/cameron-g-mccallum" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
