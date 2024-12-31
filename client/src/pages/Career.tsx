@@ -4,22 +4,22 @@ import { TimelineCard } from "@/components/sections/TimelineCard";
 export default function Career() {
   const experiences = [
     {
-      title: "Senior Software Engineer",
-      company: "TechScale Solutions",
-      date: "2022 - Present",
-      description: "Leading development of enterprise-level web applications using React and Node.js.",
+      title: "Your Current Role",
+      company: "Your Current Company",
+      date: "Current Date Range",
+      description: "Description of your current role and responsibilities",
     },
     {
-      title: "Full Stack Developer",
-      company: "Digital Innovations Inc",
-      date: "2020 - 2022",
-      description: "Developed and maintained multiple client projects using modern web technologies.",
+      title: "Your Previous Role",
+      company: "Previous Company",
+      date: "Previous Date Range",
+      description: "Description of your previous role and achievements",
     },
     {
-      title: "Frontend Developer",
-      company: "WebCraft Studios",
-      date: "2018 - 2020",
-      description: "Created responsive web interfaces and implemented UI/UX designs.",
+      title: "Your Earlier Role",
+      company: "Earlier Company",
+      date: "Earlier Date Range",
+      description: "Description of your earlier experience",
     },
   ];
 

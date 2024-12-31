@@ -17,7 +17,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Building Digital Experiences
+            Your Name Here
           </motion.h1>
           
           <motion.p 
@@ -26,7 +26,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            Full-stack developer specializing in creating beautiful and functional web applications
+            Your tagline or brief description here
           </motion.p>
           
           <motion.div

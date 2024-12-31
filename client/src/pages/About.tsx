@@ -3,9 +3,9 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function About() {
   const skills = [
-    { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS"] },
-    { category: "Backend", items: ["Node.js", "Express", "PostgreSQL"] },
-    { category: "Tools", items: ["Git", "Docker", "VS Code"] },
+    { category: "Frontend", items: ["Your", "Frontend", "Skills"] },
+    { category: "Backend", items: ["Your", "Backend", "Skills"] },
+    { category: "Tools", items: ["Your", "Favorite", "Tools"] },
   ];
 
   return (

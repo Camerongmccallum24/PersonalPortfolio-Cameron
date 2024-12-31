@@ -6,23 +6,23 @@ import { ExternalLink, Github } from "lucide-react";
 export default function Projects() {
   const projects = [
     {
-      title: "Customer Success Automator",
-      description: "An AI-powered platform for automating customer support workflows.",
-      image: "https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf",
-      tags: ["React", "Node.js", "AI"],
+      title: "Your Project 1",
+      description: "Description of your first project",
+      image: "URL to your project image",
+      tags: ["Technology 1", "Technology 2", "Technology 3"],
       links: {
-        demo: "https://demo.example.com",
-        github: "https://github.com/example",
+        demo: "Your demo URL",
+        github: "Your GitHub URL",
       },
     },
     {
-      title: "Tech Analytics Dashboard",
-      description: "Real-time analytics dashboard for monitoring system performance.",
-      image: "https://images.unsplash.com/photo-1486475554424-2fa50cd59f18",
-      tags: ["TypeScript", "D3.js", "Express"],
+      title: "Your Project 2",
+      description: "Description of your second project",
+      image: "URL to your project image",
+      tags: ["Technology 1", "Technology 2", "Technology 3"],
       links: {
-        demo: "https://demo.example.com",
-        github: "https://github.com/example",
+        demo: "Your demo URL",
+        github: "Your GitHub URL",
       },
     },
   ];
