@@ -58,8 +58,8 @@ export default function Projects() {
           {projects.map((project, index) => {
             const x = useMotionValue(0);
             const y = useMotionValue(0);
-            const rotateX = useTransform(y, [-100, 100], [5, -5]);
-            const rotateY = useTransform(x, [-100, 100], [-5, 5]);
+            const rotateX = useTransform(y, [-100, 100], [2, -2]);
+            const rotateY = useTransform(x, [-100, 100], [-2, 2]);
 
             return (
               <motion.div
@@ -72,110 +72,117 @@ export default function Projects() {
                   type: "spring",
                   stiffness: 100 
                 }}
-                style={{ 
-                  perspective: 2000,
-                  x, y, rotateX, rotateY,
-                  transformStyle: "preserve-3d"
-                }}
-                whileHover={{ scale: 1.01 }}
-                onMouseMove={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  const centerX = rect.x + rect.width / 2;
-                  const centerY = rect.y + rect.height / 2;
-                  x.set((e.clientX - centerX) * 0.5); 
-                  y.set((e.clientY - centerY) * 0.5);
-                }}
-                onMouseLeave={() => {
-                  x.set(0, { duration: 0.5, type: "spring", stiffness: 50 });
-                  y.set(0, { duration: 0.5, type: "spring", stiffness: 50 });
-                }}
+                className="relative"
               >
-                <Card className="h-full overflow-hidden transform-gpu transition-all duration-300 hover:shadow-xl">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
+                <motion.div
+                  style={{ 
+                    perspective: 2000,
+                    x, y, rotateX, rotateY,
+                    transformStyle: "preserve-3d"
+                  }}
+                  whileHover={{ scale: 1.01 }}
+                  onMouseMove={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const centerX = rect.x + rect.width / 2;
+                    const centerY = rect.y + rect.height / 2;
+                    x.set((e.clientX - centerX) * 0.2); // Reduced sensitivity
+                    y.set((e.clientY - centerY) * 0.2);
+                  }}
+                  onMouseLeave={() => {
+                    x.set(0, { duration: 0.5, type: "spring", stiffness: 50 });
+                    y.set(0, { duration: 0.5, type: "spring", stiffness: 50 });
+                  }}
+                  className="h-full"
+                >
+                  <Card className="h-full overflow-hidden transform-gpu transition-all duration-300 hover:shadow-xl">
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                    >
+                      <CardHeader className="relative aspect-video overflow-hidden p-0">
+                        <motion.img 
+                          src={project.image}
+                          alt={project.title}
+                          className="absolute inset-0 w-full h-full object-cover"
+                          initial={{ scale: 1 }}
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.4, ease: "easeOut" }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                      </CardHeader>
+                    </motion.div>
+                    <CardContent className="relative z-10 pt-4 px-4">
+                      <motion.h3 
+                        className="text-lg font-semibold mb-1"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                      >
+                        {project.title}
+                      </motion.h3>
+                      <motion.p 
+                        className="text-sm text-muted-foreground mb-3 line-clamp-3"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        {project.description}
+                      </motion.p>
+                      <motion.div 
+                        className="flex flex-wrap gap-1.5 mb-3"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.4 }}
+                      >
+                        {project.tags.map((tag) => (
+                          <motion.span
+                            key={tag}
+                            className="px-1.5 py-0.5 text-xs rounded-full bg-primary/10 text-primary"
+                            whileHover={{ 
+                              scale: 1.1, 
+                              backgroundColor: "var(--primary)", 
+                              color: "white",
+                              transition: { duration: 0.2 }
+                            }}
+                          >
+                            {tag}
+                          </motion.span>
+                        ))}
+                      </motion.div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+
+                {/* Buttons outside the 3D transform container */}
+                <motion.div 
+                  className="absolute bottom-4 left-4 right-4 flex gap-3 z-20"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    asChild
+                    className="hover:scale-105 transition-transform text-xs bg-background/80 backdrop-blur-sm"
                   >
-                    <CardHeader className="relative aspect-video overflow-hidden p-0">
-                      <motion.img 
-                        src={project.image}
-                        alt={project.title}
-                        className="absolute inset-0 w-full h-full object-cover"
-                        initial={{ scale: 1 }}
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.4, ease: "easeOut" }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                    </CardHeader>
-                  </motion.div>
-                  <CardContent className="relative z-10 pt-4 px-4">
-                    <motion.h3 
-                      className="text-lg font-semibold mb-1"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      {project.title}
-                    </motion.h3>
-                    <motion.p 
-                      className="text-sm text-muted-foreground mb-3 line-clamp-3"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      {project.description}
-                    </motion.p>
-                    <motion.div 
-                      className="flex flex-wrap gap-1.5 mb-3"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.4 }}
-                    >
-                      {project.tags.map((tag) => (
-                        <motion.span
-                          key={tag}
-                          className="px-1.5 py-0.5 text-xs rounded-full bg-primary/10 text-primary"
-                          whileHover={{ 
-                            scale: 1.1, 
-                            backgroundColor: "var(--primary)", 
-                            color: "white",
-                            transition: { duration: 0.2 }
-                          }}
-                        >
-                          {tag}
-                        </motion.span>
-                      ))}
-                    </motion.div>
-                    <motion.div 
-                      className="flex gap-3"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.5 }}
-                    >
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        asChild
-                        className="hover:scale-105 transition-transform text-xs"
-                      >
-                        <a href={`/case-study/${project.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                          <ExternalLink className="h-3 w-3 mr-1.5" />
-                          View Case Study
-                        </a>
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        asChild
-                        className="hover:scale-105 transition-transform text-xs"
-                      >
-                        <a href={project.links.github} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-3 w-3 mr-1.5" />
-                          Source Code
-                        </a>
-                      </Button>
-                    </motion.div>
-                  </CardContent>
-                </Card>
+                    <a href={`/case-study/${project.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                      <ExternalLink className="h-3 w-3 mr-1.5" />
+                      View Case Study
+                    </a>
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    asChild
+                    className="hover:scale-105 transition-transform text-xs bg-background/80 backdrop-blur-sm"
+                  >
+                    <a href={project.links.github} target="_blank" rel="noopener noreferrer">
+                      <Github className="h-3 w-3 mr-1.5" />
+                      Source Code
+                    </a>
+                  </Button>
+                </motion.div>
               </motion.div>
             );
           })}
