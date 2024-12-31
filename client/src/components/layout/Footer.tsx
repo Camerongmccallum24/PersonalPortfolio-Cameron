@@ -1,3 +1,4 @@
+
 import { Link } from "wouter";
 import { Github, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,13 +9,13 @@ export function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-sm text-muted-foreground">
-            © 2024 Portfolio. All rights reserved.
+            © 2024 AI Strategy & Customer Success Portfolio. Built with React & TypeScript.
           </div>
           
           <div className="flex items-center space-x-2">
             <Button variant="ghost" size="icon" asChild>
               <a 
-                href="https://github.com" 
+                href="https://github.com/yourusername" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
@@ -24,7 +25,7 @@ export function Footer() {
             </Button>
             <Button variant="ghost" size="icon" asChild>
               <a 
-                href="https://linkedin.com" 
+                href="https://linkedin.com/in/yourusername" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
@@ -34,7 +35,7 @@ export function Footer() {
             </Button>
             <Button variant="ghost" size="icon" asChild>
               <a 
-                href="https://twitter.com" 
+                href="https://twitter.com/yourusername" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
