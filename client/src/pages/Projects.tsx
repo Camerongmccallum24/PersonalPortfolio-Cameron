@@ -54,7 +54,7 @@ export default function Projects() {
           Featured Projects
         </motion.h1>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -89,9 +89,9 @@ export default function Projects() {
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                   </CardHeader>
                 </motion.div>
-                <CardContent className="relative z-10 pt-6">
+                <CardContent className="relative z-10 pt-4 px-4">
                   <motion.h3 
-                    className="text-xl font-semibold mb-2"
+                    className="text-lg font-semibold mb-1"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
@@ -99,7 +99,7 @@ export default function Projects() {
                     {project.title}
                   </motion.h3>
                   <motion.p 
-                    className="text-muted-foreground mb-4"
+                    className="text-sm text-muted-foreground mb-3 line-clamp-3"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
@@ -108,7 +108,7 @@ export default function Projects() {
                   </motion.p>
 
                   <motion.div 
-                    className="flex flex-wrap gap-2 mb-4"
+                    className="flex flex-wrap gap-1.5 mb-3"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
@@ -116,7 +116,7 @@ export default function Projects() {
                     {project.tags.map((tag) => (
                       <motion.span
                         key={tag}
-                        className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary"
+                        className="px-1.5 py-0.5 text-xs rounded-full bg-primary/10 text-primary"
                         whileHover={{ scale: 1.1, backgroundColor: "var(--primary)", color: "white" }}
                       >
                         {tag}
@@ -125,7 +125,7 @@ export default function Projects() {
                   </motion.div>
 
                   <motion.div 
-                    className="flex gap-4"
+                    className="flex gap-3"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
@@ -134,10 +134,10 @@ export default function Projects() {
                       variant="outline" 
                       size="sm" 
                       asChild
-                      className="hover:scale-105 transition-transform"
+                      className="hover:scale-105 transition-transform text-xs"
                     >
                       <a href={`/case-study/${project.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                        <ExternalLink className="h-4 w-4 mr-2" />
+                        <ExternalLink className="h-3 w-3 mr-1.5" />
                         View Case Study
                       </a>
                     </Button>
@@ -145,10 +145,10 @@ export default function Projects() {
                       variant="outline" 
                       size="sm" 
                       asChild
-                      className="hover:scale-105 transition-transform"
+                      className="hover:scale-105 transition-transform text-xs"
                     >
                       <a href={project.links.github} target="_blank" rel="noopener noreferrer">
-                        <Github className="h-4 w-4 mr-2" />
+                        <Github className="h-3 w-3 mr-1.5" />
                         Source Code
                       </a>
                     </Button>

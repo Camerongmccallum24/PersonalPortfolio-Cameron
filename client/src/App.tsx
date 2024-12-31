@@ -8,6 +8,7 @@ import Career from "@/pages/Career";
 import Projects from "@/pages/Projects";
 import Blog from "@/pages/Blog";
 import Contact from "@/pages/Contact";
+import CaseStudy from "@/pages/CaseStudy";
 import { AnimatePresence } from "framer-motion";
 
 function App() {
