@@ -1,5 +1,8 @@
+
+import { useState } from "react";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 interface TimelineCardProps {
   title: string;
@@ -11,7 +14,17 @@ interface TimelineCardProps {
   achievements?: string[];
 }
 
-export function TimelineCard({ title, company, date, description, index }: TimelineCardProps) {
+export function TimelineCard({ 
+  title, 
+  company, 
+  date, 
+  description, 
+  index,
+  category = "Experience",
+  achievements = []
+}: TimelineCardProps) {
+  const [showMore, setShowMore] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -22,13 +35,9 @@ export function TimelineCard({ title, company, date, description, index }: Timel
         type: "spring",
         stiffness: 100 
       }}
-      whileHover={{ scale: 1.02 }}
       className="relative pl-6 mb-6"
     >
-      {/* Timeline connector */}
       <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 to-primary/5" />
-
-      {/* Timeline dot */}
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
@@ -56,16 +65,14 @@ export function TimelineCard({ title, company, date, description, index }: Timel
               >
                 {company}
               </motion.p>
-              {category && (
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: index * 0.2 + 0.4 }}
-                  className="inline-block px-2 py-1 text-xs rounded-full bg-primary/10 text-primary"
-                >
-                  {category}
-                </motion.span>
-              )}
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: index * 0.2 + 0.4 }}
+                className="absolute top-4 right-4 inline-block px-2 py-1 text-xs rounded-full bg-primary/10 text-primary"
+              >
+                {category}
+              </motion.span>
             </div>
             <motion.span 
               initial={{ opacity: 0, x: 20 }}
@@ -88,25 +95,42 @@ export function TimelineCard({ title, company, date, description, index }: Timel
               {description}
             </p>
             {achievements && achievements.length > 0 && (
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                className="text-sm text-primary hover:text-primary/80"
-                onClick={() => setShowMore(!showMore)}
-              >
-                Show {showMore ? 'less' : `${achievements.length} more`} achievements
-              </motion.button>
-            )}
-            {showMore && achievements && (
-              <motion.ul
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className="space-y-2 pl-4 list-disc text-sm text-muted-foreground"
-              >
-                {achievements.map((achievement, i) => (
-                  <li key={i}>{achievement}</li>
-                ))}
-              </motion.ul>
+              <>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  onClick={() => setShowMore(!showMore)}
+                  className="flex items-center gap-2 text-sm text-primary hover:text-primary/80"
+                >
+                  <motion.div
+                    animate={{ rotate: showMore ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ChevronDown size={16} />
+                  </motion.div>
+                  {showMore ? 'Show less' : `View ${achievements.length} achievements`}
+                </motion.button>
+                <AnimatePresence>
+                  {showMore && (
+                    <motion.ul
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="space-y-2 pl-4 list-disc text-sm text-muted-foreground"
+                    >
+                      {achievements.map((achievement, i) => (
+                        <motion.li
+                          key={i}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.1 }}
+                        >
+                          {achievement}
+                        </motion.li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
+              </>
             )}
           </motion.div>
         </CardContent>

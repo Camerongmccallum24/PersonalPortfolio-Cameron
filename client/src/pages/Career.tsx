@@ -7,7 +7,14 @@ export default function Career() {
       title: "Independent AI Strategy Consultant",
       company: "Freelance Consultant",
       date: "2024 - Present",
-      description: "Developed AI implementation strategies for enterprise clients. Created custom GPTs for customer success automation. Conducted AI readiness assessments for organizations. Led workshops on AI integration in customer success workflows."
+      category: "AI Strategy",
+      description: "Developed AI implementation strategies for enterprise clients. Created custom GPTs for customer success automation. Conducted AI readiness assessments for organizations. Led workshops on AI integration in customer success workflows.",
+      achievements: [
+        "Developed custom GPT models for 3 enterprise clients, reducing response time by 40%",
+        "Successfully implemented AI automation strategies resulting in 30% cost reduction",
+        "Conducted 12 AI readiness workshops with 95% positive feedback",
+        "Created comprehensive AI integration roadmaps for 5 organizations"
+      ]
     },
     {
       title: "Enterprise Customer Success Manager",
