@@ -18,7 +18,7 @@ export default function Projects() {
       image: "/images/customer-success-gpt.jpg",
       tags: ["React", "TypeScript", "Vercel", "GPT-4", "Customer Success"],
       links: {
-        demo: "https://gpt-showcase-murex.vercel.app/",
+        demo: "https://customer-success-portfolio.camerongmccallum.repl.co/case-study/customer-success-gpt-showcase",
         github: "https://github.com/camerongmccallum24/GPTShowcase"
       },
       preview: {
@@ -33,7 +33,7 @@ export default function Projects() {
       image: "/images/customer-succes-portal.jpg",
       tags: ["FastAPI", "Python", "Docker", "Replit", "Customer Success"],
       links: {
-        demo: "URL-to-customer-success-portal-demo",
+        demo: "https://customer-success-portfolio.camerongmccallum.repl.co/case-study/customer-success-portal",
         github: "https://github.com/camerongmccallum24"
       },
       preview: {
