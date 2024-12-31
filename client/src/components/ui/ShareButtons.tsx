@@ -55,19 +55,19 @@ export function ShareButtons({ title, description, url }: ShareButtonsProps) {
       name: "Twitter",
       icon: Twitter,
       url: shareUrls.twitter,
-      color: "hover:text-blue-400"
+      hoverClass: "hover:bg-[#1DA1F2]/20 hover:text-[#1DA1F2] hover:shadow-[0_0_15px_rgba(29,161,242,0.5)]"
     },
     {
       name: "LinkedIn",
       icon: Linkedin,
       url: shareUrls.linkedin,
-      color: "hover:text-blue-600"
+      hoverClass: "hover:bg-[#0A66C2]/20 hover:text-[#0A66C2] hover:shadow-[0_0_15px_rgba(10,102,194,0.5)]"
     },
     {
       name: "Facebook",
       icon: Facebook,
       url: shareUrls.facebook,
-      color: "hover:text-blue-500"
+      hoverClass: "hover:bg-[#4267B2]/20 hover:text-[#4267B2] hover:shadow-[0_0_15px_rgba(66,103,178,0.5)]"
     }
   ];
 
@@ -89,7 +89,7 @@ export function ShareButtons({ title, description, url }: ShareButtonsProps) {
           <Button
             variant="ghost"
             size="icon"
-            className={`bg-background/80 hover:bg-background backdrop-blur-sm transition-all duration-300 border border-border/50 ${button.color}`}
+            className={`bg-background/80 backdrop-blur-sm transition-all duration-300 border border-border/50 ${button.hoverClass}`}
             onClick={() => window.open(button.url, '_blank')}
           >
             <button.icon className="h-4 w-4" />
@@ -105,7 +105,7 @@ export function ShareButtons({ title, description, url }: ShareButtonsProps) {
         <Button
           variant="ghost"
           size="icon"
-          className="bg-background/80 hover:bg-background backdrop-blur-sm transition-all duration-300 border border-border/50 hover:text-primary"
+          className="bg-background/80 backdrop-blur-sm transition-all duration-300 border border-border/50 hover:bg-primary/20 hover:text-primary hover:shadow-[0_0_15px_var(--primary)]"
           onClick={copyToClipboard}
         >
           <Link2 className="h-4 w-4" />
