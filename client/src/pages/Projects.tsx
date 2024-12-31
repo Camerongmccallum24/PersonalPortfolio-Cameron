@@ -136,9 +136,9 @@ export default function Projects() {
                       asChild
                       className="hover:scale-105 transition-transform"
                     >
-                      <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
+                      <a href={`/case-study/${project.title.toLowerCase().replace(/\s+/g, '-')}`}>
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Live Demo
+                        View Case Study
                       </a>
                     </Button>
                     <Button 

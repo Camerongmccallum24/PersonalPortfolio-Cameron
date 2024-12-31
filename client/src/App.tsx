@@ -23,6 +23,7 @@ function App() {
           <Route path="/projects" component={Projects} />
           <Route path="/blog" component={Blog} />
           <Route path="/contact" component={Contact} />
+          <Route path="/case-study/:id" component={CaseStudy} />
         </Switch>
       </AnimatePresence>
       <Footer />
