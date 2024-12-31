@@ -5,51 +5,51 @@ import { FileDown } from "lucide-react";
 
 export default function CaseStudy() {
   const metrics = [
-    { value: "30%", label: "Increase in Customer Retention" },
-    { value: "50%", label: "Faster Response Times" },
-    { value: "40%", label: "Reduction in Manual Tasks" },
-    { value: "25%", label: "Improvement in Customer Satisfaction" }
+    { value: "↓40%", label: "Reduction in Churn Rate" },
+    { value: "↑35%", label: "Increase in Customer Satisfaction" },
+    { value: "↑30%", label: "Boost in Customer Lifetime Value" },
+    { value: "↑50%", label: "Team Productivity Improvement" }
   ];
 
   const features = [
     {
-      title: "Suite of Custom GPT Tools",
-      description: "Collection of specialized AI models for customer success management.",
+      title: "Centralized Knowledge Base",
+      description: "Single source of truth for all client-related information.",
       items: [
-        "Customer Sentiment Analyst",
-        "Customer Retention Expert",
-        "CSM Coach",
-        "Customer Success Analyst"
+        "Usage metrics tracking",
+        "Support ticket management",
+        "Training materials hub",
+        "Onboarding progress monitoring"
       ]
     },
     {
-      title: "User-Friendly Interface",
-      description: "Intuitive platform designed for ease of use and maximum efficiency.",
+      title: "AI-Powered Insights",
+      description: "Advanced analytics and predictive capabilities.",
       items: [
-        "Intuitive navigation",
-        "Real-time analysis",
-        "Interactive features",
-        "Customizable dashboards"
+        "Churn risk prediction",
+        "Upsell opportunity identification",
+        "Real-time alerts",
+        "Behavioral analysis"
       ]
     },
     {
-      title: "Scalability & Customization",
-      description: "Adaptable platform that grows with your business needs.",
+      title: "Workflow Automation",
+      description: "Streamlined processes for enhanced efficiency.",
       items: [
-        "Flexible architecture",
-        "Custom parameters",
-        "CRM integration",
-        "Scalable infrastructure"
+        "Automated follow-ups",
+        "Status updates",
+        "Report generation",
+        "CRM integration"
       ]
     }
   ];
 
   const techStack = {
-    Frontend: ["React", "TypeScript", "Framer Motion"],
+    Frontend: ["React", "TypeScript"],
     Backend: ["FastAPI", "PostgreSQL"],
-    "AI/ML": ["GPT-3.5", "GPT-4"],
+    Cloud: ["AWS"],
     Security: ["End-to-end encryption", "Role-based access"],
-    Integrations: ["Salesforce", "HubSpot", "Slack", "MS Teams"]
+    Integrations: ["Salesforce", "HubSpot", "Slack", "Microsoft Teams"]
   };
 
   return (
