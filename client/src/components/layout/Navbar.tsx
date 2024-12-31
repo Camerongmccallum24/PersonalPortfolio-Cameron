@@ -30,21 +30,19 @@ export function Navbar() {
     <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-sm border-b">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/">
-          <a className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500">
+          <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500 cursor-pointer">
             Portfolio
-          </a>
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-1">
           {navItems.map(({ path, label, icon: Icon }) => (
-            <Button
-              key={path}
-              variant={location === path ? "default" : "ghost"}
-              asChild
-              className="relative"
-            >
-              <Link href={path}>
+            <Link key={path} href={path}>
+              <Button
+                variant={location === path ? "default" : "ghost"}
+                className="relative"
+              >
                 <Icon className="mr-2 h-4 w-4" />
                 {label}
                 {location === path && (
@@ -53,8 +51,8 @@ export function Navbar() {
                     className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
                   />
                 )}
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           ))}
         </div>
 
@@ -80,18 +78,16 @@ export function Navbar() {
           >
             <div className="container mx-auto px-4 py-4 flex flex-col space-y-2">
               {navItems.map(({ path, label, icon: Icon }) => (
-                <Button
-                  key={path}
-                  variant={location === path ? "default" : "ghost"}
-                  className="w-full justify-start"
-                  onClick={() => setIsOpen(false)}
-                  asChild
-                >
-                  <Link href={path}>
+                <Link key={path} href={path}>
+                  <Button
+                    variant={location === path ? "default" : "ghost"}
+                    className="w-full justify-start"
+                    onClick={() => setIsOpen(false)}
+                  >
                     <Icon className="mr-2 h-4 w-4" />
                     {label}
-                  </Link>
-                </Button>
+                  </Button>
+                </Link>
               ))}
             </div>
           </motion.div>
