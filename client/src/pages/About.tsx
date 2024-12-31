@@ -3,31 +3,14 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function About() {
   const skills = [
-    {
-      category: "Frontend",
-      items: [
-        "React",
-        "TypeScript",
-        "TailwindCSS",
-        "HTML",
-        "CSS",
-        "JavaScript",
-      ],
-    },
-    {
-      category: "Backend",
-      items: ["FastAPI", "Node.js", "Express.js", "Python", "SQL"],
-    },
-    {
-      category: "Tools",
-      items: [
-        "Firebase",
-        "Vercel",
-        "GitHub",
-        "Replit",
-        "Make (formerly Integromat)",
-      ],
-    }
+    { name: "React", level: 90, category: "Frontend" },
+    { name: "TypeScript", level: 85, category: "Frontend" },
+    { name: "Python", level: 80, category: "Backend" },
+    { name: "Node.js", level: 75, category: "Backend" },
+    { name: "SQL", level: 85, category: "Backend" },
+    { name: "AWS", level: 70, category: "Tools" },
+    { name: "Docker", level: 75, category: "Tools" },
+    { name: "Git", level: 90, category: "Tools" }
   ];
 
   return (
@@ -65,7 +48,7 @@ export default function About() {
           <div className="grid md:grid-cols-3 gap-6">
             {skills.map((skill, index) => (
               <motion.div
-                key={skill.category}
+                key={skill.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -73,15 +56,10 @@ export default function About() {
                 <Card>
                   <CardContent className="pt-6">
                     <h3 className="text-lg font-semibold mb-4">
-                      {skill.category}
+                      {skill.name}
                     </h3>
-                    <ul className="space-y-2">
-                      {skill.items.map((item) => (
-                        <li key={item} className="text-muted-foreground">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                    <p>Level: {skill.level}</p>
+                    <p>Category: {skill.category}</p>
                   </CardContent>
                 </Card>
               </motion.div>
