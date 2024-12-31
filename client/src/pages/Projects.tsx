@@ -121,6 +121,7 @@ export default function Projects() {
                 <motion.div
                   whileHover={{ scale: 1.03 }}
                   transition={{ duration: 0.3 }}
+                  className="relative"
                 >
                   <CardHeader className="relative aspect-video overflow-hidden p-0">
                     <motion.img 
@@ -133,56 +134,59 @@ export default function Projects() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
 
-                    <TooltipProvider>
-                      <Tooltip delayDuration={200}>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="absolute top-2 right-2 bg-background/20 hover:bg-background/40 backdrop-blur-sm transition-all duration-300 hover:rotate-12"
+                    <div className="absolute top-2 right-2 z-50">
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="bg-background/20 hover:bg-background/40 backdrop-blur-sm transition-all duration-300 hover:rotate-12"
+                            >
+                              <Info className="h-4 w-4" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent
+                            side="right"
+                            className="w-80 p-4 space-y-2"
                           >
-                            <Info className="h-4 w-4" />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent
-                          side="right"
-                          className="w-80 p-4 space-y-2"
-                        >
-                          <div className="space-y-2">
-                            <h4 className="font-semibold text-sm">{project.title}</h4>
-                            <div className="space-y-1">
-                              <div className="flex items-center gap-2">
-                                <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-                                <p className="text-sm">Impact: {project.preview.impact}</p>
-                              </div>
+                            <div className="space-y-2">
+                              <h4 className="font-semibold text-sm">{project.title}</h4>
                               <div className="space-y-1">
-                                <p className="text-sm font-medium">Key Features:</p>
-                                <ul className="text-sm space-y-1">
-                                  {project.preview.features.map((feature, i) => (
-                                    <motion.li
-                                      key={i}
-                                      initial={{ opacity: 0, x: -10 }}
-                                      animate={{ opacity: 1, x: 0 }}
-                                      transition={{ delay: i * 0.1 }}
-                                      className="flex items-center gap-2"
-                                    >
-                                      <span className="h-1 w-1 rounded-full bg-primary" />
-                                      {feature}
-                                    </motion.li>
-                                  ))}
-                                </ul>
-                              </div>
-                              <div className="flex items-center gap-2 mt-2">
-                                <span className="h-2 w-2 rounded-full bg-primary" />
-                                <p className="text-sm">Status: {project.preview.status}</p>
+                                <div className="flex items-center gap-2">
+                                  <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+                                  <p className="text-sm">Impact: {project.preview.impact}</p>
+                                </div>
+                                <div className="space-y-1">
+                                  <p className="text-sm font-medium">Key Features:</p>
+                                  <ul className="text-sm space-y-1">
+                                    {project.preview.features.map((feature, i) => (
+                                      <motion.li
+                                        key={i}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: i * 0.1 }}
+                                        className="flex items-center gap-2"
+                                      >
+                                        <span className="h-1 w-1 rounded-full bg-primary" />
+                                        {feature}
+                                      </motion.li>
+                                    ))}
+                                  </ul>
+                                </div>
+                                <div className="flex items-center gap-2 mt-2">
+                                  <span className="h-2 w-2 rounded-full bg-primary" />
+                                  <p className="text-sm">Status: {project.preview.status}</p>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
                   </CardHeader>
                 </motion.div>
+
                 <CardContent className="relative z-10 pt-4 px-4">
                   <motion.h3 
                     className="text-lg font-semibold mb-1"
