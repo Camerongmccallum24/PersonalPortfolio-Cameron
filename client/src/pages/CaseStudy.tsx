@@ -5,48 +5,51 @@ import { FileDown } from "lucide-react";
 
 export default function CaseStudy() {
   const metrics = [
-    { value: "40%", label: "Reduction in Manual Data Analysis" },
-    { value: "5%", label: "Increase in Retention Rates" },
-    { value: "30%", label: "Time Saved on Routine Tasks" },
-    { value: "25%", label: "Improvement in Response Time" }
+    { value: "30%", label: "Increase in Customer Retention" },
+    { value: "50%", label: "Faster Response Times" },
+    { value: "40%", label: "Reduction in Manual Tasks" },
+    { value: "25%", label: "Improvement in Customer Satisfaction" }
   ];
 
   const features = [
     {
-      title: "AI-Powered Analytics",
-      description: "Advanced analytics engine for predictive insights and proactive engagement.",
+      title: "Suite of Custom GPT Tools",
+      description: "Collection of specialized AI models for customer success management.",
       items: [
-        "Churn prediction modeling",
-        "Customer health scoring",
-        "Engagement pattern analysis"
+        "Customer Sentiment Analyst",
+        "Customer Retention Expert",
+        "CSM Coach",
+        "Customer Success Analyst"
       ]
     },
     {
-      title: "Automated Workflows",
-      description: "Streamlined processes for routine tasks and customer interactions.",
+      title: "User-Friendly Interface",
+      description: "Intuitive platform designed for ease of use and maximum efficiency.",
       items: [
-        "Automated follow-ups",
-        "Task prioritization",
-        "Meeting scheduling"
+        "Intuitive navigation",
+        "Real-time analysis",
+        "Interactive features",
+        "Customizable dashboards"
       ]
     },
     {
-      title: "Data Security",
-      description: "Enterprise-grade security measures for sensitive customer data.",
+      title: "Scalability & Customization",
+      description: "Adaptable platform that grows with your business needs.",
       items: [
-        "End-to-end encryption",
-        "Role-based access control",
-        "Audit logging"
+        "Flexible architecture",
+        "Custom parameters",
+        "CRM integration",
+        "Scalable infrastructure"
       ]
     }
   ];
 
   const techStack = {
-    Frontend: ["React", "TypeScript", "TailwindCSS"],
-    Backend: ["FastAPI", "PostgreSQL", "Redis"],
-    "AI/ML": ["TensorFlow", "scikit-learn", "Pandas"],
-    Infrastructure: ["AWS", "Docker", "Kubernetes"],
-    Integrations: ["Salesforce", "Zendesk", "HubSpot", "Slack"]
+    Frontend: ["React", "TypeScript", "Framer Motion"],
+    Backend: ["FastAPI", "PostgreSQL"],
+    "AI/ML": ["GPT-3.5", "GPT-4"],
+    Security: ["End-to-end encryption", "Role-based access"],
+    Integrations: ["Salesforce", "HubSpot", "Slack", "MS Teams"]
   };
 
   return (
@@ -104,29 +107,29 @@ export default function CaseStudy() {
             ))}
           </div>
 
-          {/* Success Story */}
+          {/* Overview */}
           <div className="bg-card p-8 rounded-lg mb-16">
-            <h2 className="text-2xl font-bold mb-6">Success Story: TechScale Solutions</h2>
+            <h2 className="text-2xl font-bold mb-6">Overview</h2>
             <div className="space-y-6">
+              <p className="text-muted-foreground">
+                The GPT Showcase revolutionizes customer success by harnessing the power of advanced AI models. 
+                This innovative platform provides a centralized hub for a collection of custom GPTs, each designed 
+                to address specific challenges and enhance key aspects of customer success management.
+              </p>
               <div>
-                <h3 className="font-semibold mb-2">The Challenge</h3>
-                <p className="text-muted-foreground">
-                  Managing a rapidly growing customer base with manual processes led to inefficiencies,
-                  delayed responses, and missed opportunities for proactive engagement.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Our Solution</h3>
-                <p className="text-muted-foreground">
-                  Implemented the Customer Success Automator to automate routine tasks,
-                  provide predictive insights, and streamline customer engagement workflows.
-                </p>
+                <h3 className="font-semibold mb-2">Impact & Value</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li>• Increased Customer Retention through proactive risk identification</li>
+                  <li>• Enhanced Customer Satisfaction with personalized experiences</li>
+                  <li>• Improved Team Efficiency via task automation</li>
+                  <li>• Data-Driven Decision Making powered by predictive analytics</li>
+                </ul>
               </div>
               <blockquote className="border-l-4 border-primary pl-4 italic">
-                "The automation capabilities have transformed our CS operations. We're now able to
-                focus on strategic initiatives rather than routine tasks."
+                "By providing a centralized hub for AI-powered tools, this platform empowers businesses 
+                to deliver exceptional customer experiences and drive sustainable growth."
                 <footer className="mt-2 font-semibold">
-                  - Jennifer Martinez, Head of Customer Success
+                  - Project Overview
                 </footer>
               </blockquote>
             </div>
