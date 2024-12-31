@@ -58,37 +58,42 @@ export default function Projects() {
           {projects.map((project, index) => {
             const x = useMotionValue(0);
             const y = useMotionValue(0);
-            const rotateX = useTransform(y, [-100, 100], [10, -10]);
-            const rotateY = useTransform(x, [-100, 100], [-10, 10]);
+            const rotateX = useTransform(y, [-100, 100], [5, -5]);
+            const rotateY = useTransform(x, [-100, 100], [-5, 5]);
 
             return (
               <motion.div
                 key={project.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 100 
+                }}
                 style={{ 
                   perspective: 2000,
                   x, y, rotateX, rotateY,
                   transformStyle: "preserve-3d"
                 }}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.01 }}
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
                   const centerX = rect.x + rect.width / 2;
                   const centerY = rect.y + rect.height / 2;
-                  x.set(e.clientX - centerX);
-                  y.set(e.clientY - centerY);
+                  x.set((e.clientX - centerX) * 0.5); 
+                  y.set((e.clientY - centerY) * 0.5);
                 }}
                 onMouseLeave={() => {
-                  x.set(0);
-                  y.set(0);
+                  x.set(0, { duration: 0.5, type: "spring", stiffness: 50 });
+                  y.set(0, { duration: 0.5, type: "spring", stiffness: 50 });
                 }}
               >
                 <Card className="h-full overflow-hidden transform-gpu transition-all duration-300 hover:shadow-xl">
                   <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.3 }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                   >
                     <CardHeader className="relative aspect-video overflow-hidden p-0">
                       <motion.img 
@@ -97,7 +102,7 @@ export default function Projects() {
                         className="absolute inset-0 w-full h-full object-cover"
                         initial={{ scale: 1 }}
                         whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                     </CardHeader>
@@ -119,7 +124,6 @@ export default function Projects() {
                     >
                       {project.description}
                     </motion.p>
-
                     <motion.div 
                       className="flex flex-wrap gap-1.5 mb-3"
                       initial={{ opacity: 0 }}
@@ -141,7 +145,6 @@ export default function Projects() {
                         </motion.span>
                       ))}
                     </motion.div>
-
                     <motion.div 
                       className="flex gap-3"
                       initial={{ opacity: 0, y: 10 }}
