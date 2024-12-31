@@ -1,16 +1,46 @@
+
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
+import { SkillsVisualization } from "@/components/sections/SkillsVisualization";
 
 export default function About() {
   const skills = [
-    { name: "React", level: 90, category: "Frontend" },
-    { name: "TypeScript", level: 85, category: "Frontend" },
-    { name: "Python", level: 80, category: "Backend" },
+    // Frontend
+    { name: "React", level: 85, category: "Frontend" },
+    { name: "TypeScript", level: 80, category: "Frontend" },
+    { name: "TailwindCSS", level: 75, category: "Frontend" },
+    { name: "HTML", level: 90, category: "Frontend" },
+    { name: "CSS", level: 85, category: "Frontend" },
+    { name: "JavaScript", level: 80, category: "Frontend" },
+    
+    // Backend
+    { name: "FastAPI", level: 85, category: "Backend" },
+    { name: "Python", level: 90, category: "Backend" },
     { name: "Node.js", level: 75, category: "Backend" },
-    { name: "SQL", level: 85, category: "Backend" },
-    { name: "AWS", level: 70, category: "Tools" },
-    { name: "Docker", level: 75, category: "Tools" },
-    { name: "Git", level: 90, category: "Tools" }
+    { name: "SQL", level: 80, category: "Backend" },
+    { name: "Express.js", level: 70, category: "Backend" },
+    
+    // Tools
+    { name: "Firebase", level: 80, category: "Tools" },
+    { name: "Vercel", level: 85, category: "Tools" },
+    { name: "Replit", level: 80, category: "Tools" },
+    { name: "GitHub", level: 90, category: "Tools" },
+    { name: "Make (Integromat)", level: 75, category: "Tools" },
+    { name: "Docker", level: 70, category: "Tools" },
+    
+    // AI & Data Analytics
+    { name: "GPT-4 Customization", level: 85, category: "AI & Data Analytics" },
+    { name: "Predictive Analytics", level: 80, category: "AI & Data Analytics" },
+    { name: "Sentiment Analysis", level: 85, category: "AI & Data Analytics" },
+    { name: "Data Visualization", level: 75, category: "AI & Data Analytics" },
+    { name: "Machine Learning", level: 70, category: "AI & Data Analytics" },
+    
+    // Customer Success
+    { name: "CRM Platforms", level: 85, category: "Customer Success" },
+    { name: "AI-Driven Customer Retention", level: 90, category: "Customer Success" },
+    { name: "Workflow Automation", level: 80, category: "Customer Success" },
+    { name: "Customer Journey Mapping", level: 85, category: "Customer Success" },
+    { name: "Client Engagement & Training", level: 90, category: "Customer Success" }
   ];
 
   return (
@@ -21,7 +51,7 @@ export default function About() {
       className="pt-24 pb-16 min-h-screen"
     >
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -44,27 +74,7 @@ export default function About() {
           </Card>
 
           <h2 className="text-2xl font-semibold mb-6">Skills & Expertise</h2>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {skills.map((skill, index) => (
-              <motion.div
-                key={skill.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card>
-                  <CardContent className="pt-6">
-                    <h3 className="text-lg font-semibold mb-4">
-                      {skill.name}
-                    </h3>
-                    <p>Level: {skill.level}</p>
-                    <p>Category: {skill.category}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+          <SkillsVisualization skills={skills} />
         </div>
       </div>
     </motion.main>
