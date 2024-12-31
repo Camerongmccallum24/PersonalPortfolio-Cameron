@@ -17,7 +17,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Your Name Here
+            Cameron McCallum
           </motion.h1>
           
           <motion.p 
@@ -26,7 +26,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            Your tagline or brief description here
+            Empowering Customer Success with AI-Driven Solutions and Data-Driven Strategies.
           </motion.p>
           
           <motion.div

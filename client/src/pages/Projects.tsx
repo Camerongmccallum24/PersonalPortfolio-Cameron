@@ -6,25 +6,35 @@ import { ExternalLink, Github } from "lucide-react";
 export default function Projects() {
   const projects = [
     {
-      title: "Your Project 1",
-      description: "Description of your first project",
-      image: "URL to your project image",
-      tags: ["Technology 1", "Technology 2", "Technology 3"],
+      title: "Customer Success GPT Showcase",
+      description: "A platform that demonstrates the capabilities of custom GPTs designed for Customer Success Managers. Features include sentiment analysis, churn prediction, and advanced analytics tailored to improve client retention and engagement.",
+      image: "URL-to-customer-success-gpt-showcase-image",
+      tags: ["React", "TypeScript", "Vercel", "GPT-4", "Customer Success"],
       links: {
-        demo: "Your demo URL",
-        github: "Your GitHub URL",
-      },
+        demo: "https://gpt-showcase-murex.vercel.app/",
+        github: "https://github.com/camerongmccallum24/GPTShowcase"
+      }
     },
     {
-      title: "Your Project 2",
-      description: "Description of your second project",
-      image: "URL to your project image",
-      tags: ["Technology 1", "Technology 2", "Technology 3"],
+      title: "Customer Success Portal",
+      description: "A centralized platform for Customer Success Managers to manage client-specific knowledge bases, automate insights, and streamline workflows. Includes features for sentiment analysis, onboarding optimization, and multi-stakeholder collaboration.",
+      image: "URL-to-customer-success-portal-image",
+      tags: ["FastAPI", "Python", "Docker", "Replit", "Customer Success"],
       links: {
-        demo: "Your demo URL",
-        github: "Your GitHub URL",
-      },
+        demo: "URL-to-customer-success-portal-demo",
+        github: "https://github.com/camerongmccallum24"
+      }
     },
+    {
+      title: "Customer Success Automator",
+      description: "An automation tool for Customer Success workflows, focusing on repetitive tasks like follow-ups, personalized support recommendations, and reporting. Designed to reduce manual effort and improve productivity.",
+      image: "URL-to-customer-success-automator-image",
+      tags: ["Python", "Automation", "API Integrations", "AI"],
+      links: {
+        demo: "URL-to-customer-success-automator-demo",
+        github: "https://github.com/camerongmccallum24"
+      }
+    }
   ];
 
   return (
@@ -63,7 +73,7 @@ export default function Projects() {
                 <CardContent className="pt-6">
                   <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                   <p className="text-muted-foreground mb-4">{project.description}</p>
-                  
+
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag) => (
                       <span
