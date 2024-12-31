@@ -8,7 +8,7 @@ export default function Projects() {
     {
       title: "Customer Success GPT Showcase",
       description: "A platform that demonstrates the capabilities of custom GPTs designed for Customer Success Managers. Features include sentiment analysis, churn prediction, and advanced analytics tailored to improve client retention and engagement.",
-      image: "https://images.unsplash.com/photo-1531482615713-2afd69097998",
+      image: "/images/customer-success-gpt.jpg",
       tags: ["React", "TypeScript", "Vercel", "GPT-4", "Customer Success"],
       links: {
         demo: "https://gpt-showcase-murex.vercel.app/",
