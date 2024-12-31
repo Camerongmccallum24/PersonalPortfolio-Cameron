@@ -54,51 +54,105 @@ export default function Projects() {
           Featured Projects
         </motion.h1>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ 
+                scale: 1.02,
+                rotateY: 5,
+                rotateX: 5,
+                z: 50
+              }}
+              style={{ 
+                perspective: "1000px",
+                transformStyle: "preserve-3d"
+              }}
             >
-              <Card className="h-full">
-                <CardHeader className="relative aspect-video overflow-hidden">
-                  <img 
-                    src={project.image}
-                    alt={project.title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </CardHeader>
-                <CardContent className="pt-6">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-muted-foreground mb-4">{project.description}</p>
+              <Card className="h-full overflow-hidden transform-gpu transition-all duration-300 hover:shadow-xl">
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <CardHeader className="relative aspect-video overflow-hidden p-0">
+                    <motion.img 
+                      src={project.image}
+                      alt={project.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      initial={{ scale: 1 }}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                  </CardHeader>
+                </motion.div>
+                <CardContent className="relative z-10 pt-6">
+                  <motion.h3 
+                    className="text-xl font-semibold mb-2"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    {project.title}
+                  </motion.h3>
+                  <motion.p 
+                    className="text-muted-foreground mb-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    {project.description}
+                  </motion.p>
 
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <motion.div 
+                    className="flex flex-wrap gap-2 mb-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                  >
                     {project.tags.map((tag) => (
-                      <span
+                      <motion.span
                         key={tag}
                         className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary"
+                        whileHover={{ scale: 1.1, backgroundColor: "var(--primary)", color: "white" }}
                       >
                         {tag}
-                      </span>
+                      </motion.span>
                     ))}
-                  </div>
+                  </motion.div>
 
-                  <div className="flex gap-4">
-                    <Button variant="outline" size="sm" asChild>
+                  <motion.div 
+                    className="flex gap-4"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                  >
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      asChild
+                      className="hover:scale-105 transition-transform"
+                    >
                       <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="h-4 w-4 mr-2" />
                         Live Demo
                       </a>
                     </Button>
-                    <Button variant="outline" size="sm" asChild>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      asChild
+                      className="hover:scale-105 transition-transform"
+                    >
                       <a href={project.links.github} target="_blank" rel="noopener noreferrer">
                         <Github className="h-4 w-4 mr-2" />
                         Source Code
                       </a>
                     </Button>
-                  </div>
+                  </motion.div>
                 </CardContent>
               </Card>
             </motion.div>
