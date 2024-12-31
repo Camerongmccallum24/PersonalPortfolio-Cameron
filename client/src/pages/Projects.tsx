@@ -8,6 +8,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { ShareButtons } from "@/components/ui/ShareButtons";
 
 export default function Projects() {
   const projects = [
@@ -134,7 +135,12 @@ export default function Projects() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
 
-                    <div className="absolute top-2 right-2 z-50">
+                    <div className="absolute top-2 right-2 z-50 flex items-center gap-2">
+                      <ShareButtons
+                        title={project.title}
+                        description={project.description}
+                        url={`${window.location.origin}/case-study/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
+                      />
                       <TooltipProvider>
                         <Tooltip>
                           <TooltipTrigger asChild>
