@@ -54,19 +54,30 @@ export default function Career() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-4xl font-bold mb-8"
+            className="text-4xl font-bold mb-12"
           >
             Career Journey
           </motion.h1>
 
-          <div className="space-y-6">
-            {experiences.map((experience, index) => (
-              <TimelineCard
-                key={index}
-                index={index}
-                {...experience}
-              />
-            ))}
+          <div className="relative">
+            {/* Timeline background line */}
+            <motion.div
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: 1 }}
+              transition={{ duration: 1, ease: "easeInOut" }}
+              className="absolute left-0 top-0 bottom-0 w-px bg-primary/20"
+              style={{ transformOrigin: "top" }}
+            />
+
+            <div className="space-y-0">
+              {experiences.map((experience, index) => (
+                <TimelineCard
+                  key={index}
+                  index={index}
+                  {...experience}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
