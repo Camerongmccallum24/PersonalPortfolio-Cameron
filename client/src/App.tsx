@@ -1,6 +1,7 @@
 import { Switch, Route } from "wouter";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { Welcome } from "@/components/sections/Welcome";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Career from "@/pages/Career";
@@ -12,6 +13,7 @@ import { AnimatePresence } from "framer-motion";
 function App() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Welcome />
       <Navbar />
       <AnimatePresence mode="wait">
         <Switch>
