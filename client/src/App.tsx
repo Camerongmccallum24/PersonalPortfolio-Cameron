@@ -8,6 +8,8 @@ import Career from "@/pages/Career";
 import Projects from "@/pages/Projects";
 import Blog from "@/pages/Blog";
 import Contact from "@/pages/Contact";
+import CaseStudyGPTShowcase from "@/pages/CaseStudyGPTShowcase";
+import CaseStudyPortal from "@/pages/CaseStudyPortal";
 import CaseStudy from "@/pages/CaseStudy";
 import { AnimatePresence } from "framer-motion";
 
@@ -24,7 +26,9 @@ function App() {
           <Route path="/projects" component={Projects} />
           <Route path="/blog" component={Blog} />
           <Route path="/contact" component={Contact} />
-          <Route path="/case-study/:id" component={CaseStudy} />
+          <Route path="/case-study/customer-success-gpt-showcase" component={CaseStudyGPTShowcase} />
+          <Route path="/case-study/customer-success-portal" component={CaseStudyPortal} />
+          <Route path="/case-study/customer-success-automator" component={CaseStudy} />
         </Switch>
       </AnimatePresence>
       <Footer />
