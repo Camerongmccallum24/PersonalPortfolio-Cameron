@@ -8,7 +8,7 @@ export default function Projects() {
     {
       title: "Customer Success GPT Showcase",
       description: "A platform that demonstrates the capabilities of custom GPTs designed for Customer Success Managers. Features include sentiment analysis, churn prediction, and advanced analytics tailored to improve client retention and engagement.",
-      image: "URL-to-customer-success-gpt-showcase-image",
+      image: "https://images.unsplash.com/photo-1531482615713-2afd69097998",
       tags: ["React", "TypeScript", "Vercel", "GPT-4", "Customer Success"],
       links: {
         demo: "https://gpt-showcase-murex.vercel.app/",
@@ -18,7 +18,7 @@ export default function Projects() {
     {
       title: "Customer Success Portal",
       description: "A centralized platform for Customer Success Managers to manage client-specific knowledge bases, automate insights, and streamline workflows. Includes features for sentiment analysis, onboarding optimization, and multi-stakeholder collaboration.",
-      image: "URL-to-customer-success-portal-image",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
       tags: ["FastAPI", "Python", "Docker", "Replit", "Customer Success"],
       links: {
         demo: "URL-to-customer-success-portal-demo",
@@ -28,7 +28,7 @@ export default function Projects() {
     {
       title: "Customer Success Automator",
       description: "An automation tool for Customer Success workflows, focusing on repetitive tasks like follow-ups, personalized support recommendations, and reporting. Designed to reduce manual effort and improve productivity.",
-      image: "URL-to-customer-success-automator-image",
+      image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a",
       tags: ["Python", "Automation", "API Integrations", "AI"],
       links: {
         demo: "URL-to-customer-success-automator-demo",
