@@ -129,7 +129,7 @@ export default function Projects() {
                         {project.description}
                       </motion.p>
                       <motion.div 
-                        className="flex flex-wrap gap-1.5 mb-3"
+                        className="flex flex-wrap gap-1.5 mb-6"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
@@ -149,39 +149,37 @@ export default function Projects() {
                           </motion.span>
                         ))}
                       </motion.div>
+                      <motion.div 
+                        className="flex gap-3 mt-4"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5 }}
+                      >
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          asChild
+                          className="hover:scale-105 transition-transform text-xs bg-background/80 backdrop-blur-sm"
+                        >
+                          <a href={`/case-study/${project.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                            <ExternalLink className="h-3 w-3 mr-1.5" />
+                            View Case Study
+                          </a>
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          asChild
+                          className="hover:scale-105 transition-transform text-xs bg-background/80 backdrop-blur-sm"
+                        >
+                          <a href={project.links.github} target="_blank" rel="noopener noreferrer">
+                            <Github className="h-3 w-3 mr-1.5" />
+                            Source Code
+                          </a>
+                        </Button>
+                      </motion.div>
                     </CardContent>
                   </Card>
-                </motion.div>
-
-                {/* Buttons outside the 3D transform container */}
-                <motion.div 
-                  className="absolute bottom-4 left-4 right-4 flex gap-3 z-20"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    asChild
-                    className="hover:scale-105 transition-transform text-xs bg-background/80 backdrop-blur-sm"
-                  >
-                    <a href={`/case-study/${project.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                      <ExternalLink className="h-3 w-3 mr-1.5" />
-                      View Case Study
-                    </a>
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    asChild
-                    className="hover:scale-105 transition-transform text-xs bg-background/80 backdrop-blur-sm"
-                  >
-                    <a href={project.links.github} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-3 w-3 mr-1.5" />
-                      Source Code
-                    </a>
-                  </Button>
                 </motion.div>
               </motion.div>
             );
