@@ -36,24 +36,22 @@ export function TimelineCard({
         type: "spring",
         stiffness: 100 
       }}
-      className={`relative mb-6 mx-4 md:mx-0 ${
-        isEven ? 'md:pr-[50%] md:text-right' : 'md:pl-[50%] md:text-left'
-      }`}
+      className={`relative mb-12 mx-4 md:mx-0 ${
+        isEven ? 'md:pr-[52%]' : 'md:pl-[52%]'
+      } text-left`}
     >
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: index * 0.2 + 0.3 }}
-        className="absolute top-6 w-3 h-3 rounded-full bg-primary z-10
-          left-1/2 -translate-x-1/2 md:left-auto
-          md:translate-x-0 md:right-auto
-          md:left-[calc(50%-6px)]"
+        className="absolute top-8 w-4 h-4 rounded-full bg-primary z-10
+          left-1/2 -translate-x-1/2"
       />
 
       <Card className={`relative border-primary/20 hover:border-primary/40 transition-colors
-        w-full md:w-[calc(100%-24px)]`}>
-        <CardHeader>
-          <div className="flex flex-col md:flex-row justify-between items-start gap-2">
+        w-full md:w-[calc(100%-32px)]`}>
+        <CardHeader className="p-6 space-y-4">
+          <div className="flex flex-col justify-between items-start gap-4">
             <div className="space-y-2">
               <motion.h3 
                 initial={{ opacity: 0, x: isEven ? -20 : 20 }}

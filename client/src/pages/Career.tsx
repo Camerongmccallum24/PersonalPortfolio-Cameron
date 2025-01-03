@@ -107,7 +107,7 @@ export default function Career() {
               initial={{ scaleY: 0 }}
               animate={{ scaleY: 1 }}
               transition={{ duration: 1, ease: "easeInOut" }}
-              className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-primary/20"
+              className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-primary"
               style={{ transformOrigin: "top" }}
             />
 
