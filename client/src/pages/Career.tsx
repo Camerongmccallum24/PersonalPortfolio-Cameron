@@ -101,13 +101,13 @@ export default function Career() {
             Career Journey
           </motion.h1>
 
-          <div className="relative">
+          <div className="relative flex flex-col items-center">
             {/* Timeline background line */}
             <motion.div
               initial={{ scaleY: 0 }}
               animate={{ scaleY: 1 }}
               transition={{ duration: 1, ease: "easeInOut" }}
-              className="absolute left-0 top-0 bottom-0 w-px bg-primary/20"
+              className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-primary/20"
               style={{ transformOrigin: "top" }}
             />
 

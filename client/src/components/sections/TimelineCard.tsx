@@ -35,14 +35,16 @@ export function TimelineCard({
         type: "spring",
         stiffness: 100 
       }}
-      className="relative pl-6 mb-6"
+      className={`relative ${index % 2 === 0 ? 'pl-6' : 'pr-6'} mb-6`}
     >
-      <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 to-primary/5" />
+      <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-gradient-to-b from-primary/50 to-primary/5" />
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: index * 0.2 + 0.3 }}
-        className="absolute left-[-4px] top-6 w-2 h-2 rounded-full bg-primary"
+        className={`absolute top-6 w-2 h-2 rounded-full bg-primary ${
+          index % 2 === 0 ? 'left-[-4px]' : 'right-[-4px]'
+        }`}
       />
 
       <Card className="relative border-primary/20 hover:border-primary/40 transition-colors">
