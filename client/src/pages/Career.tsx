@@ -101,7 +101,7 @@ export default function Career() {
             Career Journey
           </motion.h1>
 
-          <div className="relative flex flex-col items-center">
+          <div className="relative">
             {/* Timeline background line */}
             <motion.div
               initial={{ scaleY: 0 }}
@@ -111,7 +111,7 @@ export default function Career() {
               style={{ transformOrigin: "top" }}
             />
 
-            <div className="space-y-0">
+            <div className="relative max-w-5xl mx-auto">
               {experiences.map((experience, index) => (
                 <TimelineCard
                   key={index}

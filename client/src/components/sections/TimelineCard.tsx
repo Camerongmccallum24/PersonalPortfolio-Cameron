@@ -24,6 +24,7 @@ export function TimelineCard({
   achievements = []
 }: TimelineCardProps) {
   const [showMore, setShowMore] = useState(false);
+  const isEven = index % 2 === 0;
 
   return (
     <motion.div
@@ -35,24 +36,27 @@ export function TimelineCard({
         type: "spring",
         stiffness: 100 
       }}
-      className={`relative ${index % 2 === 0 ? 'pl-6' : 'pr-6'} mb-6`}
+      className={`relative mb-6 mx-4 md:mx-0 ${
+        isEven ? 'md:pr-[50%] md:text-right' : 'md:pl-[50%] md:text-left'
+      }`}
     >
-      <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-gradient-to-b from-primary/50 to-primary/5" />
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: index * 0.2 + 0.3 }}
-        className={`absolute top-6 w-2 h-2 rounded-full bg-primary ${
-          index % 2 === 0 ? 'left-[-4px]' : 'right-[-4px]'
-        }`}
+        className="absolute top-6 w-3 h-3 rounded-full bg-primary z-10
+          left-1/2 -translate-x-1/2 md:left-auto
+          md:translate-x-0 md:right-auto
+          md:left-[calc(50%-6px)]"
       />
 
-      <Card className="relative border-primary/20 hover:border-primary/40 transition-colors">
+      <Card className={`relative border-primary/20 hover:border-primary/40 transition-colors
+        w-full md:w-[calc(100%-24px)]`}>
         <CardHeader>
-          <div className="flex justify-between items-start">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-2">
             <div className="space-y-2">
               <motion.h3 
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: isEven ? -20 : 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.2 + 0.2 }}
                 className="text-lg font-semibold"
@@ -67,23 +71,25 @@ export function TimelineCard({
               >
                 {company}
               </motion.p>
+            </div>
+            <motion.div className="flex items-center gap-4">
               <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.2 + 0.4 }}
-                className="absolute top-4 right-4 inline-block px-2 py-1 text-xs rounded-full bg-primary/10 text-primary"
+                className="inline-block px-2 py-1 text-xs rounded-full bg-primary/10 text-primary"
               >
                 {category}
               </motion.span>
-            </div>
-            <motion.span 
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.2 + 0.2 }}
-              className="text-sm text-muted-foreground"
-            >
-              {date}
-            </motion.span>
+              <motion.span 
+                initial={{ opacity: 0, x: isEven ? -20 : 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.2 + 0.2 }}
+                className="text-sm text-muted-foreground"
+              >
+                {date}
+              </motion.span>
+            </motion.div>
           </div>
         </CardHeader>
         <CardContent>
