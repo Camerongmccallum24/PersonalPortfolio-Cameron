@@ -27,6 +27,7 @@ export default function About() {
     { name: "GitHub", level: 90, category: "Tools" },
     { name: "Make (Integromat)", level: 75, category: "Tools" },
     { name: "Docker", level: 70, category: "Tools" },
+    
     // AI & Data Analytics
     { name: "GPT-4 Customization", level: 85, category: "AI & Data Analytics" },
     { name: "Predictive Analytics", level: 80, category: "AI & Data Analytics" },
@@ -40,7 +41,7 @@ export default function About() {
     { name: "Workflow Automation", level: 80, category: "Customer Success" },
     { name: "Customer Journey Mapping", level: 85, category: "Customer Success" },
     { name: "Client Engagement & Training", level: 90, category: "Customer Success" }
-
+  ];
 
   return (
     <motion.main
@@ -124,5 +125,9 @@ export default function About() {
             </div>
           </div>
         </div>
+      </div>
     </motion.main>
   );
+}
+
+export default About;
