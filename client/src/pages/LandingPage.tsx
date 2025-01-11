@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Home, User, Briefcase, Code, BookOpen, Mail, Github, Linkedin, Twitter, Link, ExternalLink } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from "@/components/ui/button";
 
 const LandingPage = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white">
       {/* Navigation */}
@@ -32,7 +39,7 @@ const LandingPage = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero Section with enhanced profile picture */}
       <motion.section 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -44,38 +51,83 @@ const LandingPage = () => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="w-64 h-64 rounded-full overflow-hidden border-4 border-cyan-500/20 relative"
+            className="relative group"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 animate-pulse" />
-            <img src="/api/placeholder/256/256" alt="Profile" className="w-full h-full object-cover relative z-10" />
+            {/* Animated border effect */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+            <div className="relative w-64 h-64 rounded-full p-1">
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full animate-pulse"></div>
+              <motion.div 
+                className="w-full h-full rounded-full overflow-hidden relative z-10 transform"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <img 
+                  src="/Profile_Picture.png" 
+                  alt="Profile" 
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            </div>
           </motion.div>
+
           <motion.div 
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
             className="md:flex-1 text-center md:text-left"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+            <motion.h1 
+              className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500"
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               Pioneering AI-Driven Customer Success
-            </h1>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+            </motion.h1>
+            <motion.p 
+              className="text-xl text-gray-300 mb-8 leading-relaxed"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.6 }}
+            >
               As a seasoned AI and Customer Success specialist with over a decade of experience in SaaS
               and enterprise environments, I blend technical expertise with business acumen to transform
               customer experiences and drive measurable growth.
-            </p>
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-cyan-500/20 transition-all"
+            </motion.p>
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="flex flex-wrap gap-4 justify-center md:justify-start"
             >
-              Explore My Work
-            </motion.button>
+              <Button 
+                className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-cyan-500/20 transition-all"
+                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                View Projects
+              </Button>
+              <Button 
+                variant="outline"
+                className="border-cyan-500 text-cyan-500 hover:bg-cyan-500/10"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Contact Me
+              </Button>
+            </motion.div>
           </motion.div>
+        </div>
+
+        {/* Animated background elements */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/10 via-transparent to-transparent" />
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500/30 rounded-full filter blur-3xl animate-blob" />
+          <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-cyan-500/30 rounded-full filter blur-3xl animate-blob animation-delay-2000" />
         </div>
       </motion.section>
 
       {/* Projects Section */}
-      <section className="py-24 bg-gradient-to-b from-gray-900/50 to-black">
+      <section id="projects" className="py-24 bg-gradient-to-b from-gray-900/50 to-black">
         <div className="max-w-7xl mx-auto px-4">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -233,53 +285,94 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Footer with improved styling */}
+      {/* Contact Section */}
+      <section id="contact" className="py-24 bg-gradient-to-b from-gray-900/50 to-black">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold mb-12 text-center"
+          >
+            Get In Touch
+          </motion.h2>
+          <div className="max-w-xl mx-auto">
+            <motion.form 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
+              />
+              <textarea
+                rows={4}
+                placeholder="Your Message"
+                className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
+              />
+              <Button 
+                type="submit"
+                className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-cyan-500/20 transition-all"
+              >
+                Send Message
+              </Button>
+            </motion.form>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer with social links */}
       <footer className="border-t border-gray-800 py-12 bg-black/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-cyan-400">Navigation</h3>
-              <div className="space-y-2">
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Home</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">About</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Projects</a>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-cyan-400">Connect</h3>
-              <div className="space-y-2">
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">LinkedIn</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Twitter</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">GitHub</a>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-cyan-400">Contact</h3>
-              <div className="space-y-2">
-                <a href="mailto:contact@example.com" className="block text-gray-400 hover:text-white transition-colors">
-                  contact@example.com
-                </a>
-              </div>
-            </div>
+          <div className="flex justify-center space-x-6 mb-8">
+            <motion.a
+              href="#"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <Github className="w-6 h-6" />
+            </motion.a>
+            <motion.a
+              href="#"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <Linkedin className="w-6 h-6" />
+            </motion.a>
+            <motion.a
+              href="#"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <Twitter className="w-6 h-6" />
+            </motion.a>
           </div>
-          <div className="pt-8 border-t border-gray-800 text-center">
-            <p className="text-gray-400">
-              © 2025 AI Strategy & Customer Success Portfolio. All rights reserved.
-            </p>
-          </div>
+          <p className="text-center text-gray-400">
+            © 2025 AI Strategy & Customer Success Portfolio. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
   );
 };
 
-
-// Placeholder components -  These need to be defined separately in your project.
-const NavLink = ({icon, text, active}: {icon: any, text: string, active?: boolean}) => (
-  <a href="#" className={`flex items-center space-x-2 ${active ? 'text-blue-500' : 'text-gray-400'} hover:text-blue-500`}>
+// Helper Components
+const NavLink = ({icon, text, active}: {icon: React.ReactNode, text: string, active?: boolean}) => (
+  <motion.a
+    href="#"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className={`flex items-center space-x-2 ${active ? 'text-blue-500' : 'text-gray-400'} hover:text-blue-500 transition-colors`}
+  >
     {icon}
     <span>{text}</span>
-  </a>
+  </motion.a>
 );
 
 const ProjectCard = ({title, description, technologies, image}: {title: string, description: string, technologies: string[], image: string}) => (
