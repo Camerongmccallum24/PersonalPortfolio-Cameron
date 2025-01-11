@@ -9,7 +9,7 @@ export function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-sm text-muted-foreground">
-            © 2024 AI Strategy & Customer Success Portfolio. Built with React & TypeScript.
+            © 2025 AI Strategy & Customer Success Portfolio.
           </div>
           
           <div className="flex items-center space-x-2">

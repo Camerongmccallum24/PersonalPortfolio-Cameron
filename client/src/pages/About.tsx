@@ -27,7 +27,6 @@ export default function About() {
     { name: "GitHub", level: 90, category: "Tools" },
     { name: "Make (Integromat)", level: 75, category: "Tools" },
     { name: "Docker", level: 70, category: "Tools" },
-    
     // AI & Data Analytics
     { name: "GPT-4 Customization", level: 85, category: "AI & Data Analytics" },
     { name: "Predictive Analytics", level: 80, category: "AI & Data Analytics" },
@@ -41,7 +40,7 @@ export default function About() {
     { name: "Workflow Automation", level: 80, category: "Customer Success" },
     { name: "Customer Journey Mapping", level: 85, category: "Customer Success" },
     { name: "Client Engagement & Training", level: 90, category: "Customer Success" }
-  ];
+
 
   return (
     <motion.main
@@ -64,19 +63,66 @@ export default function About() {
           <Card className="mb-8">
             <CardContent className="pt-6">
               <p className="text-lg text-muted-foreground mb-4">
-                Over the years, I have worked across diverse industries,
-                including SaaS, recruitment, and travel, helping organizations
-                optimize their customer success strategies. My technical
-                expertise spans CRM platforms like Salesforce and Gainsight, AI
-                development, and advanced data analytics.
+                Throughout my career, I have been involved in various sectors
+                like SaaS, recruitment, and travel, enhancing client success
+                strategies. I specialize in platforms such as Salesforce and 
+                Gainsight, AI development, and advanced data analytics.
               </p>
             </CardContent>
           </Card>
 
-          <h2 className="text-2xl font-semibold mb-6">Skills & Expertise</h2>
-          <SkillsVisualization skills={skills} />
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-4xl font-bold mb-8"
+              >
+                My Mission
+              </motion.h1>
+
+              <Card className="mb-8">
+                <CardContent className="pt-6">
+                  <p className="text-lg text-muted-foreground mb-4">
+                    My goal is to assist businesses in leveraging AI and
+                    automation to enhance customer experiences through 
+                    personalized and efficient interactions. I focus on 
+                    actionable insights and continuous improvement to deliver 
+                    long-term value for clients.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <div className="container mx-auto px-4">
+                <div className="max-w-4xl mx-auto">
+                  <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="text-4xl font-bold mb-8"
+                  >
+                    Outside the Office
+                  </motion.h1>
+
+                  <Card className="mb-8">
+                    <CardContent className="pt-6">
+                      <p className="text-lg text-muted-foreground mb-4">
+                        Beyond my professional life in AI and SaaS, I relish living 
+                        in Manchester, reminiscing about my 14-year tenure in Soho, 
+                        London, and maintaining ties to my Australian heritage. I'm 
+                        deeply invested in lifelong learning, sharing knowledge, and 
+                        fostering community collaboration.
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <h2 className="text-2xl font-semibold mb-6">Skills & Expertise</h2>
+                  <SkillsVisualization skills={skills} />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
     </motion.main>
   );
-}
