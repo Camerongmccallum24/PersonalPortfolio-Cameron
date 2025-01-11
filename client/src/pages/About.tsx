@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { SkillsVisualization } from "@/components/sections/SkillsVisualization";
@@ -12,14 +11,14 @@ export default function About() {
     { name: "HTML", level: 90, category: "Frontend" },
     { name: "CSS", level: 85, category: "Frontend" },
     { name: "JavaScript", level: 80, category: "Frontend" },
-    
+
     // Backend
     { name: "FastAPI", level: 85, category: "Backend" },
     { name: "Python", level: 90, category: "Backend" },
     { name: "Node.js", level: 75, category: "Backend" },
     { name: "SQL", level: 80, category: "Backend" },
     { name: "Express.js", level: 70, category: "Backend" },
-    
+
     // Tools
     { name: "Firebase", level: 80, category: "Tools" },
     { name: "Vercel", level: 85, category: "Tools" },
@@ -27,14 +26,14 @@ export default function About() {
     { name: "GitHub", level: 90, category: "Tools" },
     { name: "Make (Integromat)", level: 75, category: "Tools" },
     { name: "Docker", level: 70, category: "Tools" },
-    
+
     // AI & Data Analytics
     { name: "GPT-4 Customization", level: 85, category: "AI & Data Analytics" },
     { name: "Predictive Analytics", level: 80, category: "AI & Data Analytics" },
     { name: "Sentiment Analysis", level: 85, category: "AI & Data Analytics" },
     { name: "Data Visualization", level: 75, category: "AI & Data Analytics" },
     { name: "Machine Learning", level: 70, category: "AI & Data Analytics" },
-    
+
     // Customer Success
     { name: "CRM Platforms", level: 85, category: "Customer Success" },
     { name: "AI-Driven Customer Retention", level: 90, category: "Customer Success" },
@@ -129,5 +128,3 @@ export default function About() {
     </motion.main>
   );
 }
-
-export default About;
