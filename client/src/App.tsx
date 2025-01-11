@@ -20,7 +20,7 @@ function App() {
       <Navbar />
       <AnimatePresence mode="wait">
         <Switch>
-          <Route path="/" component={LandingPage} />
+          <Route path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/career" component={Career} />
           <Route path="/projects" component={Projects} />
