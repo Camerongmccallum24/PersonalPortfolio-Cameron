@@ -3,7 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Welcome } from "@/components/sections/Welcome";
 import Home from "@/pages/Home";
-import About from "@/pages/About";
+import { About } from "@/pages/About";
 import Career from "@/pages/Career";
 import Projects from "@/pages/Projects";
 import Blog from "@/pages/Blog";
