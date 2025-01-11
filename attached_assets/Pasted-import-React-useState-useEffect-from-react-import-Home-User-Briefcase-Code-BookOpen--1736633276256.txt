@@ -1,0 +1,341 @@
+import React, { useState, useEffect } from 'react';
+import { Home, User, Briefcase, Code, BookOpen, Mail, Github, Linkedin, Twitter, Link, ExternalLink } from 'lucide-react';
+
+const LandingPage = () => {
+  return (
+    <div className="min-h-screen bg-black text-white">
+      {/* Navigation - keeping existing nav */}
+      <nav className="fixed top-0 w-full bg-black/90 backdrop-blur-sm border-b border-gray-800 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="text-blue-500 text-xl font-bold">Portfolio</div>
+            <div className="flex space-x-8">
+              <NavLink icon={<Home />} text="Home" active />
+              <NavLink icon={<User />} text="About" />
+              <NavLink icon={<Briefcase />} text="Career" />
+              <NavLink icon={<Code />} text="Projects" />
+              <NavLink icon={<BookOpen />} text="Blog" />
+              <NavLink icon={<Mail />} text="Contact" />
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Profile Section */}
+      <section className="pt-32 pb-24 px-4">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+          <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-cyan-500/20">
+            <img src="/api/placeholder/256/256" alt="Profile" className="w-full h-full object-cover" />
+          </div>
+          <div className="md:flex-1">
+            <h1 className="text-4xl font-bold mb-4">Pioneering AI-Driven Customer Success</h1>
+            <p className="text-xl text-gray-300 mb-6">
+              As a seasoned AI and Customer Success specialist with over a decade of experience in SaaS
+              and enterprise environments, I blend technical expertise with business acumen to transform
+              customer experiences and drive measurable growth.
+            </p>
+            <button className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 rounded-lg">
+              Read More
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section className="py-24 bg-gray-900/50">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-12">Featured Projects</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <ProjectCard 
+              title="Customer Success GPT Showcase"
+              description="A platform that demonstrates the capabilities of custom GPTs designed for Customer Success Managers. Features include sentiment analysis, churn prediction, and advanced analytics tailored to improve client retention and satisfaction."
+              technologies={['React', 'TypeScript', 'Vercel', 'GPT-4', 'Customer Success']}
+              image="/api/placeholder/400/300"
+            />
+            <ProjectCard 
+              title="Customer Success Portal"
+              description="A centralized platform for Customer Success Managers to manage client-specific knowledge bases, automate insights, and streamline workflows. Includes features for sentiment analysis, onboarding optimization, and customer health monitoring."
+              technologies={['FastAPI', 'Python', 'Docker', 'Replit', 'Customer Success']}
+              image="/api/placeholder/400/300"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Career Section */}
+      <section className="py-24 bg-gray-900/50">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-12">Career Journey</h2>
+          <CareerSlider />
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-12">Latest Insights</h2>
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Blog Posts */}
+            <div className="space-y-8">
+              <BlogPost 
+                title="Leveraging AI for Customer Success Automation"
+                date="January 8, 2025"
+                excerpt="Explore how AI is revolutionizing customer success management and learn about the latest tools and strategies for automation."
+                tags={['AI', 'Customer Success', 'Automation']}
+                readTime="8 min read"
+              />
+              <BlogPost 
+                title="Building Effective Customer Health Scores"
+                date="January 2, 2025"
+                excerpt="A deep dive into creating meaningful customer health metrics that help predict and prevent churn while driving growth."
+                tags={['Analytics', 'Customer Success', 'Metrics']}
+                readTime="6 min read"
+              />
+            </div>
+            
+            {/* Newsletter Signup */}
+            <div className="bg-gray-900/50 p-8 rounded-xl h-fit sticky top-24">
+              <h3 className="text-2xl font-bold mb-4">Subscribe to My Newsletter</h3>
+              <p className="text-gray-300 mb-6">
+                Get the latest insights on AI, Customer Success, and SaaS delivered straight to your inbox.
+                No spam, unsubscribe anytime.
+              </p>
+              <form className="space-y-4">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-cyan-500"
+                />
+                <button
+                  type="submit"
+                  className="w-full px-4 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg hover:from-cyan-600 hover:to-blue-600 transition-colors"
+                >
+                  Subscribe
+                </button>
+              </form>
+              <p className="text-gray-400 text-sm mt-4">
+                Join 2,000+ subscribers who are already getting smarter about AI-driven customer success.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Technical Skills */}
+            <div className="bg-gray-900/50 p-8 rounded-xl">
+              <h2 className="text-2xl font-bold mb-8">Technical Skills</h2>
+              <div className="space-y-6">
+                <SkillBar name="Python" proficiency={90} />
+                <SkillBar name="React" proficiency={85} />
+                <SkillBar name="FastAPI" proficiency={80} />
+              </div>
+            </div>
+            
+            {/* AI/ML Skills */}
+            <div className="bg-gray-900/50 p-8 rounded-xl">
+              <h2 className="text-2xl font-bold mb-8">AI/ML Skills</h2>
+              <div className="space-y-6">
+                <SkillBar name="OpenAI GPT" proficiency={95} />
+                <SkillBar name="NLP" proficiency={85} />
+                <SkillBar name="TensorFlow" proficiency={80} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer - keeping existing footer */}
+      <footer className="border-t border-gray-800 py-8">
+        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
+          <div className="text-sm text-gray-500">
+            © 2025 AI Strategy & Customer Success Portfolio.
+          </div>
+          <div className="flex gap-8">
+            <span className="text-sm text-gray-500">About</span>
+            <span className="text-sm text-gray-500">Contact</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+// Component for navigation links
+const NavLink = ({ icon, text, active }) => (
+  <a
+    href="#"
+    className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors
+    ${active ? 'bg-blue-500 text-white' : 'text-gray-300 hover:text-white hover:bg-gray-800'}`}
+  >
+    {icon}
+    <span>{text}</span>
+  </a>
+);
+
+// Component for project cards
+const ProjectCard = ({ title, description, technologies, image }) => (
+  <div className="bg-gray-900/50 rounded-xl overflow-hidden border border-gray-800 hover:border-cyan-500/30 transition-all group">
+    <div className="relative">
+      <img src={image} alt={title} className="w-full h-48 object-cover" />
+      <div className="absolute top-4 right-4 flex gap-2">
+        <SocialIconButton icon={<Twitter className="w-4 h-4" />} />
+        <SocialIconButton icon={<Linkedin className="w-4 h-4" />} />
+        <SocialIconButton icon={<Link className="w-4 h-4" />} />
+      </div>
+    </div>
+    <div className="p-6">
+      <h3 className="text-xl font-semibold mb-3">{title}</h3>
+      <p className="text-gray-300 mb-4">{description}</p>
+      <div className="flex flex-wrap gap-2 mb-6">
+        {technologies.map((tech) => (
+          <span key={tech} className="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-sm">
+            {tech}
+          </span>
+        ))}
+      </div>
+      <div className="flex gap-4">
+        <button className="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg">
+          <ExternalLink className="w-4 h-4" />
+          View Case Study
+        </button>
+        <button className="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg">
+          <Github className="w-4 h-4" />
+          Source Code
+        </button>
+      </div>
+    </div>
+  </div>
+);
+
+// Component for skill bars
+const SkillBar = ({ name, proficiency }) => (
+  <div>
+    <div className="flex justify-between mb-2">
+      <span className="text-cyan-400">{name}</span>
+      <span className="text-cyan-400">{proficiency}%</span>
+    </div>
+    <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+      <div
+        className="h-full bg-gradient-to-r from-cyan-500 to-purple-500"
+        style={{ width: `${proficiency}%` }}
+      />
+    </div>
+  </div>
+);
+
+// Component for social icon buttons
+const SocialIconButton = ({ icon }) => (
+  <button className="p-2 bg-black/50 hover:bg-black/70 rounded-lg text-gray-300 hover:text-white transition-colors backdrop-blur-sm">
+    {icon}
+  </button>
+);
+
+// Component for career slider
+const CareerSlider = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const positions = [
+    {
+      title: "Senior Customer Success Manager",
+      company: "AI Solutions Inc.",
+      period: "2023 - Present",
+      description: "Leading AI-driven customer success initiatives and managing enterprise client relationships. Developed and implemented custom GPT solutions resulting in 40% improvement in response times.",
+      highlights: [
+        "Managed $5M+ portfolio of enterprise clients",
+        "Implemented AI-powered customer health monitoring",
+        "Reduced churn by 25% through predictive analytics"
+      ]
+    },
+    {
+      title: "Customer Success Team Lead",
+      company: "SaaS Technologies",
+      period: "2020 - 2023",
+      description: "Led a team of 8 CSMs, orchestrating customer success strategy for 200+ clients. Pioneered data-driven approach to customer success.",
+      highlights: [
+        "Achieved 130% net revenue retention",
+        "Launched customer success automation program",
+        "Mentored 12 CSMs to promotion"
+      ]
+    },
+    {
+      title: "Customer Success Manager",
+      company: "Tech Innovations Ltd",
+      period: "2018 - 2020",
+      description: "Managed portfolio of mid-market clients, focusing on adoption and expansion. Introduced ML-based customer health scoring.",
+      highlights: [
+        "Exceeded quarterly targets by 40%",
+        "Developed customer success playbooks",
+        "Led product feedback initiatives"
+      ]
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % positions.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="relative">
+      <div className="overflow-hidden rounded-xl bg-gray-900/50 border border-gray-800">
+        <div className="p-8">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h3 className="text-2xl font-bold text-cyan-400">{positions[currentSlide].title}</h3>
+              <p className="text-gray-300">{positions[currentSlide].company}</p>
+            </div>
+            <span className="px-4 py-2 bg-cyan-500/10 text-cyan-400 rounded-full">
+              {positions[currentSlide].period}
+            </span>
+          </div>
+          <p className="text-gray-300 mb-6">{positions[currentSlide].description}</p>
+          <ul className="space-y-3">
+            {positions[currentSlide].highlights.map((highlight, index) => (
+              <li key={index} className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
+                <span className="text-gray-300">{highlight}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="flex justify-center gap-2 mt-6">
+        {positions.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`w-2.5 h-2.5 rounded-full transition-colors ${
+              index === currentSlide ? 'bg-cyan-500' : 'bg-gray-700'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// Component for blog posts
+const BlogPost = ({ title, date, excerpt, tags, readTime }) => (
+  <article className="p-6 bg-gray-900/50 rounded-xl border border-gray-800 hover:border-cyan-500/30 transition-all">
+    <div className="flex items-center gap-4 mb-4">
+      <span className="text-gray-400 text-sm">{date}</span>
+      <span className="text-gray-400 text-sm">{readTime}</span>
+    </div>
+    <h3 className="text-xl font-bold mb-3 text-cyan-400">{title}</h3>
+    <p className="text-gray-300 mb-4">{excerpt}</p>
+    <div className="flex flex-wrap gap-2">
+      {tags.map((tag) => (
+        <span key={tag} className="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-sm">
+          {tag}
+        </span>
+      ))}
+    </div>
+  </article>
+);
+
+export default LandingPage;
