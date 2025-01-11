@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Hero } from "@/components/sections/Hero";
 import { ParticlesBackground } from "@/components/sections/ParticlesBackground";
 
-export default function Home() {
+const Home = () => {
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -14,4 +14,6 @@ export default function Home() {
       <Hero />
     </motion.main>
   );
-}
+};
+
+export default Home;
