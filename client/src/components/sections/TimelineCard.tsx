@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 interface TimelineCardProps {
