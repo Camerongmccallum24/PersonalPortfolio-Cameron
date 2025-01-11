@@ -2,7 +2,7 @@ import { Switch, Route } from "wouter";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Welcome } from "@/components/sections/Welcome";
-import LandingPage from "@/pages/LandingPage";
+import Home from "@/pages/Home";
 import { About } from "@/pages/About";
 import Career from "@/pages/Career";
 import Projects from "@/pages/Projects";
@@ -20,7 +20,7 @@ function App() {
       <Navbar />
       <AnimatePresence mode="wait">
         <Switch>
-          <Route path="/" component={LandingPage} />
+          <Route path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/career" component={Career} />
           <Route path="/projects" component={Projects} />

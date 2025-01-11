@@ -70,8 +70,12 @@ export function About() {
               >
                 <img 
                   src="/Profile_Picture.png" 
-                  alt="Profile" 
-                  className="w-full h-full object-cover"
+                  alt="Profile"
+                  className="w-full h-full object-cover bg-gray-100"
+                  onError={(e) => {
+                    const img = e.target as HTMLImageElement;
+                    img.src = '../../../Profile_Picture.png';
+                  }}
                 />
               </motion.div>
             </div>
