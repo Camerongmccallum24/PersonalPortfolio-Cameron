@@ -27,72 +27,127 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-sm border-b">
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", stiffness: 100, damping: 20 }}
+      className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-sm border-b"
+    >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/">
-          <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500 cursor-pointer">
+          <motion.span 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500 cursor-pointer"
+          >
             Portfolio
-          </span>
+          </motion.span>
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-1">
           {navItems.map(({ path, label, icon: Icon }) => (
             <Link key={path} href={path}>
-              <Button
-                variant={location === path ? "default" : "ghost"}
-                className="relative"
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Icon className="mr-2 h-4 w-4" />
-                {label}
-                {location === path && (
-                  <motion.div
-                    layoutId="navbar-underline"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                  />
-                )}
-              </Button>
+                <Button
+                  variant={location === path ? "default" : "ghost"}
+                  className="relative overflow-hidden group"
+                >
+                  <Icon className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
+                  {label}
+                  {location === path && (
+                    <motion.div
+                      layoutId="navbar-indicator"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                      transition={{ type: "spring", bounce: 0.2 }}
+                    />
+                  )}
+                </Button>
+              </motion.div>
             </Link>
           ))}
         </div>
 
         {/* Mobile Navigation Toggle */}
-        <Button
-          variant="ghost"
-          size="icon"
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           className="md:hidden"
-          onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X /> : <Menu />}
-        </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsOpen(!isOpen)}
+            className="relative"
+          >
+            <AnimatePresence mode="wait">
+              {isOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X className="h-6 w-6" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu className="h-6 w-6" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </Button>
+        </motion.div>
       </div>
 
       {/* Mobile Navigation Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="absolute top-16 left-0 right-0 bg-background border-b md:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ type: "spring", bounce: 0, duration: 0.3 }}
+            className="absolute top-16 left-0 right-0 bg-background border-b md:hidden overflow-hidden"
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col space-y-2">
-              {navItems.map(({ path, label, icon: Icon }) => (
+            <motion.div 
+              initial={{ y: -20 }}
+              animate={{ y: 0 }}
+              transition={{ type: "spring", bounce: 0 }}
+              className="container mx-auto px-4 py-4 flex flex-col space-y-2"
+            >
+              {navItems.map(({ path, label, icon: Icon }, index) => (
                 <Link key={path} href={path}>
-                  <Button
-                    variant={location === path ? "default" : "ghost"}
-                    className="w-full justify-start"
-                    onClick={() => setIsOpen(false)}
+                  <motion.div
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: index * 0.1 }}
                   >
-                    <Icon className="mr-2 h-4 w-4" />
-                    {label}
-                  </Button>
+                    <Button
+                      variant={location === path ? "default" : "ghost"}
+                      className="w-full justify-start group"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Icon className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
+                      {label}
+                    </Button>
+                  </motion.div>
                 </Link>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 }

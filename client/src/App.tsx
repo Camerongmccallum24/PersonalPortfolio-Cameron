@@ -2,7 +2,7 @@ import { Switch, Route } from "wouter";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Welcome } from "@/components/sections/Welcome";
-import Home from "@/pages/Home";
+import LandingPage from "@/pages/LandingPage";
 import { About } from "@/pages/About";
 import Career from "@/pages/Career";
 import Projects from "@/pages/Projects";
