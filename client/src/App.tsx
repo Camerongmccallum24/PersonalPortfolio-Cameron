@@ -1,7 +1,8 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Welcome } from "@/components/sections/Welcome";
+import { useEffect } from "react";
 import Home from "@/pages/Home";
 import LandingPage from "@/pages/LandingPage";
 import { About } from "@/pages/About";
@@ -15,6 +16,12 @@ import CaseStudy from "@/pages/CaseStudy";
 import { AnimatePresence } from "framer-motion";
 
 function App() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Welcome />
