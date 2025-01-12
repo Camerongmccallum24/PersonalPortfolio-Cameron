@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Timeline } from "@/components/ui/timeline";
-import Image from "next/image";
 
 export default function Career() {
   const experiences = [
@@ -42,50 +41,11 @@ export default function Career() {
           </p>
         </div>
       ),
-    },
-    {
-      title: "Strategic Customer Service Account Manager",
-      company: "Totaljobs Group",
-      date: "2019 - 2021",
-      category: "Customer Success",
-      content: (
-        <div>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-            Managed 200+ key accounts ensuring high satisfaction and retention. Implemented a new service delivery framework improving response times by 40%. Developed and delivered customer training programs. Achieved the highest customer satisfaction scores in the team.
-          </p>
-        </div>
-      ),
-    },
-    {
-      title: "Senior Experiences Manager",
-      company: "Quintessentially Experiences",
-      date: "2017 - 2019",
-      category: "Management",
-      content: (
-        <div>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-            Managed luxury travel experiences for high-net-worth clients. Coordinated complex international events and experiences. Developed new service offerings increasing revenue by 30%. Built and maintained relationships with premium vendors globally.
-          </p>
-        </div>
-      ),
-    },
-    {
-      title: "Global Partnerships and Fulfilment Coordinator",
-      company: "DJP Promotions",
-      date: "2015 - 2017",
-      category: "Management",
-      content: (
-        <div>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-            Managed international promotional campaigns for major brands. Coordinated with partners across 20+ countries. Streamlined fulfillment processes reducing delivery times by 50%. Implemented a new tracking system improving campaign visibility.
-          </p>
-        </div>
-      ),
     }
   ];
 
   return (
-    <div className="w-full">
+    <div className="w-full px-4 py-12">
       <Timeline data={experiences.map(({ title, date, content }) => ({
         title,
         content: (
