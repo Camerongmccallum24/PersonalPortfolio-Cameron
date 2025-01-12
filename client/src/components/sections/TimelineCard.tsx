@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -48,7 +49,6 @@ export function TimelineCard({ title, company, date, category, description, achi
 
               <h3 className="text-xl font-semibold">{title}</h3>
               <p className="text-sm text-muted-foreground">{company}</p>
-
               <p className="text-sm text-muted-foreground mt-2">{description}</p>
 
               <div className="mt-4 space-y-2">
