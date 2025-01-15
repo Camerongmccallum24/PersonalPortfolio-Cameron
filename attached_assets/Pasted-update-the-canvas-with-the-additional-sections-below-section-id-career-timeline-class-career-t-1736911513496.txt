@@ -1,0 +1,148 @@
+update the canvas with the additional sections below:
+<section id="career-timeline" class="career-timeline py-5">
+    <div class="container">
+        <h2 class="section-title text-center mb-5" data-aos="fade-up">Career Journey</h2>
+
+        <div class="timeline-wrapper">
+            <div class="timeline">
+                <!-- Timeline Track -->
+                <div class="timeline-track"></div>
+
+                <!-- Timeline Nodes -->
+                <div class="timeline-node" data-year="2024">
+                    <div class="node-content">
+                        <div class="node-header">
+                            <h3>Independent AI Strategy Consultant</h3>
+                            <span class="company">Freelance Consultant</span>
+                            <span class="year">2024 - Present</span>
+                        </div>
+                        <ul class="achievements">
+                            <li>Developed AI implementation strategies for enterprise clients</li>
+                            <li>Created custom GPTs for customer success automation</li>
+                            <li>Conducted AI readiness assessments for organizations</li>
+                            <li>Led workshops on AI integration in customer success workflows</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-node" data-year="2022">
+                    <div class="node-content">
+                        <div class="node-header">
+                            <h3>Enterprise Customer Success Manager</h3>
+                            <span class="company">The StepStone Group / Totaljobs Group</span>
+                            <span class="year">2022 - 2024</span>
+                        </div>
+                        <ul class="achievements">
+                            <li>Managed portfolio of enterprise clients with £2M+ annual revenue</li>
+                            <li>Achieved 95% client retention rate through proactive relationship management</li>
+                            <li>Implemented data-driven success strategies using AI/ML insights</li>
+                            <li>Led cross-functional projects improving customer experience</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-node" data-year="2021">
+                    <div class="node-content">
+                        <div class="node-header">
+                            <h3>Data Insights Analyst</h3>
+                            <span class="company">The StepStone Group / Totaljobs Group</span>
+                            <span class="year">2021 - 2022</span>
+                        </div>
+                        <ul class="achievements">
+                            <li>Developed predictive analytics models for customer behavior</li>
+                            <li>Created automated reporting systems using Python and SQL</li>
+                            <li>Reduced manual reporting time by 70% through automation</li>
+                            <li>Provided data-driven recommendations increasing customer satisfaction by 25%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-node" data-year="2019">
+                    <div class="node-content">
+                        <div class="node-header">
+                            <h3>Strategic Customer Service Account Manager</h3>
+                            <span class="company">Totaljobs Group</span>
+                            <span class="year">2019 - 2021</span>
+                        </div>
+                        <ul class="achievements">
+                            <li>Managed 200+ key accounts ensuring high satisfaction and retention</li>
+                            <li>Implemented new service delivery framework improving response times by 40%</li>
+                            <li>Developed and delivered customer training programs</li>
+                            <li>Achieved highest customer satisfaction scores in team</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-node" data-year="2017">
+                    <div class="node-content">
+                        <div class="node-header">
+                            <h3>Senior Experiences Manager</h3>
+                            <span class="company">Quintessentially Experiences</span>
+                            <span class="year">2017 - 2019</span>
+                        </div>
+                        <ul class="achievements">
+                            <li>Managed luxury travel experiences for high-net-worth clients</li>
+                            <li>Coordinated complex international events and experiences</li>
+                            <li>Developed new service offerings increasing revenue by 30%</li>
+                            <li>Built and maintained relationships with premium vendors globally</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-node" data-year="2015">
+                    <div class="node-content">
+                        <div class="node-header">
+                            <h3>Global Partnerships and Fulfilment Coordinator</h3>
+                            <span class="company">DJP Promotions</span>
+                            <span class="year">2015 - 2017</span>
+                        </div>
+                        <ul class="achievements">
+                            <li>Managed international promotional campaigns for major brands</li>
+                            <li>Coordinated with partners across 20+ countries</li>
+                            <li>Streamlined fulfillment processes reducing delivery times by 50%</li>
+                            <li>Implemented new tracking system improving campaign visibility</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const timelineNodes = document.querySelectorAll('.timeline-node');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px'
+    });
+
+    timelineNodes.forEach(node => {
+        node.style.opacity = '0';
+        node.style.transform = 'translateY(20px)';
+        node.style.transition = 'all 0.6s ease-out';
+        observer.observe(node);
+    });
+});
+</script>Canvas 
+    {
+      title: "Enterprise Customer Success Manager",
+      company: "The StepStone Group / Totaljobs Group",
+      date: "2022 - 2024",
+      category: "Customer Success",
+      description: "Managed a portfolio of enterprise clients with £2M+ annual revenue.",
+      achievements: [
+        "Achieved a 95% client retention rate",
+        "Implemented data-driven success strategies using AI/ML insights",
+        "Led cross-functional projects to improve customer experience"
+      ]
+    },

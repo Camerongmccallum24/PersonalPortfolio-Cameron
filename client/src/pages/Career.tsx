@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { TimelineCard } from "@/components/sections/TimelineCard";
 
@@ -9,11 +8,11 @@ export default function Career() {
       company: "Freelance Consultant",
       date: "2024 - Present",
       category: "AI Development",
-      description: "Developed AI implementation strategies for enterprise clients.",
+      description: "Providing strategic AI solutions tailored to enterprise needs.",
       achievements: [
-        "Created custom GPTs for customer success automation",
-        "Conducted AI readiness assessments for organizations",
-        "Led workshops on AI integration in customer success workflows"
+        "Developed and deployed custom GPTs enhancing customer success automation, improving team efficiency by 40%.",
+        "Conducted comprehensive AI readiness assessments, aligning organizational workflows with AI capabilities.",
+        "Facilitated workshops for cross-functional teams, driving seamless AI integration and adoption."
       ]
     },
     {
@@ -21,23 +20,59 @@ export default function Career() {
       company: "The StepStone Group / Totaljobs Group",
       date: "2022 - 2024",
       category: "Customer Success",
-      description: "Managed a portfolio of enterprise clients with £2M+ annual revenue.",
+      description: "Oversaw a portfolio of enterprise clients, optimizing retention and satisfaction.",
       achievements: [
-        "Achieved a 95% client retention rate",
-        "Implemented data-driven success strategies using AI/ML insights",
-        "Led cross-functional projects to improve customer experience"
+        "Consistently maintained a 95% client retention rate by implementing proactive engagement strategies.",
+        "Integrated AI/ML insights into customer success operations, improving decision-making and response accuracy.",
+        "Directed cross-functional initiatives that enhanced customer experience and streamlined service delivery."
       ]
     },
     {
       title: "Data Insights Analyst",
       company: "The StepStone Group / Totaljobs Group",
       date: "2021 - 2022",
-      category: "AI Development",
-      description: "Developed predictive analytics models for customer behavior.",
+      category: "Data Analytics",
+      description: "Leveraged analytics to predict and influence customer behaviors effectively.",
       achievements: [
-        "Created automated reporting systems using Python and SQL",
-        "Reduced manual reporting time by 70% through automation",
-        "Provided data-driven recommendations increasing customer satisfaction by 25%"
+        "Developed predictive models using Python and SQL, identifying trends to preemptively address customer needs.",
+        "Automated reporting processes, cutting manual workload by 70% and increasing operational efficiency.",
+        "Delivered actionable insights that improved customer satisfaction metrics by 25%."
+      ]
+    },
+    {
+      title: "Strategic Customer Service Account Manager",
+      company: "Totaljobs Group",
+      date: "2019 - 2021",
+      category: "Customer Service",
+      description: "Ensured client satisfaction across a high-value portfolio of £200K+ accounts.",
+      achievements: [
+        "Revamped the service delivery framework, achieving a 40% reduction in response times.",
+        "Created and executed comprehensive training programs, boosting client competency and satisfaction.",
+        "Earned highest customer satisfaction scores within the team through personalized service delivery."
+      ]
+    },
+    {
+      title: "Senior Experiences Manager",
+      company: "Quintessentially Experiences",
+      date: "2017 - 2019",
+      category: "Customer Service",
+      description: "Specialized in curating luxury experiences for elite clientele globally.",
+      achievements: [
+        "Orchestrated complex international events, consistently exceeding client expectations.",
+        "Innovated service offerings that increased revenue streams by 30% year-over-year.",
+        "Cultivated partnerships with premium vendors, enhancing the company’s global reputation."
+      ]
+    },
+    {
+      title: "Global Partnerships and Fulfillment Coordinator",
+      company: "DJP Promotions",
+      date: "2015 - 2017",
+      category: "Marketing",
+      description: "Directed international campaigns, ensuring seamless execution and fulfillment.",
+      achievements: [
+        "Collaborated with partners across 20+ countries, standardizing operational workflows.",
+        "Optimized fulfillment processes, reducing delivery times by 50% and enhancing client satisfaction.",
+        "Implemented a state-of-the-art tracking system, increasing campaign transparency and accountability."
       ]
     }
   ];

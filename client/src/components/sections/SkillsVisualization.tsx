@@ -30,7 +30,16 @@ export function SkillsVisualization({ skills }: SkillsVisualizationProps) {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
           >
-            <h3 className="text-xl font-semibold mb-4">{category}</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <img
+                src={`/icons/${category.toLowerCase().replace(/ & /g, "-")}.svg`} // Assuming you have category icons named accordingly
+                alt={category}
+                className="w-8 h-8"
+              />
+              <h3 className="text-xl font-semibold mb-4 text-cyan-400 cursor-pointer">
+                {category}
+              </h3>
+            </div>
             <div className="grid md:grid-cols-2 gap-4">
               {skills
                 .filter(skill => skill.category === category)
@@ -45,13 +54,11 @@ export function SkillsVisualization({ skills }: SkillsVisualizationProps) {
                       <CardContent className="pt-6">
                         <div className="flex justify-between items-center mb-2">
                           <span className="font-medium">{skill.name}</span>
-                          <span className="text-sm text-muted-foreground">
-                            {isInView ? `${skill.level}%` : '0%'}
-                          </span>
+                          <span className="text-sm text-muted-foreground">{isInView ? `${skill.level}%` : '0%'}</span>
                         </div>
                         <motion.div
                           initial={{ width: "0%" }}
-                          animate={{ width: isInView ? "100%" : "0%" }}
+                          animate={{ width: isInView ? `${skill.level}%` : "0%" }}
                           transition={{ duration: 1, delay: index * 0.1 }}
                         >
                           <Progress 
