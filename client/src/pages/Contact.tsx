@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -87,6 +86,7 @@ export default function Contact() {
           <div>
             <Card className="glassmorphism">
               <CardContent className="pt-6">
+                <h2 className="text-2xl font-bold mb-4">Contact Me</h2> {/* Added header */}
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <FormField
