@@ -128,11 +128,13 @@ export function About() {
           <Card className="mb-8">
             <CardContent className="pt-6">
               <p className="text-lg text-muted-foreground mb-4">
-                Throughout my career, I have been involved in various sectors
-                like SaaS, recruitment, and travel, enhancing client success
-                strategies. I specialize in platforms such as Salesforce and 
-                Gainsight, AI development, and advanced data analytics.
-              </p>
+              <p>My journey into customer success and AI development began with a passion for creating meaningful customer relationships and leveraging technology to solve real-world challenges.</p>
+              <h3>Personal Values & Beliefs:</h3>
+              <ul>
+                  <li><strong>Customer-Centric Mindset:</strong> Prioritizing understanding customer needs and delivering actionable, data-driven solutions.</li>
+                  <li><strong>Innovation and Adaptability:</strong> Embracing emerging technologies to drive efficiency and results.</li>
+                  <li><strong>Transparency and Collaboration:</strong> Building trust through honest communication and fostering cross-functional team alignment.</li>
+              </ul>
             </CardContent>
           </Card>
 
