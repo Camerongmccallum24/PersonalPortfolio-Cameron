@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -85,7 +84,8 @@ export default function Contact() {
 
           {/* Right Column */}
           <div>
-            <Card className="glassmorphism bg-gray-800/30 border border-gray-700">
+            <Card className="relative group h-full overflow-hidden backdrop-blur-sm">
+              <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background to-background/80" />
               <CardContent className="pt-6">
                 <h2 className="text-2xl font-bold mb-4 text-gray-100">Contact Me</h2>
                 <Form {...form}>
@@ -136,12 +136,13 @@ export default function Contact() {
                       )}
                     />
 
-                    <Button type="submit" className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600">
+                    <Button type="submit" className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600 transition-all">
                       Send Message
                     </Button>
                   </form>
                 </Form>
               </CardContent>
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 via-purple-500/50 to-blue-500/50 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-500" />
             </Card>
           </div>
         </div>
