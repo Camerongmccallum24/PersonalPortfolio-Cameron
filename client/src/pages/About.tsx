@@ -83,6 +83,7 @@ export function About() {
       exit={{ opacity: 0 }}
       className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black"
     >
+      {/* About Me Section */}
       {/* Profile Picture Section */}
       <motion.section 
         initial={{ opacity: 0, y: -20 }}
@@ -104,15 +105,6 @@ export function About() {
           />
         </motion.div>
       </motion.section>
-      
-      {/* Add Profile Picture */}
-      <section className="flex justify-center pt-10">
-        <img
-          src="/images/Profile_Picture.png"
-          alt="Profile Picture"
-          className="w-32 h-32 rounded-full object-cover"
-        />
-      </section>
       
       {/* Hero Section */}
       <section className="pt-32 pb-24 px-4 relative overflow-hidden">

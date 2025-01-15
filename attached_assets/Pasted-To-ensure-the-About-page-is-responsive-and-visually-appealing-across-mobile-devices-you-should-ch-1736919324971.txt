@@ -1,0 +1,87 @@
+To ensure the 'About' page is responsive and visually appealing across mobile devices, you should check the CSS properties and Tailwind classes applied in the code. Here's a general check and some additions you can make for responsiveness:
+
+Flex Layouts: Ensure that flexbox is utilized correctly in your layout, especially for text and images.
+
+Padding and Margin: Use responsive padding and margin classes to adjust space on small screens.
+
+Media Queries: Tailwind CSS uses responsive utility classes that can help you manage how elements behave on different screen sizes:
+
+Here’s a refined version of your About component considering responsiveness:
+
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { SkillsVisualization } from "@/components/sections/SkillsVisualization";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+export function About() {
+    const [isFrontendOpen, setFrontendOpen] = useState(true);
+    const skills = [
+        // Frontend
+        { name: "React", level: 85, category: "Frontend", color: "#61DBFB" },
+        // ... (other skills)
+    ];
+    // ... (categoryIcons and renderSkillsByCategory function remains unchanged)
+    return (
+        <motion.main
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black px-4 sm:px-6 lg:px-8"
+        >
+            {/* About Me Section */}
+            <motion.section 
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="flex justify-center pt-10"
+            >
+                <motion.div 
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="relative group"
+                >
+                    <img
+                        src="/images/Profile_Picture.png"
+                        alt="Cameron McCallum - AI Strategy Consultant"
+                        className="relative w-32 h-32 rounded-full object-cover border-2 border-white/10"
+                        loading="eager"
+                    />
+                </motion.div>
+            </motion.section>
+            {/* Hero Section */}
+            <section className="pt-32 pb-24 relative overflow-hidden">
+                <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+                    <div className="md:flex-1 text-center md:text-left">
+                        <motion.h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+                            Empowering SaaS Businesses with AI-Powered Customer Solutions
+                        </motion.h1>
+                        {/* ... (rest of the hero section) */}
+                    </div>
+                </div>
+            </section>
+            {/* Skills Section */}
+            <section className="px-4 py-16 bg-gray-900">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-3xl font-bold text-white mb-6">Skills & Expertise</h2>
+                    {/* Check skills rendering */}
+                    {Object.keys(categoryIcons).map((category) => (
+                        <div key={category}>
+                            <div className="flex items-center gap-3 mb-4">
+                                <img src={categoryIcons[category]} alt={category} className="w-8 h-8" />
+                                <h3 className="text-2xl font-bold text-cyan-400 cursor-pointer" onClick={() => setFrontendOpen(!isFrontendOpen)}>
+                                    {category} {isFrontendOpen ? "▼" : "▶"}
+                                </h3>
+                            </div>
+                            {isFrontendOpen && <div className="space-y-4">{renderSkillsByCategory(category)}</div>}
+                        </div>
+                    ))}
+                </div>
+            </section>
+        </motion.main>
+    );
+}
+Recommendations:
+View on Mobile Devices: Ensure to test the display on actual mobile devices or emulator to see how the layout adapts.
+Media Queries (if needed): Tailwind handles most responsiveness, but if specific cases arise, consider using sm:, md:, lg: etc., prefixes for further customization.
+Ensure Interactive Elements: Ensure buttons and text are never too small to tap easily on mobile devices.
+Test the layout in different screen sizes to confirm everything scales appropriately.
