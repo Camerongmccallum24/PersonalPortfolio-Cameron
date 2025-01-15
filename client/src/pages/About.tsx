@@ -83,6 +83,27 @@ export function About() {
       exit={{ opacity: 0 }}
       className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black"
     >
+      {/* Profile Picture Section */}
+      <motion.section 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="flex justify-center pt-10"
+      >
+        <motion.div 
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 300 }}
+          className="relative group"
+        >
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000"></div>
+          <img
+            src="/images/Profile_Picture.png"
+            alt="Cameron McCallum - AI Strategy Consultant"
+            className="relative w-32 h-32 rounded-full object-cover border-2 border-white/10"
+            loading="eager"
+          />
+        </motion.div>
+      </motion.section>
       
       {/* Add Profile Picture */}
       <section className="flex justify-center pt-10">
