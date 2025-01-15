@@ -128,7 +128,8 @@ export function About() {
           <Card className="mb-8">
             <CardContent className="pt-6">
               <p className="text-lg text-muted-foreground mb-4">
-              <p>My journey into customer success and AI development began with a passion for creating meaningful customer relationships and leveraging technology to solve real-world challenges.</p>
+                My journey into customer success and AI development began with a passion for creating meaningful customer relationships and leveraging technology to solve real-world challenges.
+              </p>
               <h3>Personal Values & Beliefs:</h3>
               <ul>
                   <li><strong>Customer-Centric Mindset:</strong> Prioritizing understanding customer needs and delivering actionable, data-driven solutions.</li>
