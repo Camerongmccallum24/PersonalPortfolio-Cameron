@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Home, User, Briefcase, Code, BookOpen, Mail, Github, Linkedin, Twitter, Link, ExternalLink } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Home, User, Briefcase, Code, BookOpen, Mail, Github, Linkedin, Twitter } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 
 const LandingPage = () => {
@@ -53,7 +53,6 @@ const LandingPage = () => {
             transition={{ delay: 0.2 }}
             className="relative group"
           >
-            {/* Animated border effect */}
             <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000 group-hover:duration-200 animate-tilt"></div>
             <div className="relative w-64 h-64 rounded-full p-1">
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full animate-pulse"></div>
@@ -63,7 +62,7 @@ const LandingPage = () => {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <img 
-                  src="/Profile_Picture.png" 
+                  src="/images/Profile_Picture.png" 
                   alt="Profile" 
                   className="w-full h-full object-cover"
                 />
@@ -126,7 +125,7 @@ const LandingPage = () => {
         </div>
       </motion.section>
 
-      {/* Projects Section */}
+      {/* Featured Projects Section */}
       <section id="projects" className="py-24 bg-gradient-to-b from-gray-900/50 to-black">
         <div className="max-w-7xl mx-auto px-4">
           <motion.h2 
@@ -162,9 +161,8 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Career Section with improved styling */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5" />
+      {/* Career Section */}
+      <section id="career" className="py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -175,152 +173,6 @@ const LandingPage = () => {
             Career Journey
           </motion.h2>
           <CareerSlider />
-        </div>
-      </section>
-
-      {/* Blog Section with improved layout */}
-      <section className="py-24 bg-gradient-to-b from-gray-900/50 to-black">
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12 text-center"
-          >
-            Latest Insights
-          </motion.h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <BlogPost 
-                title="Leveraging AI for Customer Success Automation"
-                date="January 8, 2025"
-                excerpt="Explore how AI is revolutionizing customer success management and learn about the latest tools and strategies for automation."
-                tags={['AI', 'Customer Success', 'Automation']}
-                readTime="8 min read"
-              />
-              <BlogPost 
-                title="Building Effective Customer Health Scores"
-                date="January 2, 2025"
-                excerpt="A deep dive into creating meaningful customer health metrics that help predict and prevent churn while driving growth."
-                tags={['Analytics', 'Customer Success', 'Metrics']}
-                readTime="6 min read"
-              />
-            </div>
-
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-gray-900/50 to-gray-800/30 p-8 rounded-xl h-fit sticky top-24 border border-gray-800"
-            >
-              <h3 className="text-2xl font-bold mb-4">Subscribe to My Newsletter</h3>
-              <p className="text-gray-300 mb-6">
-                Get the latest insights on AI, Customer Success, and SaaS delivered straight to your inbox.
-                No spam, unsubscribe anytime.
-              </p>
-              <form className="space-y-4">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
-                />
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  className="w-full px-4 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg hover:shadow-lg hover:shadow-cyan-500/20 transition-all"
-                >
-                  Subscribe
-                </motion.button>
-              </form>
-              <p className="text-gray-400 text-sm mt-4">
-                Join 2,000+ subscribers who are already getting smarter about AI-driven customer success.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section with improved visuals */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 to-transparent" />
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12 text-center"
-          >
-            Skills & Expertise
-          </motion.h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-gray-900/50 to-gray-800/30 p-8 rounded-xl border border-gray-800"
-            >
-              <h2 className="text-2xl font-bold mb-8 text-cyan-400">Technical Skills</h2>
-              <div className="space-y-6">
-                <SkillBar name="Python" proficiency={90} />
-                <SkillBar name="React" proficiency={85} />
-                <SkillBar name="FastAPI" proficiency={80} />
-              </div>
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-gray-900/50 to-gray-800/30 p-8 rounded-xl border border-gray-800"
-            >
-              <h2 className="text-2xl font-bold mb-8 text-cyan-400">AI/ML Skills</h2>
-              <div className="space-y-6">
-                <SkillBar name="OpenAI GPT" proficiency={95} />
-                <SkillBar name="NLP" proficiency={85} />
-                <SkillBar name="TensorFlow" proficiency={80} />
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-24 bg-gradient-to-b from-gray-900/50 to-black">
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12 text-center"
-          >
-            Get In Touch
-          </motion.h2>
-          <div className="max-w-xl mx-auto">
-            <motion.form 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
-              />
-              <textarea
-                rows={4}
-                placeholder="Your Message"
-                className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
-              />
-              <Button 
-                type="submit"
-                className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-cyan-500/20 transition-all"
-              >
-                Send Message
-              </Button>
-            </motion.form>
-          </div>
         </div>
       </section>
 
@@ -392,30 +244,6 @@ const CareerSlider = () => (
   <div>
     {/* Replace with your actual slider implementation */}
     <p>Career Slider Component Here</p>
-  </div>
-);
-
-const BlogPost = ({title, date, excerpt, tags, readTime}: {title: string, date: string, excerpt: string, tags: string[], readTime: string}) => (
-  <div>
-    <h4 className="text-xl font-bold">{title}</h4>
-    <p className="text-gray-400 text-sm">{date}</p>
-    <p className="text-gray-300 mb-2">{excerpt}</p>
-    <div className="flex flex-wrap gap-2">
-      {tags.map((tag) => (
-        <span key={tag} className="bg-gray-700 px-2 py-1 rounded-lg text-xs text-gray-200">{tag}</span>
-      ))}
-      <span className="text-gray-400 text-xs">{readTime}</span>
-    </div>
-  </div>
-);
-
-
-const SkillBar = ({name, proficiency}: {name: string, proficiency: number}) => (
-  <div className="flex items-center justify-between">
-    <p className="text-gray-300">{name}</p>
-    <div className="w-full bg-gray-700 rounded-lg h-2 relative">
-      <div className="absolute top-0 left-0 h-full bg-cyan-500 rounded-lg" style={{width: `${proficiency}%`}} />
-    </div>
   </div>
 );
 
