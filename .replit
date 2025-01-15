@@ -6,21 +6,14 @@ hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
 channel = "stable-24_05"
 
 [deployment]
-deploymentTarget = "static"
+deploymentTarget = "node"
 build = ["npm", "run", "build"]
+run = ["npm", "run", "start"]
 publicDir = "dist"
 
 [[ports]]
 localPort = 3000
-externalPort = 3001
-
-[[ports]]
-localPort = 5000
 externalPort = 80
-
-[[ports]]
-localPort = 5001
-externalPort = 3000
 
 [workflows]
 
