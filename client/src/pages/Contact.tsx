@@ -84,7 +84,7 @@ export default function Contact() {
 
           {/* Right Column */}
           <div>
-            <Card className="relative group h-full overflow-hidden glassmorphism">
+            <Card className="relative group h-full overflow-hidden glassmorphism transition duration-300 ease-in-out hover:bg-opacity-30 hover:border-white">
               <div className="absolute inset-0 bg-gradient-to-br from-background/10 via-background/20 to-background/10" />
               <CardContent className="pt-6">
                 <h2 className="text-2xl font-bold mb-4 text-gray-100">Contact Me</h2>
