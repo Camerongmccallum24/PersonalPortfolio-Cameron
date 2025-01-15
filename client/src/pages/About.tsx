@@ -60,13 +60,13 @@ export function About() {
       .map((skill) => (
         <div
           key={skill.name}
-          className="flex items-center gap-4 p-4 glassmorphism hover:shadow-lg transition-shadow"
+          className="flex items-center gap-4 p-4 glassmorphism hover:shadow-lg transition-shadow rounded-lg"
         >
           <div className="flex-1">
-            <h4 className="text-lg font-semibold text-white">{skill.name}</h4>
+            <h4 className="text-base sm:text-lg font-semibold text-white">{skill.name}</h4>
             <div className="w-full bg-gray-700 rounded-full h-2 mt-1">
               <div
-                className="h-2 rounded-full"
+                className="h-2 rounded-full transition-all duration-500"
                 style={{ width: `${skill.level}%`, backgroundColor: skill.color }}
               ></div>
             </div>
@@ -81,10 +81,8 @@ export function About() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black"
+      className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black px-4 sm:px-6 lg:px-8"
     >
-      {/* About Me Section */}
-      {/* Profile Picture Section */}
       <motion.section 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -105,87 +103,48 @@ export function About() {
           />
         </motion.div>
       </motion.section>
-      
-      {/* Hero Section */}
-      <section className="pt-32 pb-24 px-4 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-          <div className="md:flex-1 text-center md:text-left">
-            <motion.h1
-              className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500"
+
+      <section className="pt-16 sm:pt-32 pb-12 sm:pb-24 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 sm:gap-12 px-4">
+          <div className="w-full md:flex-1 text-center md:text-left">
+            <motion.h1 
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500"
             >
               Empowering SaaS Businesses with AI-Powered Customer Solutions
             </motion.h1>
             <motion.p
-              className="text-xl text-gray-300 mb-8 leading-relaxed"
+              className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed"
             >
               Leveraging AI to redefine customer success strategies, enhance retention, and deliver unparalleled client satisfaction. Join me on this journey to create impactful and innovative solutions.
             </motion.p>
-            <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-cyan-500/20 transition-all">
+            <Button className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg shadow-lg hover:shadow-cyan-500/20 transition-all">
               Discover My Journey
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Journey Section */}
-      <section className="px-4 py-16 bg-gray-900">
+      <section className="px-4 py-12 sm:py-16 bg-gray-900">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-6">My Journey</h2>
-          <p className="text-lg text-gray-300 mb-6">
-            My journey into customer success and AI development began with a passion for creating meaningful customer relationships. A pivotal moment was when I reduced churn by 25% through predictive analytics, proving the transformative power of AI in client retention.
-          </p>
-          <Button className="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-6 py-2 rounded-lg shadow-lg hover:shadow-pink-500/20 transition-all">
-            Connect on LinkedIn
-          </Button>
-        </div>
-      </section>
-
-      {/* Values Section */}
-      <section className="px-4 py-16 bg-gray-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-6">Personal Values & Beliefs</h2>
-          <p className="text-lg text-gray-300 mb-4">
-            These principles guide every interaction and project, ensuring alignment with client goals and industry innovation.
-          </p>
-          <ul className="list-disc pl-6 text-gray-300">
-            <li><strong>Customer-Centric Mindset:</strong> Delivering actionable, data-driven solutions to address customer needs.</li>
-            <li><strong>Innovation and Adaptability:</strong> Driving efficiency and results through emerging technologies.</li>
-            <li><strong>Transparency and Collaboration:</strong> Building trust through honest communication and cross-functional alignment.</li>
-          </ul>
-          <Button className="mt-6 bg-gradient-to-r from-teal-500 to-green-500 text-white px-6 py-2 rounded-lg shadow-lg hover:shadow-teal-500/20 transition-all">
-            Learn How These Values Drive Success
-          </Button>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section className="px-4 py-16 bg-gray-900">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-6">Skills & Expertise</h2>
-          <p className="text-lg text-gray-300 mb-6">
-            My skills span multiple disciplines, enabling me to provide comprehensive solutions to complex challenges.
-          </p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">Skills & Expertise</h2>
           {Object.keys(categoryIcons).map((category) => (
-            <div key={category}>
+            <div key={category} className="mb-8">
               <div className="flex items-center gap-3 mb-4">
-                <img
-                  src={categoryIcons[category]}
-                  alt={category}
-                  className="w-8 h-8"
-                />
-                <h3
-                  className="text-2xl font-bold text-cyan-400 cursor-pointer"
+                <img src={categoryIcons[category]} alt={category} className="w-6 sm:w-8 h-6 sm:h-8" />
+                <h3 
+                  className="text-xl sm:text-2xl font-bold text-cyan-400 cursor-pointer" 
                   onClick={() => setFrontendOpen(!isFrontendOpen)}
                 >
                   {category} {isFrontendOpen ? "▼" : "▶"}
                 </h3>
               </div>
-              {isFrontendOpen && <div className="space-y-4">{renderSkillsByCategory(category)}</div>}
+              {isFrontendOpen && (
+                <div className="space-y-3 sm:space-y-4">
+                  {renderSkillsByCategory(category)}
+                </div>
+              )}
             </div>
           ))}
-          <Button className="mt-6 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-2 rounded-lg shadow-lg hover:shadow-blue-500/20 transition-all">
-            See How These Skills Solve Real-World Challenges
-          </Button>
         </div>
       </section>
     </motion.main>
