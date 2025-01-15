@@ -67,3 +67,52 @@
     animation: tilt 10s infinite linear;
   }
 }
+.neon-glow-github {
+  color: #fff; /* White text */
+  text-shadow: 0 0 5px #333, 0 0 10px #333, 0 0 15px #333; /* GitHub gray */
+  transition: text-shadow 0.3s ease-in-out;
+}
+
+.neon-glow-github:hover {
+  text-shadow: 0 0 10px #333, 0 0 20px #333, 0 0 30px #333; /* Bright gray on hover */
+}
+
+.neon-glow-linkedin {
+  color: #fff; /* White text */
+  text-shadow: 0 0 5px #0077b5, 0 0 10px #0077b5, 0 0 15px #0077b5; /* LinkedIn blue */
+  transition: text-shadow 0.3s ease-in-out;
+}
+
+.neon-glow-linkedin:hover {
+  text-shadow: 0 0 10px #0077b5, 0 0 20px #0077b5, 0 0 30px #0077b5; /* Bright blue on hover */
+}
+
+.neon-glow-google {
+  color: #fff; /* White text */
+  text-shadow: 0 0 5px #db4437, 0 0 10px #db4437, 0 0 15px #db4437; /* Google red */
+  transition: text-shadow 0.3s ease-in-out;
+}
+
+.neon-glow-google:hover {
+  text-shadow: 0 0 10px #db4437, 0 0 20px #db4437, 0 0 30px #db4437; /* Bright red on hover */
+}
+
+.neon-glow-x {
+  color: #fff; /* White text */
+  text-shadow: 0 0 5px #1da1f2, 0 0 10px #1da1f2, 0 0 15px #1da1f2; /* X blue */
+  transition: text-shadow 0.3s ease-in-out;
+}
+
+.neon-glow-x:hover {
+  text-shadow: 0 0 10px #1da1f2, 0 0 20px #1da1f2, 0 0 30px #1da1f2; /* Bright blue on hover */
+}
+
+.neon-glow-youtube {
+  color: #fff; /* White text */
+  text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000; /* YouTube red */
+  transition: text-shadow 0.3s ease-in-out;
+}
+
+.neon-glow-youtube:hover {
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000; /* Bright red on hover */
+}
