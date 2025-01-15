@@ -12,7 +12,7 @@ export function Footer() {
           <div className="text-sm text-muted-foreground">
             © 2025 AI Strategy & Customer Success Portfolio.
           </div>
-
+          
           <div className="flex items-center space-x-2">
             <Button variant="ghost" size="icon" asChild>
               <a 
@@ -65,7 +65,7 @@ export function Footer() {
               </a>
             </Button>
           </div>
-
+          
           <div className="flex items-center space-x-4 text-sm">
             <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
               About
