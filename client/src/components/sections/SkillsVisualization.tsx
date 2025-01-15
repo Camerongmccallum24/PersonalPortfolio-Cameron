@@ -50,7 +50,7 @@ export function SkillsVisualization({ skills }: SkillsVisualizationProps) {
                     animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Card className="hover:border-primary/40 transition-colors">
+                    <Card className="glassmorphism hover:border-primary/40 transition-colors">
                       <CardContent className="pt-6">
                         <div className="flex justify-between items-center mb-2">
                           <span className="font-medium">{skill.name}</span>

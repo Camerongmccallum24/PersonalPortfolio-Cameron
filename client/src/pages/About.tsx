@@ -60,7 +60,7 @@ export function About() {
       .map((skill) => (
         <div
           key={skill.name}
-          className="flex items-center gap-4 p-4 bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          className="flex items-center gap-4 p-4 glassmorphism hover:shadow-lg transition-shadow"
         >
           <div className="flex-1">
             <h4 className="text-lg font-semibold text-white">{skill.name}</h4>
