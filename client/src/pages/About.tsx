@@ -30,17 +30,33 @@ export function About() {
 
     // AI & Data Analytics
     { name: "GPT-4 Customization", level: 85, category: "AI & Data Analytics" },
-    { name: "Predictive Analytics", level: 80, category: "AI & Data Analytics" },
+    {
+      name: "Predictive Analytics",
+      level: 80,
+      category: "AI & Data Analytics",
+    },
     { name: "Sentiment Analysis", level: 85, category: "AI & Data Analytics" },
     { name: "Data Visualization", level: 75, category: "AI & Data Analytics" },
     { name: "Machine Learning", level: 70, category: "AI & Data Analytics" },
 
     // Customer Success
     { name: "CRM Platforms", level: 85, category: "Customer Success" },
-    { name: "AI-Driven Customer Retention", level: 90, category: "Customer Success" },
+    {
+      name: "AI-Driven Customer Retention",
+      level: 90,
+      category: "Customer Success",
+    },
     { name: "Workflow Automation", level: 80, category: "Customer Success" },
-    { name: "Customer Journey Mapping", level: 85, category: "Customer Success" },
-    { name: "Client Engagement & Training", level: 90, category: "Customer Success" }
+    {
+      name: "Customer Journey Mapping",
+      level: 85,
+      category: "Customer Success",
+    },
+    {
+      name: "Client Engagement & Training",
+      level: 90,
+      category: "Customer Success",
+    },
   ];
 
   return (
@@ -53,7 +69,7 @@ export function About() {
       {/* Hero Section with Profile */}
       <section className="pt-32 pb-24 px-4 relative overflow-hidden">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-          <motion.div 
+          <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -63,27 +79,27 @@ export function About() {
             <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000 group-hover:duration-200 animate-tilt"></div>
             <div className="relative w-64 h-64 rounded-full p-1">
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full animate-pulse"></div>
-              <motion.div 
+              <motion.div
                 className="w-full h-full rounded-full overflow-hidden relative z-10 transform"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <img 
-                  src="/Profile_Picture.png" 
-                  alt="Profile" 
+                <img
+                  src="/images/Profile_Picture.png"
+                  alt="Profile"
                   className="w-full h-full object-cover"
                 />
               </motion.div>
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
             className="md:flex-1 text-center md:text-left"
           >
-            <motion.h1 
+            <motion.h1
               className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500"
               initial={{ y: 20 }}
               animate={{ y: 0 }}
@@ -91,24 +107,23 @@ export function About() {
             >
               Pioneering AI-Driven Customer Success
             </motion.h1>
-            <motion.p 
+            <motion.p
               className="text-xl text-gray-300 mb-8 leading-relaxed"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
-              As a seasoned AI and Customer Success specialist with over a decade of experience in SaaS
-              and enterprise environments, I blend technical expertise with business acumen to transform
-              customer experiences and drive measurable growth.
+              As a seasoned AI and Customer Success specialist with over a
+              decade of experience in SaaS and enterprise environments, I blend
+              technical expertise with business acumen to transform customer
+              experiences and drive measurable growth.
             </motion.p>
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
-              <Button 
-                className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-cyan-500/20 transition-all"
-              >
+              <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-cyan-500/20 transition-all">
                 Read More
               </Button>
             </motion.div>
@@ -128,13 +143,26 @@ export function About() {
           <Card className="mb-8">
             <CardContent className="pt-6">
               <p className="text-lg text-muted-foreground mb-4">
-                My journey into customer success and AI development began with a passion for creating meaningful customer relationships and leveraging technology to solve real-world challenges.
+                My journey into customer success and AI development began with a
+                passion for creating meaningful customer relationships and
+                leveraging technology to solve real-world challenges.
               </p>
               <h3>Personal Values & Beliefs:</h3>
               <ul>
-                  <li><strong>Customer-Centric Mindset:</strong> Prioritizing understanding customer needs and delivering actionable, data-driven solutions.</li>
-                  <li><strong>Innovation and Adaptability:</strong> Embracing emerging technologies to drive efficiency and results.</li>
-                  <li><strong>Transparency and Collaboration:</strong> Building trust through honest communication and fostering cross-functional team alignment.</li>
+                <li>
+                  <strong>Customer-Centric Mindset:</strong> Prioritizing
+                  understanding customer needs and delivering actionable,
+                  data-driven solutions.
+                </li>
+                <li>
+                  <strong>Innovation and Adaptability:</strong> Embracing
+                  emerging technologies to drive efficiency and results.
+                </li>
+                <li>
+                  <strong>Transparency and Collaboration:</strong> Building
+                  trust through honest communication and fostering
+                  cross-functional team alignment.
+                </li>
               </ul>
             </CardContent>
           </Card>
