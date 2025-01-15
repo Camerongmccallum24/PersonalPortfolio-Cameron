@@ -1,6 +1,7 @@
 
 import { Link } from "wouter";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Github, Linkedin, Youtube } from "lucide-react";
+import { IconBrandX, IconBrandGoogleFilled } from '@tabler/icons-react';
 import { Button } from "@/components/ui/button";
 
 export function Footer() {
@@ -35,12 +36,32 @@ export function Footer() {
             </Button>
             <Button variant="ghost" size="icon" asChild>
               <a 
-                href="https://twitter.com/yourusername" 
+                href="https://g.dev/cameron-g-mccallum" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
               >
-                <Twitter className="h-5 w-5" />
+                <IconBrandGoogleFilled className="h-5 w-5" />
+              </a>
+            </Button>
+            <Button variant="ghost" size="icon" asChild>
+              <a 
+                href="https://x.com/CamGMcCallum" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors"
+              >
+                <IconBrandX className="h-5 w-5" />
+              </a>
+            </Button>
+            <Button variant="ghost" size="icon" asChild>
+              <a 
+                href="http://www.youtube.com/@cameronmccallum" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors"
+              >
+                <Youtube className="h-5 w-5" />
               </a>
             </Button>
           </div>
