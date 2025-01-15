@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -27,9 +28,13 @@ export default function Contact() {
     },
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-    // Handle form submission
+  const onSubmit = async (data: FormValues) => {
+    try {
+      // TODO: Implement form submission logic
+      console.log(data);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   return (
@@ -47,38 +52,40 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-4xl font-bold mb-4"
+              className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-600"
             >
-              Let’s Connect
+              Let's Connect
             </motion.h1>
             <p className="text-lg mb-6 text-gray-700">
-              I’m excited to hear from you! Whether you have a question, need advice, or want to collaborate, feel free to reach out. Let’s create something amazing together.
+              I'm passionate about transforming customer success through AI innovation. Whether you're looking to collaborate, need consulting, or want to discuss the future of AI in customer success, I'm here to help.
             </p>
-            <div className="flex space-x-4 mb-4">
+            <div className="flex space-x-4 mb-6">
               <a href="https://linkedin.com/in/cameron-g-mccallum" target="_blank" rel="noopener noreferrer">
-                <FaLinkedin className="text-blue-700 text-2xl hover:text-blue-500" />
+                <FaLinkedin className="text-blue-700 text-2xl hover:text-blue-500 transition-colors" />
               </a>
               <a href="https://github.com/camerongmccallum24" target="_blank" rel="noopener noreferrer">
-                <FaGithub className="text-gray-800 text-2xl hover:text-gray-600" />
+                <FaGithub className="text-gray-800 text-2xl hover:text-gray-600 transition-colors" />
               </a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                <FaTwitter className="text-blue-400 text-2xl hover:text-blue-300" />
+                <FaTwitter className="text-blue-400 text-2xl hover:text-blue-300 transition-colors" />
               </a>
             </div>
-            <Button
-              className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-md text-md"
-              onClick={() => window.open("https://your-newsletter-link.com", "_blank")}
-            >
-              Join My Newsletter
-            </Button>
-            <p className="mt-4 text-md text-gray-500">
-              Alternatively, you can reach me directly via email at <a href="mailto:your-email@example.com" className="text-blue-600 hover:underline">your-email@example.com</a>.
-            </p>
+            <div className="space-y-4">
+              <Button
+                className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:from-blue-700 hover:to-cyan-700 transition-all"
+                onClick={() => window.location.href = '/landing'}
+              >
+                Join My Newsletter
+              </Button>
+              <p className="text-sm text-gray-600">
+                Get weekly insights on AI in customer success, SaaS metrics, and industry trends.
+              </p>
+            </div>
           </div>
 
           {/* Right Column */}
           <div>
-            <Card>
+            <Card className="glassmorphism">
               <CardContent className="pt-6">
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -128,7 +135,7 @@ export default function Contact() {
                       )}
                     />
 
-                    <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-500 text-white">
+                    <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                       Send Message
                     </Button>
                   </form>
