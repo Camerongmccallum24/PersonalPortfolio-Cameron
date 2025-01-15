@@ -84,8 +84,8 @@ export default function Contact() {
 
           {/* Right Column */}
           <div>
-            <Card className="relative group h-full overflow-hidden backdrop-blur-sm">
-              <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background to-background/80" />
+            <Card className="relative group h-full overflow-hidden glassmorphism">
+              <div className="absolute inset-0 bg-gradient-to-br from-background/10 via-background/20 to-background/10" />
               <CardContent className="pt-6">
                 <h2 className="text-2xl font-bold mb-4 text-gray-100">Contact Me</h2>
                 <Form {...form}>
