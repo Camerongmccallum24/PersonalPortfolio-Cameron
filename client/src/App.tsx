@@ -13,6 +13,7 @@ import Contact from "@/pages/Contact";
 import CaseStudyGPTShowcase from "@/pages/CaseStudyGPTShowcase";
 import CaseStudyPortal from "@/pages/CaseStudyPortal";
 import CaseStudyAutomator from "@/pages/CaseStudyAutomator";
+import CaseStudyAITools from "@/pages/CaseStudyAITools";
 import { AnimatePresence } from "framer-motion";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/projects" component={Projects} />
           <Route path="/blog" component={Blog} />
           <Route path="/contact" component={Contact} />
+          <Route path="/case-study/ai-tools-directory" component={CaseStudyAITools} />
           <Route path="/case-study/customer-success-gpt-showcase" component={CaseStudyGPTShowcase} />
           <Route path="/case-study/customer-success-portal" component={CaseStudyPortal} />
           <Route path="/case-study/customer-success-automator" component={CaseStudyAutomator} />
