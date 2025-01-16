@@ -1,0 +1,55 @@
+In the shell, I see the following:
+
+~/workspace$ NODE_OPTIONS='--loader ts-node/esm' node --experimental-specifier-resolution=node db/checkData.ts
+(node:3452) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("ts-node/esm", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+Projects in Database: []
+Case Studies in Database: []
+~/workspace$
+If applicable, propose a fix immediately.
+
+CM
+
+cam-g-mccallum
+Assistant
+just now
+The warning you're seeing indicates that the way you're using NODE_OPTIONS with ts-node might provoke compatibility issues in the future. To resolve the issue and avoid the warning, you can execute your checkData.ts file by using the ts-node directly in your command without the --loader.
+
+Here’s how to modify your command:
+
+npx ts-node --esm db/checkData.ts
+This should execute your TypeScript file without the warning about the experimental loader. After making this change, run the command in your shell and see if you can properly connect to your database without retaining the warning.
+
+If the output still shows "Projects in Database: []" and "Case Studies in Database: []", it might indicate that the database is empty. You can run the seed file again to populate the database or check your seeding logic in db/seed.ts.
+
+In the shell, I see the following:
+
+~/workspace$ npx ts-node --esm db/checkData.ts
+TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension ".ts" for /home/runner/workspace/db/checkData.ts
+    at Object.getFileProtocolModuleFormat [as file:] (node:internal/modules/esm/get_format:176:9)
+    at defaultGetFormat (node:internal/modules/esm/get_format:219:36)
+    at defaultLoad (node:internal/modules/esm/load:143:22)
+    at async nextLoad (node:internal/modules/esm/hooks:868:22)
+    at async nextLoad (node:internal/modules/esm/hooks:868:22)
+    at async Hooks.load (node:internal/modules/esm/hooks:451:20)
+    at async handleMessage (node:internal/modules/esm/worker:196:18) {
+  code: 'ERR_UNKNOWN_FILE_EXTENSION'
+}
+ Environment updated. Reloading shell...
+~/workspace$
+If applicable, propose a fix immediately.
+
+CM
+
+cam-g-mccallum
+Assistant
+just now
+The error you're encountering indicates that Node.js does not recognize the .ts file extension when using ES modules. To fix this issue, you can add support for TypeScript files by including the --loader ts-node/esm option directly in your npx ts-node command.
+
+Here's how to modify your command:
+
+npx ts-node --loader ts-node/esm db/checkData.ts
+This command should allow you to run your TypeScript file without encountering the "Unknown file extension" error.
+
+After making this change, try running your command again in the shell. If you continue to face issues or if the output still shows "Projects in Database: []" and "Case Studies in Database: []", you may need to check your database connection or seeding logic in your db/seed.ts file.
