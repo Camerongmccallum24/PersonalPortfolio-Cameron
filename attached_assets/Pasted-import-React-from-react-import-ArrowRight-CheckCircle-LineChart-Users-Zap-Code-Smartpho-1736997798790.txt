@@ -1,0 +1,142 @@
+import React from 'react'; 
+import { ArrowRight, CheckCircle, LineChart, Users, Zap, Code, Smartphone, Brain } from 'lucide-react';
+
+const CustomerSuccessPortalCaseStudy = () => {
+  return (
+    <div className="max-w-6xl mx-auto px-4 py-16 bg-white">
+      {/* Hero Section */}
+      <div className="mb-16 text-center">
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">Customer Success Portal</h1>
+        <p className="text-xl text-gray-600 mb-8">A Comprehensive Solution for Enhanced Customer Engagement</p>
+      </div>
+
+      {/* Project Overview */}
+      <div className="mb-16">
+        <img 
+          src="/api/placeholder/1200/600" 
+          alt="Customer Success Portal Preview" 
+          className="w-full rounded-lg shadow-lg mb-8"
+        />
+        <div className="bg-gray-50 p-8 rounded-lg">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Project Overview</h2>
+          <p className="text-gray-600 mb-6">
+            The Customer Success Portal is an AI-powered platform designed to centralize critical information, automate workflows, and deliver actionable insights. It empowers Customer Success Managers to enhance customer experiences, strengthen relationships, and drive business growth.
+          </p>
+        </div>
+      </div>
+
+      {/* Key Features */}
+      <div className="mb-16">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Features</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <Brain className="w-8 h-8 text-blue-600 mb-4" />
+            <h3 className="text-lg font-semibold mb-2">Centralized Knowledge Base</h3>
+            <p className="text-gray-600">Organizes client data, meeting notes, and support documentation in a single, accessible location.</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <LineChart className="w-8 h-8 text-blue-600 mb-4" />
+            <h3 className="text-lg font-semibold mb-2">AI-Powered Insights</h3>
+            <p className="text-gray-600">Predicts churn risks and identifies upsell opportunities through advanced analytics.</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <Users className="w-8 h-8 text-blue-600 mb-4" />
+            <h3 className="text-lg font-semibold mb-2">Enhanced Collaboration</h3>
+            <p className="text-gray-600">Facilitates seamless communication between stakeholders and clients.</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <Smartphone className="w-8 h-8 text-blue-600 mb-4" />
+            <h3 className="text-lg font-semibold mb-2">Intuitive Dashboards</h3>
+            <p className="text-gray-600">Provides real-time insights with customizable KPIs and performance metrics.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Results */}
+      <div className="mb-16">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Results and Impact</h2>
+        <div className="bg-blue-50 p-8 rounded-lg">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { metric: "40%", description: "Reduction in churn rates" },
+              { metric: "85%", description: "Customer satisfaction improvement" },
+              { metric: "500+", description: "Clients onboarded successfully" },
+              { metric: "20%", description: "Increase in upsell opportunities" }
+            ].map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-3xl font-bold text-blue-600 mb-2">{stat.metric}</div>
+                <div className="text-gray-600">{stat.description}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Technical Details */}
+      <div className="mb-16">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Technical Implementation</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Frontend Stack</h3>
+            <ul className="space-y-3">
+              {[
+                "Modern HTML5 and CSS3",
+                "Tailwind CSS for styling",
+                "Responsive design principles",
+                "Performance optimization",
+                "Cross-browser compatibility"
+              ].map((item, index) => (
+                <li key={index} className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <span className="text-gray-600">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <img 
+              src="/api/placeholder/600/400" 
+              alt="Technical Architecture" 
+              className="rounded-lg shadow-sm"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Next Steps */}
+      <div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Future Enhancements</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          {[
+            {
+              title: "Expand Integrations",
+              description: "Add support for additional CRM and communication tools."
+            },
+            {
+              title: "Mobile Optimization",
+              description: "Enhance the platform for seamless mobile use."
+            },
+            {
+              title: "Advanced Analytics",
+              description: "Incorporate predictive models for customer behavior."
+            },
+            {
+              title: "User Feedback",
+              description: "Gather client insights to improve features and usability."
+            }
+          ].map((item, index) => (
+            <div key={index} className="flex items-start gap-4">
+              <ArrowRight className="w-5 h-5 text-blue-600 mt-1" />
+              <div>
+                <h3 className="font-semibold mb-1">{item.title}</h3>
+                <p className="text-gray-600">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CustomerSuccessPortalCaseStudy;
