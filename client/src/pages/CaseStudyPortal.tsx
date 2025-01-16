@@ -23,7 +23,7 @@ export default function CaseStudyPortal() {
         {/* Project Overview */}
         <div className="mb-16">
           <img 
-            src="client/public/images/Case-Studys/CS-Portal/Benefits_Customer_Success_Portal.png" 
+            src="/images/Case-Studys/CS-Portal/Benefits_Customer_Success_Portal.png" 
             alt="Customer Success Portal Preview" 
             className="w-full rounded-lg shadow-xl mb-8"
           />
@@ -113,7 +113,7 @@ export default function CaseStudyPortal() {
           </div>
         </div>
 
-        {/* Next Steps */}
+        {/* Future Enhancements */}
         <div className="mb-16">
           <h2 className="text-2xl font-bold mb-6">Future Enhancements</h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -138,7 +138,7 @@ export default function CaseStudyPortal() {
               <div key={index} className="flex items-start gap-4">
                 <ArrowRight className="w-5 h-5 text-primary mt-1" />
                 <div>
-                  <h3 className="font-semibold mb-1">{item.title}</h3>
+                  <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-muted-foreground">{item.description}</p>
                 </div>
               </div>
