@@ -1,0 +1,65 @@
+To insert projects and case studies into your database, you can use a JavaScript query in your server to handle the insertion based on your existing setup. Below is an example of how to create a function to add projects and case studies into your database.
+
+Example Query for Adding Projects and Case Studies
+You can arrange this in a route in your server/routes.ts. Here's how it could look:
+
+import { Express } from "express";
+import { addProject, addCaseStudy } from "../db/insert";
+export function registerRoutes(app: Express) {
+  // Add Route for inserting a Project
+  app.post("/api/projects", async (req, res) => {
+    const projectData = req.body; // this should match the schema in your db/schema.ts
+    const result = await addProject(projectData);
+    if (result.success) {
+      res.status(201).json({ message: "Project added successfully" });
+    } else {
+      res.status(500).json({ message: "Failed to add project", error: result.error });
+    }
+  });
+  // Add Route for inserting a Case Study
+  app.post("/api/case-studies", async (req, res) => {
+    const caseStudyData = req.body; // this should match the schema in your db/schema.ts
+    const result = await addCaseStudy(caseStudyData);
+    if (result.success) {
+      res.status(201).json({ message: "Case study added successfully" });
+    } else {
+      res.status(500).json({ message: "Failed to add case study", error: result.error });
+    }
+  });
+}
+Sample Data Structure
+Make sure your request body for adding projects and case studies aligns with the schemas defined in your db/schema.ts. For example:
+
+Project Data
+{
+  "title": "New Project Title",
+  "description": "Description of the project",
+  "image": "url/to/image.jpg",
+  "tags": ["tag1", "tag2"]
+}
+Case Study Data
+{
+  "title": "New Case Study Title",
+  "description": "Description of the case study",
+  "metrics": {"key_metric_1": "value1", "key_metric_2": "value2"}
+}
+Example of Making the POST Request
+You can test your endpoints using tools like Postman or through your client-side code by making POST requests as follows:
+
+// Adding a Project
+fetch('/api/projects', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(projectData) // Replace projectData with actual data
+});
+// Adding a Case Study
+fetch('/api/case-studies', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(caseStudyData) // Replace caseStudyData with actual data
+});
+This should enable you to add projects and case studies to your database successfully. Let me know if you need any further assistance!
