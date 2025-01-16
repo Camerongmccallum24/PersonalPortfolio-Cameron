@@ -59,15 +59,36 @@ app.use((req, res, next) => {
 
   // ALWAYS serve the app on port 5000
   // this serves both the API and the client
+  const tryPort = async (startPort: number): Promise<number> => {
+    for (let port = startPort; port < startPort + 10; port++) {
+      try {
+        await new Promise((resolve, reject) => {
+          server.listen(port, "0.0.0.0")
+            .once('listening', () => {
+              resolve(port);
+            })
+            .once('error', (err: any) => {
+              server.removeAllListeners();
+              reject(err);
+            });
+        });
+        return port;
+      } catch (err) {
+        if (port === startPort + 9) throw err;
+        continue;
+      }
+    }
+    throw new Error('No available ports found');
+  };
+
   const PORT = process.env.PORT || 3000;
-  server.listen(PORT, "0.0.0.0")
-    .on('listening', () => {
-      log(`serving on port ${PORT}`);
-    })
-    .on('error', (err: any) => {
-      console.error('Server error:', err);
-      process.exit(1);
-    });
+  try {
+    const usedPort = await tryPort(PORT);
+    log(`serving on port ${usedPort}`);
+  } catch (error) {
+    console.error('Server error:', error);
+    process.exit(1);
+  }
   } catch (error) {
     console.error('Server failed to start:', error);
     process.exit(1);
