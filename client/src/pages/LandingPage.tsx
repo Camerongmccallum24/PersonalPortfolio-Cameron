@@ -149,13 +149,13 @@ const LandingPage = () => {
               title="Customer Success GPT Showcase"
               description="A platform that demonstrates the capabilities of custom GPTs designed for Customer Success Managers. Features include sentiment analysis, churn prediction, and advanced analytics tailored to improve client retention and satisfaction."
               technologies={['React', 'TypeScript', 'Vercel', 'GPT-4', 'Customer Success']}
-              image="/api/placeholder/400/300"
+              image="/images/customer-success-gpt.jpg"
             />
             <ProjectCard 
               title="Customer Success Portal"
               description="A centralized platform for Customer Success Managers to manage client-specific knowledge bases, automate insights, and streamline workflows. Includes features for sentiment analysis, onboarding optimization, and customer health monitoring."
               technologies={['FastAPI', 'Python', 'Docker', 'Replit', 'Customer Success']}
-              image="/api/placeholder/400/300"
+              image="/images/customer-succes-portal.jpg"
             />
           </div>
         </div>
