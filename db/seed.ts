@@ -11,9 +11,15 @@ const sampleProjects = [
   },
   {
     title: "Customer Success Portal",
-    description: "A Comprehensive Platform for Enhanced Customer Success Management",
+    description: "A comprehensive platform for Customer Success Managers to manage client-specific knowledge bases, automate insights, and streamline workflows.",
     image: "/images/customer-succes-portal.jpg",
     tags: ["React", "Node.js", "PostgreSQL", "Customer Success"]
+  },
+  {
+    title: "Customer Success Automator",
+    description: "An automation tool for Customer Success workflows, focusing on repetitive tasks like follow-ups and reporting.",
+    image: "/images/customer-success-automator.jpeg",
+    tags: ["Python", "Automation", "API Integrations", "AI"]
   }
 ];
 
@@ -23,14 +29,14 @@ const sampleCaseStudies = [
     description: "How AI transforms customer success operations",
     metrics: {
       "Client Satisfaction": "95%",
-      "Response Time": "↓60%",
+      "Response Time": "↓60%", 
       "Team Efficiency": "↑40%",
       "Resolution Rate": "↑45%"
     }
   },
   {
-    title: "Customer Success Portal",
-    description: "A Comprehensive Solution for Enhanced Customer Engagement",
+    title: "Customer Success Portal", 
+    description: "A comprehensive solution for enhanced customer engagement.",
     metrics: {
       "Client Satisfaction": "95%",
       "Team Efficiency": "↑40%",
