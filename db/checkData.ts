@@ -1,6 +1,6 @@
 
-import { db } from "./index";
-import { projects, caseStudies } from "./schema";
+import { db } from "./index.js";
+import { projects, caseStudies } from "./schema.js";
 
 async function checkDatabase() {
   try {
