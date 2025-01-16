@@ -12,7 +12,7 @@ import Blog from "@/pages/Blog";
 import Contact from "@/pages/Contact";
 import CaseStudyGPTShowcase from "@/pages/CaseStudyGPTShowcase";
 import CaseStudyPortal from "@/pages/CaseStudyPortal";
-import CaseStudy from "@/pages/CaseStudy";
+import CaseStudyAutomator from "@/pages/CaseStudyAutomator";
 import { AnimatePresence } from "framer-motion";
 
 function App() {
