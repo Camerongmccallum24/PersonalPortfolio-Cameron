@@ -37,7 +37,7 @@ function App() {
           <Route path="/contact" component={Contact} />
           <Route path="/case-study/customer-success-gpt-showcase" component={CaseStudyGPTShowcase} />
           <Route path="/case-study/customer-success-portal" component={CaseStudyPortal} />
-          <Route path="/case-study/customer-success-automator" component={CaseStudy} />
+          <Route path="/case-study/customer-success-automator" component={CaseStudyAutomator} />
         </Switch>
       </AnimatePresence>
       <Footer />

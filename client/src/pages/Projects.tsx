@@ -27,7 +27,7 @@ export default function Projects() {
       image: "/images/ai-tools-directory.jpg",
       tags: ["React", "TypeScript", "Tailwind CSS", "Customer Success"],
       links: {
-        demo: "client/src/pages/CaseStudyAITools.tsx",
+        demo: "client/src/pages/CaseStudyAutomator.tsx",
         github: "https://github.com/camerongmccallum24/AIToolsDirectory"
       },
       preview: {
