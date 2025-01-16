@@ -1,5 +1,7 @@
+
 import { motion } from "framer-motion";
 import { TimelineCard } from "@/components/sections/TimelineCard";
+import { Helmet } from "react-helmet";
 
 export default function Career() {
   const experiences = [
@@ -60,7 +62,7 @@ export default function Career() {
       achievements: [
         "Orchestrated complex international events, consistently exceeding client expectations.",
         "Innovated service offerings that increased revenue streams by 30% year-over-year.",
-        "Cultivated partnerships with premium vendors, enhancing the company’s global reputation."
+        "Cultivated partnerships with premium vendors, enhancing the company's global reputation."
       ]
     },
     {
@@ -78,16 +80,30 @@ export default function Career() {
   ];
 
   return (
-    <div className="w-full px-4 py-12">
-      <div className="max-w-4xl mx-auto">
-        {experiences.map((experience, index) => (
-          <TimelineCard
-            key={index}
-            {...experience}
-            index={index}
-          />
-        ))}
+    <>
+      <Helmet>
+        <title>Professional Journey | AI Strategy & Customer Success Expert | Cameron McCallum</title>
+        <meta name="description" content="Explore Cameron McCallum's career journey from Customer Service to AI Strategy Consulting, showcasing expertise in customer success and digital transformation." />
+      </Helmet>
+      <div className="w-full px-4 py-12">
+        <div className="max-w-4xl mx-auto">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
+          >
+            Professional Journey
+          </motion.h1>
+          {experiences.map((experience, index) => (
+            <TimelineCard
+              key={index}
+              {...experience}
+              index={index}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
