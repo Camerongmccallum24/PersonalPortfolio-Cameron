@@ -1,5 +1,5 @@
 
-import { pgTable, text, serial, json } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, jsonb } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 export const users = pgTable("users", {
@@ -13,14 +13,14 @@ export const projects = pgTable("projects", {
   title: text("title").notNull(),
   description: text("description").notNull(),
   image: text("image"),
-  tags: json("tags").$type<string[]>(),
+  tags: jsonb("tags").$type<string[]>(),
 });
 
 export const caseStudies = pgTable("case_studies", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   description: text("description").notNull(),
-  metrics: json("metrics").$type<Record<string, string>>,
+  metrics: jsonb("metrics").$type<Record<string, string>>(),
 });
 
 export const insertUserSchema = createInsertSchema(users);
