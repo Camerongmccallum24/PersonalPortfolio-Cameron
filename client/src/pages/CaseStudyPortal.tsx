@@ -23,7 +23,7 @@ export default function CaseStudyPortal() {
         {/* Project Overview */}
         <div className="mb-16">
           <img 
-            src="/images/Case-Studys/CS-Portal/Customer_Success_Portal_2.png" 
+            src="client/public/images/Case-Studys/CS-Portal/Benefits_Customer_Success_Portal.png" 
             alt="Customer Success Portal Preview" 
             className="w-full rounded-lg shadow-xl mb-8"
           />
