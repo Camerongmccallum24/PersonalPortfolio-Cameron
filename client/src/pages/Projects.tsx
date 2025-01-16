@@ -11,6 +11,14 @@ import {
 import { ShareButtons } from "@/components/ui/ShareButtons";
 
 export default function Projects() {
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    // Simulate loading delay
+    const timer = setTimeout(() => setIsLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, []);
+
   const projects = [
     {
       title: "AI Tools Directory",
@@ -106,7 +114,18 @@ export default function Projects() {
       className="pt-24 pb-16 min-h-screen"
     >
       <div className="container mx-auto px-4">
-        <motion.h1
+        {isLoading ? (
+          <div className="space-y-8">
+            <div className="h-8 w-48 bg-primary/10 rounded-lg animate-pulse" />
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="h-[480px] rounded-xl bg-primary/5 animate-pulse" />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <>
+            <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -119,21 +138,21 @@ export default function Projects() {
           variants={container}
           initial="hidden"
           animate="show"
-          className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto"
+          className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-4"
         >
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
               variants={item}
               whileHover={{ 
-                scale: 1.02,
-                transition: { duration: 0.2 }
+                scale: 1.05,
+                transition: { duration: 0.3, ease: "easeOut" }
               }}
-              className="relative group"
+              className="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 via-purple-500/50 to-blue-500/50 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-500" />
-              <Card className="relative h-full overflow-hidden backdrop-blur-sm">
-                <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background to-background/80" />
+              <Card className="relative h-full overflow-hidden backdrop-blur-sm border-0">
+                <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/95 to-background opacity-90 transition-opacity duration-300 group-hover:opacity-80" />
                 <motion.div
                   whileHover={{ scale: 1.03 }}
                   transition={{ duration: 0.3 }}
@@ -289,6 +308,8 @@ export default function Projects() {
             </motion.div>
           ))}
         </motion.div>
+          </>
+        )}
       </div>
     </motion.main>
   );
