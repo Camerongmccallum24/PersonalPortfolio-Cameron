@@ -1,0 +1,81 @@
+To update the 'View Case Study' links for each Featured Project in the Projects.tsx file, you'll need to edit the projects array. Below is the updated code with the appropriate links added:
+
+import React from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Github, Info } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { ShareButtons } from "@/components/ui/ShareButtons";
+export default function Projects() {
+  // ... (rest of the component code)
+  const projects = [
+    {
+      title: "AI Tools Directory",
+      description: "A comprehensive directory platform for discovering and comparing AI-powered Customer Success tools.",
+      image: "/images/ai-tools-directory.jpg",
+      tags: ["React", "TypeScript", "Tailwind CSS", "Customer Success"],
+      links: {
+        demo: "client/src/pages/CaseStudyAITools.tsx", // Updated Case Study link
+        github: "https://github.com/camerongmccallum24/AIToolsDirectory"
+      },
+      preview: {
+        impact: "Streamlined tool discovery for Customer Success teams",
+        features: ["Advanced Search", "Tool Comparisons", "Verified Reviews"],
+        status: "Live Demo Available"
+      }
+    },
+    {
+      title: "Customer Success GPT Showcase",
+      description: "A platform that demonstrates the capabilities of custom GPTs designed for Customer Success Managers.",
+      image: "/images/customer-success-gpt.jpg",
+      tags: ["React", "TypeScript", "Vercel", "GPT-4", "Customer Success"],
+      links: {
+        demo: "client/src/pages/CaseStudyGPTShowcase.tsx", // Updated Case Study link
+        github: "https://github.com/camerongmccallum24/GPTShowcase"
+      },
+      preview: {
+        impact: "40% reduction in response time",
+        features: ["Sentiment Analysis", "Churn Prediction", "Custom GPT Integration"],
+        status: "Live Demo Available"
+      }
+    },
+    {
+      title: "Customer Success Portal",
+      description: "A centralized platform for Customer Success Managers to manage client-specific knowledge bases, automate insights, and streamline workflows.",
+      image: "/images/customer-succes-portal.jpg",
+      tags: ["FastAPI", "Python", "Docker", "Replit", "Customer Success"],
+      links: {
+        demo: "client/src/pages/CaseStudyPortal.tsx", // Updated Case Study link
+        github: "https://github.com/camerongmccallum24"
+      },
+      preview: {
+        impact: "95% client satisfaction rate",
+        features: ["Knowledge Base", "Workflow Automation", "Analytics Dashboard"],
+        status: "In Development"
+      }
+    },
+    {
+      title: "Customer Success Automator",
+      description: "An automation tool for Customer Success workflows, focusing on repetitive tasks like follow-ups and reporting.",
+      image: "/images/customer-success-automator.jpeg",
+      tags: ["Python", "Automation", "API Integrations", "AI"],
+      links: {
+        demo: "client/src/pages/CaseStudy.tsx", // Updated Case Study link
+        github: "https://github.com/camerongmccallum24"
+      },
+      preview: {
+        impact: "70% reduction in manual tasks",
+        features: ["Task Automation", "Smart Recommendations", "Performance Analytics"],
+        status: "Beta Testing"
+      }
+    }
+  ];
+  // ...(rest of the component code)
+}
+Make sure to replace the existing projects array in the Projects.tsx file with the updated version above. This will ensure that each project's 'View Case Study' link directs to the correct page.
