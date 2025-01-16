@@ -13,6 +13,21 @@ import { ShareButtons } from "@/components/ui/ShareButtons";
 export default function Projects() {
   const projects = [
     {
+      title: "AI Tools Directory",
+      description: "A comprehensive directory platform for discovering and comparing AI-powered Customer Success tools. Features include advanced search, detailed comparisons, and verified reviews to help CS teams make informed decisions about their tech stack.",
+      image: "/images/ai-tools-directory.jpg",
+      tags: ["React", "TypeScript", "Tailwind CSS", "Customer Success"],
+      links: {
+        demo: "https://customer-success-portfolio.camerongmccallum.repl.co/case-study/ai-tools-directory",
+        github: "https://github.com/camerongmccallum24/AIToolsDirectory"
+      },
+      preview: {
+        impact: "Streamlined tool discovery for Customer Success teams",
+        features: ["Advanced Search", "Tool Comparisons", "Verified Reviews"],
+        status: "Live Demo Available"
+      }
+    },
+    {
       title: "Customer Success GPT Showcase",
       description: "A platform that demonstrates the capabilities of custom GPTs designed for Customer Success Managers. Features include sentiment analysis, churn prediction, and advanced analytics tailored to improve client retention and engagement.",
       image: "/images/customer-success-gpt.jpg",
