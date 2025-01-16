@@ -1,0 +1,98 @@
+To add the ProjectCard component to the LandingPage, you can integrate it into the "Featured Projects Section." Here's how the modified LandingPage.tsx file will look with the ProjectCard included:
+
+import React, { useState, useEffect } from 'react';
+import { Home, User, Briefcase, Code, BookOpen, Mail, Github, Linkedin, Twitter } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Button } from "@/components/ui/button";
+import ProjectCard from "@/components/ProjectCard"; // Adjust the import path as necessary
+const LandingPage = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-black/90 backdrop-blur-sm border-b border-gray-800 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-blue-500 text-xl font-bold"
+            >
+              Portfolio
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="hidden md:flex space-x-4"
+            >
+              <NavLink icon={<Home className="w-4 h-4" />} text="Home" active />
+              <NavLink icon={<User className="w-4 h-4" />} text="About" />
+              <NavLink icon={<Briefcase className="w-4 h-4" />} text="Career" />
+              <NavLink icon={<Code className="w-4 h-4" />} text="Projects" />
+              <NavLink icon={<BookOpen className="w-4 h-4" />} text="Blog" />
+              <NavLink icon={<Mail className="w-4 h-4" />} text="Contact" />
+            </motion.div>
+          </div>
+        </div>
+      </nav>
+      {/* Hero Section with enhanced profile picture */}
+      <motion.section 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="pt-32 pb-24 px-4 relative overflow-hidden"
+      >
+        {/* Hero content omitted for brevity */}
+      </motion.section>
+      {/* Featured Projects Section */}
+      <section id="projects" className="py-24 bg-gradient-to-b from-gray-900/50 to-black">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold mb-4 text-center"
+          >
+            Featured Projects
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-gray-400 text-center mb-12 max-w-2xl mx-auto"
+          >
+            Discover how I've helped businesses leverage AI to transform their customer success operations
+          </motion.p>
+          <div className="grid md:grid-cols-2 gap-8">
+            <ProjectCard 
+              title="Customer Success GPT Showcase"
+              description="A platform that demonstrates the capabilities of custom GPTs designed for Customer Success Managers. Features include sentiment analysis, churn prediction, and advanced analytics tailored to improve client retention and satisfaction."
+              technologies={['React', 'TypeScript', 'Vercel', 'GPT-4', 'Customer Success']}
+              image="/api/placeholder/400/300"
+            />
+            <ProjectCard 
+              title="Customer Success Portal"
+              description="A centralized platform for Customer Success Managers to manage client-specific knowledge bases, automate insights, and streamline workflows."
+              technologies={['FastAPI', 'Python', 'Docker', 'Replit', 'Customer Success']}
+              image="/api/placeholder/400/300"
+            />
+          </div>
+        </div>
+      </section>
+      {/* Career Section omitted for brevity */}
+      {/* Footer with social links */}
+      <footer className="border-t border-gray-800 py-12 bg-black/50 backdrop-blur-sm">
+        {/* Footer content omitted for brevity */}
+      </footer>
+    </div>
+  );
+};
+// Helper Components omitted for brevity
+export default LandingPage;
+Changes Made:
+Imported the ProjectCard component at the top (import ProjectCard from "@/components/ProjectCard";).
+Included two sample ProjectCard components with relevant properties in the "Featured Projects Section".
+Make sure to adjust the import paths according to your file structure if necessary. This should successfully integrate your ProjectCard component into the LandingPage.
