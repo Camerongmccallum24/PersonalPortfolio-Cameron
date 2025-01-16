@@ -1,0 +1,150 @@
+To create a CaseStudy page linked to the project "AI Tools Directory," I will follow the provided content and layout closely while maintaining the overall styling of the site. Here’s the complete code for the CaseStudy.tsx page:
+
+import React from 'react';
+import { ArrowRight, CheckCircle, LineChart, Users, Zap, Code, Smartphone, Brain } from 'lucide-react';
+import { motion } from 'framer-motion';
+const CaseStudy = () => {
+  return (
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="pt-24 pb-16 min-h-screen bg-white"
+    >
+      {/* Hero Section */}
+      <div className="mb-16 text-center">
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">AI Tools Directory</h1>
+        <p className="text-xl text-gray-600 mb-8">A Curated Platform for Customer Success AI Tools</p>
+        <div className="flex justify-center gap-4 flex-wrap">
+          <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">UI/UX Design</span>
+          <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">Web Development</span>
+          <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">HTML/CSS</span>
+          <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">Tailwind CSS</span>
+        </div>
+      </div>
+      {/* Project Overview */}
+      <div className="mb-16">
+        <img 
+          src="/images/ai-tools-directory.jpg" // Use the correct image path
+          alt="AI Tools Directory Preview" 
+          className="w-full rounded-lg shadow-lg mb-8"
+        />
+        <div className="bg-gray-50 p-8 rounded-lg">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Project Overview</h2>
+          <p className="text-gray-600 mb-6">
+            The AI Tools Directory is a comprehensive web platform designed to help Customer Success Managers 
+            discover, evaluate, and compare AI-powered solutions for their teams. In an era where AI tools 
+            are rapidly evolving, this platform serves as a centralized hub for CS professionals to make 
+            informed decisions about their tech stack.
+          </p>
+        </div>
+      </div>
+      {/* The Challenge */}
+      <div className="mb-16">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">The Challenge</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <Users className="w-8 h-8 text-blue-600 mb-4" />
+            <h3 className="text-lg font-semibold mb-2">Time-Consuming Research</h3>
+            <p className="text-gray-600">CS teams spent hours researching across multiple vendors.</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <LineChart className="w-8 h-8 text-blue-600 mb-4" />
+            <h3 className="text-lg font-semibold mb-2">Feature Comparison</h3>
+            <p className="text-gray-600">Difficulty comparing features and pricing across tools.</p>
+          </div>
+        </div>
+      </div>
+      {/* Solution */}
+      <div className="mb-16">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Solution</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[{
+              icon: <Brain className="w-6 h-6" />,
+              title: "Intuitive Search",
+              description: "Advanced filtering by use case, pricing, and integrations"
+            },
+            {
+              icon: <Code className="w-6 h-6" />,
+              title: "Comparison Tools",
+              description: "Side-by-side feature analysis and pricing comparison"
+            },
+            {
+              icon: <Smartphone className="w-6 h-6" />,
+              title: "Responsive Design",
+              description: "Fully functional across all device sizes"
+            }
+          ].map((feature, index) => (
+            <div key={index} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4">
+                {feature.icon}
+              </div>
+              <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+              <p className="text-gray-600">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Results */}
+      <div className="mb-16">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Results and Impact</h2>
+        <div className="bg-blue-50 p-8 rounded-lg">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[{
+                metric: "60%",
+                description: "Reduction in research time"
+              },
+              {
+                metric: "95%",
+                description: "User satisfaction rate"
+              },
+              {
+                metric: "1000+",
+                description: "Active users"
+              },
+              {
+                metric: "50+",
+                description: "Tools listed"
+              }
+            ].map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-3xl font-bold text-blue-600 mb-2">{stat.metric}</div>
+                <div className="text-gray-600">{stat.description}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      {/* Technical Details */}
+      <div className="mb-16">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Technical Implementation</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Frontend Stack</h3>
+            <ul className="space-y-3">
+              {[
+                "Modern HTML5 and CSS3",
+                "Tailwind CSS for styling",
+                "Responsive design principles",
+                "Performance optimization",
+                "Cross-browser compatibility"
+              ].map((item, index) => (
+                <li key={index} className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </motion.main>
+  );
+}
+export default CaseStudy;
+Next Steps:
+Save the new CaseStudy.tsx file in the appropriate directory within your project (e.g. client/src/pages/).
+You can create a link to this page in the navigation or wherever it's relevant (like the Projects page).
+Make sure the image path is correct in the code (/images/ai-tools-directory.jpg), or adjust it according to your application's structure.
+This code matches the required format while adhering to the styles used throughout your application.
+
