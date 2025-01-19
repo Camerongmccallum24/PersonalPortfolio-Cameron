@@ -197,7 +197,6 @@ export default function CaseStudyPortal() {
           </Button>
         </div>
       </div>
-    
     </motion.main>
   );
 }
