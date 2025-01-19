@@ -266,20 +266,16 @@ export default function CaseStudyPortal() {
               </Card>
 
               {/* Tech Stack */}
-              <Card>
-                <CardHeader>
-                  <h3 className="text-xl font-semibold">Technology Stack</h3>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex justify-center gap-8 flex-wrap">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" className="w-12 h-12" alt="React" title="React" />
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" className="w-12 h-12" alt="TypeScript" title="TypeScript" />
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" className="w-12 h-12" alt="Node.js" title="Node.js" />
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" className="w-12 h-12" alt="PostgreSQL" title="PostgreSQL" />
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" className="w-12 h-12" alt="AWS" title="AWS" />
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="py-8">
+                <h3 className="text-xl font-semibold mb-8 text-center">Technology Stack</h3>
+                <div className="flex justify-center gap-16 flex-wrap">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" className="w-16 h-16" alt="React" title="React" />
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" className="w-16 h-16" alt="TypeScript" title="TypeScript" />
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" className="w-16 h-16" alt="Node.js" title="Node.js" />
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" className="w-16 h-16" alt="PostgreSQL" title="PostgreSQL" />
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" className="w-16 h-16" alt="AWS" title="AWS" />
+                </div>
+              </div>
             </TabsContent>
 
             <TabsContent value="results" className="space-y-8">
