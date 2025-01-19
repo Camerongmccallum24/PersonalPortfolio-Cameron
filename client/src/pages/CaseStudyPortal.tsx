@@ -1,11 +1,15 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, LineChart, Users, Zap, Code, Smartphone, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FileDown } from "lucide-react";
-
 export default function CaseStudyPortal() {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
+  const handleImageClick = (imagePath: string) => {
+    setSelectedImage(imagePath);
+    setModalOpen(prev => !prev); // Toggle modal visibility
+  };
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -19,14 +23,54 @@ export default function CaseStudyPortal() {
           <h1 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">Customer Success Portal</h1>
           <p className="text-xl text-muted-foreground mb-8">A Comprehensive Solution for Enhanced Customer Engagement</p>
         </div>
-
         {/* Project Overview */}
         <div className="mb-16">
-          <img 
-            src="/images/Case-Studys/CS-Portal/Benefits_Customer_Success_Portal.png" 
-            alt="Customer Success Portal Preview" 
-            className="w-full rounded-lg shadow-xl mb-8"
-          />
+          <div className="flex justify-center mb-8">
+            <div className="w-2/3 max-w-md">
+              <div className="relative">
+                <img 
+                  src="/images/Case-Studys/CS-Portal/Benefits_Customer_Success_Portal.png" 
+                  alt="Customer Success Portal Preview" 
+                  className="w-full h-auto rounded-lg shadow-xl cursor-pointer"
+                  onClick={() => handleImageClick("/images/Case-Studys/CS-Portal/Benefits_Customer_Success_Portal.png")}
+                />
+                <div
+                  className="absolute top-0 right-0 m-2 w-6 h-6 flex items-center justify-center shadow-lg cursor-pointer"
+                  title="Enlarge"
+                  onClick={() => handleImageClick("/images/Case-Studys/CS-Portal/Benefits_Customer_Success_Portal.png")}
+                >
+                  <img 
+                    src="/icons/square-arrows-icon.svg" 
+                    alt="Enlarge Icon" 
+                    className="w-4 h-4"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Modal for Enlarged Image */}
+          {isModalOpen && (
+            <div 
+              className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50 cursor-pointer" 
+              onClick={() => setModalOpen(false)}
+            >
+              <img 
+                src={selectedImage} 
+                alt="Enlarged View" 
+                className="max-w-full max-h-full" 
+                onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on the image
+              />
+            </div>
+          )}
+          <div className="bg-card p-8 rounded-lg">
+            <h2 className="text-2xl font-bold mb-4">Project Overview</h2>
+            <p className="text-muted-foreground">
+              The Customer Success Portal is an AI-powered platform designed to centralize critical information, automate workflows, and deliver actionable insights. It empowers Customer Success Managers to enhance customer experiences, strengthen relationships, and drive business growth.
+            </p>
+          </div>
+        </div>
+        {/* Other sections... */}
+
           <div className="bg-card p-8 rounded-lg">
             <h2 className="text-2xl font-bold mb-4">Project Overview</h2>
             <p className="text-muted-foreground">
@@ -153,6 +197,7 @@ export default function CaseStudyPortal() {
           </Button>
         </div>
       </div>
+    
     </motion.main>
   );
 }
