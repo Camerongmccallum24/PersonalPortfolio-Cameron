@@ -1,15 +1,19 @@
+
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, LineChart, Users, Zap, Code, Smartphone, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FileDown } from "lucide-react";
+
 export default function CaseStudyPortal() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
+
   const handleImageClick = (imagePath: string) => {
     setSelectedImage(imagePath);
-    setModalOpen(prev => !prev); // Toggle modal visibility
+    setModalOpen(prev => !prev);
   };
+
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -23,6 +27,7 @@ export default function CaseStudyPortal() {
           <h1 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">Customer Success Portal</h1>
           <p className="text-xl text-muted-foreground mb-8">A Comprehensive Solution for Enhanced Customer Engagement</p>
         </div>
+
         {/* Project Overview */}
         <div className="mb-16">
           <div className="flex justify-center mb-8">
@@ -48,6 +53,7 @@ export default function CaseStudyPortal() {
               </div>
             </div>
           </div>
+
           {/* Modal for Enlarged Image */}
           {isModalOpen && (
             <div 
@@ -58,18 +64,10 @@ export default function CaseStudyPortal() {
                 src={selectedImage} 
                 alt="Enlarged View" 
                 className="max-w-full max-h-full" 
-                onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on the image
+                onClick={(e) => e.stopPropagation()}
               />
             </div>
           )}
-          <div className="bg-card p-8 rounded-lg">
-            <h2 className="text-2xl font-bold mb-4">Project Overview</h2>
-            <p className="text-muted-foreground">
-              The Customer Success Portal is an AI-powered platform designed to centralize critical information, automate workflows, and deliver actionable insights. It empowers Customer Success Managers to enhance customer experiences, strengthen relationships, and drive business growth.
-            </p>
-          </div>
-        </div>
-        {/* Other sections... */}
 
           <div className="bg-card p-8 rounded-lg">
             <h2 className="text-2xl font-bold mb-4">Project Overview</h2>
