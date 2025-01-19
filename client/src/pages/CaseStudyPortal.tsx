@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import { 
@@ -133,7 +132,7 @@ export default function CaseStudyPortal() {
             </TabsList>
 
             <TabsContent value="overview" className="space-y-8">
-              <Card>
+              <Card className="glassmorphism">
                 <CardHeader>
                   <h2 className="text-2xl font-bold">Project Overview</h2>
                 </CardHeader>
@@ -164,7 +163,7 @@ export default function CaseStudyPortal() {
               </Card>
 
               <div className="grid md:grid-cols-2 gap-6">
-                <Card>
+                <Card className="glassmorphism">
                   <CardHeader>
                     <h3 className="text-xl font-semibold">Client Background</h3>
                   </CardHeader>
@@ -175,7 +174,7 @@ export default function CaseStudyPortal() {
                     </p>
                   </CardContent>
                 </Card>
-                <Card>
+                <Card className="glassmorphism">
                   <CardHeader>
                     <h3 className="text-xl font-semibold">Project Goals</h3>
                   </CardHeader>
@@ -194,7 +193,7 @@ export default function CaseStudyPortal() {
             </TabsContent>
 
             <TabsContent value="challenge" className="space-y-8">
-              <Card>
+              <Card className="glassmorphism">
                 <CardHeader>
                   <h2 className="text-2xl font-bold">Key Challenges</h2>
                 </CardHeader>
@@ -213,13 +212,13 @@ export default function CaseStudyPortal() {
             </TabsContent>
 
             <TabsContent value="solution" className="space-y-8">
-              <Card>
+              <Card className="glassmorphism">
                 <CardHeader>
                   <h2 className="text-2xl font-bold">Our Solution</h2>
                 </CardHeader>
                 <CardContent className="space-y-8">
                   <p className="text-muted-foreground">{solution.overview}</p>
-                  
+
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-6">
                       <h3 className="text-xl font-semibold">Key Features</h3>
@@ -247,7 +246,7 @@ export default function CaseStudyPortal() {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-xl font-semibold mb-6">Implementation Process</h3>
                       <ul className="space-y-4">
@@ -279,7 +278,7 @@ export default function CaseStudyPortal() {
             </TabsContent>
 
             <TabsContent value="results" className="space-y-8">
-              <Card>
+              <Card className="glassmorphism">
                 <CardHeader>
                   <h2 className="text-2xl font-bold">Impact & Results</h2>
                 </CardHeader>
@@ -321,7 +320,7 @@ export default function CaseStudyPortal() {
                     <div>
                       <h3 className="text-xl font-semibold mb-4">Customer Testimonials</h3>
                       <div className="space-y-4">
-                        <Card>
+                        <Card className="glassmorphism">
                           <CardContent className="pt-6">
                             <p className="text-muted-foreground italic">
                               "The Customer Success Portal has transformed how we manage client relationships. The AI-driven insights have been game-changing for our team."
@@ -332,7 +331,7 @@ export default function CaseStudyPortal() {
                             </div>
                           </CardContent>
                         </Card>
-                        <Card>
+                        <Card className="glassmorphism">
                           <CardContent className="pt-6">
                             <p className="text-muted-foreground italic">
                               "We've seen a dramatic improvement in our team's efficiency and client satisfaction since implementing this solution."
