@@ -14,7 +14,8 @@ import {
   CheckCircle,
   Clock,
   Target,
-  Award
+  Award,
+  Play
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
