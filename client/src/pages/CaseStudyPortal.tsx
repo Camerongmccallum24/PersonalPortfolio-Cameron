@@ -128,10 +128,10 @@ export default function CaseStudyPortal() {
         <div className="max-w-7xl mx-auto px-4">
           <Tabs defaultValue="overview" className="space-y-8">
             <TabsList className="grid w-full grid-cols-4 lg:w-[600px] mx-auto">
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="challenge">Challenge</TabsTrigger>
-              <TabsTrigger value="solution">Solution</TabsTrigger>
-              <TabsTrigger value="results">Results</TabsTrigger>
+              <TabsTrigger value="overview" className="hover:scale-105 transition-transform text-xs bg-background/80 backdrop-blur-sm relative group overflow-hidden">Overview</TabsTrigger>
+              <TabsTrigger value="challenge" className="hover:scale-105 transition-transform text-xs bg-background/80 backdrop-blur-sm relative group overflow-hidden">Challenge</TabsTrigger>
+              <TabsTrigger value="solution" className="hover:scale-105 transition-transform text-xs bg-background/80 backdrop-blur-sm relative group overflow-hidden">Solution</TabsTrigger>
+              <TabsTrigger value="results" className="hover:scale-105 transition-transform text-xs bg-background/80 backdrop-blur-sm relative group overflow-hidden">Results</TabsTrigger>
             </TabsList>
 
             <TabsContent value="overview" className="space-y-12">
