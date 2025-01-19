@@ -271,12 +271,12 @@ export default function CaseStudyPortal() {
                   <h3 className="text-xl font-semibold">Technology Stack</h3>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                    {["React", "TypeScript", "Node.js", "PostgreSQL", "AWS"].map((tech, index) => (
-                      <div key={index} className="flex items-center justify-center p-4 rounded-lg bg-primary/5">
-                        <span className="text-muted-foreground">{tech}</span>
-                      </div>
-                    ))}
+                  <div className="flex justify-center gap-8 flex-wrap">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" className="w-12 h-12" alt="React" title="React" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" className="w-12 h-12" alt="TypeScript" title="TypeScript" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" className="w-12 h-12" alt="Node.js" title="Node.js" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" className="w-12 h-12" alt="PostgreSQL" title="PostgreSQL" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" className="w-12 h-12" alt="AWS" title="AWS" />
                   </div>
                 </CardContent>
               </Card>
