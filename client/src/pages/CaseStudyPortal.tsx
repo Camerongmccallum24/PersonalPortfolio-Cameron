@@ -125,21 +125,25 @@ export default function CaseStudyPortal() {
 
       {/* Features Preview */}
       <div className="max-w-5xl mx-auto px-4 mb-16">
-        <div className="relative rounded-xl overflow-hidden shadow-2xl">
-          <img 
-            src="/images/Case-Studys/CS-Portal/Features_Customer_Portal.png"
-            alt="Customer Success Portal Features"
-            className="w-full h-auto cursor-pointer"
+        <div className="relative rounded-xl overflow-hidden shadow-2xl w-1/2 mx-auto transition-all duration-300 hover:scale-105">
+          <motion.div
+            whileHover={{ scale: 1.02 }}
             onClick={() => handleImageClick("/images/Case-Studys/CS-Portal/Features_Customer_Portal.png")}
-          />
-          <Button
-            variant="secondary"
-            size="sm"
-            className="absolute top-4 right-4"
-            onClick={() => handleImageClick("/images/Case-Studys/CS-Portal/Features_Customer_Portal.png")}
+            className="cursor-pointer"
           >
-            <ArrowUpRight className="h-4 w-4" />
-          </Button>
+            <img 
+              src="/images/Case-Studys/CS-Portal/Features_Customer_Portal.png"
+              alt="Customer Success Portal Features"
+              className="w-full h-auto"
+            />
+            <Button
+              variant="secondary"
+              size="sm"
+              className="absolute top-4 right-4"
+            >
+              <ArrowUpRight className="h-4 w-4" />
+            </Button>
+          </motion.div>
         </div>
       </div>
 
