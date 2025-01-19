@@ -131,12 +131,12 @@ export default function CaseStudyPortal() {
               <TabsTrigger value="results">Results</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="overview" className="space-y-8">
+            <TabsContent value="overview" className="space-y-12">
               <Card className="glassmorphism">
                 <CardHeader>
-                  <h2 className="text-2xl font-bold">Project Overview</h2>
+                  <h2 className="text-3xl font-bold tracking-tight">Project Overview</h2>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-8">
                   <p className="text-muted-foreground">
                     The Customer Success Portal is an AI-powered platform designed to centralize critical information,
                     automate workflows, and deliver actionable insights. It empowers Customer Success Managers to
@@ -192,31 +192,72 @@ export default function CaseStudyPortal() {
               </div>
             </TabsContent>
 
-            <TabsContent value="challenge" className="space-y-8">
+            <TabsContent value="challenge" className="space-y-12">
               <Card className="glassmorphism">
                 <CardHeader>
-                  <h2 className="text-2xl font-bold">Key Challenges</h2>
+                  <h2 className="text-3xl font-bold tracking-tight">The Challenge</h2>
+                  <p className="text-lg text-muted-foreground mt-2">
+                    Our client faced significant operational hurdles that impacted their ability to deliver exceptional customer success.
+                  </p>
                 </CardHeader>
-                <CardContent>
-                  <div className="grid md:grid-cols-3 gap-6">
+                <CardContent className="space-y-8">
+                  <div className="prose dark:prose-invert max-w-none">
+                    <p className="text-lg leading-relaxed">
+                      The customer success team was struggling with fragmented workflows, data silos, and manual processes that severely limited their ability to scale operations effectively. As their customer base grew, these challenges became increasingly apparent and started impacting their bottom line.
+                    </p>
+                  </div>
+                  
+                  <div className="grid md:grid-cols-3 gap-8 mt-8">
                     {challenges.map((challenge, index) => (
-                      <div key={index} className="p-6 rounded-lg bg-primary/5 space-y-4">
-                        <challenge.icon className="h-8 w-8 text-primary" />
-                        <h3 className="font-semibold">{challenge.title}</h3>
-                        <p className="text-sm text-muted-foreground">{challenge.description}</p>
+                      <div key={index} className="p-8 rounded-xl bg-primary/5 space-y-6 transition-all hover:bg-primary/10">
+                        <challenge.icon className="h-10 w-10 text-primary" />
+                        <h3 className="text-xl font-semibold">{challenge.title}</h3>
+                        <p className="text-base text-muted-foreground leading-relaxed">{challenge.description}</p>
                       </div>
                     ))}
+                  </div>
+
+                  <div className="mt-8 p-6 border rounded-lg bg-background/50">
+                    <h3 className="text-xl font-semibold mb-4">Impact Analysis</h3>
+                    <ul className="space-y-4">
+                      <li className="flex items-start gap-3">
+                        <div className="h-6 w-6 rounded-full bg-red-500/20 flex items-center justify-center mt-1">
+                          <TrendingDown className="h-4 w-4 text-red-500" />
+                        </div>
+                        <span className="text-muted-foreground">25% higher customer churn rate than industry average</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="h-6 w-6 rounded-full bg-red-500/20 flex items-center justify-center mt-1">
+                          <TrendingDown className="h-4 w-4 text-red-500" />
+                        </div>
+                        <span className="text-muted-foreground">40% of customer inquiries faced delayed responses</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="h-6 w-6 rounded-full bg-red-500/20 flex items-center justify-center mt-1">
+                          <TrendingDown className="h-4 w-4 text-red-500" />
+                        </div>
+                        <span className="text-muted-foreground">60% of CS team time spent on manual tasks</span>
+                      </li>
+                    </ul>
                   </div>
                 </CardContent>
               </Card>
             </TabsContent>
 
-            <TabsContent value="solution" className="space-y-8">
+            <TabsContent value="solution" className="space-y-12">
               <Card className="glassmorphism">
                 <CardHeader>
-                  <h2 className="text-2xl font-bold">Our Solution</h2>
+                  <h2 className="text-3xl font-bold tracking-tight">Our Solution</h2>
+                  <p className="text-lg text-muted-foreground mt-2">
+                    A comprehensive AI-powered platform built for scalability and efficiency
+                  </p>
                 </CardHeader>
-                <CardContent className="space-y-8">
+                <CardContent className="space-y-12">
+                  <div className="prose dark:prose-invert max-w-none">
+                    <p className="text-lg leading-relaxed">
+                      We developed an innovative solution that leverages cutting-edge AI technology to transform how customer success teams operate. Our platform addresses key pain points while introducing powerful new capabilities for proactive customer engagement and data-driven decision making.
+                    </p>
+                  </div>
                   <p className="text-muted-foreground">{solution.overview}</p>
 
                   <div className="grid md:grid-cols-2 gap-6">
@@ -277,13 +318,16 @@ export default function CaseStudyPortal() {
               </div>
             </TabsContent>
 
-            <TabsContent value="results" className="space-y-8">
+            <TabsContent value="results" className="space-y-12">
               <Card className="glassmorphism">
                 <CardHeader>
-                  <h2 className="text-2xl font-bold">Impact & Results</h2>
+                  <h2 className="text-3xl font-bold tracking-tight">Impact & Results</h2>
+                  <p className="text-lg text-muted-foreground mt-2">
+                    Transformative outcomes that exceeded expectations
+                  </p>
                 </CardHeader>
-                <CardContent className="space-y-8">
-                  <div className="grid md:grid-cols-2 gap-6">
+                <CardContent className="space-y-12">
+                  <div className="grid md:grid-cols-2 gap-10">
                     <div>
                       <h3 className="text-xl font-semibold mb-4">Key Metrics</h3>
                       <div className="space-y-4">
