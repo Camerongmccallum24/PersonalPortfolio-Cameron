@@ -66,27 +66,6 @@ export default function CaseStudyPortal() {
       exit={{ opacity: 0 }}
       className="min-h-screen bg-background"
     >
-      {/* Main Image */}
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="max-w-5xl mx-auto px-4 mb-16">
-          <div className="relative rounded-xl overflow-hidden shadow-2xl">
-            <img 
-              src="/images/Case-Studys/CS-Portal/Features_Customer_Portal.png"
-              alt="Customer Success Portal Preview"
-              className="w-full h-auto cursor-pointer"
-              onClick={() => handleImageClick("/images/Case-Studys/CS-Portal/Features_Customer_Portal.png")}
-            />
-            <Button
-              variant="secondary"
-              size="sm"
-              className="absolute top-4 right-4"
-              onClick={() => handleImageClick("/images/Case-Studys/CS-Portal/Features_Customer_Portal.png")}
-            >
-              <ArrowUpRight className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-      </section>
 
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-border">
