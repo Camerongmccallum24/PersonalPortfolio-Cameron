@@ -143,17 +143,17 @@ export default function CaseStudyPortal() {
                     enhance customer experiences, strengthen relationships, and drive business growth.
                   </p>
                   <div className="grid md:grid-cols-3 gap-4 pt-8">
-                    <div className="flex flex-col items-center text-center p-4 rounded-lg bg-primary/5">
+                    <div className="flex flex-col items-center text-center p-6 rounded-xl glassmorphism">
                       <Clock className="h-8 w-8 text-primary mb-4" />
                       <h3 className="font-semibold mb-2">Project Duration</h3>
                       <p className="text-sm text-muted-foreground">12 Weeks</p>
                     </div>
-                    <div className="flex flex-col items-center text-center p-4 rounded-lg bg-primary/5">
+                    <div className="flex flex-col items-center text-center p-6 rounded-xl glassmorphism">
                       <Users className="h-8 w-8 text-primary mb-4" />
                       <h3 className="font-semibold mb-2">Team Size</h3>
                       <p className="text-sm text-muted-foreground">8 Members</p>
                     </div>
-                    <div className="flex flex-col items-center text-center p-4 rounded-lg bg-primary/5">
+                    <div className="flex flex-col items-center text-center p-6 rounded-xl glassmorphism">
                       <Target className="h-8 w-8 text-primary mb-4" />
                       <h3 className="font-semibold mb-2">Industry</h3>
                       <p className="text-sm text-muted-foreground">SaaS / Technology</p>
