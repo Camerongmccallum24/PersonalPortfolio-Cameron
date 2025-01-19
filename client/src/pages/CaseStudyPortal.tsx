@@ -64,6 +64,28 @@ export default function CaseStudyPortal() {
       exit={{ opacity: 0 }}
       className="min-h-screen bg-background"
     >
+      {/* Main Image */}
+      <section className="relative overflow-hidden border-b border-border">
+        <div className="max-w-5xl mx-auto px-4 mb-16">
+          <div className="relative rounded-xl overflow-hidden shadow-2xl">
+            <img 
+              src="/images/Case-Studys/CS-Portal/Features_Customer_Portal.png"
+              alt="Customer Success Portal Preview"
+              className="w-full h-auto cursor-pointer"
+              onClick={() => handleImageClick("/images/Case-Studys/CS-Portal/Features_Customer_Portal.png")}
+            />
+            <Button
+              variant="secondary"
+              size="sm"
+              className="absolute top-4 right-4"
+              onClick={() => handleImageClick("/images/Case-Studys/CS-Portal/Features_Customer_Portal.png")}
+            >
+              <ArrowUpRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-border">
         <div className="max-w-7xl mx-auto px-4 pt-24 pb-16">
@@ -191,6 +213,37 @@ export default function CaseStudyPortal() {
                 </Card>
               </div>
             </TabsContent>
+
+            {/* Project Overview Section */}
+            <div className="max-w-7xl mx-auto px-4 mb-24">
+              <div className="bg-card p-8 rounded-xl shadow-lg">
+                <h2 className="text-3xl font-bold mb-6">Project Overview</h2>
+                <p className="text-lg text-muted-foreground">
+                  The Customer Success Portal is an AI-powered platform designed to centralize critical information, 
+                  automate workflows, and deliver actionable insights. It empowers Customer Success Managers to 
+                  enhance customer experiences, strengthen relationships, and drive business growth.
+                </p>
+              </div>
+            </div>
+
+            {/* Demo Section */}
+            <div className="max-w-7xl mx-auto px-4 mb-24">
+              <div className="bg-card rounded-xl p-8">
+                <h2 className="text-3xl font-bold mb-8">See It In Action</h2>
+                <div className="relative aspect-video rounded-lg overflow-hidden bg-black/5">
+                  <img 
+                    src="/images/Case-Studys/CS-Portal/Benefits_Customer_Success_Portal.png"
+                    alt="Demo Preview"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Button size="lg" className="gap-2">
+                      <Play className="h-5 w-5" /> Watch Demo
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <TabsContent value="challenge" className="space-y-12">
               <Card className="glassmorphism">
@@ -393,6 +446,40 @@ export default function CaseStudyPortal() {
               </Card>
             </TabsContent>
           </Tabs>
+        </div>
+      </section>
+
+      {/* Tech Stack Section */}
+      <section className="py-16 border-t border-border">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-12 text-center">Technology Stack</h2>
+          <div className="flex justify-center gap-16 flex-wrap">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" className="w-16 h-16" alt="React" title="React" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" className="w-16 h-16" alt="TypeScript" title="TypeScript" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" className="w-16 h-16" alt="Node.js" title="Node.js" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" className="w-16 h-16" alt="PostgreSQL" title="PostgreSQL" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" className="w-16 h-16" alt="AWS" title="AWS" />
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="bg-gradient-to-r from-primary/10 via-purple-500/10 to-blue-500/10 rounded-xl p-12 text-center">
+            <h2 className="text-3xl font-bold mb-6">Ready to Transform Your Customer Success?</h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Join hundreds of companies already using our platform to enhance customer engagement and drive growth.
+            </p>
+            <div className="flex justify-center gap-4">
+              <Button size="lg" className="gap-2">
+                Schedule Demo <ExternalLink className="h-4 w-4" />
+              </Button>
+              <Button size="lg" variant="outline" className="gap-2">
+                Contact Sales
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
     </motion.main>
