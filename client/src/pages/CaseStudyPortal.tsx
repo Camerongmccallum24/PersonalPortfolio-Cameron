@@ -220,10 +220,10 @@ export default function CaseStudyPortal() {
                   <p className="text-muted-foreground">{solution.overview}</p>
 
                   <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-8">
-                      <h3 className="text-xl font-semibold">Key Features</h3>
-                      <div className="grid md:grid-cols-3 gap-6">
-                        <div className="p-6 rounded-xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg hover:shadow-xl transition-all">
+                    <div className="space-y-10">
+                      <h3 className="text-2xl font-semibold mb-8">Key Features</h3>
+                      <div className="grid md:grid-cols-3 gap-8">
+                        <div className="p-8 rounded-2xl backdrop-blur-md bg-white/5 border border-white/10 shadow-xl hover:shadow-2xl transition-all">
                           <Brain className="h-8 w-8 text-primary mb-4" />
                           <h4 className="font-semibold mb-3">AI-Powered Insights</h4>
                           <p className="text-sm text-muted-foreground">
