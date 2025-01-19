@@ -220,26 +220,26 @@ export default function CaseStudyPortal() {
                   <p className="text-muted-foreground">{solution.overview}</p>
 
                   <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-6">
+                    <div className="space-y-8">
                       <h3 className="text-xl font-semibold">Key Features</h3>
-                      <div className="space-y-4">
-                        <div className="p-4 rounded-lg bg-primary/5">
-                          <Brain className="h-6 w-6 text-primary mb-2" />
-                          <h4 className="font-semibold mb-2">AI-Powered Insights</h4>
+                      <div className="grid md:grid-cols-3 gap-6">
+                        <div className="p-6 rounded-xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg hover:shadow-xl transition-all">
+                          <Brain className="h-8 w-8 text-primary mb-4" />
+                          <h4 className="font-semibold mb-3">AI-Powered Insights</h4>
                           <p className="text-sm text-muted-foreground">
                             Predictive analytics for churn prevention and growth opportunities
                           </p>
                         </div>
-                        <div className="p-4 rounded-lg bg-primary/5">
-                          <LineChart className="h-6 w-6 text-primary mb-2" />
-                          <h4 className="font-semibold mb-2">Real-time Analytics</h4>
+                        <div className="p-6 rounded-xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg hover:shadow-xl transition-all">
+                          <LineChart className="h-8 w-8 text-primary mb-4" />
+                          <h4 className="font-semibold mb-3">Real-time Analytics</h4>
                           <p className="text-sm text-muted-foreground">
                             Customizable dashboards with actionable metrics
                           </p>
                         </div>
-                        <div className="p-4 rounded-lg bg-primary/5">
-                          <Users className="h-6 w-6 text-primary mb-2" />
-                          <h4 className="font-semibold mb-2">Collaboration Tools</h4>
+                        <div className="p-6 rounded-xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg hover:shadow-xl transition-all">
+                          <Users className="h-8 w-8 text-primary mb-4" />
+                          <h4 className="font-semibold mb-3">Collaboration Tools</h4>
                           <p className="text-sm text-muted-foreground">
                             Integrated communication and task management
                           </p>
@@ -247,18 +247,18 @@ export default function CaseStudyPortal() {
                       </div>
                     </div>
 
-                    <div>
-                      <h3 className="text-xl font-semibold mb-6">Implementation Process</h3>
-                      <ul className="space-y-4">
+                    <div className="mt-12">
+                      <h3 className="text-xl font-semibold mb-8">Implementation Process</h3>
+                      <div className="grid md:grid-cols-2 gap-6">
                         {solution.implementation.map((step, index) => (
-                          <li key={index} className="flex items-center gap-3">
-                            <div className="h-8 w-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-semibold">
+                          <div key={index} className="flex items-center gap-4 p-6 rounded-xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg">
+                            <div className="h-10 w-10 rounded-full bg-primary/20 text-primary flex items-center justify-center font-semibold text-lg">
                               {index + 1}
                             </div>
                             <span className="text-muted-foreground">{step}</span>
-                          </li>
+                          </div>
                         ))}
-                      </ul>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
