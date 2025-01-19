@@ -23,6 +23,14 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 export default function CaseStudyPortal() {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
+
+  const handleImageClick = (imagePath: string) => {
+    setSelectedImage(imagePath);
+    setModalOpen(prev => !prev);
+  };
+
   const challenges = [
     {
       icon: Clock,
@@ -51,33 +59,6 @@ export default function CaseStudyPortal() {
     ]
   };
 
-  const renderChallengeCards = () => {
-    return challenges.map((challenge, index) => (
-      <div key={index} className="p-8 rounded-xl bg-primary/5 space-y-6 transition-all hover:bg-primary/10">
-        <challenge.icon className="h-10 w-10 text-primary" />
-        <h3 className="text-xl font-semibold">{challenge.title}</h3>
-        <p className="text-base text-muted-foreground leading-relaxed">{challenge.description}</p>
-      </div>
-    ));
-  };
-
-  const renderImplementationSteps = () => {
-    return solution.implementation.map((step, index) => (
-      <div key={index} className="flex items-center gap-4 p-6 rounded-xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg">
-        <div className="h-10 w-10 rounded-full bg-primary/20 text-primary flex items-center justify-center font-semibold text-lg">
-          {index + 1}
-        </div>
-        <span className="text-muted-foreground">{step}</span>
-      </div>
-    ));
-  };
-
-  const handleImageClick = (imageUrl) => {
-    // Add your image click handling logic here
-    console.log("Image clicked:", imageUrl);
-  };
-
-
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -85,107 +66,63 @@ export default function CaseStudyPortal() {
       exit={{ opacity: 0 }}
       className="min-h-screen bg-background"
     >
+
+      {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-border">
         <div className="max-w-7xl mx-auto px-4 pt-24 pb-16">
-          <motion.div 
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            className="text-center space-y-6"
-          >
-            <div className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary mb-4">
-              Case Study
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
-              Customer Success Portal
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              How we helped a leading SaaS company reduce churn by 40% and improve customer satisfaction by 85%
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 pt-4">
-              <Button size="lg" className="gap-2">
-                View Live Demo <ArrowUpRight className="h-4 w-4" />
-              </Button>
-              <Button size="lg" variant="secondary" className="gap-2">
-                <FileDown className="h-4 w-4" />
-                Download PDF
-              </Button>
-            </div>
-          </motion.div>
+          <div className="relative z-10">
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              className="text-center space-y-6"
+            >
+              <div className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary mb-4">
+                Case Study
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
+                Customer Success Portal
+              </h1>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                How we helped a leading SaaS company reduce churn by 40% and improve customer satisfaction by 85%
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 pt-4">
+                <Button size="lg" className="gap-2">
+                  View Live Demo <ArrowUpRight className="h-4 w-4" />
+                </Button>
+                <Button size="lg" variant="secondary" className="gap-2">
+                  <FileDown className="h-4 w-4" />
+                  Download PDF
+                </Button>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      <section className="py-16">
+      {/* Quick Stats */}
+      <section className="py-12 border-b border-border">
         <div className="max-w-7xl mx-auto px-4">
-          <Tabs defaultValue="overview" className="space-y-8">
-            <TabsList className="grid w-full grid-cols-4 lg:w-[600px] mx-auto">
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="challenge">Challenge</TabsTrigger>
-              <TabsTrigger value="solution">Solution</TabsTrigger>
-              <TabsTrigger value="results">Results</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="overview" className="space-y-12">
-              <Card className="glassmorphism">
-                <CardHeader>
-                  <h2 className="text-3xl font-bold tracking-tight">Project Overview</h2>
-                </CardHeader>
-                <CardContent className="space-y-8">
-                  <p className="text-muted-foreground">
-                    The Customer Success Portal is an AI-powered platform designed to centralize critical information,
-                    automate workflows, and deliver actionable insights. It empowers Customer Success Managers to
-                    enhance customer experiences, strengthen relationships, and drive business growth.
-                  </p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="challenge" className="space-y-12">
-              <Card className="glassmorphism">
-                <CardHeader>
-                  <h2 className="text-3xl font-bold tracking-tight">The Challenge</h2>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid md:grid-cols-3 gap-8">
-                    {renderChallengeCards()}
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="solution" className="space-y-12">
-              <Card className="glassmorphism">
-                <CardHeader>
-                  <h2 className="text-3xl font-bold tracking-tight">Our Solution</h2>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {renderImplementationSteps()}
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="results" className="space-y-12">
-              <Card className="glassmorphism">
-                <CardHeader>
-                  <h2 className="text-3xl font-bold tracking-tight">Impact & Results</h2>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h3 className="text-xl font-semibold mb-4">Key Metrics</h3>
-                      <ul className="space-y-3">
-                        <li><CheckCircle className="h-4 w-4 text-primary" /> 40% Reduction in churn</li>
-                        <li><CheckCircle className="h-4 w-4 text-primary" /> 85% CSAT improvement</li>
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary mb-2">40%</div>
+              <div className="text-sm text-muted-foreground">Churn Reduction</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary mb-2">85%</div>
+              <div className="text-sm text-muted-foreground">CSAT Improvement</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary mb-2">500+</div>
+              <div className="text-sm text-muted-foreground">Clients Onboarded</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary mb-2">20%</div>
+              <div className="text-sm text-muted-foreground">Revenue Growth</div>
+            </div>
+          </div>
         </div>
       </section>
+
       {/* Features Preview */}
       <div className="max-w-5xl mx-auto px-4 mb-16">
         <div className="relative rounded-xl overflow-hidden shadow-2xl">
@@ -205,6 +142,347 @@ export default function CaseStudyPortal() {
           </Button>
         </div>
       </div>
+
+      {/* Main Content Tabs */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <Tabs defaultValue="overview" className="space-y-8">
+            <TabsList className="grid w-full grid-cols-4 lg:w-[600px] mx-auto">
+              <TabsTrigger value="overview" className="hover:scale-105 transition-transform text-xs bg-background/80 backdrop-blur-sm relative group overflow-hidden">Overview</TabsTrigger>
+              <TabsTrigger value="challenge" className="hover:scale-105 transition-transform text-xs bg-background/80 backdrop-blur-sm relative group overflow-hidden">Challenge</TabsTrigger>
+              <TabsTrigger value="solution" className="hover:scale-105 transition-transform text-xs bg-background/80 backdrop-blur-sm relative group overflow-hidden">Solution</TabsTrigger>
+              <TabsTrigger value="results" className="hover:scale-105 transition-transform text-xs bg-background/80 backdrop-blur-sm relative group overflow-hidden">Results</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="overview" className="space-y-12">
+              <Card className="glassmorphism">
+                <CardHeader>
+                  <h2 className="text-3xl font-bold tracking-tight">Project Overview</h2>
+                </CardHeader>
+                <CardContent className="space-y-8">
+                  <p className="text-muted-foreground">
+                    The Customer Success Portal is an AI-powered platform designed to centralize critical information,
+                    automate workflows, and deliver actionable insights. It empowers Customer Success Managers to
+                    enhance customer experiences, strengthen relationships, and drive business growth.
+                  </p>
+                  <div className="grid md:grid-cols-3 gap-4 pt-8">
+                    <div className="flex flex-col items-center text-center p-6 rounded-xl glassmorphism">
+                      <Clock className="h-8 w-8 text-primary mb-4" />
+                      <h3 className="font-semibold mb-2">Project Duration</h3>
+                      <p className="text-sm text-muted-foreground">12 Weeks</p>
+                    </div>
+                    <div className="flex flex-col items-center text-center p-6 rounded-xl glassmorphism">
+                      <Users className="h-8 w-8 text-primary mb-4" />
+                      <h3 className="font-semibold mb-2">Team Size</h3>
+                      <p className="text-sm text-muted-foreground">8 Members</p>
+                    </div>
+                    <div className="flex flex-col items-center text-center p-6 rounded-xl glassmorphism">
+                      <Target className="h-8 w-8 text-primary mb-4" />
+                      <h3 className="font-semibold mb-2">Industry</h3>
+                      <p className="text-sm text-muted-foreground">SaaS / Technology</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <Card className="glassmorphism">
+                  <CardHeader>
+                    <h3 className="text-xl font-semibold">Client Background</h3>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-muted-foreground">
+                      A leading enterprise SaaS provider serving 500+ global clients with a focus on marketing automation.
+                      Prior to our solution, they faced significant challenges in scaling their customer success operations.
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className="glassmorphism">
+                  <CardHeader>
+                    <h3 className="text-xl font-semibold">Project Goals</h3>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3">
+                      {["Reduce customer churn rate", "Improve customer satisfaction", "Automate manual processes", "Enable data-driven decisions"].map((goal, index) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <CheckCircle className="h-4 w-4 text-primary" />
+                          <span className="text-muted-foreground">{goal}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            {/* Project Overview Section */}
+            <div className="max-w-7xl mx-auto px-4 mb-24">
+              <div className="bg-card p-8 rounded-xl shadow-lg">
+                <h2 className="text-3xl font-bold mb-6">Project Overview</h2>
+                <p className="text-lg text-muted-foreground">
+                  The Customer Success Portal is an AI-powered platform designed to centralize critical information, 
+                  automate workflows, and deliver actionable insights. It empowers Customer Success Managers to 
+                  enhance customer experiences, strengthen relationships, and drive business growth.
+                </p>
+              </div>
+            </div>
+
+            {/* Demo Section */}
+            <div className="max-w-7xl mx-auto px-4 mb-24">
+              <div className="bg-card rounded-xl p-8">
+                <h2 className="text-3xl font-bold mb-8">See It In Action</h2>
+                <div className="relative aspect-video rounded-lg overflow-hidden bg-black/5">
+                  <img 
+                    src="/images/Case-Studys/CS-Portal/Benefits_Customer_Success_Portal.png"
+                    alt="Demo Preview"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Button size="lg" className="gap-2">
+                      <Play className="h-5 w-5" /> Watch Demo
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <TabsContent value="challenge" className="space-y-12">
+              <Card className="glassmorphism">
+                <CardHeader>
+                  <h2 className="text-3xl font-bold tracking-tight">The Challenge</h2>
+                  <p className="text-lg text-muted-foreground mt-2">
+                    Our client faced significant operational hurdles that impacted their ability to deliver exceptional customer success.
+                  </p>
+                </CardHeader>
+                <CardContent className="space-y-8">
+                  <div className="prose dark:prose-invert max-w-none">
+                    <p className="text-lg leading-relaxed">
+                      The customer success team was struggling with fragmented workflows, data silos, and manual processes that severely limited their ability to scale operations effectively. As their customer base grew, these challenges became increasingly apparent and started impacting their bottom line.
+                    </p>
+                  </div>
+                  
+                  <div className="grid md:grid-cols-3 gap-8 mt-8">
+                    {challenges.map((challenge, index) => (
+                      <div key={index} className="p-8 rounded-xl bg-primary/5 space-y-6 transition-all hover:bg-primary/10">
+                        <challenge.icon className="h-10 w-10 text-primary" />
+                        <h3 className="text-xl font-semibold">{challenge.title}</h3>
+                        <p className="text-base text-muted-foreground leading-relaxed">{challenge.description}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-8 p-6 border rounded-lg bg-background/50">
+                    <h3 className="text-xl font-semibold mb-4">Impact Analysis</h3>
+                    <ul className="space-y-4">
+                      <li className="flex items-start gap-3">
+                        <div className="h-6 w-6 rounded-full bg-red-500/20 flex items-center justify-center mt-1">
+                          <TrendingDown className="h-4 w-4 text-red-500" />
+                        </div>
+                        <span className="text-muted-foreground">25% higher customer churn rate than industry average</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="h-6 w-6 rounded-full bg-red-500/20 flex items-center justify-center mt-1">
+                          <TrendingDown className="h-4 w-4 text-red-500" />
+                        </div>
+                        <span className="text-muted-foreground">40% of customer inquiries faced delayed responses</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="h-6 w-6 rounded-full bg-red-500/20 flex items-center justify-center mt-1">
+                          <TrendingDown className="h-4 w-4 text-red-500" />
+                        </div>
+                        <span className="text-muted-foreground">60% of CS team time spent on manual tasks</span>
+                      </li>
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="solution" className="space-y-12">
+              <Card className="glassmorphism">
+                <CardHeader>
+                  <h2 className="text-3xl font-bold tracking-tight">Our Solution</h2>
+                  <p className="text-lg text-muted-foreground mt-2">
+                    A comprehensive AI-powered platform built for scalability and efficiency
+                  </p>
+                </CardHeader>
+                <CardContent className="space-y-12">
+                  <div className="prose dark:prose-invert max-w-none">
+                    <p className="text-lg leading-relaxed">
+                      We developed an innovative solution that leverages cutting-edge AI technology to transform how customer success teams operate. Our platform addresses key pain points while introducing powerful new capabilities for proactive customer engagement and data-driven decision making.
+                    </p>
+                  </div>
+                  <p className="text-muted-foreground">{solution.overview}</p>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-10">
+                      <h3 className="text-2xl font-semibold mb-8">Key Features</h3>
+                      <div className="grid md:grid-cols-3 gap-8">
+                        <div className="p-8 rounded-2xl backdrop-blur-md bg-white/5 border border-white/10 shadow-xl hover:shadow-2xl transition-all">
+                          <Brain className="h-8 w-8 text-primary mb-4" />
+                          <h4 className="font-semibold mb-3">AI-Powered Insights</h4>
+                          <p className="text-sm text-muted-foreground">
+                            Predictive analytics for churn prevention and growth opportunities
+                          </p>
+                        </div>
+                        <div className="p-6 rounded-xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg hover:shadow-xl transition-all">
+                          <LineChart className="h-8 w-8 text-primary mb-4" />
+                          <h4 className="font-semibold mb-3">Real-time Analytics</h4>
+                          <p className="text-sm text-muted-foreground">
+                            Customizable dashboards with actionable metrics
+                          </p>
+                        </div>
+                        <div className="p-6 rounded-xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg hover:shadow-xl transition-all">
+                          <Users className="h-8 w-8 text-primary mb-4" />
+                          <h4 className="font-semibold mb-3">Collaboration Tools</h4>
+                          <p className="text-sm text-muted-foreground">
+                            Integrated communication and task management
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-12">
+                      <h3 className="text-xl font-semibold mb-8">Implementation Process</h3>
+                      <div className="grid md:grid-cols-2 gap-6">
+                        {solution.implementation.map((step, index) => (
+                          <div key={index} className="flex items-center gap-4 p-6 rounded-xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg">
+                            <div className="h-10 w-10 rounded-full bg-primary/20 text-primary flex items-center justify-center font-semibold text-lg">
+                              {index + 1}
+                            </div>
+                            <span className="text-muted-foreground">{step}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Tech Stack */}
+              <div className="py-8">
+                <h3 className="text-xl font-semibold mb-8 text-center">Technology Stack</h3>
+                <div className="flex justify-center gap-16 flex-wrap">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" className="w-16 h-16" alt="React" title="React" />
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" className="w-16 h-16" alt="TypeScript" title="TypeScript" />
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" className="w-16 h-16" alt="Node.js" title="Node.js" />
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" className="w-16 h-16" alt="PostgreSQL" title="PostgreSQL" />
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" className="w-16 h-16" alt="AWS" title="AWS" />
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="results" className="space-y-12">
+              <Card className="glassmorphism">
+                <CardHeader>
+                  <h2 className="text-3xl font-bold tracking-tight">Impact & Results</h2>
+                  <p className="text-lg text-muted-foreground mt-2">
+                    Transformative outcomes that exceeded expectations
+                  </p>
+                </CardHeader>
+                <CardContent className="space-y-12">
+                  <div className="grid md:grid-cols-2 gap-10">
+                    <div>
+                      <h3 className="text-xl font-semibold mb-4">Key Metrics</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-4 p-4 rounded-lg bg-primary/5">
+                          <TrendingDown className="h-8 w-8 text-green-500" />
+                          <div>
+                            <div className="text-2xl font-bold">40% Reduction</div>
+                            <div className="text-sm text-muted-foreground">in customer churn rate</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-4 p-4 rounded-lg bg-primary/5">
+                          <ArrowUpCircle className="h-8 w-8 text-blue-500" />
+                          <div>
+                            <div className="text-2xl font-bold">85% Improvement</div>
+                            <div className="text-sm text-muted-foreground">in customer satisfaction</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-4 p-4 rounded-lg bg-primary/5">
+                          <Users2 className="h-8 w-8 text-purple-500" />
+                          <div>
+                            <div className="text-2xl font-bold">500+ Clients</div>
+                            <div className="text-sm text-muted-foreground">successfully onboarded</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-4 p-4 rounded-lg bg-primary/5">
+                          <ArrowUp className="h-8 w-8 text-yellow-500" />
+                          <div>
+                            <div className="text-2xl font-bold">20% Growth</div>
+                            <div className="text-sm text-muted-foreground">in revenue</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold mb-4">Customer Testimonials</h3>
+                      <div className="space-y-4">
+                        <Card className="glassmorphism">
+                          <CardContent className="pt-6">
+                            <p className="text-muted-foreground italic">
+                              "The Customer Success Portal has transformed how we manage client relationships. The AI-driven insights have been game-changing for our team."
+                            </p>
+                            <div className="mt-4">
+                              <div className="font-semibold">Sarah Johnson</div>
+                              <div className="text-sm text-muted-foreground">Head of Customer Success</div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                        <Card className="glassmorphism">
+                          <CardContent className="pt-6">
+                            <p className="text-muted-foreground italic">
+                              "We've seen a dramatic improvement in our team's efficiency and client satisfaction since implementing this solution."
+                            </p>
+                            <div className="mt-4">
+                              <div className="font-semibold">Michael Chen</div>
+                              <div className="text-sm text-muted-foreground">Customer Success Manager</div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </section>
+
+      {/* Tech Stack Section */}
+      <section className="py-16 border-t border-border">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-12 text-center">Technology Stack</h2>
+          <div className="flex justify-center gap-16 flex-wrap">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" className="w-16 h-16" alt="React" title="React" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" className="w-16 h-16" alt="TypeScript" title="TypeScript" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" className="w-16 h-16" alt="Node.js" title="Node.js" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" className="w-16 h-16" alt="PostgreSQL" title="PostgreSQL" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" className="w-16 h-16" alt="AWS" title="AWS" />
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="bg-gradient-to-r from-primary/10 via-purple-500/10 to-blue-500/10 rounded-xl p-12 text-center">
+            <h2 className="text-3xl font-bold mb-6">Ready to Transform Your Customer Success?</h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Join hundreds of companies already using our platform to enhance customer engagement and drive growth.
+            </p>
+            <div className="flex justify-center gap-4">
+              <Button size="lg" className="gap-2">
+                Schedule Demo <ExternalLink className="h-4 w-4" />
+              </Button>
+              <Button size="lg" variant="outline" className="gap-2">
+                Contact Sales
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
     </motion.main>
   );
 }
