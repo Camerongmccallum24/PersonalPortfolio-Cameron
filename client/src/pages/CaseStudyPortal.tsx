@@ -15,7 +15,8 @@ import {
   Clock,
   Target,
   Award,
-  Play
+  Play,
+  ExternalLink
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
