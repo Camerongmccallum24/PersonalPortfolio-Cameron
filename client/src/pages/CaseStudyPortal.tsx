@@ -72,6 +72,12 @@ export default function CaseStudyPortal() {
     ));
   };
 
+  const handleImageClick = (imageUrl) => {
+    // Add your image click handling logic here
+    console.log("Image clicked:", imageUrl);
+  };
+
+
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -180,6 +186,25 @@ export default function CaseStudyPortal() {
           </Tabs>
         </div>
       </section>
+      {/* Features Preview */}
+      <div className="max-w-5xl mx-auto px-4 mb-16">
+        <div className="relative rounded-xl overflow-hidden shadow-2xl">
+          <img 
+            src="/images/Case-Studys/CS-Portal/Features_Customer_Portal.png"
+            alt="Customer Success Portal Features"
+            className="w-full h-auto cursor-pointer"
+            onClick={() => handleImageClick("/images/Case-Studys/CS-Portal/Features_Customer_Portal.png")}
+          />
+          <Button
+            variant="secondary"
+            size="sm"
+            className="absolute top-4 right-4"
+            onClick={() => handleImageClick("/images/Case-Studys/CS-Portal/Features_Customer_Portal.png")}
+          >
+            <ArrowUpRight className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
     </motion.main>
   );
 }
