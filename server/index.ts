@@ -15,7 +15,10 @@ console.log("Starting server...");
 // Global error handler for uncaught exceptions
 process.on('uncaughtException', (error) => {
   console.error('Uncaught Exception:', error);
-  process.exit(1);
+  // Don't exit on port binding errors
+  if (error.code !== 'EADDRINUSE') {
+    process.exit(1);
+  }
 });
 
 process.on('unhandledRejection', (reason, promise) => {
@@ -23,15 +26,32 @@ process.on('unhandledRejection', (reason, promise) => {
   process.exit(1);
 });
 
-// Function to kill process using a specific port
-async function killPort(port: number) {
-  try {
-    await execAsync(`lsof -i :${port} -t | xargs kill -9`);
-    log(`Killed process on port ${port}`);
-  } catch (error) {
-    // Ignore errors if no process was found
-    log(`No process found on port ${port}`);
+// Function to try binding to a port
+async function tryBindPort(port: number, maxAttempts: number = 3): Promise<number> {
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    try {
+      // Try to kill any existing process on the port
+      try {
+        await execAsync(`lsof -i :${port} -t | xargs kill -9`);
+        log(`Killed process on port ${port}`);
+        // Wait a bit for the port to be released
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      } catch (error) {
+        // Ignore errors if no process was found
+        log(`No process found on port ${port}`);
+      }
+
+      return port;
+    } catch (error) {
+      log(`Failed to bind to port ${port}, attempt ${attempt + 1}/${maxAttempts}`);
+      if (attempt === maxAttempts - 1) {
+        throw error;
+      }
+      // Wait before retrying
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
   }
+  throw new Error(`Failed to bind to port ${port} after ${maxAttempts} attempts`);
 }
 
 app.use((req, res, next) => {
@@ -66,9 +86,6 @@ app.use((req, res, next) => {
 
 (async () => {
   try {
-    // Kill any existing process on port 5000
-    await killPort(5000);
-
     const server = registerRoutes(app);
 
     app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -84,9 +101,26 @@ app.use((req, res, next) => {
       serveStatic(app);
     }
 
-    const PORT = 5000;
-    server.listen(PORT, "0.0.0.0", () => {
-      log(`Server successfully started on port ${PORT}`);
+    // Try to bind to port 5000 first, then try alternative ports
+    const ports = [5000, 3000, 3001];
+    let boundPort = null;
+
+    for (const port of ports) {
+      try {
+        boundPort = await tryBindPort(port);
+        if (boundPort) break;
+      } catch (error) {
+        log(`Failed to bind to port ${port}, trying next port...`);
+        continue;
+      }
+    }
+
+    if (!boundPort) {
+      throw new Error('Failed to bind to any available port');
+    }
+
+    server.listen(boundPort, "0.0.0.0", () => {
+      log(`Server successfully started on port ${boundPort}`);
     });
 
     // Graceful shutdown handling
