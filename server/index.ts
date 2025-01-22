@@ -67,7 +67,7 @@ app.use((req, res, next) => {
       serveStatic(app);
     }
 
-    const PORT = 5000; // Revert back to port 5000 as configured in .replit
+    const PORT = process.env.PORT || 5000;
     const MAX_RETRIES = 3;
     let currentTry = 0;
     let isShuttingDown = false;
