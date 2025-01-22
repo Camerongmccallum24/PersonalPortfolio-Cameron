@@ -50,6 +50,15 @@
     }
   }
 
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
   .animate-gradient {
     background-size: 200% auto;
     animation: gradient 8s linear infinite;
@@ -66,7 +75,12 @@
   .animate-tilt {
     animation: tilt 10s infinite linear;
   }
+
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
+  }
 }
+
 .neon-glow-github {
   color: #333;
   filter: drop-shadow(0 0 2px rgba(51, 51, 51, 0.3));
@@ -126,11 +140,11 @@
   filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.8)) brightness(1.5);
   transform: scale(1.1);
 }
+
 .custom-social-button:hover {
   background-color: transparent !important;
   box-shadow: none !important;
 }
-
 
 .glassmorphism {
   background: rgba(255, 255, 255, 0.03);
@@ -147,14 +161,14 @@
   transform: translateY(-3px);
 }
 
-.bg-primary\/5 {
-  background: rgba(255, 255, 255, 0.05) !important;
+.bg-primary-5 {
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
 
-.bg-primary\/5:hover {
-  background: rgba(255, 255, 255, 0.08) !important;
+.bg-primary-5:hover {
+  background: rgba(255, 255, 255, 0.08);
   transform: translateY(-2px);
 }
