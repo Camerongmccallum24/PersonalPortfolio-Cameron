@@ -17,10 +17,11 @@ export function Hero() {
             transition={{ duration: 0.5 }}
             className="w-full flex justify-center mb-8"
           >
-            <video autoPlay loop muted playsInline className="w-64 h-64 object-cover">
-              <source src="/CM_Logo_Annimation.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <img 
+              src="/CM_Logo_Image (600 x 525 px).jpg"
+              alt="CM Logo"
+              className="w-64 h-64 object-cover"
+            />
           </motion.div>
           <motion.h1 
             className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
