@@ -67,15 +67,23 @@ app.use((req, res, next) => {
       serveStatic(app);
     }
 
-    const PORT = 5000;
+    const PORT = 5000; // Revert back to port 5000 as configured in .replit
     const MAX_RETRIES = 3;
     let currentTry = 0;
+    let isShuttingDown = false;
 
     const startServer = () => {
       return new Promise((resolve, reject) => {
+        if (isShuttingDown) {
+          reject(new Error('Server is shutting down'));
+          return;
+        }
+
         // Close any existing connections before attempting to bind
         if (server.listening) {
-          server.close();
+          server.close(() => {
+            log('Closed existing server connection');
+          });
         }
 
         server.once('error', (error: any) => {
@@ -85,8 +93,10 @@ app.use((req, res, next) => {
             if (currentTry < MAX_RETRIES) {
               currentTry++;
               setTimeout(() => {
-                startServer().then(resolve).catch(reject);
-              }, 1000);
+                if (!isShuttingDown) {
+                  startServer().then(resolve).catch(reject);
+                }
+              }, 1000 * currentTry); // Exponential backoff
             } else {
               reject(new Error(`Could not bind to port ${PORT} after ${MAX_RETRIES} retries`));
             }
@@ -104,7 +114,11 @@ app.use((req, res, next) => {
 
     // Graceful shutdown handling
     const shutdown = () => {
+      if (isShuttingDown) return;
+
+      isShuttingDown = true;
       log('Shutting down gracefully...');
+
       server.close(() => {
         log('Server closed');
         process.exit(0);
