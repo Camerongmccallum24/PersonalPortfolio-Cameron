@@ -8,6 +8,17 @@ app.use(express.urlencoded({ extended: false }));
 
 console.log("Starting server...");
 
+// Global error handler for uncaught exceptions
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception:', error);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  process.exit(1);
+});
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
@@ -42,55 +53,74 @@ app.use((req, res, next) => {
   try {
     const server = registerRoutes(app);
 
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
+    // Global error handler middleware
+    app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+      const status = err.status || err.statusCode || 500;
+      const message = err.message || "Internal Server Error";
+      log(`Error: ${message}`);
+      res.status(status).json({ message });
+    });
 
-    res.status(status).json({ message });
-    throw err;
-  });
-
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
-  if (app.get("env") === "development") {
-    await setupVite(app, server);
-  } else {
-    serveStatic(app);
-  }
-
-  // ALWAYS serve the app on port 5000
-  // this serves both the API and the client
-  const tryPort = async (startPort: number): Promise<number> => {
-    for (let port = startPort; port < startPort + 10; port++) {
-      try {
-        await new Promise((resolve, reject) => {
-          server.listen(port, "0.0.0.0")
-            .once('listening', () => {
-              resolve(port);
-            })
-            .once('error', (err: any) => {
-              server.removeAllListeners();
-              reject(err);
-            });
-        });
-        return port;
-      } catch (err) {
-        if (port === startPort + 9) throw err;
-        continue;
-      }
+    if (app.get("env") === "development") {
+      await setupVite(app, server);
+    } else {
+      serveStatic(app);
     }
-    throw new Error('No available ports found');
-  };
 
-  const PORT = process.env.PORT || 3000;
-  try {
-    const usedPort = await tryPort(PORT);
-    log(`serving on port ${usedPort}`);
-  } catch (error) {
-    console.error('Server error:', error);
-    process.exit(1);
-  }
+    const PORT = 5000;
+    const MAX_RETRIES = 3;
+    let currentTry = 0;
+
+    const startServer = () => {
+      return new Promise((resolve, reject) => {
+        // Close any existing connections before attempting to bind
+        if (server.listening) {
+          server.close();
+        }
+
+        server.once('error', (error: any) => {
+          log(`Server error encountered: ${error.message}`);
+          if (error.code === 'EADDRINUSE') {
+            log(`Port ${PORT} is busy, retrying...`);
+            if (currentTry < MAX_RETRIES) {
+              currentTry++;
+              setTimeout(() => {
+                startServer().then(resolve).catch(reject);
+              }, 1000);
+            } else {
+              reject(new Error(`Could not bind to port ${PORT} after ${MAX_RETRIES} retries`));
+            }
+          } else {
+            reject(error);
+          }
+        });
+
+        server.listen(PORT, "0.0.0.0", () => {
+          log(`Server successfully started on port ${PORT}`);
+          resolve(true);
+        });
+      });
+    };
+
+    // Graceful shutdown handling
+    const shutdown = () => {
+      log('Shutting down gracefully...');
+      server.close(() => {
+        log('Server closed');
+        process.exit(0);
+      });
+
+      // Force close after 10s
+      setTimeout(() => {
+        log('Could not close connections in time, forcefully shutting down');
+        process.exit(1);
+      }, 10000);
+    };
+
+    process.on('SIGTERM', shutdown);
+    process.on('SIGINT', shutdown);
+
+    await startServer();
   } catch (error) {
     console.error('Server failed to start:', error);
     process.exit(1);

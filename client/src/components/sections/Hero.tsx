@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 
 export function Hero() {
   return (
@@ -17,21 +18,20 @@ export function Hero() {
             transition={{ duration: 0.5 }}
             className="w-full flex justify-center mb-8"
           >
-            <div className="w-64 h-64 relative">
+            <div className="w-64 h-64 relative overflow-hidden rounded-full">
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover rounded-full"
+                className="w-full h-full object-cover"
                 poster="/CM_Logo_Image (600 x 525 px).jpg"
               >
                 <source src="/attached_assets/CM_Logo_Annimation.mp4" type="video/mp4" />
-                {/* Fallback to static image if video fails */}
                 <img 
                   src="/CM_Logo_Image (600 x 525 px).jpg"
                   alt="CM Logo"
-                  className="w-full h-full object-cover rounded-full"
+                  className="w-full h-full object-cover"
                 />
               </video>
               <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-purple-500/10 to-blue-500/10 rounded-full mix-blend-overlay" />
@@ -62,10 +62,10 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.6 }}
           >
             <Button size="lg" asChild>
-              <a href="/projects">View Projects</a>
+              <Link href="/projects">View Projects</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <a href="/contact">Contact Me</a>
+              <Link href="/contact">Contact Me</Link>
             </Button>
           </motion.div>
         </motion.div>
