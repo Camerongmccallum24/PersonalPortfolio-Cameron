@@ -1,10 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import { exec } from 'child_process';
-import util from 'util';
-
-const execAsync = util.promisify(exec);
 
 const app = express();
 app.use(express.json());
@@ -13,7 +9,7 @@ app.use(express.urlencoded({ extended: false }));
 console.log("Starting server...");
 
 // Global error handler for uncaught exceptions
-process.on('uncaughtException', (error) => {
+process.on('uncaughtException', (error: NodeJS.ErrnoException) => {
   console.error('Uncaught Exception:', error);
   // Don't exit on port binding errors
   if (error.code !== 'EADDRINUSE') {
@@ -23,35 +19,28 @@ process.on('uncaughtException', (error) => {
 
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled Rejection at:', promise, 'reason:', reason);
-  process.exit(1);
 });
 
 // Function to try binding to a port
-async function tryBindPort(port: number, maxAttempts: number = 3): Promise<number> {
-  for (let attempt = 0; attempt < maxAttempts; attempt++) {
-    try {
-      // Try to kill any existing process on the port
-      try {
-        await execAsync(`lsof -i :${port} -t | xargs kill -9`);
-        log(`Killed process on port ${port}`);
-        // Wait a bit for the port to be released
-        await new Promise(resolve => setTimeout(resolve, 1000));
-      } catch (error) {
-        // Ignore errors if no process was found
-        log(`No process found on port ${port}`);
-      }
+async function tryBindPort(port: number): Promise<boolean> {
+  return new Promise((resolve) => {
+    const tempServer = require('http').createServer();
 
-      return port;
-    } catch (error) {
-      log(`Failed to bind to port ${port}, attempt ${attempt + 1}/${maxAttempts}`);
-      if (attempt === maxAttempts - 1) {
-        throw error;
+    tempServer.once('error', (err: NodeJS.ErrnoException) => {
+      if (err.code === 'EADDRINUSE') {
+        log(`Port ${port} is in use, trying next port...`);
+        tempServer.close();
+        resolve(false);
       }
-      // Wait before retrying
-      await new Promise(resolve => setTimeout(resolve, 1000));
-    }
-  }
-  throw new Error(`Failed to bind to port ${port} after ${maxAttempts} attempts`);
+    });
+
+    tempServer.once('listening', () => {
+      tempServer.close();
+      resolve(true);
+    });
+
+    tempServer.listen(port, '0.0.0.0');
+  });
 }
 
 app.use((req, res, next) => {
@@ -101,17 +90,15 @@ app.use((req, res, next) => {
       serveStatic(app);
     }
 
-    // Try to bind to port 5000 first, then try alternative ports
-    const ports = [5000, 3000, 3001];
-    let boundPort = null;
+    // Try ports in sequence
+    const ports = [5000, 3000, 3001, 3002];
+    let boundPort: number | null = null;
 
     for (const port of ports) {
-      try {
-        boundPort = await tryBindPort(port);
-        if (boundPort) break;
-      } catch (error) {
-        log(`Failed to bind to port ${port}, trying next port...`);
-        continue;
+      const isAvailable = await tryBindPort(port);
+      if (isAvailable) {
+        boundPort = port;
+        break;
       }
     }
 
@@ -131,6 +118,7 @@ app.use((req, res, next) => {
         process.exit(0);
       });
 
+      // Force shutdown after 10 seconds
       setTimeout(() => {
         log('Could not close connections in time, forcefully shutting down');
         process.exit(1);
