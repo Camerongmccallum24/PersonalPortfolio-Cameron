@@ -1,6 +1,10 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { exec } from 'child_process';
+import util from 'util';
+
+const execAsync = util.promisify(exec);
 
 const app = express();
 app.use(express.json());
@@ -18,6 +22,17 @@ process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled Rejection at:', promise, 'reason:', reason);
   process.exit(1);
 });
+
+// Function to kill process using a specific port
+async function killPort(port: number) {
+  try {
+    await execAsync(`lsof -i :${port} -t | xargs kill -9`);
+    log(`Killed process on port ${port}`);
+  } catch (error) {
+    // Ignore errors if no process was found
+    log(`No process found on port ${port}`);
+  }
+}
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -51,9 +66,11 @@ app.use((req, res, next) => {
 
 (async () => {
   try {
+    // Kill any existing process on port 5000
+    await killPort(5000);
+
     const server = registerRoutes(app);
 
-    // Global error handler middleware
     app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
       const status = err.status || err.statusCode || 500;
       const message = err.message || "Internal Server Error";
@@ -67,64 +84,19 @@ app.use((req, res, next) => {
       serveStatic(app);
     }
 
-    const PORT = process.env.PORT || 5000;
-    const MAX_RETRIES = 3;
-    let currentTry = 0;
-    let isShuttingDown = false;
-
-    const startServer = () => {
-      return new Promise((resolve, reject) => {
-        if (isShuttingDown) {
-          reject(new Error('Server is shutting down'));
-          return;
-        }
-
-        // Close any existing connections before attempting to bind
-        if (server.listening) {
-          server.close(() => {
-            log('Closed existing server connection');
-          });
-        }
-
-        server.once('error', (error: any) => {
-          log(`Server error encountered: ${error.message}`);
-          if (error.code === 'EADDRINUSE') {
-            log(`Port ${PORT} is busy, retrying...`);
-            if (currentTry < MAX_RETRIES) {
-              currentTry++;
-              setTimeout(() => {
-                if (!isShuttingDown) {
-                  startServer().then(resolve).catch(reject);
-                }
-              }, 1000 * currentTry); // Exponential backoff
-            } else {
-              reject(new Error(`Could not bind to port ${PORT} after ${MAX_RETRIES} retries`));
-            }
-          } else {
-            reject(error);
-          }
-        });
-
-        server.listen(PORT, "0.0.0.0", () => {
-          log(`Server successfully started on port ${PORT}`);
-          resolve(true);
-        });
-      });
-    };
+    const PORT = 5000;
+    server.listen(PORT, "0.0.0.0", () => {
+      log(`Server successfully started on port ${PORT}`);
+    });
 
     // Graceful shutdown handling
     const shutdown = () => {
-      if (isShuttingDown) return;
-
-      isShuttingDown = true;
       log('Shutting down gracefully...');
-
       server.close(() => {
         log('Server closed');
         process.exit(0);
       });
 
-      // Force close after 10s
       setTimeout(() => {
         log('Could not close connections in time, forcefully shutting down');
         process.exit(1);
@@ -134,7 +106,6 @@ app.use((req, res, next) => {
     process.on('SIGTERM', shutdown);
     process.on('SIGINT', shutdown);
 
-    await startServer();
   } catch (error) {
     console.error('Server failed to start:', error);
     process.exit(1);
