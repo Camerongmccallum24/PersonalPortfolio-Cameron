@@ -1,6 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { createServer } from "http";
 
 const app = express();
 app.use(express.json());
@@ -20,28 +21,6 @@ process.on('uncaughtException', (error: NodeJS.ErrnoException) => {
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled Rejection at:', promise, 'reason:', reason);
 });
-
-// Function to try binding to a port
-async function tryBindPort(port: number): Promise<boolean> {
-  return new Promise((resolve) => {
-    const tempServer = require('http').createServer();
-
-    tempServer.once('error', (err: NodeJS.ErrnoException) => {
-      if (err.code === 'EADDRINUSE') {
-        log(`Port ${port} is in use, trying next port...`);
-        tempServer.close();
-        resolve(false);
-      }
-    });
-
-    tempServer.once('listening', () => {
-      tempServer.close();
-      resolve(true);
-    });
-
-    tempServer.listen(port, '0.0.0.0');
-  });
-}
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -90,24 +69,9 @@ app.use((req, res, next) => {
       serveStatic(app);
     }
 
-    // Try ports in sequence
-    const ports = [5000, 3000, 3001, 3002];
-    let boundPort: number | null = null;
-
-    for (const port of ports) {
-      const isAvailable = await tryBindPort(port);
-      if (isAvailable) {
-        boundPort = port;
-        break;
-      }
-    }
-
-    if (!boundPort) {
-      throw new Error('Failed to bind to any available port');
-    }
-
-    server.listen(boundPort, "0.0.0.0", () => {
-      log(`Server successfully started on port ${boundPort}`);
+    const PORT = 5000;
+    server.listen(PORT, "0.0.0.0", () => {
+      log(`Server successfully started on port ${PORT}`);
     });
 
     // Graceful shutdown handling
