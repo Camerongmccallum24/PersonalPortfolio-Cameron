@@ -64,3 +64,8 @@ npm run dev
 - [Site Structure](./STRUCTURE.md)
 - [Content Management Guide](./CONTENT_GUIDE.md)
 - [Deployment Guide](./DEPLOYMENT.md)
+  - [Performance Optimization](./DEPLOYMENT.md#performance-optimization)
+  - [Security Best Practices](./DEPLOYMENT.md#security-considerations)
+  - [Troubleshooting Guide](./DEPLOYMENT.md#troubleshooting)
+  - [API Documentation](./DEPLOYMENT.md#api-documentation)
+  - [Development Best Practices](./DEPLOYMENT.md#development-best-practices)
