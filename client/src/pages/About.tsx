@@ -36,7 +36,55 @@ const skills = [
   }
 ];
 
-{/* Hero Section */}
+export default function About() {
+  const [isCategoryOpen, setIsCategoryOpen] = useState({});
+  const categoryIcons = {
+    "Technical": "/icons/technical.svg",
+    "AI & Data Analytics": "/icons/ai-data.svg",
+    "Customer Success": "/icons/customer-success.svg"
+  };
+  const certifications = [
+    {
+      icon: "🏆",
+      title: "Google Data Analytics Professional Certificate",
+      issuer: "Google",
+      date: "December 2023"
+    },
+    {
+      icon: "🚀",
+      title: "AWS Certified Cloud Practitioner",
+      issuer: "Amazon Web Services",
+      date: "November 2023"
+    }
+  ];
+  const [email, setEmail] = useState("");
+
+  const toggleCategory = (category) => {
+    setIsCategoryOpen({ ...isCategoryOpen, [category]: !isCategoryOpen[category] });
+  };
+
+  const renderSkillsByCategory = (category) => {
+    const categorySkills = skills.find((skillCategory) => skillCategory.category === category).skills;
+    return (
+      <ul className="list-disc pl-6">
+        {categorySkills.map((skill) => (
+          <li key={skill.name} className="mb-2 text-gray-200">
+            <span className="font-medium">{skill.name}</span> - {skill.proficiency} ({skill.level}%)
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
+  const handleNewsletterSubmit = async (event) => {
+    event.preventDefault();
+    console.log("email:", email);
+    // send email to backend
+  };
+
+  return (
+    <>
+      {/* Hero Section */}
       <motion.section
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -110,7 +158,7 @@ const skills = [
           </div>
         </div>
       </section>
-      
+
       {/* Certification Section */}
       <section className="px-4 py-12 sm:py-16 bg-gray-800">
         <div className="max-w-4xl mx-auto">
@@ -166,6 +214,6 @@ const skills = [
           </form>
         </motion.div>
       </section>
-    </motion.main>
+    </>
   );
 }
