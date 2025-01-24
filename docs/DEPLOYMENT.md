@@ -13,7 +13,7 @@ Create a `.env` file with production settings:
 ```env
 NODE_ENV=production
 DATABASE_URL=postgresql://user:password@host:port/dbname
-PORT=5000
+PORT=3000
 ```
 
 ### 2. Build Process
@@ -61,7 +61,7 @@ server {
     server_name yourdomain.com;
 
     location / {
-        proxy_pass http://localhost:5000;
+        proxy_pass http://localhost:3000;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
