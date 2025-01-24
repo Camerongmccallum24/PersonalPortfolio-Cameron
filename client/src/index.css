@@ -105,36 +105,35 @@
   transform: scale(1.1);
 }
 
-/* Neon hover effects for other elements */
-.neon-glow-linkedin,
-.neon-glow-google,
-.neon-glow-x,
-.neon-glow-youtube {
+/* Social Icons */
+.social-icon {
   transition: all 0.3s ease-in-out;
+  color: var(--text-muted);
 }
 
-.neon-glow-linkedin:hover {
+.social-icon:hover {
+  transform: scale(1.1);
   color: #fff;
+}
+
+.social-icon.linkedin:hover {
   filter: drop-shadow(0 0 5px rgba(0, 119, 181, 0.8)) brightness(1.5);
-  transform: scale(1.1);
 }
 
-.neon-glow-google:hover {
-  color: #fff;
+.social-icon.google:hover {
   filter: drop-shadow(0 0 5px rgba(219, 68, 55, 0.8)) brightness(1.5);
-  transform: scale(1.1);
 }
 
-.neon-glow-x:hover {
-  color: #fff;
+.social-icon.x:hover {
   filter: drop-shadow(0 0 5px rgba(29, 161, 242, 0.8)) brightness(1.5);
-  transform: scale(1.1);
 }
 
-.neon-glow-youtube:hover {
-  color: #fff;
+.social-icon.youtube:hover {
   filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.8)) brightness(1.5);
-  transform: scale(1.1);
+}
+
+.social-icon.github:hover {
+  filter: drop-shadow(0 0 5px rgba(51, 51, 51, 0.8)) brightness(1.5);
 }
 
 /* Call-to-Action Button */
