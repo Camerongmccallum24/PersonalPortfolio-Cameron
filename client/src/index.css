@@ -81,6 +81,7 @@
   }
 }
 
+/* General Updates */
 .neon-glow-github {
   color: #333;
   filter: drop-shadow(0 0 2px rgba(51, 51, 51, 0.3));
@@ -93,9 +94,8 @@
   transform: scale(1.1);
 }
 
-.neon-glow-linkedin {
-  color: #0077b5;
-  filter: drop-shadow(0 0 2px rgba(0, 119, 181, 0.3));
+/* Neon hover effects for other elements */
+.neon-glow-linkedin, .neon-glow-google, .neon-glow-x, .neon-glow-youtube {
   transition: all 0.3s ease-in-out;
 }
 
@@ -105,22 +105,10 @@
   transform: scale(1.1);
 }
 
-.neon-glow-google {
-  color: #db4437;
-  filter: drop-shadow(0 0 2px rgba(219, 68, 55, 0.3));
-  transition: all 0.3s ease-in-out;
-}
-
 .neon-glow-google:hover {
   color: #fff;
   filter: drop-shadow(0 0 5px rgba(219, 68, 55, 0.8)) brightness(1.5);
   transform: scale(1.1);
-}
-
-.neon-glow-x {
-  color: #1da1f2;
-  filter: drop-shadow(0 0 2px rgba(29, 161, 242, 0.3));
-  transition: all 0.3s ease-in-out;
 }
 
 .neon-glow-x:hover {
@@ -129,46 +117,136 @@
   transform: scale(1.1);
 }
 
-.neon-glow-youtube {
-  color: #ff0000;
-  filter: drop-shadow(0 0 2px rgba(255, 0, 0, 0.3));
-  transition: all 0.3s ease-in-out;
-}
-
 .neon-glow-youtube:hover {
   color: #fff;
   filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.8)) brightness(1.5);
   transform: scale(1.1);
 }
 
-.custom-social-button:hover {
-  background-color: transparent !important;
-  box-shadow: none !important;
+/* Call-to-Action Button */
+.cta-button {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease;
 }
 
+.cta-button:hover {
+  transform: scale(1.05);
+}
+
+.cta-button::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  background: linear-gradient(to right, #06b6d4, #3b82f6);
+  opacity: 0.5;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.cta-button:hover::after {
+  opacity: 1;
+}
+
+/* Profile Picture Neon Glow */
+.profile-picture {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-picture:hover::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #06b6d4, #3b82f6);
+  z-index: -1;
+  animation: neon-glow 1.5s infinite alternate;
+}
+
+@keyframes neon-glow {
+  0% {
+    box-shadow: 0 0 10px #06b6d4, 0 0 20px #3b82f6;
+  }
+  100% {
+    box-shadow: 0 0 15px #06b6d4, 0 0 30px #3b82f6;
+  }
+}
+
+/* Glassmorphism for Cards */
 .glassmorphism {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  transition: all 0.4s ease;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: box-shadow 0.3s ease;
 }
 
 .glassmorphism:hover {
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
-  transform: translateY(-3px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
-.bg-primary-5 {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+/* Progress Bar Animations */
+.progress-bar {
+  background: #1f2937;
+  border-radius: 9999px;
+  height: 8px;
+  overflow: hidden;
+  position: relative;
 }
 
-.bg-primary-5:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.5s ease;
+}
+
+/* Dropdown Styling */
+.dropdown {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  overflow: hidden;
+}
+
+.dropdown.open {
+  max-height: 1000px;
+  opacity: 1;
+}
+
+.dropdown.closed {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* Horizontal Scrolling Carousel */
+.carousel {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Newsletter CTA Styling */
+.newsletter-cta {
+  background: linear-gradient(to right, #06b6d4, #3b82f6);
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  color: white;
+}
+
+.newsletter-cta input {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  margin-right: 1rem;
+}
+
+.newsletter-cta input:focus {
+  outline: 2px solid #06b6d4;
 }

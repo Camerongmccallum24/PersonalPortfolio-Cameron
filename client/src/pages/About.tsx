@@ -1,95 +1,49 @@
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { SkillsVisualization } from "@/components/sections/SkillsVisualization";
 import { Button } from "@/components/ui/button";
+import { SkillsVisualization } from "@/components/sections/SkillsVisualization";
 import { useState } from "react";
 
-export function About() {
-  const [isFrontendOpen, setFrontendOpen] = useState(true);
+const skills = [
+  {
+    category: "Technical",
+    skills: [
+      { name: "SQL", level: 90, type: "Hard", proficiency: "Advanced", example: "Skilled in querying and analyzing data in SQL databases" },
+      { name: "Data Cleaning & Preparation", level: 90, type: "Hard", proficiency: "Advanced", example: "Identifying and rectifying data inconsistencies" },
+      { name: "Power BI", level: 75, type: "Hard", proficiency: "Intermediate", example: "Creating complex data visualizations" },
+      { name: "API Integration", level: 70, type: "Hard", proficiency: "Intermediate", example: "Connecting different software systems" },
+      { name: "AI Automation Tools", level: 85, type: "Hard", proficiency: "Advanced", example: "Developing automated workflows" }
+    ]
+  },
+  {
+    category: "AI & Data Analytics",
+    skills: [
+      { name: "GPT Development", level: 85, type: "Hard", proficiency: "Advanced", example: "Customizing GPT models for specific business needs" },
+      { name: "Predictive Analytics", level: 90, type: "Hard", proficiency: "Advanced", example: "Forecasting business trends" },
+      { name: "Machine Learning Integration", level: 75, type: "Hard", proficiency: "Intermediate", example: "Implementing ML algorithms" },
+      { name: "Data Insights", level: 80, type: "Hard", proficiency: "Advanced", example: "Extracting meaningful patterns from data" },
+      { name: "Data Visualization", level: 90, type: "Hard", proficiency: "Advanced", example: "Creating compelling data stories" }
+    ]
+  },
+  {
+    category: "Customer Success",
+    skills: [
+      { name: "Stakeholder Communication", level: 90, type: "Soft", proficiency: "Advanced", example: "Effectively managing client expectations" },
+      { name: "Client Retention Strategies", level: 90, type: "Soft", proficiency: "Advanced", example: "Developing long-term client relationships" },
+      { name: "Strategic Account Management", level: 85, type: "Soft", proficiency: "Advanced", example: "Nurturing key client accounts" },
+      { name: "Emotional Intelligence", level: 90, type: "Soft", proficiency: "Advanced", example: "Understanding and managing interpersonal dynamics" },
+      { name: "Problem-Solving", level: 90, type: "Soft", proficiency: "Advanced", example: "Creatively addressing complex challenges" }
+    ]
+  }
+];
 
-  const skills = [
-    // Frontend
-    { name: "React", level: 85, category: "Frontend", color: "#61DBFB" },
-    { name: "TypeScript", level: 80, category: "Frontend", color: "#3178C6" },
-    { name: "TailwindCSS", level: 75, category: "Frontend", color: "#38B2AC" },
-    { name: "HTML", level: 90, category: "Frontend", color: "#E34F26" },
-    { name: "CSS", level: 85, category: "Frontend", color: "#1572B6" },
-    { name: "JavaScript", level: 80, category: "Frontend", color: "#F7DF1E" },
-
-    // Backend
-    { name: "FastAPI", level: 85, category: "Backend", color: "#009688" },
-    { name: "Python", level: 90, category: "Backend", color: "#306998" },
-    { name: "Node.js", level: 75, category: "Backend", color: "#68A063" },
-    { name: "SQL", level: 80, category: "Backend", color: "#4479A1" },
-    { name: "Express.js", level: 70, category: "Backend", color: "#000000" },
-
-    // Tools
-    { name: "Firebase", level: 80, category: "Tools", color: "#FFCA28" },
-    { name: "Vercel", level: 85, category: "Tools", color: "#000000" },
-    { name: "Replit", level: 80, category: "Tools", color: "#F26207" },
-    { name: "GitHub", level: 90, category: "Tools", color: "#181717" },
-    { name: "Make (Integromat)", level: 75, category: "Tools", color: "#2596BE" },
-    { name: "Docker", level: 70, category: "Tools", color: "#2496ED" },
-
-    // AI & Data Analytics
-    { name: "GPT-4 Customization", level: 85, category: "AI & Data Analytics", color: "#8A2BE2" },
-    { name: "Predictive Analytics", level: 80, category: "AI & Data Analytics", color: "#FF6F61" },
-    { name: "Sentiment Analysis", level: 85, category: "AI & Data Analytics", color: "#4CAF50" },
-    { name: "Data Visualization", level: 75, category: "AI & Data Analytics", color: "#673AB7" },
-    { name: "Machine Learning", level: 70, category: "AI & Data Analytics", color: "#3E8EDE" },
-
-    // Customer Success
-    { name: "CRM Platforms", level: 85, category: "Customer Success", color: "#FF5722" },
-    { name: "AI-Driven Customer Retention", level: 90, category: "Customer Success", color: "#9C27B0" },
-    { name: "Workflow Automation", level: 80, category: "Customer Success", color: "#4CAF50" },
-    { name: "Customer Journey Mapping", level: 85, category: "Customer Success", color: "#FF9800" },
-    { name: "Client Engagement & Training", level: 90, category: "Customer Success", color: "#03A9F4" },
-  ];
-
-  const categoryIcons = {
-    Frontend: "/icons/frontend.svg",
-    Backend: "/icons/backend.svg",
-    Tools: "/icons/tools.svg",
-    "AI & Data Analytics": "/icons/ai.svg",
-    "Customer Success": "/icons/customersuccess.svg",
-  };
-
-  const renderSkillsByCategory = (category) => {
-    return skills
-      .filter((skill) => skill.category === category)
-      .map((skill) => (
-        <div
-          key={skill.name}
-          className="flex items-center gap-4 p-4 glassmorphism hover:shadow-lg transition-shadow rounded-lg"
-        >
-          <div className="flex-1">
-            <h4 className="text-base sm:text-lg font-semibold text-white">{skill.name}</h4>
-            <div className="w-full bg-gray-700 rounded-full h-2 mt-1">
-              <div
-                className="h-2 rounded-full transition-all duration-500"
-                style={{ width: `${skill.level}%`, backgroundColor: skill.color }}
-              ></div>
-            </div>
-          </div>
-          <span className="text-gray-400 text-sm">{skill.level}%</span>
-        </div>
-      ));
-  };
-
-  return (
-    <motion.main
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black px-4 sm:px-6 lg:px-8"
-    >
-      <motion.section 
+{/* Hero Section */}
+      <motion.section
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="flex justify-center pt-10"
       >
-        <motion.div 
+        <motion.div
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 300 }}
           className="relative group"
@@ -98,54 +52,119 @@ export function About() {
           <img
             src="/images/Profile_Picture.png"
             alt="Cameron McCallum - AI Strategy Consultant"
-            className="relative w-32 h-32 rounded-full object-cover border-2 border-white/10"
-            loading="eager"
+            className="profile-picture"
           />
         </motion.div>
       </motion.section>
 
+      {/* About Content */}
       <section className="pt-16 sm:pt-32 pb-12 sm:pb-24 relative overflow-hidden">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 sm:gap-12 px-4">
           <div className="w-full md:flex-1 text-center md:text-left">
-            <motion.h1 
-              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500"
-            >
+            <motion.h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 gradient-text">
               Empowering SaaS Businesses with AI-Powered Customer Solutions
             </motion.h1>
-            <motion.p
-              className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed"
-            >
-              Leveraging AI to redefine customer success strategies, enhance retention, and deliver unparalleled client satisfaction. Join me on this journey to create impactful and innovative solutions.
+            <motion.p className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed">
+              Leveraging AI to redefine customer success strategies, enhance retention, and deliver
+              unparalleled client satisfaction. Join me on this journey to create impactful and
+              innovative solutions.
             </motion.p>
-            <Button className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg shadow-lg hover:shadow-cyan-500/20 transition-all">
-              Discover My Journey
+            <Button className="cta-button w-full sm:w-auto">
+              Explore My Expertise
             </Button>
           </div>
         </div>
       </section>
 
+      {/* Skills Section */}
       <section className="px-4 py-12 sm:py-16 bg-gray-900">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">Skills & Expertise</h2>
           {Object.keys(categoryIcons).map((category) => (
             <div key={category} className="mb-8">
-              <div className="flex items-center gap-3 mb-4">
+              <div
+                className="flex items-center gap-3 mb-4 category-header"
+                onClick={() => toggleCategory(category)}
+              >
                 <img src={categoryIcons[category]} alt={category} className="w-6 sm:w-8 h-6 sm:h-8" />
-                <h3 
-                  className="text-xl sm:text-2xl font-bold text-cyan-400 cursor-pointer" 
-                  onClick={() => setFrontendOpen(!isFrontendOpen)}
-                >
-                  {category} {isFrontendOpen ? "▼" : "▶"}
-                </h3>
+                <h3>{category} {isCategoryOpen[category] ? "▼" : "▶"}</h3>
               </div>
-              {isFrontendOpen && (
-                <div className="space-y-3 sm:space-y-4">
-                  {renderSkillsByCategory(category)}
-                </div>
-              )}
+              <motion.div
+                className={`dropdown ${
+                  isCategoryOpen[category] ? "open" : "closed"
+                }`}
+              >
+                {renderSkillsByCategory(category)}
+              </motion.div>
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Tech Stack Section */}
+      <section className="px-4 py-12 sm:py-16 bg-gray-800">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">Tech Stack</h2>
+          <div className="carousel">
+            {/* Tech stack icons */}
+          </div>
+        </div>
+      </section>
+      
+      {/* Certification Section */}
+      <section className="px-4 py-12 sm:py-16 bg-gray-800">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">Certifications</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {certifications.map((cert, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className="bg-gray-900 p-6 rounded-lg flex items-center space-x-4 hover:bg-gray-700 transition-colors"
+              >
+                <span className="text-4xl">{cert.icon}</span>
+                <div>
+                  <h3 className="font-semibold text-lg">{cert.title}</h3>
+                  <p className="text-gray-400">{cert.issuer}</p>
+                  <p className="text-sm text-gray-500">{cert.date}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter CTA */}
+      <section className="px-4 py-12 sm:py-16 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">Stay Ahead with AI-Powered Strategies!</h2>
+          <p className="mb-6 max-w-2xl mx-auto">Join my newsletter for exclusive insights and tools to supercharge your SaaS success.</p>
+          <form 
+            onSubmit={handleNewsletterSubmit}
+            className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto"
+          >
+            <input 
+              type="email" 
+              placeholder="Enter your email" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="px-4 py-2 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-cyan-300 w-full" 
+            />
+            <Button 
+              type="submit"
+              className="px-6 py-2 rounded-lg bg-white text-cyan-500 font-bold hover:bg-gray-200 transition-colors"
+            >
+              Sign Up Now
+            </Button>
+          </form>
+        </motion.div>
       </section>
     </motion.main>
   );

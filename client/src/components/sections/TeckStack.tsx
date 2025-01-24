@@ -15,7 +15,7 @@ import {
   SiKubernetes,
 } from "react-icons/si";
 
-export function SkillsSection() {
+export function TechStack() {
   const techStack = [
     { Icon: SiReact, name: "React" },
     { Icon: SiTypescript, name: "TypeScript" },
