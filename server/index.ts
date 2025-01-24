@@ -69,10 +69,24 @@ app.use((req, res, next) => {
       serveStatic(app);
     }
 
-    const PORT = 5000;
-    server.listen(PORT, "0.0.0.0", () => {
-      log(`Server successfully started on port ${PORT}`);
-    });
+    const ports = [5000, 5001, 5002, 5003];
+    
+    const tryPort = (index = 0) => {
+      if (index >= ports.length) {
+        throw new Error('No available ports found');
+      }
+      
+      server.listen(ports[index], "0.0.0.0", () => {
+        log(`Server successfully started on port ${ports[index]}`);
+      }).on('error', (err: NodeJS.ErrnoException) => {
+        if (err.code === 'EADDRINUSE') {
+          server.close();
+          tryPort(index + 1);
+        }
+      });
+    };
+    
+    tryPort();
 
     // Graceful shutdown handling
     const shutdown = () => {
