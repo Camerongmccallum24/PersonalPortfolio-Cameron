@@ -18,7 +18,7 @@ export function Footer() {
                 href="https://github.com/camerongmccallum24" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="neon-glow-github hover:text-primary transition-colors custom-social-button"
+                className="social-icon github"
               >
                 <Github className="h-5 w-5" />
               </a>
@@ -28,7 +28,7 @@ export function Footer() {
                 href="https://linkedin.com/in/cameron-g-mccallum" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="neon-glow-linkedin hover:text-primary transition-colors custom-social-button"
+                className="social-icon linkedin"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
@@ -38,7 +38,7 @@ export function Footer() {
                 href="https://g.dev/cameron-g-mccallum" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="neon-glow-google hover:text-primary transition-colors custom-social-button"
+                className="social-icon google"
               >
                 <IconBrandGoogleFilled className="h-5 w-5" />
               </a>
@@ -48,7 +48,7 @@ export function Footer() {
                 href="https://x.com/CamGMcCallum" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="neon-glow-x hover:text-primary transition-colors custom-social-button"
+                className="social-icon x"
               >
                 <IconBrandX className="h-5 w-5" />
               </a>
@@ -58,7 +58,7 @@ export function Footer() {
                 href="http://www.youtube.com/@cameronmccallum" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="neon-glow-youtube hover:text-primary transition-colors custom-social-button"
+                className="social-icon youtube"
               >
                 <Youtube className="h-5 w-5" />
               </a>
