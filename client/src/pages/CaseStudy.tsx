@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { FileDown } from "lucide-react";
@@ -44,14 +43,6 @@ export default function CaseStudy() {
     }
   ];
 
-  const techStack = {
-    Frontend: ["React", "TypeScript"],
-    Backend: ["FastAPI", "PostgreSQL"],
-    Cloud: ["AWS"],
-    Security: ["End-to-end encryption", "Role-based access"],
-    Integrations: ["Salesforce", "HubSpot", "Slack", "Microsoft Teams"]
-  };
-
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -67,19 +58,12 @@ export default function CaseStudy() {
             transition={{ duration: 0.5 }}
             className="text-4xl font-bold mb-4"
           >
-            Customer Success Automator
+            Case Study Template
           </motion.h1>
           <p className="text-xl text-muted-foreground mb-8">
-            AI-Driven Platform for Enhanced Customer Success Management
+            A comprehensive look at our project implementation and results
           </p>
 
-          <img
-            src="/images/customer-success-automator.jpeg"
-            alt="Customer Success Automator preview"
-            className="w-full rounded-lg mb-12"
-          />
-
-          {/* Metrics Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             {metrics.map((metric) => (
               <div key={metric.label} className="text-center">
@@ -89,16 +73,15 @@ export default function CaseStudy() {
             ))}
           </div>
 
-          {/* Features */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="space-y-8">
             {features.map((feature) => (
-              <div key={feature.title} className="space-y-4">
-                <h3 className="text-xl font-semibold">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
+              <div key={feature.title} className="bg-card p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-muted-foreground mb-4">{feature.description}</p>
                 <ul className="space-y-2">
-                  {feature.items.map((item) => (
-                    <li key={item} className="flex items-center">
-                      <span className="w-2 h-2 bg-primary rounded-full mr-2" />
+                  {feature.items.map((item, index) => (
+                    <li key={index} className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-primary rounded-full" />
                       {item}
                     </li>
                   ))}
@@ -107,52 +90,7 @@ export default function CaseStudy() {
             ))}
           </div>
 
-          {/* Overview */}
-          <div className="bg-card p-8 rounded-lg mb-16">
-            <h2 className="text-2xl font-bold mb-6">Overview</h2>
-            <div className="space-y-6">
-              <p className="text-muted-foreground">
-                The GPT Showcase revolutionizes customer success by harnessing the power of advanced AI models. 
-                This innovative platform provides a centralized hub for a collection of custom GPTs, each designed 
-                to address specific challenges and enhance key aspects of customer success management.
-              </p>
-              <div>
-                <h3 className="font-semibold mb-2">Impact & Value</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• Increased Customer Retention through proactive risk identification</li>
-                  <li>• Enhanced Customer Satisfaction with personalized experiences</li>
-                  <li>• Improved Team Efficiency via task automation</li>
-                  <li>• Data-Driven Decision Making powered by predictive analytics</li>
-                </ul>
-              </div>
-              <blockquote className="border-l-4 border-primary pl-4 italic">
-                "By providing a centralized hub for AI-powered tools, this platform empowers businesses 
-                to deliver exceptional customer experiences and drive sustainable growth."
-                <footer className="mt-2 font-semibold">
-                  - Project Overview
-                </footer>
-              </blockquote>
-            </div>
-          </div>
-
-          {/* Tech Stack */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Technology Stack</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-              {Object.entries(techStack).map(([category, items]) => (
-                <div key={category}>
-                  <h3 className="font-semibold mb-3">{category}</h3>
-                  <ul className="space-y-2">
-                    {items.map((item) => (
-                      <li key={item} className="text-muted-foreground">{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="text-center">
+          <div className="text-center mt-8">
             <Button size="lg" variant="outline">
               <FileDown className="mr-2 h-4 w-4" />
               Download Full Case Study
