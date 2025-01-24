@@ -15,9 +15,11 @@
     0% {
       background-position: 0% 50%;
     }
+
     50% {
       background-position: 100% 50%;
     }
+
     100% {
       background-position: 0% 50%;
     }
@@ -27,24 +29,32 @@
     0% {
       transform: translate(0px, 0px) scale(1);
     }
+
     33% {
       transform: translate(30px, -50px) scale(1.1);
     }
+
     66% {
       transform: translate(-20px, 20px) scale(0.9);
     }
+
     100% {
       transform: translate(0px, 0px) scale(1);
     }
   }
 
   @keyframes tilt {
-    0%, 50%, 100% {
+
+    0%,
+    50%,
+    100% {
       transform: rotate(0deg);
     }
+
     25% {
       transform: rotate(2deg);
     }
+
     75% {
       transform: rotate(-2deg);
     }
@@ -54,6 +64,7 @@
     0% {
       transform: translateX(0);
     }
+
     100% {
       transform: translateX(-50%);
     }
@@ -95,7 +106,10 @@
 }
 
 /* Neon hover effects for other elements */
-.neon-glow-linkedin, .neon-glow-google, .neon-glow-x, .neon-glow-youtube {
+.neon-glow-linkedin,
+.neon-glow-google,
+.neon-glow-x,
+.neon-glow-youtube {
   transition: all 0.3s ease-in-out;
 }
 
@@ -171,6 +185,7 @@
   0% {
     box-shadow: 0 0 10px #06b6d4, 0 0 20px #3b82f6;
   }
+
   100% {
     box-shadow: 0 0 15px #06b6d4, 0 0 30px #3b82f6;
   }

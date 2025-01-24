@@ -1,74 +1,95 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+import { Mail, ExternalLink, FileDown } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="min-h-[calc(100vh-4rem)] flex items-center">
+    <section className="relative min-h-screen bg-background py-20 md:py-32">
+      {/* SEO-friendly hidden heading */}
+      <h1 className="sr-only">Cameron McCallum - AI & Customer Success Innovation Leader</h1>
+
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto text-center"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="w-full flex justify-center mb-8"
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+          {/* Content Section */}
+          <motion.div 
+            className="flex-1 text-left"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="w-64 h-64 relative overflow-hidden rounded-full">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-                poster="/CM_Logo_Image (600 x 525 px).jpg"
-              >
-                <source src="/attached_assets/CM_Logo_Annimation.mp4" type="video/mp4" />
-                <img 
-                  src="/CM_Logo_Image (600 x 525 px).jpg"
-                  alt="CM Logo"
-                  className="w-full h-full object-cover"
-                />
-              </video>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-purple-500/10 to-blue-500/10 rounded-full mix-blend-overlay" />
+            <motion.h2 
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00C6FF] to-[#0072FF]">
+                Cameron McCallum
+              </span>
+            </motion.h2>
+
+            <motion.h3 
+              className="text-2xl md:text-3xl font-semibold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              AI & Customer Success Innovation Leader
+            </motion.h3>
+
+            <motion.p 
+              className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              Transforming Customer Success through AI-Powered Solutions and Data-Driven Strategies
+            </motion.p>
+
+            <motion.div 
+              className="flex flex-wrap gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              <Button size="lg" className="gap-2">
+                <Mail className="w-5 h-5" />
+                Start Conversation
+              </Button>
+              <Button size="lg" variant="outline" className="gap-2">
+                <ExternalLink className="w-5 h-5" />
+                View Portfolio
+              </Button>
+              <Button size="lg" variant="outline" className="gap-2">
+                <FileDown className="w-5 h-5" />
+                Download CV
+              </Button>
+            </motion.div>
+          </motion.div>
+
+          {/* Image Section */}
+          <motion.div
+            className="relative flex-1 max-w-md"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="relative">
+              {/* Gradient Border */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00C6FF] to-[#0072FF] rounded-full opacity-75 blur-sm"></div>
+
+              {/* Image */}
+              <img
+                src="/images/Profile_Picture.png"
+                alt="Cameron McCallum - AI Strategy Consultant"
+                className="relative rounded-full w-full h-full object-cover border-4 border-background"
+                width={400}
+                height={400}
+              />
             </div>
           </motion.div>
-          <motion.h1 
-            className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Cameron McCallum
-          </motion.h1>
-
-          <motion.p 
-            className="text-xl mb-8 text-muted-foreground"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            Empowering Customer Success with AI-Driven Solutions and Data-Driven Strategies.
-          </motion.p>
-
-          <motion.div
-            className="flex justify-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          >
-            <Button size="lg" asChild>
-              <Link href="/projects">View Projects</Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <Link href="/contact">Contact Me</Link>
-            </Button>
-          </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
