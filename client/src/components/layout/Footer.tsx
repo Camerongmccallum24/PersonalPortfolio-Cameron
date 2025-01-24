@@ -18,7 +18,7 @@ export function Footer() {
                 href="https://github.com/camerongmccallum24" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="social-icon github"
+                className="social-icon github hover:text-inherit"
               >
                 <Github className="h-5 w-5" />
               </a>
@@ -28,7 +28,7 @@ export function Footer() {
                 href="https://linkedin.com/in/cameron-g-mccallum" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="social-icon linkedin"
+                className="social-icon linkedin hover:text-inherit"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
@@ -38,7 +38,7 @@ export function Footer() {
                 href="https://g.dev/cameron-g-mccallum" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="social-icon google"
+                className="social-icon google hover:text-inherit"
               >
                 <IconBrandGoogleFilled className="h-5 w-5" />
               </a>
@@ -48,7 +48,7 @@ export function Footer() {
                 href="https://x.com/CamGMcCallum" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="social-icon x"
+                className="social-icon x hover:text-inherit"
               >
                 <IconBrandX className="h-5 w-5" />
               </a>
@@ -58,7 +58,7 @@ export function Footer() {
                 href="http://www.youtube.com/@cameronmccallum" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="social-icon youtube"
+                className="social-icon youtube hover:text-inherit"
               >
                 <Youtube className="h-5 w-5" />
               </a>
