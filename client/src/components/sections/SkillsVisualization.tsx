@@ -4,7 +4,21 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 
-const skills = [
+// Define the skills data structure
+interface Skill {
+  name: string;
+  level: number;
+  type: 'Hard' | 'Soft';
+  proficiency: string;
+  example: string;
+}
+
+interface SkillCategory {
+  category: string;
+  skills: Skill[];
+}
+
+const skills: SkillCategory[] = [
   {
     category: "Technical",
     skills: [
@@ -47,23 +61,19 @@ export function SkillsVisualization() {
   const [activeSkillType, setActiveSkillType] = useState<SkillType>(null);
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
-  // Auto-sliding effect
   useEffect(() => {
     const intervalId = setInterval(() => {
       setActiveCategory((prev) => (prev + 1) % skills.length);
-    }, 5000); // Change category every 5 seconds
-
+    }, 5000);
     return () => clearInterval(intervalId);
   }, []);
 
-  // Filter skills based on type
   const filteredSkills = skills[activeCategory].skills
     .filter(skill => !activeSkillType || skill.type === activeSkillType);
 
   return (
     <div className="py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        {/* Category Navigation */}
         <div className="flex justify-center mb-8 space-x-4">
           {skills.map((category, index) => (
             <Button
@@ -77,7 +87,6 @@ export function SkillsVisualization() {
           ))}
         </div>
 
-        {/* Skill Type Filter */}
         <div className="flex justify-center mb-8 space-x-4">
           <Button 
             onClick={() => setActiveSkillType(null)}
@@ -99,7 +108,6 @@ export function SkillsVisualization() {
           </Button>
         </div>
 
-        {/* Skills Grid */}
         <motion.div 
           key={activeCategory}
           initial={{ opacity: 0, y: 20 }}
@@ -115,9 +123,9 @@ export function SkillsVisualization() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="relative"
                 onMouseEnter={() => setHoveredSkill(skill.name)}
                 onMouseLeave={() => setHoveredSkill(null)}
+                className="relative"
               >
                 <Card className="relative overflow-hidden transition-all duration-300 hover:shadow-xl">
                   <CardContent className="pt-6 pb-4 px-4">
@@ -137,7 +145,6 @@ export function SkillsVisualization() {
                       Proficiency: {skill.proficiency}
                     </div>
 
-                    {/* Hover Details */}
                     {hoveredSkill === skill.name && (
                       <motion.div
                         initial={{ opacity: 0 }}

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { SkillsVisualization } from "@/components/sections/SkillsVisualization";
+import { TechStack } from "@/components/sections/TechStack";
 import { useState } from "react";
 
 export default function About() {
@@ -18,6 +19,7 @@ export default function About() {
       date: "November 2023"
     }
   ];
+
   const [email, setEmail] = useState("");
 
   const handleNewsletterSubmit = async (event: React.FormEvent) => {
@@ -27,7 +29,7 @@ export default function About() {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <motion.section
         initial={{ opacity: 0, y: -20 }}
@@ -71,13 +73,24 @@ export default function About() {
       </section>
 
       {/* Skills Section */}
-      <section className="relative">
+      <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-background to-background/80 pointer-events-none" />
-        <div className="relative">
+        <div className="relative z-10">
           <h2 className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
             Skills & Expertise
           </h2>
           <SkillsVisualization />
+        </div>
+      </section>
+
+      {/* Tech Stack Section */}
+      <section className="py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background pointer-events-none" />
+        <div className="relative z-10">
+          <h2 className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
+            Technology Stack
+          </h2>
+          <TechStack />
         </div>
       </section>
 
@@ -145,6 +158,6 @@ export default function About() {
           </form>
         </motion.div>
       </section>
-    </>
+    </div>
   );
 }
