@@ -3,46 +3,7 @@ import { Button } from "@/components/ui/button";
 import { SkillsVisualization } from "@/components/sections/SkillsVisualization";
 import { useState } from "react";
 
-const skills = [
-  {
-    category: "Technical",
-    skills: [
-      { name: "SQL", level: 90, type: "Hard", proficiency: "Advanced", example: "Skilled in querying and analyzing data in SQL databases" },
-      { name: "Data Cleaning & Preparation", level: 90, type: "Hard", proficiency: "Advanced", example: "Identifying and rectifying data inconsistencies" },
-      { name: "Power BI", level: 75, type: "Hard", proficiency: "Intermediate", example: "Creating complex data visualizations" },
-      { name: "API Integration", level: 70, type: "Hard", proficiency: "Intermediate", example: "Connecting different software systems" },
-      { name: "AI Automation Tools", level: 85, type: "Hard", proficiency: "Advanced", example: "Developing automated workflows" }
-    ]
-  },
-  {
-    category: "AI & Data Analytics",
-    skills: [
-      { name: "GPT Development", level: 85, type: "Hard", proficiency: "Advanced", example: "Customizing GPT models for specific business needs" },
-      { name: "Predictive Analytics", level: 90, type: "Hard", proficiency: "Advanced", example: "Forecasting business trends" },
-      { name: "Machine Learning Integration", level: 75, type: "Hard", proficiency: "Intermediate", example: "Implementing ML algorithms" },
-      { name: "Data Insights", level: 80, type: "Hard", proficiency: "Advanced", example: "Extracting meaningful patterns from data" },
-      { name: "Data Visualization", level: 90, type: "Hard", proficiency: "Advanced", example: "Creating compelling data stories" }
-    ]
-  },
-  {
-    category: "Customer Success",
-    skills: [
-      { name: "Stakeholder Communication", level: 90, type: "Soft", proficiency: "Advanced", example: "Effectively managing client expectations" },
-      { name: "Client Retention Strategies", level: 90, type: "Soft", proficiency: "Advanced", example: "Developing long-term client relationships" },
-      { name: "Strategic Account Management", level: 85, type: "Soft", proficiency: "Advanced", example: "Nurturing key client accounts" },
-      { name: "Emotional Intelligence", level: 90, type: "Soft", proficiency: "Advanced", example: "Understanding and managing interpersonal dynamics" },
-      { name: "Problem-Solving", level: 90, type: "Soft", proficiency: "Advanced", example: "Creatively addressing complex challenges" }
-    ]
-  }
-];
-
 export default function About() {
-  const [isCategoryOpen, setIsCategoryOpen] = useState({});
-  const categoryIcons = {
-    "Technical": "/icons/technical.svg",
-    "AI & Data Analytics": "/icons/ai-data.svg",
-    "Customer Success": "/icons/customer-success.svg"
-  };
   const certifications = [
     {
       icon: "🏆",
@@ -59,24 +20,7 @@ export default function About() {
   ];
   const [email, setEmail] = useState("");
 
-  const toggleCategory = (category) => {
-    setIsCategoryOpen({ ...isCategoryOpen, [category]: !isCategoryOpen[category] });
-  };
-
-  const renderSkillsByCategory = (category) => {
-    const categorySkills = skills.find((skillCategory) => skillCategory.category === category).skills;
-    return (
-      <ul className="list-disc pl-6">
-        {categorySkills.map((skill) => (
-          <li key={skill.name} className="mb-2 text-gray-200">
-            <span className="font-medium">{skill.name}</span> - {skill.proficiency} ({skill.level}%)
-          </li>
-        ))}
-      </ul>
-    );
-  };
-
-  const handleNewsletterSubmit = async (event) => {
+  const handleNewsletterSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     console.log("email:", email);
     // send email to backend
@@ -96,11 +40,11 @@ export default function About() {
           transition={{ type: "spring", stiffness: 300 }}
           className="relative group"
         >
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000"></div>
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-purple-500 to-blue-500 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000"></div>
           <img
             src="/images/Profile_Picture.png"
             alt="Cameron McCallum - AI Strategy Consultant"
-            className="profile-picture"
+            className="relative rounded-full w-48 h-48 object-cover"
           />
         </motion.div>
       </motion.section>
@@ -109,15 +53,17 @@ export default function About() {
       <section className="pt-16 sm:pt-32 pb-12 sm:pb-24 relative overflow-hidden">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 sm:gap-12 px-4">
           <div className="w-full md:flex-1 text-center md:text-left">
-            <motion.h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 gradient-text">
+            <motion.h1 
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
+            >
               Empowering SaaS Businesses with AI-Powered Customer Solutions
             </motion.h1>
-            <motion.p className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed">
+            <motion.p className="text-lg sm:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
               Leveraging AI to redefine customer success strategies, enhance retention, and deliver
               unparalleled client satisfaction. Join me on this journey to create impactful and
               innovative solutions.
             </motion.p>
-            <Button className="cta-button w-full sm:w-auto">
+            <Button size="lg" className="gap-2">
               Explore My Expertise
             </Button>
           </div>
@@ -125,58 +71,36 @@ export default function About() {
       </section>
 
       {/* Skills Section */}
-      <section className="px-4 py-12 sm:py-16 bg-gray-900">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">Skills & Expertise</h2>
-          {Object.keys(categoryIcons).map((category) => (
-            <div key={category} className="mb-8">
-              <div
-                className="flex items-center gap-3 mb-4 category-header"
-                onClick={() => toggleCategory(category)}
-              >
-                <img src={categoryIcons[category]} alt={category} className="w-6 sm:w-8 h-6 sm:h-8" />
-                <h3>{category} {isCategoryOpen[category] ? "▼" : "▶"}</h3>
-              </div>
-              <motion.div
-                className={`dropdown ${
-                  isCategoryOpen[category] ? "open" : "closed"
-                }`}
-              >
-                {renderSkillsByCategory(category)}
-              </motion.div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Tech Stack Section */}
-      <section className="px-4 py-12 sm:py-16 bg-gray-800">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">Tech Stack</h2>
-          <div className="carousel">
-            {/* Tech stack icons */}
-          </div>
+      <section className="relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-background to-background/80 pointer-events-none" />
+        <div className="relative">
+          <h2 className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
+            Skills & Expertise
+          </h2>
+          <SkillsVisualization />
         </div>
       </section>
 
       {/* Certification Section */}
-      <section className="px-4 py-12 sm:py-16 bg-gray-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">Certifications</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <section className="py-16 relative overflow-hidden">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
+            Certifications
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {certifications.map((cert, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="bg-gray-900 p-6 rounded-lg flex items-center space-x-4 hover:bg-gray-700 transition-colors"
+                className="p-6 rounded-lg border bg-card text-card-foreground shadow-lg hover:shadow-xl transition-all"
               >
                 <span className="text-4xl">{cert.icon}</span>
-                <div>
+                <div className="mt-4">
                   <h3 className="font-semibold text-lg">{cert.title}</h3>
-                  <p className="text-gray-400">{cert.issuer}</p>
-                  <p className="text-sm text-gray-500">{cert.date}</p>
+                  <p className="text-muted-foreground">{cert.issuer}</p>
+                  <p className="text-sm text-muted-foreground">{cert.date}</p>
                 </div>
               </motion.div>
             ))}
@@ -185,14 +109,20 @@ export default function About() {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="px-4 py-12 sm:py-16 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-center">
+      <section className="py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-purple-500/10 to-blue-500/10" />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          className="relative max-w-4xl mx-auto px-4 text-center"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">Stay Ahead with AI-Powered Strategies!</h2>
-          <p className="mb-6 max-w-2xl mx-auto">Join my newsletter for exclusive insights and tools to supercharge your SaaS success.</p>
+          <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
+            Stay Ahead with AI-Powered Strategies!
+          </h2>
+          <p className="mb-8 text-muted-foreground max-w-2xl mx-auto">
+            Join my newsletter for exclusive insights and tools to supercharge your SaaS success.
+          </p>
           <form 
             onSubmit={handleNewsletterSubmit}
             className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto"
@@ -203,11 +133,12 @@ export default function About() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="px-4 py-2 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-cyan-300 w-full" 
+              className="px-4 py-2 rounded-lg bg-background border focus:outline-none focus:ring-2 focus:ring-primary w-full" 
             />
             <Button 
               type="submit"
-              className="px-6 py-2 rounded-lg bg-white text-cyan-500 font-bold hover:bg-gray-200 transition-colors"
+              size="lg"
+              className="gap-2"
             >
               Sign Up Now
             </Button>

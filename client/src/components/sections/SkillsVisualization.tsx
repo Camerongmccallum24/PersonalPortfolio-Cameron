@@ -8,39 +8,44 @@ const skills = [
   {
     category: "Technical",
     skills: [
-      { name: "SQL", level: 90, type: "Hard", proficiency: "Advanced", example: "Skilled in querying and analyzing data in SQL databases" },
-      { name: "Data Cleaning & Preparation", level: 90, type: "Hard", proficiency: "Advanced", example: "Identifying and rectifying data inconsistencies" },
-      { name: "Power BI", level: 75, type: "Hard", proficiency: "Intermediate", example: "Creating complex data visualizations" },
-      { name: "API Integration", level: 70, type: "Hard", proficiency: "Intermediate", example: "Connecting different software systems" },
-      { name: "AI Automation Tools", level: 85, type: "Hard", proficiency: "Advanced", example: "Developing automated workflows" }
+      { name: "SQL", level: 90, type: "Hard", proficiency: "Advanced", example: "Developed and executed complex SQL queries that reduced data processing time by 20% and improved data accuracy by 15%." },
+      { name: "Data Cleaning & Preparation", level: 90, type: "Hard", proficiency: "Advanced", example: "Wrangled and transformed messy, real-world datasets using Python libraries like Pandas and NumPy, resulting in accurate and actionable insights for business decisions." },
+      { name: "Power BI", level: 75, type: "Hard", proficiency: "Intermediate", example: "Created interactive dashboards and reports using Power BI to visualize data and provide insights." },
+      { name: "API Integration", level: 70, type: "Hard", proficiency: "Intermediate", example: "Integrated various third-party APIs to enhance application functionality and improve user experience." },
+      { name: "AI Automation Tools", level: 85, type: "Hard", proficiency: "Advanced", example: "Utilized AI automation tools to streamline processes and improve efficiency." },
+      { name: "CRM Tools", level: 80, type: "Hard", proficiency: "Intermediate", example: "Effectively utilized CRM tools to manage customer interactions and track customer data." }
     ]
   },
   {
     category: "AI & Data Analytics",
     skills: [
-      { name: "GPT Development", level: 85, type: "Hard", proficiency: "Advanced", example: "Customizing GPT models for specific business needs" },
-      { name: "Predictive Analytics", level: 90, type: "Hard", proficiency: "Advanced", example: "Forecasting business trends" },
-      { name: "Machine Learning Integration", level: 75, type: "Hard", proficiency: "Intermediate", example: "Implementing ML algorithms" },
-      { name: "Data Insights", level: 80, type: "Hard", proficiency: "Advanced", example: "Extracting meaningful patterns from data" },
-      { name: "Data Visualization", level: 90, type: "Hard", proficiency: "Advanced", example: "Creating compelling data stories" }
+      { name: "GPT Development", level: 85, type: "Hard", proficiency: "Advanced", example: "Customized GPT models for specific business needs, leading to a 10% increase in customer engagement and a 5% improvement in customer satisfaction." },
+      { name: "Predictive Analytics", level: 90, type: "Hard", proficiency: "Advanced", example: "Developed and deployed machine learning models for predictive analytics, resulting in a 15% improvement in sales forecasting accuracy." },
+      { name: "Machine Learning Integration", level: 75, type: "Hard", proficiency: "Intermediate", example: "Successfully integrated machine learning models into existing software applications, improving efficiency and automation." },
+      { name: "Data Insights", level: 80, type: "Hard", proficiency: "Intermediate", example: "Extracted valuable insights from data to inform business decisions and drive strategic initiatives." },
+      { name: "Data Exploration", level: 90, type: "Hard", proficiency: "Advanced", example: "Conducted thorough data exploration to identify patterns, trends, and anomalies in large datasets." },
+      { name: "Data Visualization", level: 90, type: "Hard", proficiency: "Advanced", example: "Created compelling data visualizations to communicate complex data findings to stakeholders." }
     ]
   },
   {
     category: "Customer Success",
     skills: [
-      { name: "Stakeholder Communication", level: 90, type: "Soft", proficiency: "Advanced", example: "Effectively managing client expectations" },
-      { name: "Client Retention Strategies", level: 90, type: "Soft", proficiency: "Advanced", example: "Developing long-term client relationships" },
-      { name: "Strategic Account Management", level: 85, type: "Soft", proficiency: "Advanced", example: "Nurturing key client accounts" },
-      { name: "Emotional Intelligence", level: 90, type: "Soft", proficiency: "Advanced", example: "Understanding and managing interpersonal dynamics" },
-      { name: "Problem-Solving", level: 90, type: "Soft", proficiency: "Advanced", example: "Creatively addressing complex challenges" }
+      { name: "Stakeholder Communication", level: 90, type: "Soft", proficiency: "Advanced", example: "Effectively communicated project updates and strategic initiatives to stakeholders, ensuring alignment and buy-in across all levels." },
+      { name: "Client Retention Strategies", level: 90, type: "Soft", proficiency: "Advanced", example: "Developed and implemented client retention strategies that reduced customer churn by 12% and increased customer lifetime value by 8%." },
+      { name: "Strategic Account Management", level: 85, type: "Soft", proficiency: "Advanced", example: "Managed strategic accounts effectively, leading to a 15% increase in account revenue and a 5% improvement in customer satisfaction." },
+      { name: "Emotional Intelligence", level: 90, type: "Soft", proficiency: "Advanced", example: "Leveraged emotional intelligence to build strong customer relationships and resolve conflicts effectively." },
+      { name: "Problem-Solving", level: 90, type: "Soft", proficiency: "Advanced", example: "Effectively solved customer problems and provided timely solutions to enhance customer satisfaction." },
+      { name: "Customer-centric", level: 90, type: "Soft", proficiency: "Advanced", example: "Demonstrated a customer-centric approach in all interactions and decisions, prioritizing customer needs and satisfaction." }
     ]
   }
 ];
 
+type SkillType = 'Hard' | 'Soft' | null;
+
 export function SkillsVisualization() {
-  const [activeCategory, setActiveCategory] = useState(0);
-  const [activeSkillType, setActiveSkillType] = useState(null);
-  const [hoveredSkill, setHoveredSkill] = useState(null);
+  const [activeCategory, setActiveCategory] = useState<number>(0);
+  const [activeSkillType, setActiveSkillType] = useState<SkillType>(null);
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
   // Auto-sliding effect
   useEffect(() => {
@@ -56,22 +61,19 @@ export function SkillsVisualization() {
     .filter(skill => !activeSkillType || skill.type === activeSkillType);
 
   return (
-    <div className="bg-gray-900 py-16 px-4 sm:px-6 lg:px-8">
+    <div className="py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Category Navigation */}
         <div className="flex justify-center mb-8 space-x-4">
           {skills.map((category, index) => (
-            <button
+            <Button
               key={category.category}
               onClick={() => setActiveCategory(index)}
-              className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-                activeCategory === index 
-                  ? 'bg-cyan-500 text-white' 
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-              }`}
+              variant={activeCategory === index ? "default" : "outline"}
+              className="transition-all duration-300"
             >
               {category.category}
-            </button>
+            </Button>
           ))}
         </div>
 
@@ -84,14 +86,14 @@ export function SkillsVisualization() {
             All Skills
           </Button>
           <Button 
-            onClick={() => setActiveSkillType("Hard")}
-            variant={activeSkillType === "Hard" ? "default" : "outline"}
+            onClick={() => setActiveSkillType('Hard')}
+            variant={activeSkillType === 'Hard' ? "default" : "outline"}
           >
             Hard Skills
           </Button>
           <Button 
-            onClick={() => setActiveSkillType("Soft")}
-            variant={activeSkillType === "Soft" ? "default" : "outline"}
+            onClick={() => setActiveSkillType('Soft')}
+            variant={activeSkillType === 'Soft' ? "default" : "outline"}
           >
             Soft Skills
           </Button>
@@ -105,7 +107,7 @@ export function SkillsVisualization() {
           transition={{ duration: 0.5 }}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
             {filteredSkills.map((skill, index) => (
               <motion.div
                 key={skill.name}
@@ -117,24 +119,21 @@ export function SkillsVisualization() {
                 onMouseEnter={() => setHoveredSkill(skill.name)}
                 onMouseLeave={() => setHoveredSkill(null)}
               >
-                <Card className={`bg-gray-800 border-none transition-all duration-300 ${
-                  hoveredSkill === skill.name ? 'transform scale-105 shadow-lg' : ''
-                }`}>
+                <Card className="relative overflow-hidden transition-all duration-300 hover:shadow-xl">
                   <CardContent className="pt-6 pb-4 px-4">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="font-medium text-white text-lg">
+                      <span className="font-medium text-lg">
                         {skill.name}
                       </span>
-                      <span className="text-sm text-gray-400">
+                      <span className="text-sm text-muted-foreground">
                         {skill.level}%
                       </span>
                     </div>
                     <Progress 
                       value={skill.level} 
-                      className="h-2 bg-gray-700/20"
-                      indicatorClassName="rounded-full"
+                      className="h-2"
                     />
-                    <div className="mt-2 text-sm text-gray-400">
+                    <div className="mt-2 text-sm text-muted-foreground">
                       Proficiency: {skill.proficiency}
                     </div>
 
@@ -145,7 +144,7 @@ export function SkillsVisualization() {
                         animate={{ opacity: 1 }}
                         className="absolute inset-0 bg-black/80 p-4 rounded-lg flex items-center justify-center"
                       >
-                        <p className="text-white text-center">{skill.example}</p>
+                        <p className="text-white text-center text-sm">{skill.example}</p>
                       </motion.div>
                     )}
                   </CardContent>

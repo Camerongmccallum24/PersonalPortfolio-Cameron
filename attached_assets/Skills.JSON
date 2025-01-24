@@ -1,0 +1,236 @@
+[
+  {
+    "Skill_Category": "Technical",
+    "Skill_Name": "SQL",
+    "Skill_Type": "Hard",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 90,
+    "Skill_Grouping": "Data Engineering",
+    "Skill_Example": "Developed and executed complex SQL queries that reduced data processing time by 20% and improved data accuracy by 15%."
+  },
+  {
+    "Skill_Category": "Data Analytics",
+    "Skill_Name": "Data Cleaning & Preparation",
+    "Skill_Type": "Hard",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 90,
+    "Skill_Grouping": "Data Wrangling",
+    "Skill_Example": "Wrangled and transformed messy, real-world datasets using Python libraries like Pandas and NumPy, resulting in accurate and actionable insights for business decisions."
+  },
+  {
+    "Skill_Category": "AI Development",
+    "Skill_Name": "GPT Development",
+    "Skill_Type": "Hard",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 85,
+    "Skill_Grouping": "Natural Language Processing",
+    "Skill_Example": "Customized GPT models for specific business needs, leading to a 10% increase in customer engagement and a 5% improvement in customer satisfaction."
+  },
+  {
+    "Skill_Category": "AI Development",
+    "Skill_Name": "Predictive Analytics",
+    "Skill_Type": "Hard",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 90,
+    "Skill_Grouping": "Machine Learning",
+    "Skill_Example": "Developed and deployed machine learning models for predictive analytics, resulting in a 15% improvement in sales forecasting accuracy."
+  },
+  {
+    "Skill_Category": "Leadership and Strategy",
+    "Skill_Name": "Change Management",
+    "Skill_Type": "Soft",
+    "Skill_Profic": "Intermediate",
+    "Skill_Level": 75,
+    "Skill_Grouping": "Organizational Development",
+    "Skill_Example": "Successfully implemented organizational changes that improved team productivity by 10% and reduced employee turnover by 5%."
+  },
+  {
+    "Skill_Category": "Leadership and Strategy",
+    "Skill_Name": "Stakeholder Communication",
+    "Skill_Type": "Soft",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 90,
+    "Skill_Grouping": "Communication",
+    "Skill_Example": "Effectively communicated project updates and strategic initiatives to stakeholders, ensuring alignment and buy-in across all levels."
+  },
+  {
+    "Skill_Category": "Customer Success",
+    "Skill_Name": "Client Retention Strategies",
+    "Skill_Type": "Soft",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 90,
+    "Skill_Grouping": "Customer Relationship Management",
+    "Skill_Example": "Developed and implemented client retention strategies that reduced customer churn by 12% and increased customer lifetime value by 8%."
+  },
+  {
+    "Skill_Category": "AI Development",
+    "Skill_Name": "Machine Learning Integration",
+    "Skill_Type": "Hard",
+    "Skill_Profic": "Intermediate",
+    "Skill_Level": 75,
+    "Skill_Grouping": "Software Engineering",
+    "Skill_Example": "Successfully integrated machine learning models into existing software applications, improving efficiency and automation."
+  },
+  {
+    "Skill_Category": "Technical",
+    "Skill_Name": "API Integration",
+    "Skill_Type": "Hard",
+    "Skill_Profic": "Intermediate",
+    "Skill_Level": 70,
+    "Skill_Grouping": "Software Development",
+    "Skill_Example": "Integrated various third-party APIs to enhance application functionality and improve user experience."
+  },
+  {
+    "Skill_Category": "AI Development",
+    "Skill_Name": "AI Workflow Automation",
+    "Skill_Type": "Hard",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 85,
+    "Skill_Grouping": "Process Optimization",
+    "Skill_Example": "Automated key workflows using AI tools, resulting in a 20% reduction in manual effort and a 10% improvement in process efficiency."
+  },
+  {
+    "Skill_Category": "Customer Success",
+    "Skill_Name": "Strategic Account Management",
+    "Skill_Type": "Soft",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 85,
+    "Skill_Grouping": "Customer Relationship Management",
+    "Skill_Example": "Managed strategic accounts effectively, leading to a 15% increase in account revenue and a 5% improvement in customer satisfaction."
+  },
+  {
+    "Skill_Category": "Customer Success",
+    "Skill_Name": "Emotional Intelligence",
+    "Skill_Type": "Soft",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 90,
+    "Skill_Grouping": "Interpersonal Skills",
+    "Skill_Example": "Leveraged emotional intelligence to build strong customer relationships and resolve conflicts effectively."
+  },
+  {
+    "Skill_Category": "Leadership and Strategy",
+    "Skill_Name": "Cross-Functional Team Leadership",
+    "Skill_Type": "Soft",
+    "Skill_Profic": "Intermediate",
+    "Skill_Level": 80,
+    "Skill_Grouping": "Team Management",
+    "Skill_Example": "Led cross-functional teams to successfully deliver projects on time and within budget."
+  },
+  {
+    "Skill_Category": "Customer Success",
+    "Skill_Name": "Customer Lifecycle Management",
+    "Skill_Type": "Soft",
+    "Skill_Profic": "Intermediate",
+    "Skill_Level": 80,
+    "Skill_Grouping": "Customer Experience",
+    "Skill_Example": "Developed and implemented customer lifecycle management strategies that improved customer engagement and retention."
+  },
+  {
+    "Skill_Category": "Data Analytics",
+    "Skill_Name": "Data Insights",
+    "Skill_Type": "Hard",
+    "Skill_Profic": "Intermediate",
+    "Skill_Level": 80,
+    "Skill_Grouping": "Data Analysis",
+    "Skill_Example": "Extracted valuable insights from data to inform business decisions and drive strategic initiatives."
+  },
+  {
+    "Skill_Category": "Customer Success",
+    "Skill_Name": "Churn Mitigation",
+    "Skill_Type": "Soft",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 85,
+    "Skill_Grouping": "Customer Retention",
+    "Skill_Example": "Implemented churn mitigation strategies that reduced customer churn by 10% and improved customer loyalty."
+  },
+  {
+    "Skill_Category": "Customer Success",
+    "Skill_Name": "Relationship Management",
+    "Skill_Type": "Soft",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 90,
+    "Skill_Grouping": "Customer Relationship Management",
+    "Skill_Example": "Built and maintained strong relationships with key clients, resulting in increased customer satisfaction and repeat business."
+  },
+  {
+    "Skill_Category": "Customer Success",
+    "Skill_Name": "Customer Sentiment Analysis",
+    "Skill_Type": "Hard",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 90,
+    "Skill_Grouping": "Data Analysis",
+    "Skill_Example": "Analyzed customer sentiment data to identify areas for improvement and enhance customer experience."
+  },
+  {
+    "Skill_Category": "Customer Success",
+    "Skill_Name": "Adaptability & Resilience",
+    "Skill_Type": "Soft",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 90,
+    "Skill_Grouping": "Interpersonal Skills",
+    "Skill_Example": "Demonstrated adaptability and resilience in navigating challenging situations and achieving positive outcomes."
+  },
+  {
+    "Skill_Category": "Technical",
+    "Skill_Name": "AI Automation Tools",
+    "Skill_Type": "Hard",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 85,
+    "Skill_Grouping": "Automation",
+    "Skill_Example": "Utilized AI automation tools to streamline processes and improve efficiency."
+  },
+  {
+    "Skill_Category": "Technical",
+    "Skill_Name": "Power BI",
+    "Skill_Type": "Hard",
+    "Skill_Profic": "Intermediate",
+    "Skill_Level": 75,
+    "Skill_Grouping": "Data Visualization",
+    "Skill_Example": "Created interactive dashboards and reports using Power BI to visualize data and provide insights."
+  },
+  {
+    "Skill_Category": "Technical",
+    "Skill_Name": "CRM Tools",
+    "Skill_Type": "Hard",
+    "Skill_Profic": "Intermediate",
+    "Skill_Level": 80,
+    "Skill_Grouping": "Customer Relationship Management",
+    "Skill_Example": "Effectively utilized CRM tools to manage customer interactions and track customer data."
+  },
+  {
+    "Skill_Category": "Data Analytics",
+    "Skill_Name": "Data Exploration",
+    "Skill_Type": "Hard",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 90,
+    "Skill_Grouping": "Data Analysis",
+    "Skill_Example": "Conducted thorough data exploration to identify patterns, trends, and anomalies in large datasets."
+  },
+  {
+    "Skill_Category": "Data Analytics",
+    "Skill_Name": "Data Visualization",
+    "Skill_Type": "Hard",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 90,
+    "Skill_Grouping": "Data Visualization",
+    "Skill_Example": "Created compelling data visualizations to communicate complex data findings to stakeholders."
+  },
+  {
+    "Skill_Category": "Customer Success",
+    "Skill_Name": "Problem-Solving",
+    "Skill_Type": "Soft",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 90,
+    "Skill_Grouping": "Interpersonal Skills",
+    "Skill_Example": "Effectively solved customer problems and provided timely solutions to enhance customer satisfaction."
+  },
+  {
+    "Skill_Category": "Customer Success",
+    "Skill_Name": "Customer-centric",
+    "Skill_Type": "Soft",
+    "Skill_Profic": "Advanced",
+    "Skill_Level": 90,
+    "Skill_Grouping": "Customer Focus",
+    "Skill_Example": "Demonstrated a customer-centric approach in all interactions and decisions, prioritizing customer needs and satisfaction."
+  }
+]
