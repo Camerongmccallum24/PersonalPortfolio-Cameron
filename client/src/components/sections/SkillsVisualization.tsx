@@ -64,7 +64,7 @@ export function SkillsVisualization() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setActiveCategory((prev) => (prev + 1) % skills.length);
-    }, 5000);
+    }, 6000); // Increased duration for better readability
     return () => clearInterval(intervalId);
   }, []);
 
@@ -72,40 +72,42 @@ export function SkillsVisualization() {
     .filter(skill => !activeSkillType || skill.type === activeSkillType);
 
   return (
-    <div className="py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex justify-center mb-8 space-x-4">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background/50">
+      <div className="max-w-6xl mx-auto space-y-8">
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
           {skills.map((category, index) => (
             <Button
               key={category.category}
               onClick={() => setActiveCategory(index)}
               variant={activeCategory === index ? "default" : "outline"}
-              className="transition-all duration-300"
+              className="transition-all duration-300 hover:scale-105"
+              size="lg"
             >
               {category.category}
             </Button>
           ))}
         </div>
 
-        <div className="flex justify-center mb-8 space-x-4">
-          <Button 
-            onClick={() => setActiveSkillType(null)}
-            variant={activeSkillType === null ? "default" : "outline"}
-          >
-            All Skills
-          </Button>
-          <Button 
-            onClick={() => setActiveSkillType('Hard')}
-            variant={activeSkillType === 'Hard' ? "default" : "outline"}
-          >
-            Hard Skills
-          </Button>
-          <Button 
-            onClick={() => setActiveSkillType('Soft')}
-            variant={activeSkillType === 'Soft' ? "default" : "outline"}
-          >
-            Soft Skills
-          </Button>
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {['All Skills', 'Hard Skills', 'Soft Skills'].map((type) => (
+            <Button 
+              key={type}
+              onClick={() => setActiveSkillType(
+                type === 'All Skills' ? null : 
+                type === 'Hard Skills' ? 'Hard' : 'Soft'
+              )}
+              variant={
+                (type === 'All Skills' && activeSkillType === null) ||
+                (type === 'Hard Skills' && activeSkillType === 'Hard') ||
+                (type === 'Soft Skills' && activeSkillType === 'Soft')
+                  ? "default"
+                  : "outline"
+              }
+              className="transition-all duration-300 hover:scale-105"
+            >
+              {type}
+            </Button>
+          ))}
         </div>
 
         <motion.div 
@@ -113,7 +115,7 @@ export function SkillsVisualization() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence mode="wait">
             {filteredSkills.map((skill, index) => (
@@ -123,37 +125,45 @@ export function SkillsVisualization() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
+                className="relative group"
                 onMouseEnter={() => setHoveredSkill(skill.name)}
                 onMouseLeave={() => setHoveredSkill(null)}
-                className="relative"
               >
-                <Card className="relative overflow-hidden transition-all duration-300 hover:shadow-xl">
-                  <CardContent className="pt-6 pb-4 px-4">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-medium text-lg">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-purple-500/50 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-300" />
+                <Card className="relative h-full bg-card/95 backdrop-blur-sm border-0">
+                  <CardContent className="p-6">
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="font-semibold text-lg">
                         {skill.name}
-                      </span>
-                      <span className="text-sm text-muted-foreground">
+                      </h3>
+                      <span className="text-sm font-medium text-muted-foreground">
                         {skill.level}%
                       </span>
                     </div>
+
                     <Progress 
                       value={skill.level} 
-                      className="h-2"
+                      className="h-2 mb-4"
                     />
-                    <div className="mt-2 text-sm text-muted-foreground">
-                      Proficiency: {skill.proficiency}
+
+                    <div className="text-sm text-muted-foreground">
+                      <span className="font-medium">Proficiency:</span> {skill.proficiency}
                     </div>
 
-                    {hoveredSkill === skill.name && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="absolute inset-0 bg-black/80 p-4 rounded-lg flex items-center justify-center"
-                      >
-                        <p className="text-white text-center text-sm">{skill.example}</p>
-                      </motion.div>
-                    )}
+                    <AnimatePresence>
+                      {hoveredSkill === skill.name && (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.95 }}
+                          className="absolute inset-0 bg-card/95 backdrop-blur-md p-6 rounded-lg flex items-center justify-center"
+                        >
+                          <p className="text-sm text-foreground/90 leading-relaxed">
+                            {skill.example}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -161,7 +171,7 @@ export function SkillsVisualization() {
           </AnimatePresence>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }
 

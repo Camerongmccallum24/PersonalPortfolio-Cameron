@@ -31,9 +31,9 @@ export function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
-      className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-sm border-b"
+      className="fixed top-0 w-full z-50 bg-background/30 backdrop-blur-xl border-b border-border/30 supports-[backdrop-filter]:bg-background/20"
     >
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <Link href="/">
           <motion.span 
             whileHover={{ scale: 1.05 }}
@@ -45,7 +45,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-1">
+        <div className="hidden md:flex items-center space-x-2">
           {navItems.map(({ path, label, icon: Icon }) => (
             <Link key={path} href={path}>
               <motion.div
@@ -54,7 +54,7 @@ export function Navbar() {
               >
                 <Button
                   variant={location === path ? "default" : "ghost"}
-                  className="relative overflow-hidden group"
+                  className="relative overflow-hidden group px-4"
                 >
                   <Icon className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
                   {label}
@@ -118,7 +118,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ type: "spring", bounce: 0, duration: 0.3 }}
-            className="absolute top-16 left-0 right-0 bg-background border-b md:hidden overflow-hidden"
+            className="absolute top-20 left-0 right-0 bg-background/30 backdrop-blur-xl border-b border-border/30 md:hidden overflow-hidden"
           >
             <motion.div 
               initial={{ y: -20 }}

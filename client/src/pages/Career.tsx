@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { TimelineCard } from "@/components/sections/TimelineCard";
 import { Helmet } from "react-helmet";
@@ -85,25 +84,39 @@ export default function Career() {
         <title>Professional Journey | AI Strategy & Customer Success Expert | Cameron McCallum</title>
         <meta name="description" content="Explore Cameron McCallum's career journey from Customer Service to AI Strategy Consulting, showcasing expertise in customer success and digital transformation." />
       </Helmet>
-      <div className="w-full px-4 py-12">
-        <div className="max-w-4xl mx-auto">
+      <section className="page-container bg-background/50">
+        <div className="container mx-auto px-[var(--content-padding)]">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
+            className="text-4xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
           >
             Professional Journey
           </motion.h1>
-          {experiences.map((experience, index) => (
-            <TimelineCard
-              key={index}
-              {...experience}
-              index={index}
-            />
-          ))}
+          <div className="space-y-8">
+            {experiences.map((experience, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.1,
+                  type: "spring",
+                  damping: 20,
+                  stiffness: 100
+                }}
+              >
+                <TimelineCard
+                  {...experience}
+                  index={index}
+                />
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }
