@@ -5,7 +5,7 @@ import {
   SiTypescript,
   SiPython,
   SiDocker,
-  SiAmazon,
+  SiAmazonwebservices,
   SiTensorflow,
   SiScikitlearn,
   SiPandas,
@@ -18,8 +18,6 @@ import {
   SiNextdotjs,
   SiMongodb,
   SiRedis,
-  SiGooglecloud,
-  SiMicrosoftazure,
   SiGraphql,
   SiJavascript,
   SiHtml5,
@@ -36,7 +34,7 @@ export function TechStack() {
     { Icon: SiCss3, name: "CSS3" },
     { Icon: SiPython, name: "Python" },
     { Icon: SiDocker, name: "Docker" },
-    { Icon: SiAmazon, name: "AWS" },
+    { Icon: SiAmazonwebservices, name: "AWS" },
     { Icon: SiTensorflow, name: "TensorFlow" },
     { Icon: SiScikitlearn, name: "Scikit-learn" },
     { Icon: SiPandas, name: "Pandas" },
@@ -49,18 +47,16 @@ export function TechStack() {
     { Icon: SiNextdotjs, name: "Next.js" },
     { Icon: SiMongodb, name: "MongoDB" },
     { Icon: SiRedis, name: "Redis" },
-    { Icon: SiGooglecloud, name: "Google Cloud" },
-    { Icon: SiMicrosoftazure, name: "Microsoft Azure" },
     { Icon: SiGraphql, name: "GraphQL" },
     { Icon: SiGit, name: "Git" },
   ];
 
   return (
-    <div className="py-16 md:py-20 overflow-hidden">
+    <section className="py-16 md:py-20 overflow-hidden bg-background">
       <div className="container mx-auto px-4">
         <div className="relative">
           <motion.div
-            className="flex flex-row space-x-8 md:space-x-12 lg:space-x-16"
+            className="flex flex-row space-x-12 md:space-x-16 lg:space-x-20"
             initial={{ x: 0 }}
             animate={{
               x: [0, -3000],
@@ -81,7 +77,7 @@ export function TechStack() {
                 whileHover={{ scale: 1.1 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
-                <tech.Icon className="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 text-primary transition-colors duration-300 group-hover:text-blue-500" />
+                <tech.Icon className="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 transition-colors duration-300 group-hover:text-primary" />
                 <span className="text-xs md:text-sm lg:text-base text-muted-foreground group-hover:text-primary transition-colors duration-300">
                   {tech.name}
                 </span>
@@ -92,6 +88,6 @@ export function TechStack() {
           <div className="absolute inset-y-0 right-0 w-24 md:w-32 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
