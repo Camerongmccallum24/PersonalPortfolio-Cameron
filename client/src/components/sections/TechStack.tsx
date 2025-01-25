@@ -1,91 +1,141 @@
-import React from "react";
-import { motion } from "framer-motion";
-import {
-  SiReact,
-  SiTypescript,
-  SiPython,
-  SiDocker,
-  SiAmazonwebservices,
-  SiTensorflow,
-  SiScikitlearn,
-  SiPandas,
-  SiPostgresql,
-  SiNodedotjs,
-  SiFastapi,
-  SiKubernetes,
-  SiTailwindcss,
-  SiFramer,
-  SiNextdotjs,
-  SiMongodb,
-  SiRedis,
-  SiGraphql,
-  SiJavascript,
-  SiHtml5,
-  SiCss3,
-  SiGit,
-} from "react-icons/si";
+import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
+
+const techStack = [
+  {
+    name: "AWS",
+    logo: "https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg",
+  },
+  {
+    name: "Google Cloud",
+    logo: "https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg",
+  },
+  {
+    name: "Microsoft Azure",
+    logo: "https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg",
+  },
+  {
+    name: "Node.js",
+    logo: "https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg",
+  },
+  {
+    name: "FastAPI",
+    logo: "https://www.vectorlogo.zone/logos/fastapi/fastapi-icon.svg",
+  },
+  {
+    name: "Flask",
+    logo: "https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg",
+  },
+  {
+    name: "MySQL",
+    logo: "https://www.vectorlogo.zone/logos/mysql/mysql-icon.svg",
+  },
+  {
+    name: "PostgreSQL",
+    logo: "https://www.vectorlogo.zone/logos/postgresql/postgresql-icon.svg",
+  },
+  {
+    name: "GitHub",
+    logo: "https://www.vectorlogo.zone/logos/github/github-icon.svg",
+  },
+  {
+    name: "Docker",
+    logo: "https://www.vectorlogo.zone/logos/docker/docker-icon.svg",
+  },
+  {
+    name: "Firebase",
+    logo: "https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg",
+  },
+  {
+    name: "Python",
+    logo: "https://www.vectorlogo.zone/logos/python/python-icon.svg",
+  },
+  {
+    name: "React",
+    logo: "https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg",
+  },
+  {
+    name: "TypeScript",
+    logo: "https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-icon.svg",
+  },
+  {
+    name: "TensorFlow",
+    logo: "https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg",
+  },
+  {
+    name: "Kubernetes",
+    logo: "https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg",
+  },
+] as const;
 
 export function TechStack() {
-  const techStack = [
-    { Icon: SiReact, name: "React" },
-    { Icon: SiTypescript, name: "TypeScript" },
-    { Icon: SiJavascript, name: "JavaScript" },
-    { Icon: SiHtml5, name: "HTML5" },
-    { Icon: SiCss3, name: "CSS3" },
-    { Icon: SiPython, name: "Python" },
-    { Icon: SiDocker, name: "Docker" },
-    { Icon: SiAmazonwebservices, name: "AWS" },
-    { Icon: SiTensorflow, name: "TensorFlow" },
-    { Icon: SiScikitlearn, name: "Scikit-learn" },
-    { Icon: SiPandas, name: "Pandas" },
-    { Icon: SiPostgresql, name: "PostgreSQL" },
-    { Icon: SiNodedotjs, name: "Node.js" },
-    { Icon: SiFastapi, name: "FastAPI" },
-    { Icon: SiKubernetes, name: "Kubernetes" },
-    { Icon: SiTailwindcss, name: "Tailwind CSS" },
-    { Icon: SiFramer, name: "Framer Motion" },
-    { Icon: SiNextdotjs, name: "Next.js" },
-    { Icon: SiMongodb, name: "MongoDB" },
-    { Icon: SiRedis, name: "Redis" },
-    { Icon: SiGraphql, name: "GraphQL" },
-    { Icon: SiGit, name: "Git" },
-  ];
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
-    <section className="py-16 md:py-20 overflow-hidden bg-background">
-      <div className="container mx-auto px-4">
-        <div className="relative">
-          <motion.div
-            className="flex flex-row space-x-12 md:space-x-16 lg:space-x-20"
-            initial={{ x: 0 }}
-            animate={{
-              x: [0, -3000],
-              transition: {
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 60,
-                  ease: "linear",
-                },
-              },
-            }}
-          >
-            {[...techStack, ...techStack].map((tech, index) => (
-              <motion.div
-                key={`${tech.name}-${index}`}
-                className="flex flex-col items-center space-y-3 min-w-[80px] md:min-w-[100px] group cursor-pointer"
-                whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                <tech.Icon className="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 transition-colors duration-300 group-hover:text-primary" />
-                <span className="text-xs md:text-sm lg:text-base text-muted-foreground group-hover:text-primary transition-colors duration-300">
-                  {tech.name}
-                </span>
-              </motion.div>
-            ))}
-          </motion.div>
-          <div className="absolute inset-y-0 left-0 w-24 md:w-32 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
-          <div className="absolute inset-y-0 right-0 w-24 md:w-32 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
+          <section className="w-full overflow-hidden bg-background/50 border-y border-border/50 py-16">
+            <div className="container mx-auto px-4">
+              <h2 className="text-3xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                Tech Stack
+              </h2>
+
+              <div className="relative">
+          {/* Gradient Overlays */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background/50 to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background/50 to-transparent z-10" />
+
+          {/* Scrolling Container */}
+          <div className="flex overflow-hidden">
+            <div
+              className={cn(
+                "flex",
+                isMobile ? "animate-scroll-mobile" : "animate-scroll",
+              )}
+            >
+              {[...techStack, ...techStack].map((tech, index) => (
+                <div
+                  key={`${tech.name}-${index}`}
+                  className={cn(
+                    "flex-shrink-0",
+                    isMobile ? "mx-4" : "mx-8",
+                    "group relative",
+                    "transition-transform duration-300 hover:scale-110",
+                  )}
+                >
+                  <div
+                    className={cn(
+                      "relative",
+                      isMobile ? "w-12 h-12" : "w-16 h-16",
+                    )}
+                  >
+                    <img
+                      src={tech.logo}
+                      alt={`${tech.name} logo`}
+                      className="w-full h-full object-contain"
+                      loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.src = `https://via.placeholder.com/${isMobile ? "48" : "64"}?text=${tech.name.charAt(0)}`;
+                      }}
+                    />
+                  </div>
+                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    <span className="text-xs text-muted-foreground">
+                      {tech.name}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
