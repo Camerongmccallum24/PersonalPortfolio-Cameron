@@ -52,8 +52,8 @@ app.use((req, res, next) => {
       serveStatic(app);
     }
 
-    // Use port 3000 instead of 5000
-    const PORT = 3000;
+    // Use port 4000 to avoid conflicts
+    const PORT = 4000;
     server.listen(PORT, "0.0.0.0", () => {
       log(`Server running on port ${PORT}`);
     }).on('error', (error: any) => {

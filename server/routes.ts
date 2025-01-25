@@ -1,5 +1,12 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import { z } from "zod";
+
+// Input validation schemas
+const recommendationsSchema = z.object({
+  customerGoals: z.string().min(1, "Customer goals are required"),
+  customerChallenges: z.string().min(1, "Customer challenges are required"),
+});
 
 export function registerRoutes(app: Express): Server {
   // Health check endpoint
@@ -7,18 +14,13 @@ export function registerRoutes(app: Express): Server {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
-  // Demo recommendations endpoint
+  // Demo recommendations endpoint with validation
   app.post('/api/demo/recommendations', async (req, res) => {
     try {
-      const { customerGoals, customerChallenges } = req.body;
+      const validatedData = recommendationsSchema.parse(req.body);
+      const { customerGoals, customerChallenges } = validatedData;
 
-      if (!customerGoals || !customerChallenges) {
-        return res.status(400).json({ 
-          message: 'Missing required fields: customerGoals and customerChallenges'
-        });
-      }
-
-      // Mock recommendations based on input
+      // Generate recommendations based on input
       const recommendations = [
         `Based on your goal "${customerGoals.slice(0, 30)}...", implement regular success reviews`,
         `To address "${customerChallenges.slice(0, 30)}...", establish clear KPIs and metrics`,
@@ -33,6 +35,14 @@ export function registerRoutes(app: Express): Server {
         timestamp: new Date().toISOString()
       });
     } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({
+          success: false,
+          message: 'Validation error',
+          errors: error.errors
+        });
+      }
+
       console.error('Error generating recommendations:', error);
       res.status(500).json({ 
         success: false,

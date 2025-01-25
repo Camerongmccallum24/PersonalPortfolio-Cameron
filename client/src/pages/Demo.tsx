@@ -5,34 +5,51 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
-
-// Mock recommendations for development preview
-const mockRecommendations = [
-  "Schedule quarterly business reviews to align on goals",
-  "Create personalized success plans based on customer objectives",
-  "Set up regular check-ins for continuous feedback",
-  "Implement automated health scoring system",
-  "Develop targeted training programs"
-];
+import { useMutation } from "@tanstack/react-query";
 
 export default function Demo() {
-  const [loading, setLoading] = useState(false);
   const [recommendations, setRecommendations] = useState<string[]>([]);
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
+  const { mutate: generateRecommendations, isLoading } = useMutation({
+    mutationFn: async (formData: FormData) => {
+      const data = {
+        customerGoals: formData.get('customerGoals'),
+        customerChallenges: formData.get('customerChallenges'),
+      };
 
-    // Simulate API call delay
-    setTimeout(() => {
-      setRecommendations(mockRecommendations);
-      setLoading(false);
+      const response = await fetch('/api/demo/recommendations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Failed to generate recommendations');
+      }
+
+      return response.json();
+    },
+    onSuccess: (data) => {
+      setRecommendations(data.recommendations);
       toast({
         title: "Success",
         description: "Generated recommendations based on your input.",
       });
-    }, 1500);
+    },
+    onError: (error) => {
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to generate recommendations. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    generateRecommendations(new FormData(e.currentTarget));
   };
 
   return (
@@ -73,9 +90,9 @@ export default function Demo() {
               <Button 
                 type="submit" 
                 className="w-full"
-                disabled={loading}
+                disabled={isLoading}
               >
-                {loading ? (
+                {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     Generating...
