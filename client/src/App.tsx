@@ -10,6 +10,7 @@ import Career from "@/pages/Career";
 import Projects from "@/pages/Projects";
 import Blog from "@/pages/Blog";
 import Contact from "@/pages/Contact";
+import Demo from "@/pages/Demo";
 import CaseStudyGPTShowcase from "@/pages/CaseStudyGPTShowcase";
 import CaseStudyPortal from "@/pages/CaseStudyPortal";
 import CaseStudyAutomator from "@/pages/CaseStudyAutomator";
@@ -36,6 +37,7 @@ function App() {
           <Route path="/projects" component={Projects} />
           <Route path="/blog" component={Blog} />
           <Route path="/contact" component={Contact} />
+          <Route path="/demo" component={Demo} />
           <Route path="/case-study/ai-tools-directory" component={CaseStudyAITools} />
           <Route path="/case-study/customer-success-gpt-showcase" component={CaseStudyGPTShowcase} />
           <Route path="/case-study/customer-success-portal" component={CaseStudyPortal} />
