@@ -53,15 +53,18 @@ app.use((req, res, next) => {
     }
 
     const PORT = process.env.PORT || 3000;
-    server.listen(PORT, '0.0.0.0', () => {
-      log(`Server running on port ${PORT}`);
+    const HOST = '0.0.0.0';
+    server.listen(PORT, HOST, () => {
+      log(`Server running on http://${HOST}:${PORT}`);
     }).on('error', (error: any) => {
       if (error.code === 'EADDRINUSE') {
-        log(`Port ${PORT} is already in use`);
+        const newPort = parseInt(PORT.toString()) + 1;
+        log(`Port ${PORT} is in use, trying ${newPort}...`);
+        server.listen(newPort, HOST);
+      } else {
+        log(`Failed to start server: ${error.message}`);
         process.exit(1);
       }
-      log(`Failed to start server: ${error.message}`);
-      process.exit(1);
     });
   } catch (error) {
     log(`Failed to start application: ${error instanceof Error ? error.message : 'Unknown error'}`);
