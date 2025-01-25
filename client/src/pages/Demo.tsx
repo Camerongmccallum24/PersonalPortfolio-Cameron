@@ -6,6 +6,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 
+// Mock recommendations for development preview
+const mockRecommendations = [
+  "Schedule quarterly business reviews to align on goals",
+  "Create personalized success plans based on customer objectives",
+  "Set up regular check-ins for continuous feedback",
+  "Implement automated health scoring system",
+  "Develop targeted training programs"
+];
+
 export default function Demo() {
   const [loading, setLoading] = useState(false);
   const [recommendations, setRecommendations] = useState<string[]>([]);
@@ -15,34 +24,15 @@ export default function Demo() {
     e.preventDefault();
     setLoading(true);
 
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      customerGoals: formData.get('customerGoals'),
-      customerChallenges: formData.get('customerChallenges'),
-    };
-
-    try {
-      const response = await fetch('/api/demo/recommendations', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to generate recommendations');
-      }
-
-      const result = await response.json();
-      setRecommendations(result.recommendations);
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to generate recommendations. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
+    // Simulate API call delay
+    setTimeout(() => {
+      setRecommendations(mockRecommendations);
       setLoading(false);
-    }
+      toast({
+        title: "Success",
+        description: "Generated recommendations based on your input.",
+      });
+    }, 1500);
   };
 
   return (
