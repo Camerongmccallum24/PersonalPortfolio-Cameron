@@ -12,7 +12,6 @@ console.log("Starting server...");
 // Global error handler for uncaught exceptions
 process.on('uncaughtException', (error: NodeJS.ErrnoException) => {
   console.error('Uncaught Exception:', error);
-  // Don't exit on port binding errors
   if (error.code !== 'EADDRINUSE') {
     process.exit(1);
   }
@@ -52,8 +51,39 @@ app.use((req, res, next) => {
 
 let activeServer: ReturnType<typeof createServer> | null = null;
 
-const startServer = async (port: number): Promise<void> => {
+// Try ports starting from startPort until we find an available one
+const findAvailablePort = async (startPort: number, maxAttempts: number = 10): Promise<number> => {
+  for (let port = startPort; port < startPort + maxAttempts; port++) {
+    try {
+      const server = createServer();
+      await new Promise<void>((resolve, reject) => {
+        server.once('error', (err: NodeJS.ErrnoException) => {
+          if (err.code === 'EADDRINUSE') {
+            server.close();
+            resolve();
+          } else {
+            reject(err);
+          }
+        });
+        server.once('listening', () => {
+          server.close();
+          resolve();
+        });
+        server.listen(port, '0.0.0.0');
+      });
+      return port;
+    } catch (err) {
+      if (port === startPort + maxAttempts - 1) {
+        throw new Error('No available ports found');
+      }
+    }
+  }
+  throw new Error('No available ports found');
+};
+
+const startServer = async (): Promise<void> => {
   try {
+    const port = await findAvailablePort(5000);
     const server = registerRoutes(app);
     activeServer = server;
 
@@ -65,9 +95,6 @@ const startServer = async (port: number): Promise<void> => {
       res.status(status).json({ message });
     });
 
-    // importantly only setup vite in development and after
-    // setting up all the other routes so the catch-all route
-    // doesn't interfere with the other routes
     if (app.get("env") === "development") {
       await setupVite(app, server);
     } else {
@@ -80,14 +107,8 @@ const startServer = async (port: number): Promise<void> => {
           log(`Server successfully started on port ${port}`);
           resolve();
         })
-        .once('error', (err: NodeJS.ErrnoException) => {
-          if (err.code === 'EADDRINUSE') {
-            log(`Port ${port} is in use, retrying on port ${port + 1}...`);
-            server.close();
-            startServer(port + 1).then(resolve).catch(reject);
-          } else {
-            reject(err);
-          }
+        .once('error', (err) => {
+          reject(err);
         });
     });
   } catch (error) {
@@ -96,8 +117,8 @@ const startServer = async (port: number): Promise<void> => {
   }
 };
 
-// Start server with initial port
-startServer(5000).catch((error) => {
+// Start the server
+startServer().catch((error) => {
   console.error('Failed to start server:', error);
   process.exit(1);
 });
