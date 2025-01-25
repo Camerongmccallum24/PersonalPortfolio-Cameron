@@ -8,27 +8,40 @@ export function registerRoutes(app: Express): Server {
   });
 
   // Demo recommendations endpoint
-  app.post('/api/demo/recommendations', (req, res) => {
+  app.post('/api/demo/recommendations', async (req, res) => {
     try {
       const { customerGoals, customerChallenges } = req.body;
-      console.log('Received request:', { customerGoals, customerChallenges });
 
+      if (!customerGoals || !customerChallenges) {
+        return res.status(400).json({ 
+          message: 'Missing required fields: customerGoals and customerChallenges'
+        });
+      }
+
+      // Mock recommendations based on input
       const recommendations = [
-        "Schedule a quarterly business review to align on goals",
-        "Create personalized success plan",
-        "Set up regular check-ins for feedback",
-        "Implement automated health scoring"
+        `Based on your goal "${customerGoals.slice(0, 30)}...", implement regular success reviews`,
+        `To address "${customerChallenges.slice(0, 30)}...", establish clear KPIs and metrics`,
+        "Create a detailed onboarding plan with clear milestones",
+        "Schedule monthly strategy sessions to track progress",
+        "Implement automated health scoring system"
       ];
 
-      res.json({ recommendations });
+      res.json({ 
+        success: true,
+        recommendations,
+        timestamp: new Date().toISOString()
+      });
     } catch (error) {
       console.error('Error generating recommendations:', error);
       res.status(500).json({ 
+        success: false,
         message: 'Error generating recommendations',
         error: error instanceof Error ? error.message : 'Unknown error'
       });
     }
   });
 
-  return createServer(app);
+  const httpServer = createServer(app);
+  return httpServer;
 }
