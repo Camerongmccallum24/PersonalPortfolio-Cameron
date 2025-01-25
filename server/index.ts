@@ -52,14 +52,16 @@ app.use((req, res, next) => {
       serveStatic(app);
     }
 
-    // Use port 4000 to avoid conflicts
-    const PORT = 4000;
-    server.listen(PORT, "0.0.0.0", () => {
-      log(`Server running on port ${PORT}`);
+    const PORT = process.env.PORT || 4000;
+    const HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
+    
+    server.listen(PORT, HOST, () => {
+      log(`Server running on ${HOST}:${PORT}`);
     }).on('error', (error: any) => {
       if (error.code === 'EADDRINUSE') {
-        log(`Port ${PORT} is already in use. Please try a different port.`);
-        process.exit(1);
+        const newPort = parseInt(PORT.toString()) + 1;
+        log(`Port ${PORT} is in use, trying ${newPort}...`);
+        server.listen(newPort, HOST);
       } else {
         log(`Failed to start server: ${error.message}`);
         process.exit(1);
