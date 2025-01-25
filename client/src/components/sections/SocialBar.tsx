@@ -10,13 +10,13 @@ const socials = [
   {
     label: "LinkedIn",
     icon: Linkedin,
-    href: "https://linkedin.com/in/cameron-mccallum",
+    href: "https://linkedin.com/in/cameron-g-mccallum",
     glowColor: "rgba(0, 119, 181, 0.4)" // LinkedIn brand color
   },
   {
     label: "GitHub",
     icon: Github,
-    href: "https://github.com/cameron-mccallum",
+    href: "https://github.com/camerongmccallum24",
     glowColor: "rgba(110, 84, 148, 0.4)" // GitHub brand color
   }
 ] as const;

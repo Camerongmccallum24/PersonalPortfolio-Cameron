@@ -3,27 +3,32 @@ import { createServer, type Server } from "http";
 
 export function registerRoutes(app: Express): Server {
   // Health check endpoint
-  app.get('/api/health', (req, res) => {
-    res.json({ status: 'ok' });
+  app.get('/api/health', (_req, res) => {
+    res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
-  // Demo endpoint for CSM recommendations
+  // Demo recommendations endpoint
   app.post('/api/demo/recommendations', (req, res) => {
-    const { customerGoals, customerChallenges } = req.body;
+    try {
+      const { customerGoals, customerChallenges } = req.body;
+      console.log('Received request:', { customerGoals, customerChallenges });
 
-    // Simple recommendation logic
-    const recommendations = [
-      "Schedule a quarterly business review to align on goals",
-      "Create personalized success plan",
-      "Set up regular check-ins for feedback",
-      "Implement automated health scoring"
-    ];
+      const recommendations = [
+        "Schedule a quarterly business review to align on goals",
+        "Create personalized success plan",
+        "Set up regular check-ins for feedback",
+        "Implement automated health scoring"
+      ];
 
-    res.json({
-      recommendations
-    });
+      res.json({ recommendations });
+    } catch (error) {
+      console.error('Error generating recommendations:', error);
+      res.status(500).json({ 
+        message: 'Error generating recommendations',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
   });
 
-  const httpServer = createServer(app);
-  return httpServer;
+  return createServer(app);
 }
