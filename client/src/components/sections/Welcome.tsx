@@ -19,7 +19,7 @@ export function Welcome() {
   if (!isFirstVisit || location !== "/") return null;
 
   return (
-    <AnimatePresence mode="sync">
+    <AnimatePresence mode="popLayout">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
