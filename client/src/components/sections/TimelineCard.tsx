@@ -1,6 +1,6 @@
-
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
+import { useState } from "react";
 
 interface TimelineCardProps {
   title: string;
@@ -14,6 +14,7 @@ interface TimelineCardProps {
 }
 
 export function TimelineCard({ title, company, date, category, description, achievements, index, color }: TimelineCardProps) {
+  const [showAchievements, setShowAchievements] = useState(false);
   const isEven = index % 2 === 0;
 
   return (
@@ -48,23 +49,33 @@ export function TimelineCard({ title, company, date, category, description, achi
                 <span className="text-sm text-muted-foreground">{date}</span>
               </div>
 
-              <h3 className="text-xl font-semibold">{title}</h3>
-              <p className="text-sm text-muted-foreground">{company}</p>
+              <h3 className="text-2xl font-semibold text-primary hover:underline">{title}</h3>
+              <p className="text-lg font-medium text-muted-foreground">{company}</p>
               <p className="text-sm text-muted-foreground mt-2">{description}</p>
 
-              <div className="mt-4 space-y-2">
-                {achievements.map((achievement, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    className="flex items-center gap-2"
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    <span className="text-sm">{achievement}</span>
-                  </motion.div>
-                ))}
+              <div className="mt-4">
+                <button
+                  onClick={() => setShowAchievements(!showAchievements)}
+                  className="text-sm text-primary underline hover:text-primary/70"
+                >
+                  {showAchievements ? "Hide Achievements" : "Show Achievements"}
+                </button>
+                {showAchievements && (
+                  <div className="mt-4 space-y-2">
+                    {achievements.map((achievement, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.1 }}
+                        className="flex items-center gap-2"
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                        <span className="text-sm">{achievement}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </CardContent>
@@ -73,3 +84,4 @@ export function TimelineCard({ title, company, date, category, description, achi
     </motion.div>
   );
 }
+
