@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
-import { TimelineCard } from "./TimelineCard"; // Ensure correct import path
+import { TimelineCard } from "@/components/sections/TimelineCard";
 
 interface ExperienceProps {
   title: string;
