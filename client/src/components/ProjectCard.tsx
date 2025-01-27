@@ -19,17 +19,19 @@ const ProjectCard = ({ title, description, technologies, image }: ProjectCardPro
           alt={`${title} Preview`}
           className="w-full h-56 object-cover brightness-90 group-hover:brightness-100 transition-all duration-300"
         />
-        <div className="absolute top-4 right-4 flex gap-2">
+        <div className="absolute top-4 right-4">
           <button className="p-2 bg-black/20 backdrop-blur-sm rounded-lg hover:bg-black/40 transition-colors">
             <Share2 className="w-4 h-4" />
-          </button>
-          <button className="p-2 bg-black/20 backdrop-blur-sm rounded-lg hover:bg-black/40 transition-colors">
-            <Info className="w-4 h-4" />
           </button>
         </div>
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="text-xl font-semibold">{title}</h3>
+          <button className="p-2 bg-black/20 backdrop-blur-sm rounded-lg hover:bg-black/40 transition-colors">
+            <Info className="w-4 h-4" />
+          </button>
+        </div>
         <p className="text-gray-400 mb-4 line-clamp-3">{description}</p>
         <div className="flex flex-wrap gap-2">
           {technologies.map((tech) => (
