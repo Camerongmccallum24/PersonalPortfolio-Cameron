@@ -13,7 +13,7 @@ interface TimelineCardProps {
   color: string;
 }
 
-export function TimelineCard({ title, company, date, category, description, achievements, index }: TimelineCardProps) {
+export function TimelineCard({ title, company, date, category, description, achievements, index, color }: TimelineCardProps) {
   const isEven = index % 2 === 0;
 
   return (
