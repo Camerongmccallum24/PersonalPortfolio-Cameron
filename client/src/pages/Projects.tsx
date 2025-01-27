@@ -187,17 +187,14 @@ export default function Projects() {
                           />
                           <TooltipProvider>
                             <Tooltip>
-                              <TooltipTrigger>
-                                <div>
-                                  <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    type="button"
-                                    className="bg-background/20 hover:bg-background/40 backdrop-blur-sm transition-all duration-300 hover:rotate-12"
-                                  >
-                                    <Info className="h-4 w-4" />
-                                  </Button>
-                                </div>
+                              <TooltipTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="bg-background/20 hover:bg-background/40 backdrop-blur-sm transition-all duration-300 hover:rotate-12"
+                                >
+                                  <Info className="h-4 w-4" />
+                                </Button>
                               </TooltipTrigger>
                               <TooltipContent
                                 side="right"

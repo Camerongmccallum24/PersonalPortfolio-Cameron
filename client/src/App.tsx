@@ -28,8 +28,8 @@ function App() {
     <div className="min-h-screen bg-background text-foreground">
       <Welcome />
       <Navbar />
-      <Switch>
-        <AnimatePresence mode="wait" key={location}>
+      <AnimatePresence mode="wait">
+        <Switch>
           <Route path="/" component={Home} />
           <Route path="/landing" component={LandingPage} />
           <Route path="/about" component={About} />
@@ -42,8 +42,8 @@ function App() {
           <Route path="/case-study/customer-success-gpt-showcase" component={CaseStudyGPTShowcase} />
           <Route path="/case-study/customer-success-portal" component={CaseStudyPortal} />
           <Route path="/case-study/customer-success-automator" component={CaseStudyAutomator} />
-        </AnimatePresence>
-      </Switch>
+        </Switch>
+      </AnimatePresence>
       <Footer />
     </div>
   );
