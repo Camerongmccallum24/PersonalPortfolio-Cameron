@@ -49,7 +49,15 @@ export function TimelineCard({ title, company, date, category, description, achi
                 <span className="text-sm text-muted-foreground">{date}</span>
               </div>
 
-              <h3 className="text-2xl font-semibold text-primary hover:underline">{title}</h3>
+              <div className="flex items-center justify-between gap-2">
+                <h3 className="text-2xl font-semibold text-primary hover:underline">{title}</h3>
+                <button
+                  onClick={() => setShowAchievements(!showAchievements)}
+                  className="text-sm text-primary hover:text-primary/70"
+                >
+                  {showAchievements ? "−" : "+"} Details
+                </button>
+              </div>
               <p className="text-lg font-medium text-muted-foreground">{company}</p>
               <p className="text-sm text-muted-foreground mt-2">{description}</p>
 
