@@ -192,6 +192,7 @@ export default function Projects() {
                                   variant="ghost"
                                   size="icon"
                                   className="bg-background/20 hover:bg-background/40 backdrop-blur-sm transition-all duration-300 hover:rotate-12"
+                                  type="button"
                                 >
                                   <Info className="h-4 w-4" />
                                 </Button>
