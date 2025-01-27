@@ -13,7 +13,7 @@ export function Footer() {
           </div>
 
           <div className="flex items-center space-x-2">
-            <Button variant="ghost" size="icon" asChild>
+            <Button variant="ghost" size="lg" asChild> {/* Increase button size here */}
               <a 
                 href="https://github.com/camerongmccallum24" 
                 target="_blank" 
@@ -23,7 +23,7 @@ export function Footer() {
                 <Github className="h-5 w-5" />
               </a>
             </Button>
-            <Button variant="ghost" size="icon" asChild>
+            <Button variant="ghost" size="lg" asChild> {/* Increase button size here */}
               <a 
                 href="https://linkedin.com/in/cameron-g-mccallum" 
                 target="_blank" 
@@ -33,7 +33,7 @@ export function Footer() {
                 <Linkedin className="h-5 w-5" />
               </a>
             </Button>
-            <Button variant="ghost" size="icon" asChild>
+            <Button variant="ghost" size="lg" asChild> {/* Increase button size here */}
               <a 
                 href="https://g.dev/cameron-g-mccallum" 
                 target="_blank" 
@@ -43,7 +43,7 @@ export function Footer() {
                 <IconBrandGoogleFilled className="h-5 w-5" />
               </a>
             </Button>
-            <Button variant="ghost" size="icon" asChild>
+            <Button variant="ghost" size="lg" asChild> {/* Increase button size here */}
               <a 
                 href="https://x.com/CamGMcCallum" 
                 target="_blank" 
@@ -53,7 +53,7 @@ export function Footer() {
                 <IconBrandX className="h-5 w-5" />
               </a>
             </Button>
-            <Button variant="ghost" size="icon" asChild>
+            <Button variant="ghost" size="lg" asChild> {/* Increase button size here */}
               <a 
                 href="http://www.youtube.com/@cameronmccallum" 
                 target="_blank" 
