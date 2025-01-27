@@ -31,8 +31,7 @@ export function TimelineCard({ title, company, date, category, description, achi
           transition: { duration: 0.2 }
         }}
       >
-        {index === 0 && <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 via-purple-500/50 to-blue-500/50 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-500" />}
-        <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 via-purple-500/50 to-blue-500/50 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-500" />
+        <div className={`absolute -inset-0.5 bg-gradient-to-r ${color} rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-500`} />
         <Card className="relative h-full overflow-hidden backdrop-blur-sm">
           <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background to-background/80" />
           <CardContent className="relative z-10 p-6">
