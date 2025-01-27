@@ -110,8 +110,9 @@ export default function Career() {
               >
                 <TimelineCard
                   {...experience}
-                  index={index}
-                />
+                    index={index}
+                    color={index === 0 ? 'from-red-500 via-yellow-500 to-green-500' : 'from-blue-500 via-purple-500 to-pink-500'} // Example colors
+                  />
               </motion.div>
             ))}
           </div>

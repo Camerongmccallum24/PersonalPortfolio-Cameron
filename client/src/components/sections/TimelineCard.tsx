@@ -10,6 +10,7 @@ interface TimelineCardProps {
   description: string;
   achievements: string[];
   index: number;
+  color: string;
 }
 
 export function TimelineCard({ title, company, date, category, description, achievements, index }: TimelineCardProps) {
