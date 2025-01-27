@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Share2, BarChart2, Link2, Maximize2, Copy } from 'lucide-react';
+import { Share2, BarChart2, Link2, Maximize2, Copy, Info } from 'lucide-react';
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
@@ -36,7 +36,12 @@ const ProjectCard = ({ title, description, technologies, image }: ProjectCardPro
         </div>
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="text-xl font-semibold">{title}</h3>
+          <button className="p-2 bg-black/20 backdrop-blur-sm rounded-lg hover:bg-black/40 transition-colors">
+            <Info className="w-4 h-4" />
+          </button>
+        </div>
         <p className="text-gray-400 mb-4 line-clamp-3">{description}</p>
         <div className="flex flex-wrap gap-2">
           {technologies.map((tech) => (
