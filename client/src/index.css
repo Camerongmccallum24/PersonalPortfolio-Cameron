@@ -98,33 +98,10 @@
   /* Social Icons */
   .social-icon {
     @apply transition-all duration-300 text-muted-foreground;
-    /* Increase the hover scale effect for larger icons */
-    @apply scale-125; /* This increases the size of icons */
   }
 
   .social-icon:hover {
-    @apply scale-130 text-foreground; /* Further increase size on hover */
-  }
-
-  /* Keeping individual hover effects for consistency */
-  .social-icon.linkedin:hover {
-    filter: drop-shadow(0 0 5px rgba(0, 119, 181, 0.8)) brightness(1.5);
-  }
-
-  .social-icon.google:hover {
-    filter: drop-shadow(0 0 5px rgba(219, 68, 55, 0.8)) brightness(1.5);
-  }
-
-  .social-icon.x:hover {
-    filter: drop-shadow(0 0 5px rgba(29, 161, 242, 0.8)) brightness(1.5);
-  }
-
-  .social-icon.youtube:hover {
-    filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.8)) brightness(1.5);
-  }
-
-  .social-icon.github:hover {
-    filter: drop-shadow(0 0 5px rgba(51, 51, 51, 0.8)) brightness(1.5);
+    @apply scale-110 text-foreground;
   }
 
   /* Buttons and Interactive Elements */
@@ -170,6 +147,27 @@
     color: #fff;
     filter: drop-shadow(0 0 5px rgba(51, 51, 51, 0.8)) brightness(1.5);
     transform: scale(1.1);
+  }
+
+  /* Social Icons -  These were already mostly updated, but keeping original hover effects */
+  .social-icon.linkedin:hover {
+    filter: drop-shadow(0 0 5px rgba(0, 119, 181, 0.8)) brightness(1.5);
+  }
+
+  .social-icon.google:hover {
+    filter: drop-shadow(0 0 5px rgba(219, 68, 55, 0.8)) brightness(1.5);
+  }
+
+  .social-icon.x:hover {
+    filter: drop-shadow(0 0 5px rgba(29, 161, 242, 0.8)) brightness(1.5);
+  }
+
+  .social-icon.youtube:hover {
+    filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.8)) brightness(1.5);
+  }
+
+  .social-icon.github:hover {
+    filter: drop-shadow(0 0 5px rgba(51, 51, 51, 0.8)) brightness(1.5);
   }
 
   /* Call-to-Action Button */
