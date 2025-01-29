@@ -70,10 +70,12 @@ export function Hero() {
                 <Link href="/contact">
                   <Button 
                     size="lg" 
-                    className="gap-2 bg-gradient-to-r from-[#00C6FF] to-[#0072FF] hover:opacity-90 transition-all duration-300 hover:scale-105"
-                  >
-                    <Mail className="w-5 h-5" />
-                    Start Conversation
+                    variant="outline" 
+                      className="gap-2 hover:scale-105 transition-all duration-300 relative group overflow-hidden"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#00C6FF]/20 to-[#0072FF]/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
+                      <ExternalLink className="w-5 h-5" />
+                    Contact Me
                   </Button>
                 </Link>
                 <Link href="/projects">
@@ -96,7 +98,7 @@ export function Hero() {
                   <a href="/cv.pdf" download>
                     <div className="absolute inset-0 bg-gradient-to-r from-[#00C6FF]/20 to-[#0072FF]/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
                     <FileDown className="w-5 h-5" />
-                    Download CV
+                    CV
                   </a>
                 </Button>
               </motion.div>
