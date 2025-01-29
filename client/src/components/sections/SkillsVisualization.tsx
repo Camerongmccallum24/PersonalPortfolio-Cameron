@@ -131,7 +131,7 @@ export const SkillsVisualization = () => {
                 onMouseLeave={() => setHoveredSkill(null)}
               >
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-purple-500/50 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-300" />
-                <Card className="relative h-full bg-card/95 backdrop-blur-sm border-0">
+                <Card className="relative h-full bg-background/20 backdrop-blur-md border border-white/10 shadow-lg glassmorphism">
                   <CardContent className="p-6">
                     <div className="flex justify-between items-center mb-4">
                       <h3 className="text-xl font-semibold">
