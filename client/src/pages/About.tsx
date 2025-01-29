@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function About() {
   const certifications = [
   {
-      icon: "",
+      icon: "/images/certified-customer-success-manager-ccsm-level-2.png",
       title: "Customer Success Manager Level 2",
       issuer: {
         name: "SuccessHacker",
@@ -16,7 +16,7 @@ export default function About() {
       date: "November 2024"
     },
     {
-      icon: "",
+      icon: "/images/certified-customer-success-manager-ccsm-level-1.png",
       title: "Customer Success Manager Level 1",
       issuer: {
         name: "SuccessHacker",
@@ -134,7 +134,11 @@ export default function About() {
               >
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-lg blur opacity-0 group-hover:opacity-75 transition duration-300" />
                 <div className="relative">
-                <span className="text-4xl">{cert.icon}</span>
+                {cert.icon.endsWith('.png') ? (
+                  <img src={cert.icon} alt={cert.title} className="w-16 h-16 object-contain" />
+                ) : (
+                  <span className="text-4xl">{cert.icon}</span>
+                )}
                 <div className="mt-4">
                   <h3 className="font-semibold text-lg">{cert.title}</h3>
                   <p className="text-muted-foreground">{cert.issuer}</p>
