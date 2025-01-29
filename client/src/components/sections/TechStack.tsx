@@ -19,12 +19,12 @@ const techStack = [
     logo: "https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg",
   },
   {
-    name: "FastAPI",
-    logo: "https://www.vectorlogo.zone/logos/fastapi/fastapi-icon.svg",
+    name: "Django",
+    logo: "https://www.vectorlogo.zone/logos/djangoproject/djangoproject-icon.svg",
   },
   {
-    name: "Flask",
-    logo: "https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg",
+    name: "Express",
+    logo: "https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg",
   },
   {
     name: "MySQL",
@@ -84,9 +84,6 @@ export function TechStack() {
   return (
           <section className="w-full overflow-hidden bg-background/50 border-y border-border/50 py-16">
             <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-                Tech Stack
-              </h2>
 
               <div className="relative">
           {/* Gradient Overlays */}
