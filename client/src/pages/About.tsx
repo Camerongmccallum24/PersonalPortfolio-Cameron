@@ -107,14 +107,17 @@ export default function About() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="p-6 rounded-lg border bg-card text-card-foreground shadow-lg hover:shadow-xl transition-all"
+                className="relative group p-6 rounded-lg border bg-background/20 backdrop-blur-md border-white/10 shadow-lg hover:shadow-xl transition-all"
               >
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-lg blur opacity-0 group-hover:opacity-75 transition duration-300" />
+                <div className="relative">
                 <span className="text-4xl">{cert.icon}</span>
                 <div className="mt-4">
                   <h3 className="font-semibold text-lg">{cert.title}</h3>
                   <p className="text-muted-foreground">{cert.issuer}</p>
                   <p className="text-sm text-muted-foreground">{cert.date}</p>
                 </div>
+              </div>
               </motion.div>
             ))}
           </div>
