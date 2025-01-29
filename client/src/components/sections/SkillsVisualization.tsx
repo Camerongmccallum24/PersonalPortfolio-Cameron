@@ -76,7 +76,13 @@ export const SkillsVisualization = () => {
               key={category.category}
               onClick={() => setActiveCategory(index)}
               variant={activeCategory === index ? "default" : "outline"}
-              className="transition-all duration-300 hover:scale-105"
+              className={`transition-all duration-300 hover:scale-105 ${
+                category.category === "Technical" 
+                  ? "border-blue-500" 
+                  : category.category === "AI & Data Analytics"
+                  ? "border-purple-500"
+                  : "border-green-500"
+              }`}
               size="lg"
               aria-label={`Show ${category.category} skills`}
             >
