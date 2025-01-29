@@ -22,30 +22,30 @@ const skills: SkillCategory[] = [
   {
     category: "Technical",
     skills: [
-      { name: "SQL", level: 90, type: "Hard", proficiency: "Advanced", example: "Complex queries and data processing optimization" },
-      { name: "Data Cleaning & Preparation", level: 90, type: "Hard", proficiency: "Advanced", example: "Data wrangling with Python libraries" },
-      { name: "Power BI", level: 75, type: "Hard", proficiency: "Intermediate", example: "Interactive dashboards and reports" },
-      { name: "API Integration", level: 70, type: "Hard", proficiency: "Intermediate", example: "Third-party API implementation" },
-      { name: "AI Automation Tools", level: 85, type: "Hard", proficiency: "Advanced", example: "Process automation and efficiency" },
-      { name: "CRM Tools", level: 80, type: "Hard", proficiency: "Intermediate", example: "Customer data management" }
+      { name: "SQL", level: 90, type: "Hard", proficiency: "Advanced", example: "Developed and executed complex SQL queries that reduced data processing time by 20% and improved data accuracy by 15%." },
+      { name: "Data Cleaning & Preparation", level: 90, type: "Hard", proficiency: "Advanced", example: "Wrangled and transformed messy, real-world datasets using Python libraries like Pandas and NumPy, resulting in accurate and actionable insights for business decisions." },
+      { name: "Power BI", level: 75, type: "Hard", proficiency: "Intermediate", example: "Created interactive dashboards and reports using Power BI to visualize data and provide insights." },
+      { name: "API Integration", level: 70, type: "Hard", proficiency: "Intermediate", example: "Integrated various third-party APIs to enhance application functionality and improve user experience." },
+      { name: "AI Automation Tools", level: 85, type: "Hard", proficiency: "Advanced", example: "Automated key workflows using AI tools, resulting in a 20% reduction in manual effort and a 10% improvement in process efficiency." },
+      { name: "CRM Tools", level: 80, type: "Hard", proficiency: "Intermediate", example: "Effectively utilized CRM tools to manage customer interactions and track customer data." }
     ]
   },
   {
     category: "AI & Data Analytics",
     skills: [
-      { name: "GPT Development", level: 85, type: "Hard", proficiency: "Advanced", example: "Custom GPT models for business solutions" },
-      { name: "Predictive Analytics", level: 90, type: "Hard", proficiency: "Advanced", example: "ML models for forecasting" },
-      { name: "Machine Learning Integration", level: 75, type: "Hard", proficiency: "Intermediate", example: "ML model deployment" },
-      { name: "Data Insights", level: 80, type: "Hard", proficiency: "Intermediate", example: "Strategic data analysis" }
+      { name: "GPT Development", level: 85, type: "Hard", proficiency: "Advanced", example: "Customized GPT models for specific business needs, leading to a 10% increase in customer engagement and a 5% improvement in customer satisfaction." },
+      { name: "Predictive Analytics", level: 90, type: "Hard", proficiency: "Advanced", example: "Developed and deployed machine learning models for predictive analytics, resulting in a 15% improvement in sales forecasting accuracy." },
+      { name: "Machine Learning Integration", level: 75, type: "Hard", proficiency: "Intermediate", example: "Successfully integrated machine learning models into existing software applications, improving efficiency and automation." },
+      { name: "Data Insights", level: 80, type: "Hard", proficiency: "Intermediate", example: "Extracted valuable insights from data to inform business decisions and drive strategic initiatives." }
     ]
   },
   {
     category: "Customer Success",
     skills: [
-      { name: "Stakeholder Communication", level: 90, type: "Soft", proficiency: "Advanced", example: "Strategic alignment and project updates" },
-      { name: "Client Retention", level: 90, type: "Soft", proficiency: "Advanced", example: "Customer retention strategies" },
-      { name: "Strategic Management", level: 85, type: "Soft", proficiency: "Advanced", example: "Account growth and satisfaction" },
-      { name: "Problem-Solving", level: 90, type: "Soft", proficiency: "Advanced", example: "Effective solution delivery" }
+      { name: "Stakeholder Communication", level: 90, type: "Soft", proficiency: "Advanced", example: "Effectively communicated project updates and strategic initiatives to stakeholders, ensuring alignment and buy-in across all levels." },
+      { name: "Client Retention", level: 90, type: "Soft", proficiency: "Advanced", example: "Developed and implemented client retention strategies that reduced customer churn by 12% and increased customer lifetime value by 8%." },
+      { name: "Strategic Management", level: 85, type: "Soft", proficiency: "Advanced", example: "Managed strategic accounts effectively, leading to a 15% increase in account revenue and a 5% improvement in customer satisfaction." },
+      { name: "Problem-Solving", level: 90, type: "Soft", proficiency: "Advanced", example: "Effectively solved customer problems and provided timely solutions to enhance customer satisfaction." }
     ]
   }
 ];
