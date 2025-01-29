@@ -60,7 +60,7 @@ export const SkillsVisualization = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setActiveCategory((prev) => (prev + 1) % skills.length);
-    }, 6000);
+    }, 7800);
     return () => clearInterval(intervalId);
   }, []);
 
@@ -137,18 +137,28 @@ export const SkillsVisualization = () => {
                       <h3 className="text-xl font-semibold">
                         {skill.name}
                       </h3>
-                      <span className={`text-sm font-medium px-2 py-1 rounded ${
-                        skill.proficiency === 'Advanced' 
-                          ? 'text-emerald-500' 
-                          : 'text-amber-500'
-                      }`}>
-                        {skill.proficiency}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className={`text-sm font-medium px-2 py-1 rounded ${
+                          skill.proficiency === 'Advanced' 
+                            ? 'text-emerald-500' 
+                            : 'text-amber-500'
+                        }`}>
+                          {skill.proficiency}
+                        </span>
+                        <motion.span
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                          className="text-sm text-muted-foreground"
+                        >
+                          {skill.level}%
+                        </motion.span>
+                      </div>
                     </div>
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: "100%" }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      transition={{ duration: 0.65, delay: index * 0.13 }}
                     >
                       <Progress 
                         value={skill.level} 
