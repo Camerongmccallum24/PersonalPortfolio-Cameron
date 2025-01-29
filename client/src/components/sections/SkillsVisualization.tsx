@@ -130,7 +130,7 @@ export const SkillsVisualization = () => {
                 onMouseEnter={() => setHoveredSkill(skill.name)}
                 onMouseLeave={() => setHoveredSkill(null)}
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-purple-500/50 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-300" />
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-purple-400/50 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-300" />
                 <Card className="relative h-full bg-background/20 backdrop-blur-md border border-white/10 shadow-lg glassmorphism">
                   <CardContent className="p-6">
                     <div className="flex justify-between items-center mb-4">
@@ -164,10 +164,10 @@ export const SkillsVisualization = () => {
                         value={skill.level} 
                         className={`h-2 mb-2 bg-gray-200/10 ${
                           skills[activeCategory].category === "Technical" 
-                            ? "[&>div]:bg-blue-400/40" 
+                            ? "[&>div]:bg-blue-400/70" 
                             : skills[activeCategory].category === "AI & Data Analytics"
-                            ? "[&>div]:bg-purple-400/40"
-                            : "[&>div]:bg-green-400/40"
+                            ? "[&>div]:bg-purple-400/70"
+                            : "[&>div]:bg-green-400/70"
                         }`}
                       />
                     </motion.div>
