@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function About() {
   const certifications = [
-  {
+    {
       icon: "/images/certified-customer-success-manager-ccsm-level-2.png",
       title: "Customer Success Manager Level 2",
       issuer: {
@@ -78,15 +78,13 @@ export default function About() {
       <section className="pt-16 sm:pt-32 pb-12 sm:pb-24 relative overflow-hidden">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 sm:gap-12 px-4">
           <div className="w-full md:flex-1 text-center md:text-left">
-            <motion.h1 
-              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
+            <motion.h1
+              className="text-4xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
             >
-              Empowering SaaS Businesses with AI-Powered Customer Solutions
+              About Me
             </motion.h1>
             <motion.p className="text-lg sm:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
-              Leveraging AI to redefine customer success strategies, enhance retention, and deliver
-              unparalleled client satisfaction. Join me on this journey to create impactful and
-              innovative solutions.
+              Empowering SaaS Businesses with AI-Powered Customer Solutions
             </motion.p>
             <Button size="lg" className="gap-2">
               Explore My Expertise
@@ -134,17 +132,17 @@ export default function About() {
               >
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-lg blur opacity-0 group-hover:opacity-75 transition duration-300" />
                 <div className="relative">
-                {cert.icon.endsWith('.png') ? (
-                  <img src={cert.icon} alt={cert.title} className="w-16 h-16 object-contain" />
-                ) : (
-                  <span className="text-4xl">{cert.icon}</span>
-                )}
-                <div className="mt-4">
-                  <h3 className="font-semibold text-lg">{cert.title}</h3>
-                  <p className="text-muted-foreground">{cert.issuer.name}</p>
-                  <p className="text-sm text-muted-foreground">{cert.date}</p>
+                  {cert.icon.endsWith('.png') ? (
+                    <img src={cert.icon} alt={cert.title} className="w-16 h-16 object-contain" />
+                  ) : (
+                    <span className="text-4xl">{cert.icon}</span>
+                  )}
+                  <div className="mt-4">
+                    <h3 className="font-semibold text-lg">{cert.title}</h3>
+                    <p className="text-muted-foreground">{cert.issuer.name}</p>
+                    <p className="text-sm text-muted-foreground">{cert.date}</p>
+                  </div>
                 </div>
-              </div>
               </motion.div>
             ))}
           </div>
@@ -166,19 +164,19 @@ export default function About() {
           <p className="mb-8 text-muted-foreground max-w-2xl mx-auto">
             Join my newsletter for exclusive insights and tools to supercharge your SaaS success.
           </p>
-          <form 
+          <form
             onSubmit={handleNewsletterSubmit}
             className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto"
           >
-            <input 
-              type="email" 
-              placeholder="Enter your email" 
+            <input
+              type="email"
+              placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="px-4 py-2 rounded-lg bg-background border focus:outline-none focus:ring-2 focus:ring-primary w-full" 
+              className="px-4 py-2 rounded-lg bg-background border focus:outline-none focus:ring-2 focus:ring-primary w-full"
             />
-            <Button 
+            <Button
               type="submit"
               size="lg"
               className="gap-2"

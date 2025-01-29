@@ -79,7 +79,7 @@ export default function CaseStudyPortal() {
               <div className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary mb-4">
                 Case Study
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
+              <h1 className="text-4xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
                 Customer Success Portal
               </h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
