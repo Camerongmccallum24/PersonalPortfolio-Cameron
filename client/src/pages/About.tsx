@@ -141,7 +141,7 @@ export default function About() {
                 )}
                 <div className="mt-4">
                   <h3 className="font-semibold text-lg">{cert.title}</h3>
-                  <p className="text-muted-foreground">{cert.issuer}</p>
+                  <p className="text-muted-foreground">{cert.issuer.name}</p>
                   <p className="text-sm text-muted-foreground">{cert.date}</p>
                 </div>
               </div>
