@@ -87,6 +87,7 @@ const SkillsVisualization = () => {
               variant={activeCategory === index ? "default" : "outline"}
               className="transition-all duration-300 hover:scale-105"
               size="lg"
+              aria-label={`Show ${category.category} skills`}
             >
               {category.category}
             </Button>
