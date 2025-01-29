@@ -56,7 +56,7 @@ const skills: SkillCategory[] = [
 
 type SkillType = 'Hard' | 'Soft' | null;
 
-const SkillsVisualization = () => {
+export const SkillsVisualization = () => {
   const [activeCategory, setActiveCategory] = useState<number>(0);
   const [activeSkillType, setActiveSkillType] = useState<SkillType>(null);
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
