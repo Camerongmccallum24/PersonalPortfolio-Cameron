@@ -95,7 +95,7 @@ export function Hero() {
                   className="gap-2 hover:scale-105 transition-all duration-300 relative group overflow-hidden"
                   asChild
                 >
-                  <a href="/cv.pdf" download>
+                  <a href="/Cameron McCallum - Customer Success Manager.pdf" download>
                     <div className="absolute inset-0 bg-gradient-to-r from-[#00C6FF]/20 to-[#0072FF]/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
                     <FileDown className="w-5 h-5" />
                     CV
