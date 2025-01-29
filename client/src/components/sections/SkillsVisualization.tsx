@@ -162,12 +162,12 @@ export const SkillsVisualization = () => {
                     >
                       <Progress 
                         value={skill.level} 
-                        className={`h-2 mb-2 ${
+                        className={`h-2 mb-2 bg-gray-200/10 ${
                           skills[activeCategory].category === "Technical" 
-                            ? "[&>div]:bg-blue-500/70" 
+                            ? "[&>div]:bg-blue-400/40" 
                             : skills[activeCategory].category === "AI & Data Analytics"
-                            ? "[&>div]:bg-purple-500/70"
-                            : "[&>div]:bg-green-500/70"
+                            ? "[&>div]:bg-purple-400/40"
+                            : "[&>div]:bg-green-400/40"
                         }`}
                       />
                     </motion.div>
