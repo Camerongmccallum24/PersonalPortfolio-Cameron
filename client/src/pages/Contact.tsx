@@ -90,6 +90,7 @@ export default function Contact() {
                 </div>
               </div>
             </motion.div>
+          </div>
           {/* Right Column - Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
