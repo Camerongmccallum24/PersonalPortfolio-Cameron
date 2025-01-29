@@ -110,7 +110,7 @@ export const SkillsVisualization = () => {
                 onMouseEnter={() => setHoveredSkill(skill.name)}
                 onMouseLeave={() => setHoveredSkill(null)}
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-purple-400/50 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-300" />
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-purple-400/30 rounded-lg blur-sm opacity-0 group-hover:opacity-75 transition duration-300" />
                 <Card className="relative h-full bg-background/20 backdrop-blur-md border border-white/10 shadow-lg glassmorphism">
                   <CardContent className="p-6">
                     <div className="flex justify-between items-center mb-4">
