@@ -160,8 +160,14 @@ export const SkillsVisualization = () => {
                           exit={{ opacity: 0, y: 5 }}
                           className="mt-4 space-y-2"
                         >
-                          <div className="text-sm font-medium">
-                            {skill.type} Skill
+                          <div className={`text-sm font-medium px-2 py-1 border rounded-sm inline-block ${
+                            skills[activeCategory].category === "Technical" 
+                              ? "border-blue-500/50" 
+                              : skills[activeCategory].category === "AI & Data Analytics"
+                              ? "border-purple-500/50"
+                              : "border-green-500/50"
+                          }`}>
+                            Skill Type: {skill.type}
                           </div>
                           <p className="text-sm text-muted-foreground">
                             {skill.example}
