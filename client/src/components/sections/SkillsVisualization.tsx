@@ -91,26 +91,6 @@ export const SkillsVisualization = () => {
           ))}
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {['All Skills', 'Hard Skills', 'Soft Skills'].map((type) => (
-            <Button
-              key={type}
-              onClick={() => setActiveSkillType(
-                type === 'All Skills' ? null :
-                type === 'Hard Skills' ? 'Hard' : 'Soft'
-              )}
-              variant={(type === 'All Skills' && activeSkillType === null) ||
-                (type === 'Hard Skills' && activeSkillType === 'Hard') ||
-                (type === 'Soft Skills' && activeSkillType === 'Soft')
-                ? "default"
-                : "outline"}
-              className="transition-all duration-300 hover:scale-105"
-            >
-              {type}
-            </Button>
-          ))}
-        </div>
-
         <motion.div
           key={activeCategory}
           initial={{ opacity: 0, y: 20 }}
@@ -181,7 +161,7 @@ export const SkillsVisualization = () => {
                           className="mt-4 space-y-2"
                         >
                           <div className="text-sm font-medium">
-                            {skill.proficiency} ({skill.level}%)
+                            {skill.type} Skill
                           </div>
                           <p className="text-sm text-muted-foreground">
                             {skill.example}
