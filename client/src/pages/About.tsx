@@ -6,16 +6,39 @@ import { useState } from "react";
 
 export default function About() {
   const certifications = [
+  {
+      icon: "",
+      title: "Customer Success Manager Level 2",
+      issuer: {
+        name: "SuccessHacker",
+        url: "https://www.credly.com/badges/065e9ed4-2ea2-4964-a431-d0babcb92153"
+      },
+      date: "November 2024"
+    },
     {
-      icon: "🏆",
-      title: "Google Data Analytics Professional Certificate",
-      issuer: "Google",
-      date: "December 2023"
+      icon: "",
+      title: "Customer Success Manager Level 1",
+      issuer: {
+        name: "SuccessHacker",
+        url: "https://www.credly.com/badges/320dffa3-22ac-4f5c-8692-c4d83f6d5110"
+      },
+      date: "November 2023"
+    },
+    {
+      icon: "",
+      title: "Google Developer Program",
+      issuer: {
+        name: "Google",
+        url: "https://g.dev/cameron-g-mccallum"
+      },
+      date: "2024-2025"
     },
     {
       icon: "🚀",
       title: "AWS Certified Cloud Practitioner",
-      issuer: "Amazon Web Services",
+      issuer: {
+        name: "Amazon Web Services"
+      },
       date: "November 2023"
     }
   ];
