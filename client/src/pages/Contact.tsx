@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,11 +8,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
+import { toast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
+  subject: z.string().min(5, "Subject must be at least 5 characters"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
@@ -23,16 +26,26 @@ export default function Contact() {
     defaultValues: {
       name: "",
       email: "",
+      subject: "",
       message: "",
     },
   });
 
   const onSubmit = async (data: FormValues) => {
     try {
-      // TODO: Implement form submission logic
       console.log(data);
+      toast({
+        title: "Message sent!",
+        description: "Thanks for reaching out. I'll get back to you soon.",
+      });
+      form.reset();
     } catch (error) {
       console.error('Error submitting form:', error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -41,53 +54,84 @@ export default function Contact() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="pt-24 pb-16 min-h-screen bg-gradient-to-b from-gray-900/50 to-black"
+      className="min-h-screen bg-gradient-to-b from-gray-900/50 to-black pt-24 pb-16"
     >
       <div className="container mx-auto px-4">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
+        >
+          Get in Touch
+        </motion.h1>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Left Column */}
-          <div>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
+          {/* Left Column - Contact Information */}
+          <div className="space-y-8">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              className="prose prose-invert max-w-none"
             >
-              Let's Connect
-            </motion.h1>
-            <p className="text-lg mb-6 text-gray-300">
-              I'm passionate about transforming customer success through AI innovation. Whether you're looking to collaborate, need consulting, or want to discuss the future of AI in customer success, I'm here to help.
-            </p>
-            <div className="flex space-x-4 mb-6">
-              <a href="https://linkedin.com/in/cameron-g-mccallum" target="_blank" rel="noopener noreferrer">
-                <FaLinkedin className="text-blue-400 text-2xl hover:text-blue-300 transition-colors" />
-              </a>
-              <a href="https://github.com/camerongmccallum24" target="_blank" rel="noopener noreferrer">
-                <FaGithub className="text-gray-300 text-2xl hover:text-gray-100 transition-colors" />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                <FaTwitter className="text-blue-400 text-2xl hover:text-blue-300 transition-colors" />
-              </a>
-            </div>
-            <div className="space-y-4">
-              <Button
-                className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600 transition-all"
-                onClick={() => window.location.href = '/landing'}
-              >
-                Join My Newsletter
-              </Button>
-              <p className="text-sm text-gray-400">
-                Get weekly insights on AI in customer success, SaaS metrics, and industry trends.
+              <p className="text-lg text-gray-300 mb-6">
+                Let's collaborate on transforming customer success through AI innovation. Whether you're interested in consulting, partnerships, or just want to connect, I'm here to help.
               </p>
-            </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3 text-gray-300">
+                  <FaEnvelope className="text-primary" />
+                  <span>cameron.g.mccallum@gmail.com</span>
+                </div>
+                <div className="flex items-center space-x-3 text-gray-300">
+                  <FaMapMarkerAlt className="text-primary" />
+                  <span>London, United Kingdom</span>
+                </div>
+                <div className="flex items-center space-x-3 text-gray-300">
+                  <FaCalendarAlt className="text-primary" />
+                  <span>Available for consulting</span>
+                </div>
+              </div>
+
+              <div className="flex space-x-4 mt-8">
+                <a 
+                  href="https://linkedin.com/in/cameron-g-mccallum" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-3 bg-gray-800/50 rounded-full hover:bg-gray-700/50 transition-colors"
+                >
+                  <FaLinkedin className="text-blue-400 text-xl" />
+                </a>
+                <a 
+                  href="https://github.com/camerongmccallum24" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-3 bg-gray-800/50 rounded-full hover:bg-gray-700/50 transition-colors"
+                >
+                  <FaGithub className="text-gray-300 text-xl" />
+                </a>
+                <a 
+                  href="https://twitter.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-3 bg-gray-800/50 rounded-full hover:bg-gray-700/50 transition-colors"
+                >
+                  <FaTwitter className="text-blue-400 text-xl" />
+                </a>
+              </div>
+            </motion.div>
           </div>
 
-          {/* Right Column */}
-          <div>
-            <Card className="relative group h-full overflow-hidden glassmorphism transition duration-300 ease-in-out hover:bg-opacity-30 hover:border-white">
-              <div className="absolute inset-0 bg-gradient-to-br from-background/10 via-background/20 to-background/10" />
-              <CardContent className="pt-6">
-                <h2 className="text-2xl font-bold mb-4 text-gray-100">Contact Me</h2>
+          {/* Right Column - Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <Card className="relative group overflow-hidden glassmorphism border-gray-800 hover:border-gray-700">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-purple-500/5 to-blue-500/5" />
+              <CardContent className="relative z-10 p-6">
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <FormField
@@ -97,7 +141,7 @@ export default function Contact() {
                         <FormItem>
                           <FormLabel className="text-gray-200">Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="e.g., Jane Doe" {...field} className="bg-gray-800/50 border-gray-700 text-gray-100" />
+                            <Input placeholder="Your name" {...field} className="bg-gray-800/50 border-gray-700 text-gray-100" />
                           </FormControl>
                           <FormMessage className="text-red-400" />
                         </FormItem>
@@ -111,7 +155,21 @@ export default function Contact() {
                         <FormItem>
                           <FormLabel className="text-gray-200">Email</FormLabel>
                           <FormControl>
-                            <Input placeholder="e.g., jane.doe@example.com" {...field} className="bg-gray-800/50 border-gray-700 text-gray-100" />
+                            <Input placeholder="your.email@example.com" {...field} className="bg-gray-800/50 border-gray-700 text-gray-100" />
+                          </FormControl>
+                          <FormMessage className="text-red-400" />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="subject"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-gray-200">Subject</FormLabel>
+                          <FormControl>
+                            <Input placeholder="What's this about?" {...field} className="bg-gray-800/50 border-gray-700 text-gray-100" />
                           </FormControl>
                           <FormMessage className="text-red-400" />
                         </FormItem>
@@ -126,7 +184,7 @@ export default function Contact() {
                           <FormLabel className="text-gray-200">Message</FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Let me know how I can help..."
+                              placeholder="Your message..."
                               className="min-h-[150px] bg-gray-800/50 border-gray-700 text-gray-100"
                               {...field}
                             />
@@ -136,7 +194,10 @@ export default function Contact() {
                       )}
                     />
 
-                    <Button type="submit" className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600 transition-all">
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-gradient-to-r from-primary via-purple-500 to-blue-500 text-white hover:opacity-90 transition-all"
+                    >
                       Send Message
                     </Button>
                   </form>
@@ -144,7 +205,7 @@ export default function Contact() {
               </CardContent>
               <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 via-purple-500/50 to-blue-500/50 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-500" />
             </Card>
-          </div>
+          </motion.div>
         </div>
       </div>
     </motion.main>
