@@ -82,10 +82,9 @@ export function TechStack() {
   }, []);
 
   return (
-          <section className="w-full overflow-hidden bg-background/50 border-y border-border/50 py-16">
-            <div className="container mx-auto px-4">
-
-              <div className="relative">
+    <section className="w-full overflow-hidden bg-background/50 border-y border-border/50 py-16">
+      <div className="container mx-auto px-4">
+        <div className="relative">
           {/* Gradient Overlays */}
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background/50 to-transparent z-10" />
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background/50 to-transparent z-10" />
@@ -105,7 +104,7 @@ export function TechStack() {
                     "flex-shrink-0",
                     isMobile ? "mx-4" : "mx-8",
                     "group relative",
-                    "transition-transform duration-300 hover:scale-110",
+                    "transition-transform duration-300 hover:scale-115",
                   )}
                 >
                   <div

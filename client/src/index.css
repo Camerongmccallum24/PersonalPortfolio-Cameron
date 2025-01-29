@@ -92,7 +92,7 @@
   }
 
   .animate-scroll {
-    animation: scroll 30s linear infinite; /* Changed animation speed here */
+    animation: scroll 40s linear infinite; /* Changed animation speed here */
   }
 
   /* Social Icons */

@@ -42,7 +42,7 @@ export function TimelineCard({ title, company, date, category, description, achi
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary"
+                  className="px-2 py-1 text-xs rounded-full bg-primary/10 text-white"
                 >
                   {category}
                 </motion.span>
