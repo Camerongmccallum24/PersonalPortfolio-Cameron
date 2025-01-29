@@ -145,16 +145,22 @@ export const SkillsVisualization = () => {
                         {skill.proficiency}
                       </span>
                     </div>
-                    <Progress 
-                      value={skill.level} 
-                      className={`h-2 mb-2 ${
-                        skills[activeCategory].category === "Technical" 
-                          ? "[&>div]:bg-blue-500/70" 
-                          : skills[activeCategory].category === "AI & Data Analytics"
-                          ? "[&>div]:bg-purple-500/70"
-                          : "[&>div]:bg-green-500/70"
-                      }`}
-                    />
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                    >
+                      <Progress 
+                        value={skill.level} 
+                        className={`h-2 mb-2 ${
+                          skills[activeCategory].category === "Technical" 
+                            ? "[&>div]:bg-blue-500/70" 
+                            : skills[activeCategory].category === "AI & Data Analytics"
+                            ? "[&>div]:bg-purple-500/70"
+                            : "[&>div]:bg-green-500/70"
+                        }`}
+                      />
+                    </motion.div>
                     
                     <AnimatePresence>
                       {hoveredSkill === skill.name && (
