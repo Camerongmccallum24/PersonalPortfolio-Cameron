@@ -127,12 +127,27 @@ export const SkillsVisualization = () => {
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-purple-500/50 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-300" />
                 <Card className="relative h-full bg-card/95 backdrop-blur-sm border-0">
                   <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold mb-4">
-                      {skill.name}
-                    </h3>
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="text-xl font-semibold">
+                        {skill.name}
+                      </h3>
+                      <span className={`text-sm font-medium px-2 py-1 rounded ${
+                        skill.proficiency === 'Advanced' 
+                          ? 'text-emerald-500' 
+                          : 'text-amber-500'
+                      }`}>
+                        {skill.proficiency}
+                      </span>
+                    </div>
                     <Progress 
                       value={skill.level} 
-                      className="h-2 mb-2"
+                      className={`h-2 mb-2 ${
+                        skills[activeCategory].category === "Technical" 
+                          ? "[&>div]:bg-blue-500/70" 
+                          : skills[activeCategory].category === "AI & Data Analytics"
+                          ? "[&>div]:bg-purple-500/70"
+                          : "[&>div]:bg-green-500/70"
+                      }`}
                     />
                     
                     <AnimatePresence>
