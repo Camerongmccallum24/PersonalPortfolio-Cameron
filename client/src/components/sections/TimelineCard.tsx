@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 interface TimelineCardProps {
@@ -56,9 +57,14 @@ export function TimelineCard({ title, company, date, category, description, achi
               <div className="mt-4">
                 <button
                   onClick={() => setShowAchievements(!showAchievements)}
-                  className="text-sm text-primary underline hover:text-primary/70"
+                  className="text-sm text-primary hover:text-primary/70 flex items-center gap-1"
                 >
-                  {showAchievements ? "Hide Achievements" : "Show Achievements"}
+                  <span className="underline">
+                    {showAchievements ? "Hide Achievements" : "Show Achievements"}
+                  </span>
+                  <ChevronDown 
+                    className={`w-4 h-4 transition-transform duration-200 ${showAchievements ? 'rotate-180' : ''}`}
+                  />
                 </button>
                 {showAchievements && (
                   <div className="mt-4 space-y-2">
