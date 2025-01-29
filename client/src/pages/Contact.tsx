@@ -81,48 +81,15 @@ export default function Contact() {
               
               <div className="space-y-4">
                 <div className="flex items-center space-x-3 text-gray-300">
-                  <FaEnvelope className="text-primary" />
-                  <span>cameron.g.mccallum@gmail.com</span>
-                </div>
-                <div className="flex items-center space-x-3 text-gray-300">
                   <FaMapMarkerAlt className="text-primary" />
-                  <span>London, United Kingdom</span>
+                  <span>Manchester, United Kingdom</span>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-300">
                   <FaCalendarAlt className="text-primary" />
                   <span>Available for consulting</span>
                 </div>
               </div>
-
-              <div className="flex space-x-4 mt-8">
-                <a 
-                  href="https://linkedin.com/in/cameron-g-mccallum" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="p-3 bg-gray-800/50 rounded-full hover:bg-gray-700/50 transition-colors"
-                >
-                  <FaLinkedin className="text-blue-400 text-xl" />
-                </a>
-                <a 
-                  href="https://github.com/camerongmccallum24" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="p-3 bg-gray-800/50 rounded-full hover:bg-gray-700/50 transition-colors"
-                >
-                  <FaGithub className="text-gray-300 text-xl" />
-                </a>
-                <a 
-                  href="https://twitter.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="p-3 bg-gray-800/50 rounded-full hover:bg-gray-700/50 transition-colors"
-                >
-                  <FaTwitter className="text-blue-400 text-xl" />
-                </a>
-              </div>
             </motion.div>
-          </div>
-
           {/* Right Column - Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
