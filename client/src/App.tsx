@@ -14,6 +14,7 @@ import Demo from "@/pages/Demo";
 import CaseStudyGPTShowcase from "@/pages/CaseStudyGPTShowcase";
 import CaseStudyPortal from "@/pages/CaseStudyPortal";
 import CaseStudyAutomator from "@/pages/CaseStudyAutomator";
+import CSMDemo from "@/components/csm-demo";
 import CaseStudyAITools from "@/pages/CaseStudyAITools";
 import { AnimatePresence } from "framer-motion";
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/case-study/customer-success-gpt-showcase" component={CaseStudyGPTShowcase} />
           <Route path="/case-study/customer-success-portal" component={CaseStudyPortal} />
           <Route path="/case-study/customer-success-automator" component={CaseStudyAutomator} />
+          <Route path="/csm-demo" component={CSMDemo} />
         </Switch>
       </AnimatePresence>
       <Footer />
