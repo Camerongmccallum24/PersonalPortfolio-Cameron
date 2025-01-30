@@ -111,7 +111,11 @@ const CSMDemo: React.FC = () => {
     }, []);
 
     return (
-        <div className="csm-demo">
+        <div className="computer-frame">
+            <h1 className="page-header">CSM Demo</h1>
+            <div className="screen-bezel">
+                <div className="screen-content">
+                    <div className="csm-demo">
             <div className="demo-header">
                 <h3>
                     AI-Powered CSM Tools <span className="ai-badge">TensorFlow.js Active</span>
@@ -228,6 +232,9 @@ const CSMDemo: React.FC = () => {
                         </div>
                     </div>
                 )}
+            </div>
+        </div>
+                </div>
             </div>
         </div>
     );
