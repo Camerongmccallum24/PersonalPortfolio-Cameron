@@ -8,14 +8,13 @@ export function Footer() {
     <footer className="border-t">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-sm text-muted-foreground">
+          <div className="flex flex-col gap-4">  
             © 2025 AI Strategy & Customer Success Portfolio.
           </div>
-
           <div className="flex items-center space-x-2">
             <Button variant="ghost" size="icon" asChild>
               <a 
-                href="https://github.com/camerongmccallum24" 
+               href="https://github.com/camerongmccallum24" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="social-icon github text-white"
@@ -64,10 +63,16 @@ export function Footer() {
               </a>
             </Button>
           </div>
-
+            
           <div className="flex items-center space-x-4 text-sm">
             <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
               About
+            </Link>
+            <Link href="/Projects" className="text-muted-foreground hover:text-primary transition-colors">
+              Projects
+            </Link>
+            <Link href="/blog" className="text-muted-foreground hover:text-primary transition-colors">
+              Blog
             </Link>
             <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
               Contact

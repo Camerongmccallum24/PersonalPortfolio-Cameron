@@ -107,7 +107,7 @@ export function Hero() {
             {/* Image Section */}
             <motion.div
               className="relative flex-1 max-w-sm lg:max-w-md"
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 5, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
             >
