@@ -3,13 +3,13 @@
   width: 100%;
   max-width: 1200px;
   margin: 2rem auto;
-  padding: 20px;
+  padding: 10px;
 }
 
 .screen-bezel {
   background: #1a1a1a;
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
 }
 
@@ -20,14 +20,17 @@
   position: relative;
 }
 
-.page-header {
-  text-align: center;
-  color: #fff;
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  font-family: 'Inter', sans-serif;
-}
+       .page-header {
+         background: #f8fafc;
+         padding: 15px;
+         border-bottom: 1px solid #e3e8ee;
+         text-align: center;
+         color: #000;
+         font-size: 2rem;
+         font-weight: 600;
+         margin-bottom: 1.5rem;
+         font-family: 'Inter', sans-serif;
+       }
 
 /* General Styles */
 .csm-demo {
