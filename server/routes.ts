@@ -58,6 +58,30 @@ export function registerRoutes(app: Express): Server {
   });
 
   // Newsletter signup endpoint
+  // RSS feed endpoint
+  app.get('/api/rss', async (_req, res) => {
+    try {
+      const Parser = require('rss-parser');
+      const parser = new Parser();
+      
+      const feed = await parser.parseURL('https://rss.beehiiv.com/feeds/ILy1gJzm7n.xml');
+      
+      res.json({
+        success: true,
+        title: feed.title,
+        description: feed.description,
+        items: feed.items
+      });
+    } catch (error) {
+      console.error('Error fetching RSS feed:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error fetching RSS feed',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
   app.post('/api/newsletter', async (req, res) => {
     try {
       const validatedData = newsletterSchema.parse(req.body);
