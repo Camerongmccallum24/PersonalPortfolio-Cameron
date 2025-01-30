@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{NEWSLETTER_NAME}} - Issue #{{ISSUE_NUMBER}}</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-color: #1f2937;
+            --background-color: #ffffff;
+            --accent-color: #dbeafe;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            border-bottom: 4px solid var(--primary-color);
+            padding-bottom: 0.5em;
+        }
+
+        h2 {
+            font-size: 2em;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: var(--secondary-color);
+        }
+
+        /* Sections */
+        .section {
+            margin: 2em 0;
+            padding: 1em;
+            border-radius: 8px;
+            background-color: var(--background-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Feature Boxes */
+        .feature-box {
+            background-color: var(--accent-color);
+            border-radius: 8px;
+            padding: 1.5em;
+            margin: 1em 0;
+        }
+
+        /* Lists */
+        ul, ol {
+            padding-left: 1.5em;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background-color: #f8fafc;
+            border-radius: 6px;
+            padding: 1em;
+            margin: 1em 0;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        /* Call to Action Buttons */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8em 1.5em;
+            border-radius: 6px;
+            text-decoration: none;
+            margin: 1em 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1em;
+            margin: 1em 0;
+        }
+
+        .metric-card {
+            background-color: var(--accent-color);
+            padding: 1em;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 3em;
+            padding-top: 2em;
+            border-top: 2px solid var(--border-color);
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            h3 {
+                font-size: 1.2em;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mt-2 { margin-top: 2em; }
+        .mb-2 { margin-bottom: 2em; }
+        .highlight { background-color: #fef3c7; padding: 0.2em 0.4em; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{NEWSLETTER_NAME}}</h1>
+        <p class="text-center">Issue #{{ISSUE_NUMBER}} • {{DATE}}</p>
+    </header>
+
+    <main>
+        <section class="section">
+            <h2>🎯 This Week in AI & Customer Success</h2>
+            <p><em>{{WEEKLY_THEME}}</em></p>
+            
+            <div class="feature-box">
+                <p>Dear {{SUBSCRIBER_FIRST_NAME}},</p>
+                <p>{{PERSONALIZED_INTRO_MESSAGE}}</p>
+            </div>
+
+            <h3>In This Edition:</h3>
+            <ul>
+                <li>{{HIGHLIGHT_1}}</li>
+                <li>{{HIGHLIGHT_2}}</li>
+                <li>{{HIGHLIGHT_3}}</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>💡 AI Trend Spotlight: {{TREND_TITLE}}</h2>
+            <div class="feature-box">
+                <h3>Industry Impact Alert:</h3>
+                <p>{{TREND_SUMMARY_2_SENTENCES}}</p>
+            </div>
+
+            <h3>Why CSMs Should Care:</h3>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h4>Impact</h4>
+                    <p>{{BUSINESS_IMPACT}}</p>
+                </div>
+                <div class="metric-card">
+                    <h4>Opportunity</h4>
+                    <p>{{GROWTH_OPPORTUNITY}}</p>
+                </div>
+                <div class="metric-card">
+                    <h4>Timeline</h4>
+                    <p>{{IMPLEMENTATION_TIMELINE}}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional sections following the same pattern -->
+
+        <section class="section">
+            <h2>📫 Connect With Us</h2>
+            <div class="text-center">
+                <p>Website: <a href="{{WEBSITE_URL}}">{{WEBSITE_URL}}</a></p>
+                <p>LinkedIn: <a href="{{LINKEDIN_URL}}">{{LINKEDIN_URL}}</a></p>
+                <p>Twitter: <a href="https://twitter.com/{{TWITTER_HANDLE}}">@{{TWITTER_HANDLE}}</a></p>
+                <p>Email: <a href="mailto:{{EMAIL_ADDRESS}}">{{EMAIL_ADDRESS}}</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>{{FOOTER_BOILERPLATE}}</p>
+    </footer>
+</body>
+</html>
