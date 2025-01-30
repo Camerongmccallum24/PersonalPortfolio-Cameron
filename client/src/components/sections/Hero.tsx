@@ -120,8 +120,8 @@ export function Hero() {
                   src="/images/Profile_Picture.png"
                   alt="Cameron McCallum - AI Strategy Consultant"
                   className="relative rounded-full w-full h-full object-cover border-4 border-background"
-                  width={400}
-                  height={400}
+                  width={300}
+                  height={300}
                   loading="eager"
                   fetchPriority="high"
                 />
