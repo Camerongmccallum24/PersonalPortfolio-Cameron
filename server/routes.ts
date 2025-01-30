@@ -2,6 +2,11 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { z } from "zod";
 
+// Newsletter schema
+const newsletterSchema = z.object({
+  email: z.string().email("Invalid email address"),
+});
+
 // Input validation schemas
 const recommendationsSchema = z.object({
   customerGoals: z.string().min(1, "Customer goals are required"),
@@ -47,6 +52,37 @@ export function registerRoutes(app: Express): Server {
       res.status(500).json({ 
         success: false,
         message: 'Error generating recommendations',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
+  // Newsletter signup endpoint
+  app.post('/api/newsletter', async (req, res) => {
+    try {
+      const validatedData = newsletterSchema.parse(req.body);
+      const { email } = validatedData;
+
+      // TODO: Add your newsletter service integration here
+      // For now, we'll just return a success response
+      res.json({
+        success: true,
+        message: "Successfully subscribed to newsletter",
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({
+          success: false,
+          message: 'Validation error',
+          errors: error.errors
+        });
+      }
+
+      console.error('Error processing newsletter signup:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error processing newsletter signup',
         error: error instanceof Error ? error.message : 'Unknown error'
       });
     }
