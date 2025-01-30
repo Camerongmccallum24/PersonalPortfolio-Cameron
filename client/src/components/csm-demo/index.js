@@ -1,3 +1,2 @@
 
-import CSMDemo from './CSMDemo';
-export default CSMDemo;
+export { default } from './CSMDemo';
