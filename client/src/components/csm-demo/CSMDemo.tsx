@@ -250,6 +250,16 @@ const CSMDemo: React.FC = () => {
                     </div>
                 </div>
             </div>
+            <div className="computer-frame">
+                <div className="screen-bezel">
+                    <div className="screen-content">
+                        <IframeDemo 
+                            url="https://customer-success-galaxy.lovable.app"
+                            title="Shared Success Space"
+                        />
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
