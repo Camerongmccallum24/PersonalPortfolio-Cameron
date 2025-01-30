@@ -1,24 +1,52 @@
+
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+
+interface BlogPost {
+  title: string;
+  link: string;
+  pubDate: string;
+  content: string;
+}
 
 export default function Blog() {
-  const posts = [
-    {
-      title: "Building Modern Web Applications with React and TypeScript",
-      excerpt: "Learn how to leverage TypeScript in your React applications for better type safety and developer experience.",
-      date: "March 15, 2024",
-      readTime: "5 min read",
-      tags: ["React", "TypeScript"],
-    },
-    {
-      title: "The Power of Server-Side Rendering in Next.js",
-      excerpt: "Explore the benefits of SSR and how it can improve your application's performance and SEO.",
-      date: "March 10, 2024",
-      readTime: "7 min read",
-      tags: ["Next.js", "SSR"],
-    },
-  ];
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch('/api/rss');
+        const data = await response.json();
+        if (data.success) {
+          setPosts(data.items);
+        }
+      } catch (error) {
+        console.error('Error fetching blog posts:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  function formatDate(dateStr: string) {
+    return new Date(dateStr).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
+  function extractExcerpt(content: string) {
+    const div = document.createElement('div');
+    div.innerHTML = content;
+    const text = div.textContent || '';
+    return text.slice(0, 200) + '...';
+  }
 
   return (
     <motion.main
@@ -38,46 +66,39 @@ export default function Blog() {
         </motion.h1>
 
         <div className="max-w-3xl mx-auto space-y-6">
-          {posts.map((post, index) => (
-            <motion.div
-              key={post.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card>
-                <CardHeader>
-                  <div className="flex justify-between items-start mb-2">
-                    <div className="space-y-1">
-                      <h2 className="text-xl font-semibold">{post.title}</h2>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <span>{post.date}</span>
-                        <span>{post.readTime}</span>
+          {loading ? (
+            <p className="text-center text-muted-foreground">Loading posts...</p>
+          ) : (
+            posts.map((post, index) => (
+              <motion.div
+                key={post.link}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card>
+                  <CardHeader>
+                    <div className="flex justify-between items-start mb-2">
+                      <div className="space-y-1">
+                        <h2 className="text-xl font-semibold">{post.title}</h2>
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                          <span>{formatDate(post.pubDate)}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4">{post.excerpt}</p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-2">
-                      {post.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground mb-4">{extractExcerpt(post.content)}</p>
+                    <div className="flex items-center justify-end">
+                      <Button variant="outline" size="sm" onClick={() => window.open(post.link, '_blank')}>
+                        Read More
+                      </Button>
                     </div>
-                    <Button variant="outline" size="sm">
-                      Read More
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))
+          )}
         </div>
       </div>
     </motion.main>
