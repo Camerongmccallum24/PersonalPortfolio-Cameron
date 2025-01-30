@@ -180,26 +180,15 @@ export default function About() {
           <p className="mb-8 text-muted-foreground max-w-2xl mx-auto">
             Join my newsletter for exclusive insights and tools to supercharge your SaaS success.
           </p>
-          <form
-            onSubmit={handleNewsletterSubmit}
-            className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto"
-          >
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="px-4 py-2 rounded-lg bg-background border focus:outline-none focus:ring-2 focus:ring-primary w-full"
-            />
-            <Button
-              type="submit"
-              size="lg"
-              className="gap-2"
-            >
-              Sign Up Now
-            </Button>
-          </form>
+          <iframe 
+            src="https://embeds.beehiiv.com/8febfdef-3ac2-4303-b744-7b5e1fd26be0?slim=true" 
+            data-test-id="beehiiv-embed" 
+            height="52" 
+            frameBorder="0" 
+            scrolling="no" 
+            style={{ margin: 0, borderRadius: 0, backgroundColor: 'transparent', width: '100%', maxWidth: '500px' }}
+            title="Newsletter Signup"
+          />
         </motion.div>
       </section>
     </div>
