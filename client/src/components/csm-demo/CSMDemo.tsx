@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { IframeDemo } from '@/components/ui/iframe-demo';
 import { marked } from 'marked';
 import { Chart } from 'chart.js/auto';
 import './CSMDemo.css';
@@ -111,10 +112,11 @@ const CSMDemo: React.FC = () => {
     }, []);
 
     return (
-        <div className="computer-frame">
+        <div className="space-y-8">
             <h1 className="page-header">CSM Demo</h1>
-            <div className="screen-bezel">
-                <div className="screen-content">
+            <div className="computer-frame">
+                <div className="screen-bezel">
+                    <div className="screen-content">
                     <div className="csm-demo">
             <div className="demo-header">
                 <h3>
@@ -234,6 +236,18 @@ const CSMDemo: React.FC = () => {
                 )}
             </div>
         </div>
+                </div>
+                </div>
+            </div>
+            
+            <div className="computer-frame">
+                <div className="screen-bezel">
+                    <div className="screen-content">
+                        <IframeDemo 
+                            url="https://shared-success-space.lovable.app/"
+                            title="Shared Success Space"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
