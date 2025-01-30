@@ -53,42 +53,58 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <motion.section
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="flex justify-center pt-10"
-      >
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 300 }}
-          className="relative group"
-        >
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-purple-500 to-blue-500 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000"></div>
-          <img
-            src="/images/Profile_Picture.png"
-            alt="Cameron McCallum - AI Strategy Consultant"
-            className="relative rounded-full w-48 h-48 object-cover"
-          />
-        </motion.div>
-      </motion.section>
-
-      {/* About Content */}
+      {/* About Section */}
       <section className="pt-16 sm:pt-32 pb-12 sm:pb-24 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 sm:gap-12 px-4">
-          <div className="w-full md:flex-1 text-center md:text-left">
-            <motion.h1
-              className="text-4xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
+        <div className="max-w-6xl mx-auto px-4">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
+          >
+            About Me
+          </motion.h1>
+
+          {/* Profile Picture */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex justify-center mb-12"
+          >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className="relative group"
             >
-              About Me
-            </motion.h1>
-            <motion.p className="text-lg sm:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-purple-500 to-blue-500 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000"></div>
+              <img
+                src="/images/Profile_Picture.png"
+                alt="Cameron McCallum - AI Strategy Consultant"
+                className="relative rounded-full w-48 h-48 object-cover"
+              />
+            </motion.div>
+          </motion.div>
+
+          {/* About Content */}
+          <div className="text-center max-w-3xl mx-auto">
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-lg sm:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed"
+            >
               Empowering SaaS Businesses with AI-Powered Customer Solutions
             </motion.p>
-            <Button size="lg" className="gap-2">
-              Explore My Expertise
-            </Button>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <Button size="lg" className="gap-2">
+                Explore My Expertise
+              </Button>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -97,7 +113,7 @@ export default function About() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-background to-background/80 pointer-events-none" />
         <div className="relative z-10">
-          <h2 className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
+          <h2 className="text-4xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
             Skills & Expertise
           </h2>
           <SkillsVisualization />
@@ -108,7 +124,7 @@ export default function About() {
       <section className="py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background pointer-events-none" />
         <div className="relative z-10">
-          <h2 className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
+          <h2 className="text-4xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
             Technology Stack
           </h2>
           <TechStack />
