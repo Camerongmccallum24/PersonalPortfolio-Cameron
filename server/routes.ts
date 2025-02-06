@@ -115,3 +115,31 @@ export function registerRoutes(app: Express): Server {
   const httpServer = createServer(app);
   return httpServer;
 }
+import express from 'express';
+const router = express.Router();
+
+router.get('/api/rss', async (req, res) => {
+  try {
+    // Mock data for now - replace with actual RSS feed fetch
+    const mockPosts = [
+      {
+        title: "Getting Started with Customer Success",
+        link: "https://example.com/post1",
+        pubDate: new Date().toISOString(),
+        content: "Customer success is crucial for business growth..."
+      },
+      {
+        title: "AI in Customer Support",
+        link: "https://example.com/post2",
+        pubDate: new Date().toISOString(),
+        content: "Artificial intelligence is transforming customer support..."
+      }
+    ];
+    
+    res.json({ success: true, items: mockPosts });
+  } catch (error) {
+    res.status(500).json({ success: false, error: 'Failed to fetch RSS feed' });
+  }
+});
+
+export default router;

@@ -42,10 +42,9 @@ export default function Blog() {
   }
 
   function extractExcerpt(content: string) {
-    const div = document.createElement('div');
-    div.innerHTML = content;
-    const text = div.textContent || '';
-    return text.slice(0, 200) + '...';
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = content;
+    return (tempDiv.textContent || '').slice(0, 200) + '...';
   }
 
   return (
