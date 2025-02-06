@@ -67,7 +67,7 @@ app.use((req, res, next) => {
       serveStatic(app);
     }
 
-    const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3001;
+    const PORT = process.env.PORT ? parseInt(process.env.PORT) : 80;
     const HOST = '0.0.0.0';
 
     return new Promise<void>((resolve, reject) => {
