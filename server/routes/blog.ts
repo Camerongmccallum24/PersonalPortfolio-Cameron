@@ -19,7 +19,7 @@ router.get('/api/rss', async (_req, res) => {
     const response = await fetch(RSS_URL, {
       method: 'GET',
       headers: {
-        'Authorization': BEEHIIV_API_KEY,
+        'Authorization': `Bearer ${BEEHIIV_API_KEY}`,
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
