@@ -69,8 +69,10 @@ export function registerRoutes(app: Express): Server {
         }
       });
       
-      console.log('Fetching RSS feed...');
-      const feed = await parser.parseURL('https://rss.beehiiv.com/feeds/ILy1gJzm7n.xml');
+      // You'll need to replace this with your actual Beehiiv publication URL
+      const feedUrl = 'https://blog.beehiiv.com/feed';
+      console.log('Fetching RSS feed from:', feedUrl);
+      const feed = await parser.parseURL(feedUrl);
       console.log(`Found ${feed.items?.length || 0} posts`);
       
       if (!feed.items?.length) {
