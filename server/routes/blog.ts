@@ -8,7 +8,7 @@ const parser = new Parser({
   headers: {
     'Accept': 'application/rss+xml, application/xml, text/xml, */*',
     'User-Agent': 'AI-Success-Network-Blog/1.0',
-    'Authorization': `Bearer ${API_KEY}`
+    'Authorization': '8MAARJXXQjz31lvzgBCvOfZZTDqrF9RD6HU34JMRHTDErEw5UuvJbjYbpL8YLmVD'
   },
   customFields: {
     item: [
@@ -19,22 +19,19 @@ const parser = new Parser({
 });
 
 const RSS_URL = 'https://rss.beehiiv.com/feeds/ILy1gJzm7n.xml';
-const API_KEY = '8MAARJXXQjz31lvzgBCvOfZZTDqrF9RD6HU34JMRHTDErEw5UuvJbjYbpL8YLmVD';
 
 router.get('/api/rss', async (_req, res) => {
   try {
     console.log('Fetching RSS feed from:', RSS_URL);
-    
-    // Add CORS headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET');
-    
     const feed = await parser.parseURL(RSS_URL);
     
     if (!feed || !feed.items) {
-      throw new Error('Invalid feed structure');
+      return res.status(404).json({
+        success: false,
+        message: 'No posts found'
+      });
     }
-    
+
     const items = feed.items.map(post => ({
       title: post.title || 'Untitled Post',
       link: post.link || '#',
@@ -44,8 +41,6 @@ router.get('/api/rss', async (_req, res) => {
       categories: post.categories || []
     }));
 
-    // Add caching headers
-    res.setHeader('Cache-Control', 'public, max-age=300');
     res.json({ 
       success: true, 
       items,
@@ -53,11 +48,11 @@ router.get('/api/rss', async (_req, res) => {
       feedDescription: feed.description
     });
   } catch (error) {
-    console.error('Error fetching RSS feed:', error instanceof Error ? error.message : 'Unknown error');
+    console.error('Error fetching RSS feed:', error);
     res.status(500).json({ 
       success: false, 
-      error: 'Failed to fetch RSS feed',
-      details: error instanceof Error ? error.message : 'Unknown error'
+      message: 'Error fetching RSS feed - please try again later',
+      error: error instanceof Error ? error.message : 'Unknown error'
     });
   }
 });
