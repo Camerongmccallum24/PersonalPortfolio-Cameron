@@ -61,8 +61,8 @@ export function registerRoutes(app: Express): Server {
   // RSS feed endpoint
   app.get('/api/rss', async (_req, res) => {
     try {
-      const Parser = require('rss-parser');
-      const parser = new Parser({
+      const RSSParser = await import('rss-parser');
+      const parser = new RSSParser.default({
         timeout: 5000,
         headers: {
           'User-Agent': 'Mozilla/5.0 (compatible; RSS-Reader/1.0)'
@@ -90,7 +90,7 @@ export function registerRoutes(app: Express): Server {
         items: feed.items
       });
     } catch (error) {
-      console.error('Error fetching RSS feed:', error);
+      console.error('Error fetching RSS feed:', error instanceof Error ? error.stack : error);
       res.status(500).json({
         success: false,
         message: 'Error fetching RSS feed - please ensure the RSS feed URL is correct and accessible',
