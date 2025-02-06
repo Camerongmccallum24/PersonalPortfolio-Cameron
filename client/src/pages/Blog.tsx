@@ -21,18 +21,19 @@ export default function Blog() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        setLoading(true);
         const response = await fetch('/api/rss');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
 
-        if (!response.ok) {
+        if (!data.success) {
           throw new Error(data.error || 'Failed to fetch blog posts');
         }
 
-        if (data.success) {
-          setPosts(data.items);
-        } else {
-          throw new Error('Failed to fetch blog posts');
-        }
+        setPosts(data.items);
+        setError(null);
       } catch (error) {
         console.error('Error fetching blog posts:', error);
         setError(error instanceof Error ? error.message : 'Failed to fetch blog posts');
@@ -53,6 +54,7 @@ export default function Blog() {
   }
 
   function sanitizeHTML(html: string) {
+    if (!html) return '';
     const doc = new DOMParser().parseFromString(html, 'text/html');
     const text = doc.body.textContent || '';
     return text.replace(/(\r\n|\n|\r)/gm, " ").trim();
@@ -60,22 +62,10 @@ export default function Blog() {
 
   function extractExcerpt(content: string, length: number = 250) {
     const cleanText = sanitizeHTML(content);
+    if (!cleanText) return 'No content available';
     return cleanText.length > length 
       ? `${cleanText.slice(0, length).trim()}...` 
       : cleanText;
-  }
-
-  if (error) {
-    return (
-      <div className="pt-24 pb-16 min-h-screen">
-        <div className="container mx-auto px-4">
-          <div className="text-center text-red-500">
-            <h2 className="text-xl font-semibold mb-4">Error</h2>
-            <p>{error}</p>
-          </div>
-        </div>
-      </div>
-    );
   }
 
   return (
@@ -100,8 +90,22 @@ export default function Blog() {
             <div className="flex items-center justify-center h-64">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
             </div>
+          ) : error ? (
+            <div className="text-center text-red-500 py-8">
+              <h2 className="text-xl font-semibold mb-4">Error</h2>
+              <p>{error}</p>
+              <Button 
+                onClick={() => window.location.reload()} 
+                className="mt-4"
+                variant="outline"
+              >
+                Try Again
+              </Button>
+            </div>
           ) : posts.length === 0 ? (
-            <p className="text-center text-muted-foreground">No posts available at the moment.</p>
+            <p className="text-center text-muted-foreground py-8">
+              No posts available at the moment.
+            </p>
           ) : (
             posts.map((post, index) => (
               <motion.div
@@ -122,18 +126,6 @@ export default function Blog() {
                           <>
                             <Separator orientation="vertical" className="h-4" />
                             <span>{post.author}</span>
-                          </>
-                        )}
-                        {post.categories && post.categories.length > 0 && (
-                          <>
-                            <Separator orientation="vertical" className="h-4" />
-                            <div className="flex gap-2">
-                              {post.categories.map((category) => (
-                                <span key={category} className="text-xs bg-muted px-2 py-1 rounded-full">
-                                  {category}
-                                </span>
-                              ))}
-                            </div>
                           </>
                         )}
                       </div>

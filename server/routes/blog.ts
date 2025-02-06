@@ -1,37 +1,39 @@
 import { Router } from 'express';
-import fs from 'fs';
-import path from 'path';
-import { parseString } from 'xml2js';
-import { promisify } from 'util';
+import Parser from 'rss-parser';
 
 const router = Router();
-const parseXMLAsync = promisify(parseString);
+const parser = new Parser({
+  customFields: {
+    item: [
+      ['content:encoded', 'fullContent'],
+      ['description', 'description']
+    ],
+  }
+});
+const RSS_URL = 'https://rss.beehiiv.com/feeds/ILy1gJzm7n.xml';
 
 router.get('/api/rss', async (req, res) => {
   try {
-    // Read the local RSS feed file
-    const rssContent = fs.readFileSync(
-      path.join(process.cwd(), 'attached_assets/rss_beehiiv_com_feeds_ILy1gJzm7n.md'),
-      'utf-8'
-    );
+    const feed = await parser.parseURL(RSS_URL);
 
-    // Parse the XML content
-    const result = await parseXMLAsync(rssContent);
-    
-    // Extract and format the items
-    const items = result.rss.channel[0].item.map((item: any) => ({
-      title: item.title[0],
-      link: item.link[0],
-      pubDate: item.pubDate[0],
-      content: item['content:encoded'] ? item['content:encoded'][0] : item.description[0],
-      author: item['dc:creator'] ? item['dc:creator'][0] : undefined,
-      categories: item.category ? item.category.map((cat: string) => cat) : undefined
+    // Transform the feed items to match our frontend expectations
+    const items = feed.items.map(post => ({
+      title: post.title,
+      link: post.link,
+      pubDate: post.pubDate,
+      content: post['fullContent'] || post['description'] || post.content || 'No content available',
+      author: post.creator || 'AI Success Network',
+      categories: post.categories || []
     }));
 
     res.json({ success: true, items });
   } catch (error) {
-    console.error('Error processing RSS feed:', error);
-    res.status(500).json({ success: false, error: 'Failed to process RSS feed' });
+    console.error('Error fetching RSS feed:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: 'Failed to fetch RSS feed',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    });
   }
 });
 

@@ -56,35 +56,22 @@ app.use((req, res, next) => {
       serveStatic(app);
     }
 
-    const tryPort = async (port: number): Promise<number> => {
-      try {
-        await new Promise((resolve, reject) => {
-          server.listen(port, '0.0.0.0')
-            .once('listening', () => {
-              server.close();
-              resolve(port);
-            })
-            .once('error', reject);
-        });
-        return port;
-      } catch {
-        return port < 3010 ? tryPort(port + 1) : Promise.reject(new Error('No available ports'));
-      }
-    };
-
-    const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+    const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3001;
     const HOST = '0.0.0.0';
 
-    tryPort(PORT)
-      .then(availablePort => {
-        server.listen(availablePort, HOST, () => {
-          log(`Server running on http://${HOST}:${availablePort}`);
-        });
-      })
-      .catch(error => {
-        log(`Failed to start server: ${error.message}`);
-        process.exit(1);
+    return new Promise<void>((resolve, reject) => {
+      server.listen(PORT, HOST, () => {
+        console.log(`Server ready on port ${PORT}`);
+        log(`Server running on http://${HOST}:${PORT}`);
+
+        // Add a small delay to ensure the server is fully ready
+        setTimeout(() => {
+          resolve();
+        }, 1000);
+      }).on('error', (err) => {
+        reject(err);
       });
+    });
   } catch (error) {
     log(`Failed to start application: ${error instanceof Error ? error.message : 'Unknown error'}`);
     process.exit(1);
