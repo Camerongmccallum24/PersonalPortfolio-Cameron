@@ -11,6 +11,7 @@ build = ["npm", "run", "build"]
 publicDir = "dist"
 
 [workflows]
+runButton = "Start application"
 
 [[workflows.workflow]]
 name = "Project"
@@ -29,12 +30,8 @@ author = "agent"
 agentRequireRestartOnSave = false
 
 [[workflows.workflow.tasks]]
-task = "packager.installForAll"
-
-[[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npm run dev"
-waitForPort = 3000
 
 [[ports]]
 localPort = 3000
