@@ -19,6 +19,14 @@ export default function Blog() {
   // Static blog post data
   const posts: BlogPost[] = [
     {
+      title: "AI-Powered Customer Success: The Key",
+      link: "https://aisuccessnetwork.beehiiv.com/p/ai-powered-customer-success-the-key",
+      pubDate: "2024-09-15T20:00:00Z",
+      content: "Discover how AI is transforming the Customer Success landscape and providing innovative solutions for enhanced customer experiences. Learn about the latest AI tools and strategies that are helping CS teams deliver more value while increasing efficiency.",
+      author: "AI Success Network",
+      categories: ["Customer Success", "Artificial Intelligence", "Technology"]
+    },
+    {
       title: "AI for CSMs: AI Automation in Customer Success",
       link: "https://aisuccessnetwork.beehiiv.com/p/ai-for-csms-ai-automation-in-customer",
       pubDate: "2024-09-10T19:48:32Z",
