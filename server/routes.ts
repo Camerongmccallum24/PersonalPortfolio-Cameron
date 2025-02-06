@@ -58,46 +58,7 @@ export function registerRoutes(app: Express): Server {
   });
 
   // Newsletter signup endpoint
-  // RSS feed endpoint
-  app.get('/api/rss', async (_req, res) => {
-    try {
-      const RSSParser = await import('rss-parser');
-      const parser = new RSSParser.default({
-        timeout: 5000,
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (compatible; RSS-Reader/1.0)'
-        }
-      });
-
-      // You'll need to replace this with your actual Beehiiv publication URL
-      const feedUrl = 'https://rss.beehiiv.com/feeds/ILy1gJzm7n.xml';
-      console.log('Fetching RSS feed from:', feedUrl);
-      const feed = await parser.parseURL(feedUrl);
-      console.log(`Found ${feed.items?.length || 0} posts`);
-
-      if (!feed.items?.length) {
-        return res.json({
-          success: true,
-          items: [],
-          message: 'No posts found'
-        });
-      }
-
-      res.json({
-        success: true,
-        title: feed.title,
-        description: feed.description,
-        items: feed.items
-      });
-    } catch (error) {
-      console.error('Error fetching RSS feed:', error instanceof Error ? error.stack : error);
-      res.status(500).json({
-        success: false,
-        message: 'Error fetching RSS feed - please ensure the RSS feed URL is correct and accessible',
-        error: error instanceof Error ? error.message : 'Unknown error'
-      });
-    }
-  });
+  // Blog routes are handled in blog.ts
 
   app.post('/api/newsletter', async (req, res) => {
     try {

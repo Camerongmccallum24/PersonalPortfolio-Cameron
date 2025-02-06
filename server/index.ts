@@ -7,8 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Register blog routes
-app.use(blogRoutes);
+// Blog routes are registered in routes.ts
 
 // Logging middleware
 app.use((req, res, next) => {
