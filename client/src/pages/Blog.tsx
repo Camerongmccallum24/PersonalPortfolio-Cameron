@@ -24,7 +24,12 @@ export default function Blog() {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch('/api/rss');
+        const response = await fetch('/api/rss', {
+          headers: {
+            'Accept': 'application/json',
+            'Cache-Control': 'no-cache'
+          }
+        });
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
