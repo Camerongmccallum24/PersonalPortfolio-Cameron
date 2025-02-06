@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
 
 interface BlogPost {
@@ -14,43 +14,19 @@ interface BlogPost {
 }
 
 export default function Blog() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [retryCount, setRetryCount] = useState(0);
+  const [loading] = useState(false);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const response = await fetch('/api/rss', {
-          headers: {
-            'Accept': 'application/json',
-            'Cache-Control': 'no-cache'
-          }
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        if (!data.success) {
-          throw new Error(data.error || 'Failed to fetch blog posts');
-        }
-
-        setPosts(data.items);
-      } catch (error) {
-        console.error('Error fetching blog posts:', error);
-        setError(error instanceof Error ? error.message : 'Failed to fetch blog posts');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, [retryCount]); // Add retryCount to dependencies to allow manual refresh
+  // Static blog post data
+  const posts: BlogPost[] = [
+    {
+      title: "AI for CSMs: AI Automation in Customer Success",
+      link: "https://aisuccessnetwork.beehiiv.com/p/ai-for-csms-ai-automation-in-customer",
+      pubDate: "2024-09-10T19:48:32Z",
+      content: "AI automation is revolutionizing Customer Success, with 85% of CS teams reporting significant efficiency gains within six months of implementation. Discover the foundations of this game-changing technology. According to a recent survey, 67% of CS teams are now using some form of AI automation. Companies utilizing AI in their CS operations report a 25% increase in customer satisfaction scores on average. 78% of CSMs say AI tools have significantly improved their ability to manage larger customer portfolios effectively.",
+      author: "AI Success Network",
+      categories: ["Business", "Artificial Intelligence", "Technology"]
+    }
+  ];
 
   function formatDate(dateStr: string) {
     return new Date(dateStr).toLocaleDateString('en-US', {
@@ -59,25 +35,6 @@ export default function Blog() {
       day: 'numeric'
     });
   }
-
-  function sanitizeHTML(html: string) {
-    if (!html) return '';
-    const doc = new DOMParser().parseFromString(html, 'text/html');
-    const text = doc.body.textContent || '';
-    return text.replace(/(\r\n|\n|\r)/gm, " ").trim();
-  }
-
-  function extractExcerpt(content: string, length: number = 250) {
-    const cleanText = sanitizeHTML(content);
-    if (!cleanText) return 'No content available';
-    return cleanText.length > length 
-      ? `${cleanText.slice(0, length).trim()}...` 
-      : cleanText;
-  }
-
-  const handleRetry = () => {
-    setRetryCount(prev => prev + 1);
-  };
 
   return (
     <motion.main
@@ -100,34 +57,6 @@ export default function Blog() {
           {loading ? (
             <div className="flex items-center justify-center h-64">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-            </div>
-          ) : error ? (
-            <div className="text-center py-8">
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="text-red-500 mb-4">
-                    <h2 className="text-xl font-semibold mb-2">Error Loading Posts</h2>
-                    <p className="text-sm">{error}</p>
-                  </div>
-                  <Button 
-                    onClick={handleRetry} 
-                    variant="outline"
-                    className="mt-2"
-                  >
-                    Try Again
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          ) : posts.length === 0 ? (
-            <div className="text-center py-8">
-              <Card>
-                <CardContent className="pt-6">
-                  <p className="text-muted-foreground">
-                    No posts available at the moment.
-                  </p>
-                </CardContent>
-              </Card>
             </div>
           ) : (
             posts.map((post, index) => (
@@ -156,7 +85,7 @@ export default function Blog() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p className="text-muted-foreground">
-                      {extractExcerpt(post.content)}
+                      {post.content}
                     </p>
                     <div className="flex justify-end">
                       <Button

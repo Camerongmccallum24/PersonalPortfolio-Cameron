@@ -7,21 +7,38 @@ const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY || '';
 
 router.get('/api/rss', async (_req, res) => {
   try {
-    console.log('Fetching RSS feed from:', RSS_URL);
+    if (!BEEHIIV_API_KEY) {
+      throw new Error('BeehiV API key is not configured');
+    }
+
+    // Log first few characters of API key for verification (safely)
+    console.log('API Key length:', BEEHIIV_API_KEY.length);
+    console.log('API Key starts with:', BEEHIIV_API_KEY.substring(0, 4) + '...');
+
+    console.log('Fetching BeehiV posts from:', RSS_URL);
     const response = await fetch(RSS_URL, {
+      method: 'GET',
       headers: {
-        'Authorization': `Bearer ${BEEHIIV_API_KEY}`,
+        'Authorization': BEEHIIV_API_KEY,
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       signal: AbortSignal.timeout(10000) // 10 second timeout
     });
 
+    console.log('Response status:', response.status);
+    console.log('Response headers:', [...response.headers.entries()]);
+
     if (!response.ok) {
-      throw new Error(`Failed to fetch posts: ${response.statusText}`);
+      const errorText = await response.text();
+      console.error('BeehiV API Error:', response.status, errorText);
+      throw new Error(`Failed to fetch posts: ${response.status} ${response.statusText}`);
     }
 
     const data = await response.json();
+    console.log('BeehiV API Response:', JSON.stringify(data, null, 2));
+
+    // Transform the v2 API response to match our frontend expectations
     const items = data.data.map((post: any) => ({
       title: post.title || 'Untitled Post',
       link: post.web_url || '#',
@@ -31,7 +48,6 @@ router.get('/api/rss', async (_req, res) => {
       categories: post.tags || []
     }));
 
-    res.setHeader('Content-Type', 'application/json');
     res.json({ 
       success: true, 
       items

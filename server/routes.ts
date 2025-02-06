@@ -4,11 +4,11 @@ import { z } from "zod";
 import { Router } from 'express';
 import fetch from 'node-fetch';
 
-// RSS API URL and configuration
+// RSS API URL and configuration - Updated to v2 format
 const RSS_URL = `https://api.beehiiv.com/v2/publications/pub_635251cb-7233-42d9-82e3-0bd17ca0a8a3/posts`;
 const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY || '';
 
-// Input validation schemas
+// Input validation schemas remain unchanged
 const newsletterSchema = z.object({
   email: z.string().email("Invalid email address"),
 });
@@ -21,17 +21,13 @@ const recommendationsSchema = z.object({
 export function registerRoutes(app: Express): Server {
   const apiRouter = Router();
 
-  // Health check endpoint
+  // Health check endpoint remains unchanged
   apiRouter.get('/health', (_req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
-  // Blog/RSS feed endpoint
+  // Blog/RSS feed endpoint with improved logging and authorization
   apiRouter.get('/rss', async (_req, res) => {
-    // Set headers early
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Content-Type', 'application/json');
-
     try {
       if (!BEEHIIV_API_KEY) {
         throw new Error('BeehiV API key is not configured');
@@ -41,32 +37,25 @@ export function registerRoutes(app: Express): Server {
       const response = await fetch(RSS_URL, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${BEEHIIV_API_KEY}`,
+          'Authorization': BEEHIIV_API_KEY, // Direct API key without prefix
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         }
       });
 
-      const responseText = await response.text();
-      console.log('BeehiV API Response:', response.status, responseText);
+      console.log('Response status:', response.status);
+      console.log('Response headers:', [...response.headers.entries()]);
 
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('BeehiV API Error:', response.status, errorText);
         throw new Error(`Failed to fetch posts: ${response.status} ${response.statusText}`);
       }
 
-      let data;
-      try {
-        data = JSON.parse(responseText);
-      } catch (e) {
-        console.error('Failed to parse JSON response:', e);
-        throw new Error('Invalid response format from BeehiV API');
-      }
+      const data = await response.json();
+      console.log('BeehiV API Response:', JSON.stringify(data, null, 2));
 
-      if (!data || !Array.isArray(data.data)) {
-        console.error('Unexpected API response structure:', data);
-        throw new Error('Invalid response format from BeehiV API');
-      }
-
+      // Transform the v2 API response to match our frontend expectations
       const items = data.data.map((post: any) => ({
         title: post.title || 'Untitled Post',
         link: post.web_url || '#',
@@ -76,13 +65,13 @@ export function registerRoutes(app: Express): Server {
         categories: post.tags || []
       }));
 
-      return res.json({ 
+      res.json({ 
         success: true, 
         items
       });
     } catch (error) {
       console.error('Error fetching RSS feed:', error);
-      return res.status(500).json({ 
+      res.status(500).json({ 
         success: false, 
         message: 'Error fetching RSS feed - please try again later',
         error: error instanceof Error ? error.message : 'Unknown error'
@@ -159,7 +148,7 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
-  // Mount API routes before any other middleware
+  // Mount API routes
   app.use('/api', apiRouter);
 
   // Create and return HTTP server
