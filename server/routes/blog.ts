@@ -7,7 +7,8 @@ const parser = new Parser({
   timeout: 15000,
   headers: {
     'Accept': 'application/rss+xml, application/xml, text/xml, */*',
-    'User-Agent': 'AI-Success-Network-Blog/1.0'
+    'User-Agent': 'AI-Success-Network-Blog/1.0',
+    'Authorization': `Bearer ${API_KEY}`
   },
   customFields: {
     item: [
@@ -17,7 +18,8 @@ const parser = new Parser({
   }
 });
 
-const RSS_URL = 'https://aisuccessnetwork.beehiiv.com/feed/rss';
+const RSS_URL = 'https://rss.beehiiv.com/feeds/ILy1gJzm7n.xml';
+const API_KEY = '8MAARJXXQjz31lvzgBCvOfZZTDqrF9RD6HU34JMRHTDErEw5UuvJbjYbpL8YLmVD';
 
 router.get('/api/rss', async (_req, res) => {
   try {
