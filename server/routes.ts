@@ -68,13 +68,13 @@ export function registerRoutes(app: Express): Server {
           'User-Agent': 'Mozilla/5.0 (compatible; RSS-Reader/1.0)'
         }
       });
-      
+
       // You'll need to replace this with your actual Beehiiv publication URL
       const feedUrl = 'https://rss.beehiiv.com/feeds/ILy1gJzm7n.xml';
       console.log('Fetching RSS feed from:', feedUrl);
       const feed = await parser.parseURL(feedUrl);
       console.log(`Found ${feed.items?.length || 0} posts`);
-      
+
       if (!feed.items?.length) {
         return res.json({
           success: true,
@@ -82,7 +82,7 @@ export function registerRoutes(app: Express): Server {
           message: 'No posts found'
         });
       }
-      
+
       res.json({
         success: true,
         title: feed.title,
@@ -152,7 +152,7 @@ router.get('/api/rss', async (req, res) => {
         content: "Artificial intelligence is transforming customer support..."
       }
     ];
-    
+
     res.json({ success: true, items: mockPosts });
   } catch (error) {
     res.status(500).json({ success: false, error: 'Failed to fetch RSS feed' });
