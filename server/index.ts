@@ -1,13 +1,24 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import blogRoutes from "./routes/blog";
 
 const app = express();
+
+// Basic middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Blog routes are registered in routes.ts
+// CORS headers for API routes
+app.use('/api', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
 
 // Logging middleware
 app.use((req, res, next) => {
@@ -49,6 +60,7 @@ app.use((req, res, next) => {
       console.error(err);
     });
 
+    // Setup Vite or serve static files after API routes
     if (app.get("env") === "development") {
       await setupVite(app, server);
     } else {

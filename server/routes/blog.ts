@@ -1,25 +1,9 @@
-
 import { Router } from 'express';
-import Parser from 'rss-parser';
 
 const router = Router();
-const parser = new Parser({
-  timeout: 15000,
-  headers: {
-    'Accept': 'application/rss+xml, application/xml, text/xml, */*',
-    'User-Agent': 'AI-Success-Network-Blog/1.0',
-    'Authorization': '8MAARJXXQjz31lvzgBCvOfZZTDqrF9RD6HU34JMRHTDErEw5UuvJbjYbpL8YLmVD'
-  },
-  customFields: {
-    item: [
-      ['content:encoded', 'fullContent'],
-      ['description', 'description']
-    ],
-  }
-});
 
 const RSS_URL = `https://api.beehiiv.com/v2/publications/pub_635251cb-7233-42d9-82e3-0bd17ca0a8a3/posts`;
-const BEEHIIV_API_KEY = '8MAARJXXQjz31lvzgBCvOfZZTDqrF9RD6HU34JMRHTDErEw5UuvJbjYbpL8YLmVD';
+const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY || '';
 
 router.get('/api/rss', async (_req, res) => {
   try {
@@ -27,8 +11,10 @@ router.get('/api/rss', async (_req, res) => {
     const response = await fetch(RSS_URL, {
       headers: {
         'Authorization': `Bearer ${BEEHIIV_API_KEY}`,
-        'Accept': 'application/json'
-      }
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      signal: AbortSignal.timeout(10000) // 10 second timeout
     });
 
     if (!response.ok) {
@@ -45,11 +31,10 @@ router.get('/api/rss', async (_req, res) => {
       categories: post.tags || []
     }));
 
+    res.setHeader('Content-Type', 'application/json');
     res.json({ 
       success: true, 
-      items,
-      feedTitle: feed.title,
-      feedDescription: feed.description
+      items
     });
   } catch (error) {
     console.error('Error fetching RSS feed:', error);

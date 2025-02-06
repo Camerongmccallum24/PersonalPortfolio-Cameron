@@ -1,13 +1,18 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { z } from "zod";
+import { Router } from 'express';
+import fetch from 'node-fetch';
 
-// Newsletter schema
+// RSS API URL and configuration
+const RSS_URL = `https://api.beehiiv.com/v2/publications/pub_635251cb-7233-42d9-82e3-0bd17ca0a8a3/posts`;
+const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY || '';
+
+// Input validation schemas
 const newsletterSchema = z.object({
   email: z.string().email("Invalid email address"),
 });
 
-// Input validation schemas
 const recommendationsSchema = z.object({
   customerGoals: z.string().min(1, "Customer goals are required"),
   customerChallenges: z.string().min(1, "Customer challenges are required"),
@@ -17,6 +22,48 @@ export function registerRoutes(app: Express): Server {
   // Health check endpoint
   app.get('/api/health', (_req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  });
+
+  // Blog/RSS feed endpoint
+  app.get('/api/rss', async (_req, res) => {
+    try {
+      console.log('Fetching RSS feed from:', RSS_URL);
+      const response = await fetch(RSS_URL, {
+        headers: {
+          'Authorization': `Bearer ${BEEHIIV_API_KEY}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        signal: AbortSignal.timeout(10000) // 10 second timeout
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch posts: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      const items = data.data.map((post: any) => ({
+        title: post.title || 'Untitled Post',
+        link: post.web_url || '#',
+        pubDate: post.created_at || new Date().toISOString(),
+        content: post.content || post.subtitle || 'No content available',
+        author: 'AI Success Network',
+        categories: post.tags || []
+      }));
+
+      res.setHeader('Content-Type', 'application/json');
+      res.json({ 
+        success: true, 
+        items
+      });
+    } catch (error) {
+      console.error('Error fetching RSS feed:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: 'Error fetching RSS feed - please try again later',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
   });
 
   // Demo recommendations endpoint with validation
@@ -58,8 +105,6 @@ export function registerRoutes(app: Express): Server {
   });
 
   // Newsletter signup endpoint
-  // Blog routes are handled in blog.ts
-
   app.post('/api/newsletter', async (req, res) => {
     try {
       const validatedData = newsletterSchema.parse(req.body);
@@ -93,31 +138,3 @@ export function registerRoutes(app: Express): Server {
   const httpServer = createServer(app);
   return httpServer;
 }
-import express from 'express';
-const router = express.Router();
-
-router.get('/api/rss', async (req, res) => {
-  try {
-    // Mock data for now - replace with actual RSS feed fetch
-    const mockPosts = [
-      {
-        title: "Getting Started with Customer Success",
-        link: "https://example.com/post1",
-        pubDate: new Date().toISOString(),
-        content: "Customer success is crucial for business growth..."
-      },
-      {
-        title: "AI in Customer Support",
-        link: "https://example.com/post2",
-        pubDate: new Date().toISOString(),
-        content: "Artificial intelligence is transforming customer support..."
-      }
-    ];
-
-    res.json({ success: true, items: mockPosts });
-  } catch (error) {
-    res.status(500).json({ success: false, error: 'Failed to fetch RSS feed' });
-  }
-});
-
-export default router;
