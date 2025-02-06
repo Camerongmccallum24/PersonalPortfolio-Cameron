@@ -62,9 +62,24 @@ export function registerRoutes(app: Express): Server {
   app.get('/api/rss', async (_req, res) => {
     try {
       const Parser = require('rss-parser');
-      const parser = new Parser();
+      const parser = new Parser({
+        timeout: 5000,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (compatible; RSS-Reader/1.0)'
+        }
+      });
       
+      console.log('Fetching RSS feed...');
       const feed = await parser.parseURL('https://rss.beehiiv.com/feeds/ILy1gJzm7n.xml');
+      console.log(`Found ${feed.items?.length || 0} posts`);
+      
+      if (!feed.items?.length) {
+        return res.json({
+          success: true,
+          items: [],
+          message: 'No posts found'
+        });
+      }
       
       res.json({
         success: true,
@@ -76,7 +91,7 @@ export function registerRoutes(app: Express): Server {
       console.error('Error fetching RSS feed:', error);
       res.status(500).json({
         success: false,
-        message: 'Error fetching RSS feed',
+        message: 'Error fetching RSS feed - please ensure the RSS feed URL is correct and accessible',
         error: error instanceof Error ? error.message : 'Unknown error'
       });
     }
