@@ -19,7 +19,6 @@ app.use('/api', (req, res, next) => {
   next();
 });
 
-
 // Logging middleware
 app.use((req, res, next) => {
   const start = Date.now();
@@ -50,6 +49,7 @@ app.use((req, res, next) => {
 
 (async () => {
   try {
+    // Register API routes first, before any other middleware
     const server = registerRoutes(app);
 
     // Error handling middleware
@@ -60,7 +60,7 @@ app.use((req, res, next) => {
       console.error(err);
     });
 
-    // Setup Vite or serve static files after API routes
+    // Setup Vite or serve static files AFTER API routes
     if (app.get("env") === "development") {
       await setupVite(app, server);
     } else {

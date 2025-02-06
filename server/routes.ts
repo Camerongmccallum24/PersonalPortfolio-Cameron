@@ -19,29 +19,54 @@ const recommendationsSchema = z.object({
 });
 
 export function registerRoutes(app: Express): Server {
+  const apiRouter = Router();
+
   // Health check endpoint
-  app.get('/api/health', (_req, res) => {
+  apiRouter.get('/health', (_req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
   // Blog/RSS feed endpoint
-  app.get('/api/rss', async (_req, res) => {
+  apiRouter.get('/rss', async (_req, res) => {
+    // Set headers early
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Content-Type', 'application/json');
+
     try {
-      console.log('Fetching RSS feed from:', RSS_URL);
+      if (!BEEHIIV_API_KEY) {
+        throw new Error('BeehiV API key is not configured');
+      }
+
+      console.log('Fetching BeehiV posts from:', RSS_URL);
       const response = await fetch(RSS_URL, {
+        method: 'GET',
         headers: {
           'Authorization': `Bearer ${BEEHIIV_API_KEY}`,
           'Accept': 'application/json',
           'Content-Type': 'application/json'
-        },
-        signal: AbortSignal.timeout(10000) // 10 second timeout
+        }
       });
 
+      const responseText = await response.text();
+      console.log('BeehiV API Response:', response.status, responseText);
+
       if (!response.ok) {
-        throw new Error(`Failed to fetch posts: ${response.statusText}`);
+        throw new Error(`Failed to fetch posts: ${response.status} ${response.statusText}`);
       }
 
-      const data = await response.json();
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch (e) {
+        console.error('Failed to parse JSON response:', e);
+        throw new Error('Invalid response format from BeehiV API');
+      }
+
+      if (!data || !Array.isArray(data.data)) {
+        console.error('Unexpected API response structure:', data);
+        throw new Error('Invalid response format from BeehiV API');
+      }
+
       const items = data.data.map((post: any) => ({
         title: post.title || 'Untitled Post',
         link: post.web_url || '#',
@@ -51,14 +76,13 @@ export function registerRoutes(app: Express): Server {
         categories: post.tags || []
       }));
 
-      res.setHeader('Content-Type', 'application/json');
-      res.json({ 
+      return res.json({ 
         success: true, 
         items
       });
     } catch (error) {
       console.error('Error fetching RSS feed:', error);
-      res.status(500).json({ 
+      return res.status(500).json({ 
         success: false, 
         message: 'Error fetching RSS feed - please try again later',
         error: error instanceof Error ? error.message : 'Unknown error'
@@ -67,7 +91,7 @@ export function registerRoutes(app: Express): Server {
   });
 
   // Demo recommendations endpoint with validation
-  app.post('/api/demo/recommendations', async (req, res) => {
+  apiRouter.post('/demo/recommendations', async (req, res) => {
     try {
       const validatedData = recommendationsSchema.parse(req.body);
       const { customerGoals, customerChallenges } = validatedData;
@@ -105,7 +129,7 @@ export function registerRoutes(app: Express): Server {
   });
 
   // Newsletter signup endpoint
-  app.post('/api/newsletter', async (req, res) => {
+  apiRouter.post('/newsletter', async (req, res) => {
     try {
       const validatedData = newsletterSchema.parse(req.body);
       const { email } = validatedData;
@@ -135,6 +159,10 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  // Mount API routes before any other middleware
+  app.use('/api', apiRouter);
+
+  // Create and return HTTP server
   const httpServer = createServer(app);
   return httpServer;
 }
