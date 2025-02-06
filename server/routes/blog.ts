@@ -17,7 +17,7 @@ const parser = new Parser({
   }
 });
 
-const RSS_URL = 'https://rss.beehiiv.com/feeds/ILy1gJzm7n.xml';
+const RSS_URL = 'https://aisuccessnetwork.beehiiv.com/feed/rss';
 
 router.get('/api/rss', async (_req, res) => {
   try {
