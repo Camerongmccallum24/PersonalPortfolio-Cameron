@@ -1,10 +1,14 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import blogRoutes from "./routes/blog";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Register blog routes
+app.use(blogRoutes);
 
 // Logging middleware
 app.use((req, res, next) => {
@@ -70,7 +74,7 @@ app.use((req, res, next) => {
 
     const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
     const HOST = '0.0.0.0';
-    
+
     tryPort(PORT)
       .then(availablePort => {
         server.listen(availablePort, HOST, () => {

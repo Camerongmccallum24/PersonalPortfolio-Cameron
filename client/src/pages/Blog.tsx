@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -17,17 +16,26 @@ interface BlogPost {
 export default function Blog() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await fetch('/api/rss');
         const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to fetch blog posts');
+        }
+
         if (data.success) {
           setPosts(data.items);
+        } else {
+          throw new Error('Failed to fetch blog posts');
         }
       } catch (error) {
         console.error('Error fetching blog posts:', error);
+        setError(error instanceof Error ? error.message : 'Failed to fetch blog posts');
       } finally {
         setLoading(false);
       }
@@ -46,12 +54,28 @@ export default function Blog() {
 
   function sanitizeHTML(html: string) {
     const doc = new DOMParser().parseFromString(html, 'text/html');
-    return doc.body.textContent || '';
+    const text = doc.body.textContent || '';
+    return text.replace(/(\r\n|\n|\r)/gm, " ").trim();
   }
 
-  function extractExcerpt(content: string, length: number = 200) {
+  function extractExcerpt(content: string, length: number = 250) {
     const cleanText = sanitizeHTML(content);
-    return cleanText.length > length ? `${cleanText.slice(0, length)}...` : cleanText;
+    return cleanText.length > length 
+      ? `${cleanText.slice(0, length).trim()}...` 
+      : cleanText;
+  }
+
+  if (error) {
+    return (
+      <div className="pt-24 pb-16 min-h-screen">
+        <div className="container mx-auto px-4">
+          <div className="text-center text-red-500">
+            <h2 className="text-xl font-semibold mb-4">Error</h2>
+            <p>{error}</p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -68,7 +92,7 @@ export default function Blog() {
           transition={{ duration: 0.5 }}
           className="text-4xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
         >
-          Blog
+          Latest Articles
         </motion.h1>
 
         <div className="max-w-3xl mx-auto space-y-8">
@@ -77,7 +101,7 @@ export default function Blog() {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
             </div>
           ) : posts.length === 0 ? (
-            <p className="text-center text-muted-foreground">No posts available.</p>
+            <p className="text-center text-muted-foreground">No posts available at the moment.</p>
           ) : (
             posts.map((post, index) => (
               <motion.div
