@@ -70,7 +70,7 @@ export function registerRoutes(app: Express): Server {
       });
       
       // You'll need to replace this with your actual Beehiiv publication URL
-      const feedUrl = 'https://blog.beehiiv.com/feed';
+      const feedUrl = 'https://rss.beehiiv.com/feeds/ILy1gJzm7n.xml';
       console.log('Fetching RSS feed from:', feedUrl);
       const feed = await parser.parseURL(feedUrl);
       console.log(`Found ${feed.items?.length || 0} posts`);
