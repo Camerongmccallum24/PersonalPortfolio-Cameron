@@ -60,11 +60,17 @@ app.use((req, res, next) => {
       console.error(err);
     });
 
-    // Setup Vite or serve static files AFTER API routes
+    // Configure static file serving and production setup
     if (app.get("env") === "development") {
       await setupVite(app, server);
     } else {
-      serveStatic(app);
+      // Serve static files from dist/public
+      app.use(express.static("dist/public"));
+
+      // Serve index.html for client-side routing
+      app.get("*", (_req, res) => {
+        res.sendFile("dist/public/index.html", { root: "." });
+      });
     }
 
     const PORT = process.env.PORT ? parseInt(process.env.PORT) : 80;
