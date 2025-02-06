@@ -17,23 +17,25 @@ export default function Blog() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         setLoading(true);
+        setError(null);
         const response = await fetch('/api/rss');
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json();
 
+        const data = await response.json();
         if (!data.success) {
           throw new Error(data.error || 'Failed to fetch blog posts');
         }
 
         setPosts(data.items);
-        setError(null);
       } catch (error) {
         console.error('Error fetching blog posts:', error);
         setError(error instanceof Error ? error.message : 'Failed to fetch blog posts');
@@ -43,7 +45,7 @@ export default function Blog() {
     };
 
     fetchPosts();
-  }, []);
+  }, [retryCount]); // Add retryCount to dependencies to allow manual refresh
 
   function formatDate(dateStr: string) {
     return new Date(dateStr).toLocaleDateString('en-US', {
@@ -68,6 +70,10 @@ export default function Blog() {
       : cleanText;
   }
 
+  const handleRetry = () => {
+    setRetryCount(prev => prev + 1);
+  };
+
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -91,21 +97,33 @@ export default function Blog() {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
             </div>
           ) : error ? (
-            <div className="text-center text-red-500 py-8">
-              <h2 className="text-xl font-semibold mb-4">Error</h2>
-              <p>{error}</p>
-              <Button 
-                onClick={() => window.location.reload()} 
-                className="mt-4"
-                variant="outline"
-              >
-                Try Again
-              </Button>
+            <div className="text-center py-8">
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-red-500 mb-4">
+                    <h2 className="text-xl font-semibold mb-2">Error Loading Posts</h2>
+                    <p className="text-sm">{error}</p>
+                  </div>
+                  <Button 
+                    onClick={handleRetry} 
+                    variant="outline"
+                    className="mt-2"
+                  >
+                    Try Again
+                  </Button>
+                </CardContent>
+              </Card>
             </div>
           ) : posts.length === 0 ? (
-            <p className="text-center text-muted-foreground py-8">
-              No posts available at the moment.
-            </p>
+            <div className="text-center py-8">
+              <Card>
+                <CardContent className="pt-6">
+                  <p className="text-muted-foreground">
+                    No posts available at the moment.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           ) : (
             posts.map((post, index) => (
               <motion.div
