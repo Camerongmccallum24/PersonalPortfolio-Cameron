@@ -44,7 +44,6 @@ export default function EnhancedDemo() {
             className="text-center space-y-4"
           >
             <div className="flex justify-center">
-              <Target className="h-12 w-12 text-primary" />
             </div>
             <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
               CSM Recommendation Engine
