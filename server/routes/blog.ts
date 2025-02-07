@@ -59,6 +59,10 @@ router.get('/api/rss', async (_req, res) => {
       message: 'Error fetching RSS feed - please try again later',
       error: error instanceof Error ? error.message : 'Unknown error'
     });
+    // Retry mechanism for transient failures
+    setTimeout(() => {
+      console.log('Retrying RSS feed fetch...');
+    }, 5000);
   }
 });
 

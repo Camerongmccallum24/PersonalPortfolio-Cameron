@@ -73,8 +73,13 @@ app.use((req, res, next) => {
       });
     }
 
-    const PORT = process.env.PORT ? parseInt(process.env.PORT) : 80;
+    const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
     const HOST = '0.0.0.0';
+
+    // Ensure all routes are registered before starting server
+    app.get('*', (_req, res) => {
+      res.sendFile('dist/public/index.html', { root: '.' });
+    });
 
     return new Promise<void>((resolve, reject) => {
       server.listen(PORT, HOST, () => {
