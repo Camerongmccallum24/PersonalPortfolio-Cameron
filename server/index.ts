@@ -73,29 +73,22 @@ app.use((req, res, next) => {
       });
     }
 
-    const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
-    const HOST = '0.0.0.0';
-
-    // Ensure all routes are registered before starting server
-    app.get('*', (_req, res) => {
-      res.sendFile('dist/public/index.html', { root: '.' });
-    });
-
-    return new Promise<void>((resolve, reject) => {
-      server.listen(PORT, HOST, () => {
-        console.log(`Server ready on port ${PORT}`);
-        log(`Server running on http://${HOST}:${PORT}`);
-
-        // Add a small delay to ensure the server is fully ready
-        setTimeout(() => {
-          resolve();
-        }, 1000);
-      }).on('error', (err) => {
-        reject(err);
-      });
-    });
-  } catch (error) {
-    log(`Failed to start application: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    process.exit(1);
-  }
-})();
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+const HOST = '0.0.0.0'; // Change from localhost to 0.0.0.0
+// Ensure all routes are registered before starting server
+app.get('*', (_req, res) => {
+  res.sendFile('dist/public/index.html', { root: '.' });
+});
+// Starting the server
+return new Promise<void>((resolve, reject) => {
+  server.listen(PORT, HOST, () => { // Change here
+    console.log(`Server ready on port ${PORT}`);
+    log(`Server running on http://${HOST}:${PORT}`);
+    // Add a small delay to ensure the server is fully ready
+    setTimeout(() => {
+      resolve();
+    }, 1000);
+  }).on('error', (err) => {
+    reject(err);
+  });
+});
