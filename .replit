@@ -11,7 +11,7 @@ build = ["sh", "-c", "npm run build"]
 run = ["sh", "-c", "NODE_ENV=production node dist/index.js"]
 
 [workflows]
-runButton = "Start application"
+runButton = "Project"
 
 [[workflows.workflow]]
 name = "Project"
