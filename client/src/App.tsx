@@ -17,6 +17,9 @@ import CaseStudyAutomator from "@/pages/CaseStudyAutomator";
 import CSMDemo from "@/components/csm-demo";
 import CaseStudyAITools from "@/pages/CaseStudyAITools";
 import { AnimatePresence } from "framer-motion";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import Terms from "@/pages/Terms";
+import CookiePolicy from "@/pages/CookiePolicy";
 
 function App() {
   const [location] = useLocation();
@@ -44,6 +47,9 @@ function App() {
           <Route path="/case-study/customer-success-portal" component={CaseStudyPortal} />
           <Route path="/case-study/customer-success-automator" component={CaseStudyAutomator} />
           <Route path="/csm-demo" component={CSMDemo} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/terms" component={Terms} />
+          <Route path="/cookie-policy" component={CookiePolicy} />
         </Switch>
       </AnimatePresence>
       <Footer />
