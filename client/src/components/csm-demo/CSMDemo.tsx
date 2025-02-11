@@ -7,6 +7,7 @@ import './CSMDemo.css';
 const CSMDemo: React.FC = () => {
     const [activeTab, setActiveTab] = useState('health');
     const [healthScore, setHealthScore] = useState(82);
+    const [chart, setChart] = useState<Chart | null>(null);
     const [healthStatus, setHealthStatus] = useState('Healthy - Low churn risk');
     const [prediction, setPrediction] = useState({ value: 0, confidence: 85 });
     const [renewalProbability, setRenewalProbability] = useState(85);
@@ -17,7 +18,7 @@ const CSMDemo: React.FC = () => {
 
     // Mock TensorFlow.js LSTM Prediction
     class HealthPredictor {
-        predict(inputs) {
+        predict(inputs: { usage: number; tickets: number }) {
             const trend = inputs.usage * 0.6 - inputs.tickets * 0.3;
             return {
                 value: Math.min(100, Math.max(0, trend)),
@@ -29,14 +30,14 @@ const CSMDemo: React.FC = () => {
     const predictor = new HealthPredictor();
 
     // Update Health Score
-    const updateHealth = (usage, tickets) => {
+    const updateHealth = (usage: string, tickets: string) => {
         const score = Math.max(0, 80 - tickets * 2 + usage * 0.3);
         setHealthScore(Math.round(score));
         setHealthStatus(
             score > 70 ? 'Healthy - Low churn risk' : score > 50 ? 'Needs Attention' : 'High Risk'
         );
 
-        const prediction = predictor.predict({ usage, tickets });
+        const prediction = predictor.predict({ usage: parseFloat(usage), tickets: parseFloat(tickets) });
         setPrediction({
             value: Math.round(prediction.value),
             confidence: Math.round(prediction.confidence * 100),
@@ -61,10 +62,11 @@ const CSMDemo: React.FC = () => {
             'Feature Adoption': Math.random() * 25,
             'Sentiment Score': Math.random() * 20,
         };
-
-        if (shapChartRef.current) {
-            const ctx = shapChartRef.current.getContext('2d');
-            new Chart(ctx, {
+        
+        if (chart) {
+          chart.destroy();
+        }
+        setChart(new Chart(shapChartRef.current!.getContext('2d'), {
                 type: 'bar',
                 data: {
                     labels: Object.keys(factors),
@@ -75,13 +77,13 @@ const CSMDemo: React.FC = () => {
                             backgroundColor: '#4f46e5',
                         },
                     ],
-                },
+                }
             });
         }
     };
 
     // Generate Advocacy Content
-    const generateAdvocacyContent = (type) => {
+    const generateAdvocacyContent = (type: 'case-study' | 'referral' | 'testimonial') => {
         setIsProcessing(true);
         setTimeout(() => {
             const templates = {
@@ -110,7 +112,7 @@ const CSMDemo: React.FC = () => {
     useEffect(() => {
         updateShapExplanation();
     }, []);
-
+    
     return (
         <div className="space-y-8">
             <h1 className="page-header">CSM Demo</h1>
@@ -199,11 +201,11 @@ const CSMDemo: React.FC = () => {
                                 <p>Key Factors: Product adoption, Positive NPS</p>
                             </div>
                             <button onClick={simulateRenewal}>Simulate Engagement Campaign</button>
-
+                            
                             <div className="ai-processing">
                                 <h5>AI Decision Factors:</h5>
                                 <canvas ref={shapChartRef} width="400" height="200"></canvas>
-                            </div>
+                            </div> 
                         </div>
                     </div>
                 )}
