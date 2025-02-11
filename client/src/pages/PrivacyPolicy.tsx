@@ -3,17 +3,24 @@ import { Helmet } from 'react-helmet';
 
 const PrivacyPolicy: React.FC = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <>
       <Helmet>
         <title>Privacy Policy - Cameron McCallum</title>
-        <meta name="description" content="Privacy Policy for Cameron McCallum's portfolio website. Learn how we collect, use, and protect your personal information." />
+        <meta 
+          name="description" 
+          content="Privacy Policy for Cameron McCallum's portfolio website. Learn how we collect, use, and protect your personal information." />
       </Helmet>
-      
-      <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        <h1 className="text-4xl sm:text-5xl font-bold text-primary mb-8 text-center">
-          Privacy Policy
-        </h1>
-        
+      <section className="page-container bg-background/50">
+       <div className="container mx-auto px-[var(--content-padding)]">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
+          >
+            Privacy Policy
+          </motion.h1>
+          <div className="space-y-8">
         <div className="max-w-4xl mx-auto prose prose-invert">
           <p className="mb-6 text-lg">This Privacy Policy describes how your personal information is collected, used, and shared when you visit cameronmccallum.com.</p>
           
