@@ -78,6 +78,18 @@ export function Footer() {
               </Link>
             </div>
           </div>
+
+          <div className="flex justify-center space-x-4 text-xs text-muted-foreground">
+            <Link href="/privacy-policy" className="hover:text-primary transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/cookie-policy" className="hover:text-primary transition-colors">
+              Cookie Policy
+            </Link>
+            <Link href="/terms" className="hover:text-primary transition-colors">
+              Terms of Service
+            </Link>
+          </div>
           
           <div className="text-center text-sm text-muted-foreground">
             © 2025 AI Strategy & Customer Success Portfolio.
