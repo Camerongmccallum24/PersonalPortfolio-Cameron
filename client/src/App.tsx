@@ -20,6 +20,7 @@ import { AnimatePresence } from "framer-motion";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import Terms from "@/pages/Terms";
 import CookiePolicy from "@/pages/CookiePolicy";
+import DemoApp from "@/pages/DemoApp";
 
 function App() {
   const [location] = useLocation();
@@ -50,6 +51,7 @@ function App() {
           <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/terms" component={Terms} />
           <Route path="/cookie-policy" component={CookiePolicy} />
+          <Route path="/DemoApp" component=={DemoApp} />
         </Switch>
       </AnimatePresence>
       <Footer />
