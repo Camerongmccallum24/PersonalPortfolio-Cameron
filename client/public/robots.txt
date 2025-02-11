@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Main pages
+Allow: /about
+Allow: /projects
+Allow: /blog
+Allow: /contact
+
+# Legal pages
+Allow: /privacy-policy
+Allow: /cookie-policy
+Allow: /terms
+
+# Sitemaps
+Sitemap: https://camerongmccallum.com/sitemap.xml
+
+# Disallow
+Disallow: /api/
+Disallow: /_next/
+Disallow: /*?
