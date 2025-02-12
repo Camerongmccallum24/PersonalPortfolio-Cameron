@@ -51,7 +51,7 @@ function App() {
           <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/terms" component={Terms} />
           <Route path="/cookie-policy" component={CookiePolicy} />
-          <Route path="/DemoApp" component=={DemoApp} />
+          <Route path="/DemoApp" component={DemoApp} />
         </Switch>
       </AnimatePresence>
       <Footer />
