@@ -20,7 +20,24 @@
   position: relative;
 }
 
-       .page-header {
+/* Responsive Iframe Wrapper */
+.screen-content {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.screen-content iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Page Header */
+.page-header {
   @apply text-4xl font-bold text-center mb-8 text-foreground;
   font-family: 'Inter', sans-serif;
 }
@@ -136,4 +153,33 @@
   0% { opacity: 1; }
   50% { opacity: 0.5; }
   100% { opacity: 1; }
+}
+
+/* Mobile-Friendly Adjustments */
+@media (max-width: 768px) {
+  .computer-frame {
+    padding: 10px;
+  }
+
+  .screen-content {
+    padding-top: 75%; /* Adjust for mobile */
+  }
+
+  .csm-demo {
+    max-width: 100%;
+    margin: 0 10px;
+  }
+
+  .tab-btn {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .score-display {
+    font-size: 2em;
+  }
+
+  .ai-processing {
+    font-size: 0.8em;
+  }
 }
