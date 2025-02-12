@@ -1,2 +1,2 @@
 
-export { default } from './CSMDemo.tsx';
+export { default } from './EnhancedDemo';
