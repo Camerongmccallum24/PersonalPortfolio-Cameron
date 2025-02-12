@@ -1,21 +1,21 @@
 User-agent: *
 Allow: /
 
-# Main pages
+# Main pages (explicitly allowed for clarity)
 Allow: /about
 Allow: /projects
 Allow: /blog
 Allow: /contact
 
-# Legal pages
+# Legal pages (explicitly allowed for clarity)
 Allow: /privacy-policy
 Allow: /cookie-policy
 Allow: /terms
 
-# Sitemaps
+# Sitemap location
 Sitemap: https://camerongmccallum.com/sitemap.xml
 
-# Disallow
+# Disallowed paths and URL patterns
 Disallow: /api/
 Disallow: /_next/
 Disallow: /*?
