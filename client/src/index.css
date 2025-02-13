@@ -136,6 +136,34 @@
     @apply opacity-80;
   }
 
+  /* Menubar Glow & Animation */
+.menubar-content {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: top center;
+}
+
+/* Open state */
+.menubar-content[data-state="open"] {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Closed state */
+.menubar-content[data-state="closed"] {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+/* Neon Hover Effect */
+.menubar-item {
+    transition: all 0.3s ease-in-out;
+}
+
+.menubar-item:hover {
+    background-color: rgba(3, 169, 244, 0.2);
+    box-shadow: 0px 0px 10px rgba(3, 169, 244, 0.7);
+}
+
   /* General Updates */
   .neon-glow-github {
     color: #333;
