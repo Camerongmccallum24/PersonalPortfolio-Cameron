@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent } from "@/components/ui/card";
@@ -56,6 +55,7 @@ export const SkillsVisualization = () => {
   const [activeCategory, setActiveCategory] = useState<number>(0);
   const [activeSkillType, setActiveSkillType] = useState<SkillType>(null);
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  const [expandedSkill, setExpandedSkill] = useState<string | null>(null); // New state for expanded skill
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -151,9 +151,16 @@ export const SkillsVisualization = () => {
                         }`}
                       />
                     </motion.div>
-                    
+
+                    <div 
+                      onClick={() => setExpandedSkill(expandedSkill === skill.name ? null : skill.name)} 
+                      className="absolute top-2 right-2 cursor-pointer text-xl"
+                    >
+                      {expandedSkill === skill.name ? "▲" : "▼"} {/* Up/Down Arrow */}
+                    </div>
+
                     <AnimatePresence>
-                      {hoveredSkill === skill.name && (
+                      {expandedSkill === skill.name && (
                         <motion.div
                           initial={{ opacity: 0, y: 5 }}
                           animate={{ opacity: 1, y: 0 }}
