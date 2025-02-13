@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Hero } from "@/components/sections/Hero";
 import { ParticlesBackground } from "@/components/sections/ParticlesBackground";
-import { FloatingParticles } from "@/components/effects/FloatingParticles";  // NEW: Floating Particles
+import { FloatingParticles } from "@/components/sections/FloatingParticles";  // NEW: Floating Particles
 import { MobileNav } from "@/components/navigation/MobileNav";  // NEW: Mobile Navigation
 
 const Home = () => {
