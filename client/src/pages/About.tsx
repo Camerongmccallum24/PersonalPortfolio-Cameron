@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { SkillsVisualization } from "@/components/sections/SkillsVisualization";
 import { TechStack } from "@/components/sections/TechStack";
+import { introduction } from @/components/sections/introduction
 import { useState } from "react";
 
 export default function About() {
@@ -110,6 +111,17 @@ export default function About() {
         </div>
       </section>
 
+       {/* introduction */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background to-background/80 pointer-events-none" />
+        <div className="relative z-10">
+          <h2 className="text-4xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
+            About Me
+          </h2>
+          <introduction />
+        </div>
+      </section>
+      
       {/* Skills Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-background to-background/80 pointer-events-none" />
