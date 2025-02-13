@@ -90,7 +90,7 @@ export default function About() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="flex-shrink-0"
+        className="flex-shrink-0 sm:w-40 w-48"
       >
         <motion.div
           whileHover={{ scale: 1.05 }}
@@ -101,7 +101,7 @@ export default function About() {
           <img
             src="/images/Profile_Picture.png"
             alt="Cameron McCallum - AI Strategy Consultant"
-            className="relative rounded-full w-48 h-48 object-cover"
+            className="relative rounded-full w-full h-full object-cover"
           />
         </motion.div>
       </motion.div>
@@ -109,6 +109,7 @@ export default function About() {
   </div>
 </section>
 
+    <section>
       {/* Skills Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-background to-background/80 pointer-events-none" />
@@ -119,6 +120,7 @@ export default function About() {
           <SkillsVisualization />
         </div>
       </section>
+    </section>
 
       {/* Tech Stack Section */}
       <section className="py-16 relative overflow-hidden">
