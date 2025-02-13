@@ -101,14 +101,7 @@ const DemoApp: React.FC = () => {
           </div>
         </section>
       </main>
-
-      <footer className="bg-gray-800 py-6 mt-12">
-        <div className="container mx-auto text-center text-white">
-          <p>© {new Date().getFullYear()} Cameron McCallum. All rights reserved.</p>
-        </div>
-      </footer>
-    </div>
   );
-};
+{'}'};
 
 export default DemoApp;
