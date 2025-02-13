@@ -10,21 +10,31 @@ import { Tooltip } from "@/components/ui/tooltip";
 
 export default function EnhancedDemo() {
   const [recommendations, setRecommendations] = useState([]);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const { toast } = useToast();
+  const [customerGoals, setCustomerGoals] = useState('');
+  const [customerChallenges, setCustomerChallenges] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "customerGoals") {
+      setCustomerGoals(value);
+    } else if (name === "customerChallenges") {
+      setCustomerChallenges(value);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
+    // Simulate an API call with a timeout
     setTimeout(() => {
       setRecommendations([
         "Schedule bi-weekly check-ins to track progress against stated objectives",
         "Create a custom adoption dashboard to monitor key metrics",
         "Develop targeted training sessions for power users",
       ]);
-      setIsSubmitted(true);
       setIsLoading(false);
       toast({
         title: "Success",
@@ -64,6 +74,8 @@ export default function EnhancedDemo() {
                   </label>
                   <Textarea
                     name="customerGoals"
+                    value={customerGoals}
+                    onChange={handleInputChange}
                     placeholder="What are the customer's primary objectives?"
                     required
                     className="focus:ring-primary focus:border-primary bg-white/20 backdrop-blur-lg text-white border border-white/30 rounded-xl p-3"
@@ -77,6 +89,8 @@ export default function EnhancedDemo() {
                   </label>
                   <Textarea
                     name="customerChallenges"
+                    value={customerChallenges}
+                    onChange={handleInputChange}
                     placeholder="What challenges is the customer facing?"
                     required
                     className="focus:ring-primary focus:border-primary bg-white/20 backdrop-blur-lg text-white border border-white/30 rounded-xl p-3"

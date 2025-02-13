@@ -42,7 +42,7 @@ function App() {
           <Route path="/projects" component={Projects} />
           <Route path="/blog" component={Blog} />
           <Route path="/contact" component={Contact} />
-          <Route path="/demo" component={Demo} />
+          <Route path="/Demo" component={Demo} />
           <Route path="/case-study/ai-tools-directory" component={CaseStudyAITools} />
           <Route path="/case-study/customer-success-gpt-showcase" component={CaseStudyGPTShowcase} />
           <Route path="/case-study/customer-success-portal" component={CaseStudyPortal} />
