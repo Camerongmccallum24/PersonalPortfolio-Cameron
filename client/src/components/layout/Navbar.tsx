@@ -10,7 +10,7 @@ import {
   Menu,
   X
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
@@ -26,6 +26,17 @@ export function Navbar() {
   const [location] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (isOpen && !(event.target as HTMLElement).closest(".mobile-menu")) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [isOpen]);
+
   return (
     <motion.nav 
       initial={{ y: -100 }}
@@ -34,6 +45,8 @@ export function Navbar() {
       className="fixed top-0 w-full z-50 bg-background/30 backdrop-blur-xl border-b border-border/30 supports-[backdrop-filter]:bg-background/20"
     >
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+        
+        {/* Logo */}
         <Link href="/">
           <motion.span 
             whileHover={{ scale: 1.05 }}
@@ -81,7 +94,7 @@ export function Navbar() {
             variant="ghost"
             size="icon"
             onClick={() => setIsOpen(!isOpen)}
-            className="relative"
+            className="relative z-50"
           >
             <AnimatePresence mode="wait">
               {isOpen ? (
@@ -114,11 +127,11 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
             transition={{ type: "spring", bounce: 0, duration: 0.3 }}
-            className="absolute top-20 left-0 right-0 bg-background/30 backdrop-blur-xl border-b border-border/30 md:hidden overflow-hidden"
+            className="mobile-menu absolute top-20 left-0 right-0 bg-background/30 backdrop-blur-xl border-b border-border/30 md:hidden overflow-hidden"
           >
             <motion.div 
               initial={{ y: -20 }}
