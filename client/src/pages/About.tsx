@@ -52,62 +52,63 @@ export default function About() {
   };
 
   return (
-<section className="pt-16 sm:pt-32 pb-12 sm:pb-24 relative overflow-hidden">
-  <div className="max-w-6xl mx-auto px-4">
-    {/* Two-column layout: Left for text, right for profile picture */}
-    <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-      {/* Left Column: Title, subheading, and CTA */}
-      <div className="flex-1 text-center md:text-left">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
-        >
-          About Me
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-lg sm:text-xl text-muted-foreground mb-6 leading-relaxed"
-        >
-          Empowering SaaS Businesses with AI-Powered Customer Solutions
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <Button size="lg" className="gap-2">
-            Explore My Expertise
-          </Button>
-        </motion.div>
-      </div>
+    <div>
+      <section className="pt-16 sm:pt-32 pb-12 sm:pb-24 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4">
+          {/* Two-column layout: Left for text, right for profile picture */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            {/* Left Column: Title, subheading, and CTA */}
+            <div className="flex-1 text-center md:text-left">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500"
+              >
+                About Me
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-lg sm:text-xl text-muted-foreground mb-6 leading-relaxed"
+              >
+                Empowering SaaS Businesses with AI-Powered Customer Solutions
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <Button size="lg" className="gap-2">
+                  Explore My Expertise
+                </Button>
+              </motion.div>
+            </div>
 
-      {/* Right Column: Profile Picture */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="flex-shrink-0 sm:w-40 w-48"
-      >
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 300 }}
-          className="relative group"
-        >
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-purple-500 to-blue-500 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000"></div>
-          <img
-            src="/images/Profile_Picture.png"
-            alt="Cameron McCallum - AI Strategy Consultant"
-            className="relative rounded-full w-full h-full object-cover"
-          />
-        </motion.div>
-      </motion.div>
-    </div>
-  </div>
-</section>
+            {/* Right Column: Profile Picture */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex-shrink-0 sm:w-40 w-48"
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="relative group"
+              >
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-purple-500 to-blue-500 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000"></div>
+                <img
+                  src="/images/Profile_Picture.png"
+                  alt="Cameron McCallum - AI Strategy Consultant"
+                  className="relative rounded-full w-full h-full object-cover"
+                />
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       {/* Skills Section */}
       <section className="relative overflow-hidden">
