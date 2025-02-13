@@ -109,7 +109,6 @@ export default function About() {
   </div>
 </section>
 
-    <section>
       {/* Skills Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-background to-background/80 pointer-events-none" />
@@ -120,7 +119,6 @@ export default function About() {
           <SkillsVisualization />
         </div>
       </section>
-    </section>
 
       {/* Tech Stack Section */}
       <section className="py-16 relative overflow-hidden">
