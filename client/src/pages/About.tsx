@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { SkillsVisualization } from "@/components/sections/SkillsVisualization";
 import { TechStack } from "@/components/sections/TechStack";
-import { introduction } from "@/components/sections/introduction";
+import { Introduction } from "@/components/sections/introduction";
 import { useState } from "react";
 
 export default function About() {
@@ -118,7 +118,7 @@ export default function About() {
           <h2 className="text-4xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500">
             About Me
           </h2>
-          <introduction />
+          <Introduction />
         </div>
       </section>
       
