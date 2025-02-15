@@ -12,7 +12,10 @@ const DemoApp: React.FC = () => {
     <div className="min-h-screen bg-gray-100">
       <Helmet>
         <title>Demo App - AI-Powered Presentation Builder | Cameron McCallum</title>
-        <meta name="description" content="Experience our AI-powered interactive application designed for Customer Success Managers to create data-driven presentations effortlessly." />
+        <meta
+          name="description"
+          content="Experience our AI-powered interactive application designed for Customer Success Managers to create data-driven presentations effortlessly."
+        />
       </Helmet>
 
       <header className="bg-gradient-to-r from-blue-600 to-purple-600 py-12">
@@ -92,7 +95,6 @@ const DemoApp: React.FC = () => {
               </div>
               {/* Placeholder for a chart (e.g., using a library like Chart.js) */}
               <div className="h-48 bg-gray-200 rounded">
-                {/*  Replace this with a real chart component */}
                 <p className="text-center text-gray-600 pt-20">
                   Chart Visualization Here (Data: {demoData.value})
                 </p>
@@ -101,7 +103,8 @@ const DemoApp: React.FC = () => {
           </div>
         </section>
       </main>
+    </div>
   );
-{'}'};
+};
 
 export default DemoApp;

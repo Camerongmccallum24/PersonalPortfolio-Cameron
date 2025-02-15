@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { SkillsVisualization } from "@/components/sections/SkillsVisualization";
 import { TechStack } from "@/components/sections/TechStack";
-import { introduction } from @/components/sections/introduction
+import { introduction } from "@/components/sections/introduction";
 import { useState } from "react";
 
 export default function About() {
