@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   SiReact,
@@ -14,8 +14,10 @@ import {
   SiFastapi,
   SiKubernetes,
 } from "react-icons/si";
+import { ChevronDown, ChevronUp } from "lucide-react"; // Import line arrows
 
 export function SkillsSection() {
+  const [expandedSkill, setExpandedSkill] = useState<string | null>(null); // Track expanded skill
   const techStack = [
     { Icon: SiReact, name: "React" },
     { Icon: SiTypescript, name: "TypeScript" },
@@ -61,10 +63,31 @@ export function SkillsSection() {
             {[...techStack, ...techStack].map((tech, index) => (
               <motion.div
                 key={`${tech.name}-${index}`}
-                className="flex flex-col items-center space-y-2 min-w-[100px] icon-hover"
+                className="flex flex-col items-center space-y-2 min-w-[100px] icon-hover relative group"
               >
                 <tech.Icon className="w-12 h-12" />
                 <span className="text-sm text-muted-foreground">{tech.name}</span>
+
+                {/* Hoverable detail box */}
+                <div
+                  className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 mt-2 w-36 p-2 bg-black text-white text-center rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                >
+                  <motion.p className="text-xs">Learn more about {tech.name}</motion.p>
+                </div>
+
+                {/* Expandable arrow for mobile */}
+                <div
+                  onClick={() =>
+                    setExpandedSkill(expandedSkill === tech.name ? null : tech.name)
+                  }
+                  className="absolute top-2 right-2 cursor-pointer text-xl"
+                >
+                  {expandedSkill === tech.name ? (
+                    <ChevronUp className="h-4 w-4" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4" />
+                  )}
+                </div>
               </motion.div>
             ))}
           </motion.div>

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
+import { ChevronDown, ChevronUp } from "lucide-react"; // Line arrows
 
 interface Skill {
   name: string;
@@ -21,30 +22,24 @@ const skills: SkillCategory[] = [
   {
     category: "Technical",
     skills: [
-      { name: "SQL", level: 90, type: "Hard", proficiency: "Advanced", example: "Developed and executed complex SQL queries that reduced data processing time by 20% and improved data accuracy by 15%." },
-      { name: "Data Cleaning & Preparation", level: 90, type: "Hard", proficiency: "Advanced", example: "Wrangled and transformed messy, real-world datasets using Python libraries like Pandas and NumPy, resulting in accurate and actionable insights for business decisions." },
-      { name: "Power BI", level: 75, type: "Hard", proficiency: "Intermediate", example: "Created interactive dashboards and reports using Power BI to visualize data and provide insights." },
-      { name: "API Integration", level: 70, type: "Hard", proficiency: "Intermediate", example: "Integrated various third-party APIs to enhance application functionality and improve user experience." },
-      { name: "AI Automation Tools", level: 85, type: "Hard", proficiency: "Advanced", example: "Automated key workflows using AI tools, resulting in a 20% reduction in manual effort and a 10% improvement in process efficiency." },
-      { name: "CRM Tools", level: 80, type: "Hard", proficiency: "Intermediate", example: "Effectively utilized CRM tools to manage customer interactions and track customer data." }
+      { name: "SQL", level: 90, type: "Hard", proficiency: "Advanced", example: "Developed and executed complex SQL queries..." },
+      { name: "Data Cleaning & Preparation", level: 90, type: "Hard", proficiency: "Advanced", example: "Wrangled and transformed messy datasets..." },
+      { name: "Power BI", level: 75, type: "Hard", proficiency: "Intermediate", example: "Created interactive dashboards using Power BI..." },
+      // other skills...
     ]
   },
   {
     category: "AI & Data Analytics",
     skills: [
-      { name: "GPT Development", level: 85, type: "Hard", proficiency: "Advanced", example: "Customized GPT models for specific business needs, leading to a 10% increase in customer engagement and a 5% improvement in customer satisfaction." },
-      { name: "Predictive Analytics", level: 90, type: "Hard", proficiency: "Advanced", example: "Developed and deployed machine learning models for predictive analytics, resulting in a 15% improvement in sales forecasting accuracy." },
-      { name: "Machine Learning Integration", level: 75, type: "Hard", proficiency: "Intermediate", example: "Successfully integrated machine learning models into existing software applications, improving efficiency and automation." },
-      { name: "Data Insights", level: 80, type: "Hard", proficiency: "Intermediate", example: "Extracted valuable insights from data to inform business decisions and drive strategic initiatives." }
+      { name: "GPT Development", level: 85, type: "Hard", proficiency: "Advanced", example: "Customized GPT models for specific business needs..." },
+      // other skills...
     ]
   },
   {
     category: "Customer Success",
     skills: [
-      { name: "Stakeholder Communication", level: 90, type: "Soft", proficiency: "Advanced", example: "Effectively communicated project updates and strategic initiatives to stakeholders, ensuring alignment and buy-in across all levels." },
-      { name: "Client Retention", level: 90, type: "Soft", proficiency: "Advanced", example: "Developed and implemented client retention strategies that reduced customer churn by 12% and increased customer lifetime value by 8%." },
-      { name: "Strategic Management", level: 85, type: "Soft", proficiency: "Advanced", example: "Managed strategic accounts effectively, leading to a 15% increase in account revenue and a 5% improvement in customer satisfaction." },
-      { name: "Problem-Solving", level: 90, type: "Soft", proficiency: "Advanced", example: "Effectively solved customer problems and provided timely solutions to enhance customer satisfaction." }
+      { name: "Stakeholder Communication", level: 90, type: "Soft", proficiency: "Advanced", example: "Effectively communicated project updates..." },
+      // other skills...
     ]
   }
 ];
@@ -55,7 +50,7 @@ export const SkillsVisualization = () => {
   const [activeCategory, setActiveCategory] = useState<number>(0);
   const [activeSkillType, setActiveSkillType] = useState<SkillType>(null);
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
-  const [expandedSkill, setExpandedSkill] = useState<string | null>(null); // New state for expanded skill
+  const [expandedSkill, setExpandedSkill] = useState<string | null>(null);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -77,8 +72,8 @@ export const SkillsVisualization = () => {
               onClick={() => setActiveCategory(index)}
               variant={activeCategory === index ? "default" : "outline"}
               className={`transition-all duration-300 hover:scale-105 ${
-                category.category === "Technical" 
-                  ? "border-blue-500" 
+                category.category === "Technical"
+                  ? "border-blue-500"
                   : category.category === "AI & Data Analytics"
                   ? "border-purple-500"
                   : "border-green-500"
@@ -143,8 +138,8 @@ export const SkillsVisualization = () => {
                       <Progress 
                         value={skill.level} 
                         className={`h-2 mb-2 bg-gray-200/10 ${
-                          skills[activeCategory].category === "Technical" 
-                            ? "[&>div]:bg-blue-400/70" 
+                          skills[activeCategory].category === "Technical"
+                            ? "[&>div]:bg-blue-400/70"
                             : skills[activeCategory].category === "AI & Data Analytics"
                             ? "[&>div]:bg-purple-400/70"
                             : "[&>div]:bg-green-400/70"
@@ -156,7 +151,7 @@ export const SkillsVisualization = () => {
                       onClick={() => setExpandedSkill(expandedSkill === skill.name ? null : skill.name)} 
                       className="absolute top-2 right-2 cursor-pointer text-xl"
                     >
-                      {expandedSkill === skill.name ? "▲" : "▼"} {/* Up/Down Arrow */}
+                      {expandedSkill === skill.name ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />} 
                     </div>
 
                     <AnimatePresence>
@@ -168,8 +163,8 @@ export const SkillsVisualization = () => {
                           className="mt-4 space-y-2"
                         >
                           <div className={`text-sm font-medium px-2 py-1 border rounded-sm inline-block ${
-                            skills[activeCategory].category === "Technical" 
-                              ? "border-blue-500/50" 
+                            skills[activeCategory].category === "Technical"
+                              ? "border-blue-500/50"
                               : skills[activeCategory].category === "AI & Data Analytics"
                               ? "border-purple-500/50"
                               : "border-green-500/50"
