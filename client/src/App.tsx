@@ -10,7 +10,7 @@ import Career from "@/pages/Career";
 import Projects from "@/pages/Projects";
 import Blog from "@/pages/Blog";
 import Contact from "@/pages/Contact";
-import Demo from "@/pages/Demo";
+import Demo from "@/demo/Demo";
 import CaseStudyGPTShowcase from "@/pages/CaseStudyGPTShowcase";
 import CaseStudyPortal from "@/pages/CaseStudyPortal";
 import CaseStudyAutomator from "@/pages/CaseStudyAutomator";
@@ -20,7 +20,7 @@ import { AnimatePresence } from "framer-motion";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import Terms from "@/pages/Terms";
 import CookiePolicy from "@/pages/CookiePolicy";
-import DemoApp from "@/pages/DemoApp";
+import DemoApp from "@/demo/DemoApp";
 
 function App() {
   const [location] = useLocation();
