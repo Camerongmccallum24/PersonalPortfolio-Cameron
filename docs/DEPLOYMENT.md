@@ -28,6 +28,25 @@ npm run build
 npm start
 ```
 
+## Development Build
+
+### 1. Environment Setup
+Create a `.env` file with development settings:
+```env
+NODE_ENV=development
+DATABASE_URL=postgresql://user:password@host:port/dbname
+PORT=3000
+```
+
+### 2. Build Process
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
 ## Self-Hosting Options
 
 ### Option 1: Virtual Private Server (VPS)
